@@ -150,29 +150,45 @@
     /* FEATURES */
     .features-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 24px;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
     }
 
     .feature-card {
-      background: var(--surface);
-      border: 1px solid #2a2a2a;
-      border-radius: 12px; padding: 28px;
-      transition: border-color 0.2s, box-shadow 0.2s;
+      background: #141414;
+      border: 1px solid #272727;
+      border-radius: 16px;
+      padding: 32px;
+      transition: border-color 0.25s, box-shadow 0.25s;
     }
     .feature-card:hover {
-      border-color: rgba(206,169,82,0.35);
-      box-shadow: 0 0 28px rgba(206,169,82,0.07);
+      border-color: rgba(206,169,82,0.5);
+      box-shadow: 0 0 32px rgba(206,169,82,0.08);
     }
 
-    .feature-icon { font-size: 28px; margin-bottom: 14px; }
-    .feature-card h3 { font-size: 17px; font-weight: 700; color: var(--white); margin-bottom: 10px; }
-    .feature-card ul { list-style: none; }
-    .feature-card li {
-      font-size: 14px; color: var(--text-muted);
-      padding: 4px 0; padding-left: 14px; position: relative; line-height: 1.5;
+    .feature-icon-badge {
+      width: 52px; height: 52px;
+      background: rgba(206,169,82,0.15);
+      border: 1px solid rgba(206,169,82,0.3);
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 24px;
+      margin-bottom: 20px;
     }
-    .feature-card li::before { content: "→"; position: absolute; left: 0; color: var(--accent); font-size: 12px; }
+
+    .feature-card h3 {
+      font-size: 18px; font-weight: 700; color: var(--white);
+      margin-bottom: 20px; line-height: 1.3;
+    }
+    .feature-card ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .feature-card li {
+      font-size: 14px; color: #b0b0b0;
+      padding-left: 22px; position: relative; line-height: 1.5;
+    }
+    .feature-card li::before {
+      content: "✓"; position: absolute; left: 0;
+      color: var(--accent); font-size: 13px; font-weight: 700;
+    }
 
     /* WHAT YOU GET */
     .gets-grid {
@@ -340,32 +356,31 @@
 <!-- HOW IT WORKS -->
 <section id="how-it-works">
   <div class="container">
-    <p class="section-label">The Program</p>
-    <h2>Everything You Need Outside the Rink</h2>
-    <p class="section-lead">This is not a course, not a cookie cutter program, and not generic online coaching. Prodigy is high intent, high touch mentorship for hockey athletes who want confidence, clarity, and consistent performance.</p>
+    <h2>Everything You Need Outside the Rink <span style="color:var(--accent)">in One High Touch Support System</span></h2>
+    <p class="section-lead">This is not a course, not a cookie cutter program, and not generic online coaching. Prodigy is high intent, high touch mentorship for hockey athletes who want confidence, clarity, and consistent performance built through communication, accountability, and personalized guidance.</p>
     <div class="features-grid">
       <div class="feature-card">
-        <div class="feature-icon">🏋️</div>
+        <div class="feature-icon-badge">🏋️</div>
         <h3>Training That Transfers</h3>
         <ul>
           <li>Personalized training plan built around the athlete's schedule</li>
-          <li>Strength, speed, conditioning and mobility built for hockey</li>
-          <li>Adjusted weekly based on feedback, fatigue, and performance</li>
+          <li>Strength speed conditioning mobility built for hockey performance</li>
+          <li>Adjusted weekly based on feedback fatigue and performance</li>
         </ul>
       </div>
       <div class="feature-card">
-        <div class="feature-icon">🥗</div>
-        <h3>Nutrition, Recovery & Schedule</h3>
+        <div class="feature-icon-badge">🍎</div>
+        <h3>Nutrition Recovery and Schedule Management</h3>
         <ul>
           <li>Simple and realistic fueling strategies</li>
           <li>Recovery plans that prevent burnout</li>
           <li>Weekly structure and planning guidance</li>
-          <li>Habits that support long-term confidence and performance</li>
+          <li>Building habits that support long term confidence and performance</li>
         </ul>
       </div>
       <div class="feature-card">
-        <div class="feature-icon">🧠</div>
-        <h3>Confidence, Leadership & Mindset</h3>
+        <div class="feature-icon-badge">🧠</div>
+        <h3>Confidence Leadership and Mindset</h3>
         <ul>
           <li>Understanding the root of inconsistency and fear of mistakes</li>
           <li>Staying calm under pressure</li>
@@ -374,12 +389,12 @@
         </ul>
       </div>
       <div class="feature-card">
-        <div class="feature-icon">🏒</div>
-        <h3>On-Ice IQ & Skill Analysis</h3>
+        <div class="feature-icon-badge">🏒</div>
+        <h3>On Ice IQ Skill Analysis and Game Breakdown</h3>
         <ul>
           <li>Technical skill analysis</li>
           <li>Gameplay breakdowns included for all athletes</li>
-          <li>Support for scanning, timing, spacing, and decision-making</li>
+          <li>Support for scanning timing spacing and decision making</li>
         </ul>
       </div>
     </div>
