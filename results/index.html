@@ -145,7 +145,7 @@
     <li><a href="/">Home</a></li>
     <li><a href="/#how-it-works">How It Works</a></li>
     <li><a href="/#who">Who It's For</a></li>
-    <li><a href="/results.html" class="active">Athlete Results</a></li>
+    <li><a href="/results/" class="active">Athlete Results</a></li>
     <li><a href="/#about">About Kenny</a></li>
     <li><a href="/#faq">FAQ</a></li>
   </ul>
@@ -278,13 +278,75 @@
   <p>Building confident leaders one athlete at a time.</p>
   <p style="margin-top:12px;">
     <a href="/">Home</a>
-    <a href="/privacy.html">Privacy Policy</a>
-    <a href="/terms.html">Terms of Service</a>
+    <a href="/privacy/">Privacy Policy</a>
+    <a href="/terms/">Terms of Service</a>
   </p>
   <p style="margin-top:12px;">© 2026 Prodigy Hockey Development. All rights reserved.</p>
 </footer>
 
+<!-- Booking modal overlay -->
+<div id="booking-overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.88);z-index:9999;align-items:center;justify-content:center;">
+  <div style="width:90%;max-width:820px;height:82vh;background:#111;border-radius:18px;border:1px solid #2a2a2a;overflow:hidden;position:relative;box-shadow:0 0 60px rgba(206,169,82,0.15);">
+    <button onclick="closeBooking()" style="position:absolute;top:14px;right:18px;background:none;border:none;color:#aaa;font-size:22px;cursor:pointer;z-index:1;line-height:1;">✕</button>
+    <iframe id="booking-iframe" src="" width="100%" height="100%" frameborder="0" style="display:block;"></iframe>
+  </div>
+</div>
+
+<!-- Nimbuspop floating button -->
+<script src="https://bookings.nimbuspop.com/assets/embed.js"></script>
 <script>
+const BOOKING_URL = "https://prodigy.zohobookings.ca/portal-embed#/connect";
+
+Bookings.buttonModal({
+  url: BOOKING_URL,
+  text: "Book now",
+  color: "#cea952",
+  textColor: "#000000",
+  position: "bottom-right"
+});
+
+function openBooking() {
+  const overlay = document.getElementById('booking-overlay');
+  document.getElementById('booking-iframe').src = BOOKING_URL;
+  overlay.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+}
+
+function closeBooking() {
+  document.getElementById('booking-overlay').style.display = 'none';
+  document.getElementById('booking-iframe').src = '';
+  document.body.style.overflow = '';
+}
+
+document.getElementById('booking-overlay').addEventListener('click', function(e) {
+  if (e.target === this) closeBooking();
+});
+
+// Insert "Apply Now" CTA after every 18 win cards
+function insertCTAs() {
+  const grids = document.querySelectorAll('.wins-grid');
+  grids.forEach(grid => {
+    const cards = Array.from(grid.querySelectorAll('.win-card'));
+    const interval = 18;
+    let inserted = 0;
+    cards.forEach((card, i) => {
+      if ((i + 1) % interval === 0) {
+        const cta = document.createElement('div');
+        cta.className = 'apply-cta-card';
+        cta.style.cssText = 'break-inside:avoid;background:linear-gradient(145deg,#161200,#0d0d00);border:1px solid rgba(206,169,82,0.35);border-radius:14px;padding:36px 28px;margin-bottom:20px;text-align:center;box-shadow:0 0 40px rgba(206,169,82,0.1);';
+        cta.innerHTML = `
+          <p style="font-size:13px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:#cea952;margin-bottom:12px;">Ready to Write Yours?</p>
+          <p style="font-size:17px;font-weight:700;color:#fff;margin-bottom:24px;">These results start with one conversation.</p>
+          <button onclick="openBooking()" style="background:#cea952;color:#000;border:none;padding:13px 32px;border-radius:8px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;transition:background 0.15s;" onmouseover="this.style.background='#dfc06a'" onmouseout="this.style.background='#cea952'">
+            Apply Now
+          </button>`;
+        card.after(cta);
+        inserted++;
+      }
+    });
+  });
+}
+
 function filterWins(category, btn) {
   document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
@@ -296,6 +358,8 @@ function filterWins(category, btn) {
     }
   });
 }
+
+insertCTAs();
 </script>
 
 </body>
