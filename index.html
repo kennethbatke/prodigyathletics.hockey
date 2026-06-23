@@ -5,20 +5,47 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Prodigy | Hockey Leadership & Development Program</title>
   <meta name="description" content="Helping hockey players perform with belief and calm under pressure. High-touch 1:1 mentorship for committed hockey athletes.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg: #060606;
-      --surface: #0e0e0e;
+      --bg: #080808;
+      --surface: #0f0f0f;
       --surface2: #161616;
-      --border: #2a2a2a;
-      --text: #f0f0f0;
-      --text-muted: #999999;
+      --border: #2e2e2e;
+      --text: #ffffff;
+      --text-muted: #a0a0a0;
       --accent: #cea952;
       --accent-light: #dfc06a;
-      --accent-glow: rgba(206,169,82,0.18);
+      --accent-glow: rgba(206,169,82,0.15);
       --white: #ffffff;
+      --font-cinzel: 'Cinzel', serif;
+      --font-inter: 'Inter', sans-serif;
+      --shadow-gold: 0 0 40px rgba(206,169,82,0.15);
+      --card-bg: linear-gradient(145deg, #141414, #0d0d0d);
+    }
+
+    .font-cinzel { font-family: var(--font-cinzel); }
+    .text-gradient-gold {
+      background: linear-gradient(135deg, #cea952, #dfc06a);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .card-premium {
+      border-radius: 16px;
+      padding: 32px;
+      border: 1px solid var(--border);
+      background: var(--card-bg);
+      box-shadow: var(--shadow-gold);
+    }
+    .gold-divider {
+      width: 96px; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      margin: 0 auto;
     }
 
     html { scroll-behavior: smooth; }
@@ -234,6 +261,35 @@
     .what-you-get-tagline {
       font-size: 14px; color: var(--text-muted);
       margin-top: 28px; font-style: italic;
+    }
+
+    /* FAQ */
+    .faq-item {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      box-shadow: var(--shadow-gold);
+    }
+    .faq-item[open] {
+      border-color: rgba(206,169,82,0.5);
+    }
+    .faq-item summary {
+      padding: 20px 24px;
+      font-size: 16px; font-weight: 600;
+      color: var(--text); cursor: pointer;
+      list-style: none;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .faq-item summary:hover { color: var(--accent); }
+    .faq-item summary::after { content: "+"; color: var(--accent); font-size: 20px; font-weight: 400; }
+    .faq-item[open] summary::after { content: "−"; }
+    .faq-answer { padding: 0 24px 20px; font-size: 15px; color: var(--text-muted); line-height: 1.75; }
+
+    @keyframes pulse-gold {
+      0%, 100% { box-shadow: 0 0 20px rgba(206,169,82,0.3); }
+      50% { box-shadow: 0 0 40px rgba(206,169,82,0.5); }
     }
 
     /* IS PRODIGY RIGHT LINK */
@@ -537,20 +593,26 @@
     <p class="video-subheading">From Parents</p>
     <div class="video-grid">
       <div class="video-embed">
-        <iframe src="https://www.youtube.com/embed/VnM6RnqZ7yk?start=683" allowfullscreen loading="lazy" title="Parent testimonial - Nathan"></iframe>
+        <iframe src="https://www.youtube.com/embed/1oovjLLpSS0" allowfullscreen loading="lazy" title="Parent testimonial 1"></iframe>
       </div>
       <div class="video-embed">
-        <iframe src="https://www.youtube.com/embed/SHAtQsHqkh8?start=337" allowfullscreen loading="lazy" title="Parent testimonial - Noah"></iframe>
+        <iframe src="https://www.youtube.com/embed/SHAtQsHqkh8" allowfullscreen loading="lazy" title="Parent testimonial 2"></iframe>
       </div>
     </div>
 
     <p class="video-subheading">From Players</p>
     <div class="video-grid">
       <div class="video-embed">
-        <iframe src="https://www.youtube.com/embed/1oovjLLpSS0?start=45" allowfullscreen loading="lazy" title="Player testimonial - Sixten"></iframe>
+        <iframe src="https://www.youtube.com/embed/YYNCiW8fpPM" allowfullscreen loading="lazy" title="Player testimonial 1"></iframe>
       </div>
       <div class="video-embed">
-        <iframe src="https://www.youtube.com/embed/mNUqfLA68DM?start=370" allowfullscreen loading="lazy" title="Player interview - Cole"></iframe>
+        <iframe src="https://www.youtube.com/embed/mLUe31a334k" allowfullscreen loading="lazy" title="Player testimonial 2"></iframe>
+      </div>
+      <div class="video-embed">
+        <iframe src="https://www.youtube.com/embed/oWCnQBxlBEM" allowfullscreen loading="lazy" title="Player testimonial 3"></iframe>
+      </div>
+      <div class="video-embed">
+        <iframe src="https://www.youtube.com/embed/8AFkoJ0-X2Y" allowfullscreen loading="lazy" title="Player testimonial 4"></iframe>
       </div>
     </div>
 
@@ -591,135 +653,258 @@
 </section>
 
 <!-- ABOUT KENNY -->
-<section id="kenny">
-  <div class="container">
-    <div class="about-grid">
-      <div>
-        <p class="section-label">About Kenny</p>
-        <h2>Coach, Mentor and Former University Hockey Player</h2>
-        <p style="color: var(--text-muted); font-size: 16px; line-height: 1.75; margin-bottom: 28px;">Kenny is a former junior and university hockey player who developed late, battled injuries, and carved his path forward through belief, structure, and relentless effort. He now mentors players across North America and Europe, helping athletes transform inconsistency into confidence, fear into courage, and hesitation into leadership.</p>
-        <p style="color: var(--text-muted); font-size: 16px; line-height: 1.75; font-weight: 600;">The mission is simple: Build the leader and the athlete will follow.</p>
+<section id="about" style="padding: 80px 24px; position:relative;">
+  <div style="position:absolute;inset:0;background:linear-gradient(to bottom,var(--bg),var(--surface));pointer-events:none;"></div>
+  <div style="position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(206,169,82,0.3),transparent);"></div>
+  <div class="container" style="max-width:860px; position:relative; z-index:1;">
+
+    <h2 style="font-family:var(--font-cinzel);font-size:clamp(28px,4vw,44px);font-weight:800;text-align:center;color:var(--accent);margin-bottom:8px;">
+      About Kenny
+    </h2>
+    <p style="text-align:center;font-size:18px;color:var(--text);margin-bottom:48px;">
+      Coach, Mentor and Former University Hockey Player
+    </p>
+
+    <!-- Words I Live By Card -->
+    <div class="card-premium" style="text-align:center;margin-bottom:48px;">
+      <p style="font-size:22px;font-weight:700;color:var(--text);margin-bottom:24px;">Words I Live By</p>
+      <p style="font-size:20px;color:var(--accent);font-weight:600;line-height:1.9;">
+        "Action is mandatory.<br>
+        Effort is imperative.<br>
+        Failure is necessary.<br>
+        Confidence is learned."
+      </p>
+    </div>
+
+    <!-- Bio -->
+    <div style="display:flex;flex-direction:column;gap:20px;font-size:17px;color:var(--text);line-height:1.8;margin-bottom:56px;">
+      <p>Kenny is a former junior and university hockey player who developed late, battled injuries, and carved his path forward through belief, structure, and relentless effort.</p>
+      <p>He now mentors players across North America and Europe, helping athletes transform inconsistency into confidence, fear into courage, and hesitation into leadership.</p>
+    </div>
+
+    <!-- Values -->
+    <p style="font-size:22px;font-weight:700;text-align:center;color:var(--text);margin-bottom:32px;">His coaching philosophy is rooted in three values</p>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:56px;">
+      <div class="card-premium" style="text-align:center;padding:32px 20px;">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin:0 auto 16px;display:block;">
+          <rect x="8" y="6" width="24" height="3" rx="0.5" stroke="#cea952" stroke-width="1.5" fill="none"/>
+          <rect x="8" y="31" width="24" height="3" rx="0.5" stroke="#cea952" stroke-width="1.5" fill="none"/>
+          <rect x="10" y="9" width="20" height="22" stroke="#cea952" stroke-width="1.5" fill="none"/>
+          <line x1="14" y1="10" x2="14" y2="30" stroke="#cea952" stroke-width="1"/>
+          <line x1="18" y1="10" x2="18" y2="30" stroke="#cea952" stroke-width="1"/>
+          <line x1="22" y1="10" x2="22" y2="30" stroke="#cea952" stroke-width="1"/>
+          <line x1="26" y1="10" x2="26" y2="30" stroke="#cea952" stroke-width="1"/>
+        </svg>
+        <p style="font-size:16px;font-weight:700;color:var(--text);">Excellence in Effort</p>
       </div>
-      <div>
-        <div class="about-quote">"Action is mandatory. Effort is imperative. Failure is necessary. Confidence is learned."</div>
-        <div class="values-grid">
-          <div class="value-item"><strong>Excellence in Effort</strong>Show up fully. Every time.</div>
-          <div class="value-item"><strong>Integrity in Action</strong>Do what you say you will do.</div>
-          <div class="value-item"><strong>Humility in Growth</strong>Stay coachable. Stay hungry.</div>
-        </div>
+      <div class="card-premium" style="text-align:center;padding:32px 20px;">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin:0 auto 16px;display:block;">
+          <rect x="8" y="6" width="24" height="3" rx="0.5" stroke="#cea952" stroke-width="1.5" fill="none"/>
+          <rect x="8" y="31" width="24" height="3" rx="0.5" stroke="#cea952" stroke-width="1.5" fill="none"/>
+          <rect x="10" y="9" width="20" height="22" stroke="#cea952" stroke-width="1.5" fill="none"/>
+          <line x1="14" y1="10" x2="14" y2="30" stroke="#cea952" stroke-width="1"/>
+          <line x1="18" y1="10" x2="18" y2="30" stroke="#cea952" stroke-width="1"/>
+          <line x1="22" y1="10" x2="22" y2="30" stroke="#cea952" stroke-width="1"/>
+          <line x1="26" y1="10" x2="26" y2="30" stroke="#cea952" stroke-width="1"/>
+        </svg>
+        <p style="font-size:16px;font-weight:700;color:var(--text);">Integrity in Action</p>
       </div>
+      <div class="card-premium" style="text-align:center;padding:32px 20px;">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin:0 auto 16px;display:block;">
+          <rect x="8" y="6" width="24" height="3" rx="0.5" stroke="#cea952" stroke-width="1.5" fill="none"/>
+          <rect x="8" y="31" width="24" height="3" rx="0.5" stroke="#cea952" stroke-width="1.5" fill="none"/>
+          <rect x="10" y="9" width="20" height="22" stroke="#cea952" stroke-width="1.5" fill="none"/>
+          <line x1="14" y1="10" x2="14" y2="30" stroke="#cea952" stroke-width="1"/>
+          <line x1="18" y1="10" x2="18" y2="30" stroke="#cea952" stroke-width="1"/>
+          <line x1="22" y1="10" x2="22" y2="30" stroke="#cea952" stroke-width="1"/>
+          <line x1="26" y1="10" x2="26" y2="30" stroke="#cea952" stroke-width="1"/>
+        </svg>
+        <p style="font-size:16px;font-weight:700;color:var(--text);">Humility in Growth</p>
+      </div>
+    </div>
+
+    <!-- Mission -->
+    <div style="text-align:center;">
+      <h3 style="font-family:var(--font-cinzel);font-size:24px;font-weight:700;color:var(--text);margin-bottom:8px;">The mission is simple</h3>
+      <p style="font-size:22px;font-weight:600;font-style:italic;color:var(--accent);">Build the leader and the athlete will follow.</p>
     </div>
   </div>
 </section>
 
 <!-- FOR PARENTS -->
-<section id="parents" style="background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
-  <div class="container">
-    <p class="section-label">For Parents</p>
-    <h2>Parents Want One Thing</h2>
-    <p class="section-lead">To know that their hard-earned dollars and unwavering support are being invested in the best possible way — not just for their child's development as an athlete, but as a human being.</p>
-    <p style="color: var(--text-muted); font-size: 16px; line-height: 1.75; margin-bottom: 32px;">Sport isn't only about competition. It's about the character traits and life skills we build along the way.</p>
-    <div class="traits-grid">
-      <div class="trait">Confidence</div>
-      <div class="trait">Accountability</div>
-      <div class="trait">Communication</div>
-      <div class="trait">Resilience</div>
-      <div class="trait">Leadership</div>
+<section id="parents" style="padding:80px 24px;position:relative;">
+  <div style="position:absolute;inset:0;background:linear-gradient(to bottom,var(--surface),var(--bg),var(--surface));pointer-events:none;"></div>
+  <div style="position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(206,169,82,0.3),transparent);"></div>
+  <div class="container" style="max-width:860px;position:relative;z-index:1;">
+
+    <h2 style="font-family:var(--font-cinzel);font-size:clamp(28px,4vw,44px);font-weight:800;text-align:center;color:var(--accent);margin-bottom:48px;">For Parents</h2>
+
+    <div class="card-premium">
+      <p style="font-size:20px;font-weight:700;text-align:center;color:var(--text);margin-bottom:28px;">Parents want one thing:</p>
+      <p style="font-size:16px;color:var(--text);line-height:1.8;margin-bottom:16px;">To know that their hard earned dollars and unwavering support are being invested in the best possible way, not just for their child's development as an athlete, but as a human being.</p>
+      <p style="font-size:16px;color:var(--text);line-height:1.8;margin-bottom:32px;">Sport isn't only about competition. It's about the character traits and life skills we build along the way:</p>
+
+      <!-- Trait pills -->
+      <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-bottom:32px;">
+        <span style="display:flex;align-items:center;gap:8px;background:var(--surface2);border:1px solid var(--border);border-radius:999px;padding:10px 20px;font-size:15px;font-weight:600;color:var(--text);">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#cea952" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          Confidence
+        </span>
+        <span style="display:flex;align-items:center;gap:8px;background:var(--surface2);border:1px solid var(--border);border-radius:999px;padding:10px 20px;font-size:15px;font-weight:600;color:var(--text);">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#cea952" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          Accountability
+        </span>
+        <span style="display:flex;align-items:center;gap:8px;background:var(--surface2);border:1px solid var(--border);border-radius:999px;padding:10px 20px;font-size:15px;font-weight:600;color:var(--text);">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#cea952" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          Communication
+        </span>
+        <span style="display:flex;align-items:center;gap:8px;background:var(--surface2);border:1px solid var(--border);border-radius:999px;padding:10px 20px;font-size:15px;font-weight:600;color:var(--text);">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#cea952" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>
+          Resilience
+        </span>
+        <span style="display:flex;align-items:center;gap:8px;background:var(--surface2);border:1px solid var(--border);border-radius:999px;padding:10px 20px;font-size:15px;font-weight:600;color:var(--text);">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#cea952" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          Leadership
+        </span>
+      </div>
+
+      <p style="font-size:18px;font-weight:600;text-align:center;color:var(--accent);">Prodigy helps athletes grow as people first so the athlete naturally follows.</p>
     </div>
-    <p style="color: var(--text-muted); font-size: 16px; line-height: 1.75; margin-top: 24px;">Prodigy helps athletes grow as people first so the athlete naturally follows.</p>
   </div>
 </section>
 
 <!-- PHASE 1 -->
-<section>
-  <div class="container">
-    <div class="phase-grid">
-      <div>
-        <p class="section-label">The Prodigy Path</p>
-        <h2>Phase 1: The Foundation</h2>
-        <p style="color: var(--text-muted); font-size: 16px; line-height: 1.75; margin-bottom: 28px;">Every athlete begins with a fully personalized 3-month foundation designed to build confidence, structure, clarity, and consistent performance.</p>
-        <p style="color: var(--text-muted); font-size: 16px; line-height: 1.75;">This is a comprehensive, high-intent mentorship experience designed for serious families committed to their athlete's long-term development as players and leaders.</p>
-        <div style="margin-top: 40px;">
-          <a href="https://prodigy-athletics-booking.lovable.app" class="btn-primary">Book Your Call</a>
-        </div>
+<section style="padding:80px 24px;position:relative;">
+  <div style="position:absolute;inset:0;background:linear-gradient(to bottom,var(--surface),var(--bg));pointer-events:none;"></div>
+  <div style="position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(206,169,82,0.3),transparent);"></div>
+  <div class="container" style="max-width:900px;position:relative;z-index:1;">
+
+    <div style="text-align:center;margin-bottom:48px;">
+      <h2 style="font-family:var(--font-cinzel);font-size:clamp(28px,4vw,44px);font-weight:800;color:var(--text);margin-bottom:16px;">
+        The Prodigy Path: <span style="color:var(--accent)">Phase 1</span>
+      </h2>
+      <p style="font-size:18px;color:var(--text);line-height:1.7;max-width:680px;margin:0 auto;">
+        Every athlete begins with a fully personalized 3 month foundation designed to build confidence, structure, clarity, and consistent performance.
+      </p>
+    </div>
+
+    <!-- Phase 1 Includes card -->
+    <div class="card-premium" style="margin-bottom:24px;">
+      <h3 style="font-size:22px;font-weight:700;text-align:center;color:var(--text);margin-bottom:32px;">Phase 1 Includes</h3>
+      <ul style="display:grid;grid-template-columns:1fr 1fr;gap:16px;list-style:none;">
+        <li style="display:flex;align-items:flex-start;gap:12px;font-size:15px;color:var(--text);">
+          <span class="circle-check" style="flex-shrink:0;margin-top:1px;">✓</span>High touch 1:1 mentorship
+        </li>
+        <li style="display:flex;align-items:flex-start;gap:12px;font-size:15px;color:var(--text);">
+          <span class="circle-check" style="flex-shrink:0;margin-top:1px;">✓</span>Personalized training plan
+        </li>
+        <li style="display:flex;align-items:flex-start;gap:12px;font-size:15px;color:var(--text);">
+          <span class="circle-check" style="flex-shrink:0;margin-top:1px;">✓</span>Personalized nutrition and recovery guidance
+        </li>
+        <li style="display:flex;align-items:flex-start;gap:12px;font-size:15px;color:var(--text);">
+          <span class="circle-check" style="flex-shrink:0;margin-top:1px;">✓</span>Skill and gameplay analysis
+        </li>
+        <li style="display:flex;align-items:flex-start;gap:12px;font-size:15px;color:var(--text);">
+          <span class="circle-check" style="flex-shrink:0;margin-top:1px;">✓</span>Weekly check ins
+        </li>
+        <li style="display:flex;align-items:flex-start;gap:12px;font-size:15px;color:var(--text);">
+          <span class="circle-check" style="flex-shrink:0;margin-top:1px;">✓</span>Ongoing text and voice message support
+        </li>
+        <li style="display:flex;align-items:flex-start;gap:12px;font-size:15px;color:var(--text);">
+          <span class="circle-check" style="flex-shrink:0;margin-top:1px;">✓</span>Structure and schedule planning
+        </li>
+        <li style="display:flex;align-items:flex-start;gap:12px;font-size:15px;color:var(--text);">
+          <span class="circle-check" style="flex-shrink:0;margin-top:1px;">✓</span>Leadership and confidence development
+        </li>
+        <li style="display:flex;align-items:flex-start;gap:12px;font-size:15px;color:var(--text);grid-column:span 2;">
+          <span class="circle-check" style="flex-shrink:0;margin-top:1px;">✓</span>Support through performance dips injuries and pressure moments
+        </li>
+      </ul>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+      <div class="card-premium" style="text-align:center;">
+        <h3 style="font-size:20px;font-weight:700;color:var(--accent);margin-bottom:12px;">Investment</h3>
+        <p style="font-size:15px;color:var(--text);line-height:1.7;">This is a comprehensive high intent mentorship experience designed for serious families committed to their athletes long term development as players and leaders.</p>
       </div>
-      <div>
-        <ul class="phase-includes">
-          <li>High touch 1:1 mentorship</li>
-          <li>Personalized training plan</li>
-          <li>Personalized nutrition and recovery guidance</li>
-          <li>Skill and gameplay analysis</li>
-          <li>Weekly check-ins</li>
-          <li>Ongoing text and voice message support</li>
-          <li>Structure and schedule planning</li>
-          <li>Leadership and confidence development</li>
-          <li>Support through performance dips, injuries, and pressure moments</li>
-        </ul>
+      <div class="card-premium" style="text-align:center;">
+        <h3 style="font-size:20px;font-weight:700;color:var(--accent);margin-bottom:12px;">After Phase 1</h3>
+        <p style="font-size:15px;color:var(--text);line-height:1.7;">After the foundation is built we will discuss what continued support structure fits the athlete's goals and season ahead.</p>
       </div>
     </div>
   </div>
 </section>
 
 <!-- FAQ -->
-<section id="faq" style="background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
-  <div class="container">
-    <p class="section-label">FAQ</p>
-    <h2>Frequently Asked Questions</h2>
-    <div class="faq-list" style="margin-top: 40px;">
-      <details>
+<section id="faq" style="padding:80px 24px;position:relative;">
+  <div style="position:absolute;inset:0;background:linear-gradient(to bottom,var(--bg),var(--surface));pointer-events:none;"></div>
+  <div style="position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(206,169,82,0.3),transparent);"></div>
+  <div class="container" style="max-width:860px;position:relative;z-index:1;">
+
+    <h2 style="font-size:clamp(28px,4vw,44px);font-weight:800;text-align:center;color:var(--text);margin-bottom:48px;">
+      Frequently Asked <span class="text-gradient-gold">Questions</span>
+    </h2>
+
+    <div style="display:flex;flex-direction:column;gap:12px;">
+      <details class="faq-item">
         <summary>How does online coaching actually work?</summary>
-        <div class="faq-answer">Everything happens through ongoing message support, weekly check-ins, and personalized plans delivered directly to the athlete. You don't need to be in the same city. Athletes across North America and Europe have gone through Prodigy entirely remotely.</div>
+        <div class="faq-answer">Prodigy operates through high touch support that includes weekly video check-ins, personalized training and recovery plans, video breakdowns of your gameplay and skills, and constant communication via text and voice messaging. Everything is tailored to your schedule, goals, and development needs.</div>
       </details>
-      <details>
+      <details class="faq-item">
         <summary>Will this work for my athlete?</summary>
-        <div class="faq-answer">If your athlete is committed, coachable, and ready to work, yes. Prodigy is built for players who want more than talent. If they are not ready to be honest, accountable, and do the work, this is not the right fit.</div>
+        <div class="faq-answer">Prodigy works for committed athletes who are willing to learn, grow, and implement feedback. If your athlete is open to honest guidance, accountable to their goals, and ready to put in the work, this program will help them develop confidence, consistency, and leadership.</div>
       </details>
-      <details>
-        <summary>What if my athlete struggles with inconsistency, fear of mistakes, or confidence dips?</summary>
-        <div class="faq-answer">That is exactly what Prodigy is built for. Inconsistency and fear of mistakes are not talent problems. They are structure and mental rep problems. That is what we fix.</div>
+      <details class="faq-item">
+        <summary>What if my athlete struggles with inconsistency, fear of making mistakes, or confidence dips?</summary>
+        <div class="faq-answer">This is exactly what Prodigy specializes in. Understanding the root of inconsistency, overcoming the fear of mistakes, and building lasting confidence are core pillars of our mentorship. We help athletes develop the mental tools to perform freely and consistently.</div>
       </details>
-      <details>
+      <details class="faq-item">
         <summary>What ages is this for?</summary>
-        <div class="faq-answer">Prodigy is built for athletes aged 12 and up who are playing organized competitive hockey. If your athlete is under 12, the focus should be on enjoying the game and building confidence naturally.</div>
+        <div class="faq-answer">Prodigy is designed for hockey athletes ages 12 and up who are committed to their development and ready to grow as both players and people.</div>
       </details>
-      <details>
+      <details class="faq-item">
         <summary>What is Phase 1?</summary>
-        <div class="faq-answer">Phase 1 is a fully personalized 3-month foundation. It covers training, nutrition, recovery, mindset, leadership, on-ice skill analysis, and ongoing support. It is the starting point for every athlete who enters Prodigy.</div>
+        <div class="faq-answer">Phase 1 is a fully personalized 3 month foundation that includes personalized training plans, nutrition and recovery support, schedule management, weekly check-ins, ongoing messaging support, skill and gameplay analysis, leadership and confidence coaching, and support through challenge moments.</div>
       </details>
-      <details>
+      <details class="faq-item">
         <summary>How much support does my athlete get?</summary>
-        <div class="faq-answer">Ongoing text and voice message support, weekly check-ins, and active engagement throughout the program. This is high-touch mentorship, not a course you log into once a week.</div>
+        <div class="faq-answer">Athletes receive high touch communication throughout the week with ongoing text and voice messaging support plus structured weekly check-ins. You are never left waiting. Support is consistent and accessible.</div>
       </details>
-      <details>
+      <details class="faq-item">
         <summary>How much does it cost?</summary>
-        <div class="faq-answer">Investment details are discussed on the call. Prodigy is a high-intent program and the investment reflects that. If you are committed to your athlete's development, book a call and we will find out if it is a fit.</div>
+        <div class="faq-answer">Prodigy is an investment designed for serious families who want the highest level of personal mentorship. We walk through the details on your call to ensure the program is the right fit for your athlete and your family.</div>
       </details>
-      <details>
+      <details class="faq-item">
         <summary>What if my athlete is injured?</summary>
-        <div class="faq-answer">We continue working. Injury is part of sport. The mindset, leadership, nutrition, and structure work does not stop because of an injury. In many cases this is the most important time to have support.</div>
+        <div class="faq-answer">Injuries are part of sports, and we are here to help navigate them. We provide recovery planning, confidence rebuilding during time off, and structured return-to-play support to ensure your athlete comes back stronger mentally and physically.</div>
       </details>
     </div>
   </div>
 </section>
 
 <!-- FINAL CTA -->
-<section class="cta-section">
-  <div class="container" style="text-align: center; max-width: 640px; margin: 0 auto;">
-    <p class="section-label">Get Started</p>
-    <h2>Ready to Build Confidence That Lasts?</h2>
-    <p style="color: var(--text-muted); font-size: 18px; line-height: 1.7; margin-bottom: 40px;">Book a call. We will figure out together if Prodigy is the right fit for your athlete.</p>
-    <a href="https://prodigy-athletics-booking.lovable.app" class="btn-primary" style="font-size: 18px; padding: 16px 40px;">Book Your Call</a>
+<section id="apply" style="padding:80px 24px;position:relative;">
+  <div style="position:absolute;inset:0;background:linear-gradient(to bottom,var(--surface),var(--bg));pointer-events:none;"></div>
+  <div style="position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(206,169,82,0.3),transparent);"></div>
+  <div style="position:absolute;inset:0;background:rgba(206,169,82,0.03);pointer-events:none;"></div>
+  <div class="container" style="max-width:860px;text-align:center;position:relative;z-index:1;">
+    <h2 style="font-family:var(--font-cinzel);font-size:clamp(28px,4vw,52px);font-weight:800;color:var(--text);margin-bottom:32px;">
+      Ready to Build <span class="text-gradient-gold">Confidence That Lasts?</span>
+    </h2>
+    <a href="https://prodigy-athletics-booking.lovable.app" class="btn-primary" style="font-size:18px;padding:16px 40px;display:inline-block;margin-bottom:0;animation:pulse-gold 2s ease-in-out infinite;">
+      Book Your Call
+    </a>
   </div>
 </section>
 
-<footer>
-  <div class="footer-logo">PRODIGY</div>
-  <p class="footer-tagline">Building confident leaders one athlete at a time.</p>
-  <div class="footer-links">
-    <a href="/privacy.html">Privacy Policy</a>
-    <a href="/terms.html">Terms of Service</a>
+<footer style="padding:48px 24px;border-top:1px solid var(--border);text-align:center;">
+  <p style="font-family:var(--font-cinzel);font-size:24px;font-weight:700;color:var(--accent);margin-bottom:12px;">PRODIGY</p>
+  <p style="font-size:15px;color:var(--text);margin-bottom:24px;">Building confident leaders one athlete at a time.</p>
+  <div style="display:flex;gap:24px;justify-content:center;margin-bottom:20px;flex-wrap:wrap;">
+    <a href="/privacy.html" style="font-size:13px;color:var(--text-muted);text-decoration:none;">Privacy Policy</a>
+    <a href="/terms.html" style="font-size:13px;color:var(--text-muted);text-decoration:none;">Terms of Service</a>
   </div>
-  <p class="footer-copy">© 2026 Prodigy Hockey Development. All rights reserved.</p>
+  <p style="font-size:12px;color:var(--text-muted);">© 2026 Prodigy Hockey Development. All rights reserved.</p>
 </footer>
 
 </body>
