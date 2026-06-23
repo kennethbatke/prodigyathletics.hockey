@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Athlete Results | Prodigy Athletics</title>
+  <meta name="description" content="Real results from real athletes and families working with Prodigy Athletics.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #080808; --surface: #0f0f0f; --surface2: #161616;
+      --border: #2e2e2e; --text: #ffffff; --text-muted: #a0a0a0;
+      --accent: #cea952; --accent-light: #dfc06a;
+      --font-cinzel: 'Cinzel', serif;
+      --shadow-gold: 0 0 40px rgba(206,169,82,0.12);
+      --card-bg: linear-gradient(145deg, #141414, #0d0d0d);
+    }
+    body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(8,8,8,0.95); backdrop-filter: blur(16px);
+      border-bottom: 1px solid #1e1e1e;
+      padding: 0 32px; height: 68px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo { display: flex; align-items: center; text-decoration: none; height: 44px; }
+    .nav-logo img { height: 44px; width: auto; display: block; }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a { color: #888; text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.15s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--accent); }
+    .nav-cta {
+      background: var(--accent); color: #000;
+      padding: 9px 22px; border-radius: 6px;
+      text-decoration: none; font-size: 14px; font-weight: 700;
+      transition: background 0.15s, box-shadow 0.15s;
+    }
+    .nav-cta:hover { background: var(--accent-light); box-shadow: 0 0 16px rgba(206,169,82,0.4); }
+
+    /* HERO */
+    .hero {
+      padding: 140px 24px 80px;
+      text-align: center;
+      background: radial-gradient(ellipse 60% 40% at 50% 0%, rgba(206,169,82,0.1) 0%, transparent 65%);
+      position: relative;
+    }
+    .hero::after {
+      content: '';
+      position: absolute; bottom: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(206,169,82,0.3), transparent);
+    }
+    .hero h1 { font-size: clamp(36px, 5vw, 60px); font-weight: 800; color: var(--text); margin-bottom: 16px; }
+    .hero p { font-size: 18px; color: var(--text-muted); max-width: 560px; margin: 0 auto 32px; line-height: 1.7; }
+    .gold-divider { width: 80px; height: 1px; background: linear-gradient(90deg, transparent, var(--accent), transparent); margin: 0 auto; }
+
+    /* FILTER TABS */
+    .filters {
+      display: flex; gap: 12px; justify-content: center;
+      padding: 48px 24px 0;
+    }
+    .filter-btn {
+      padding: 10px 24px; border-radius: 999px;
+      border: 1px solid var(--border); background: none;
+      color: var(--text-muted); font-size: 14px; font-weight: 600;
+      cursor: pointer; transition: all 0.15s; font-family: 'Inter', sans-serif;
+    }
+    .filter-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .filter-btn.active { background: var(--accent); color: #000; border-color: var(--accent); }
+
+    /* WINS GRID */
+    .section { padding: 48px 24px 80px; }
+    .container { max-width: 1100px; margin: 0 auto; }
+
+    .section-label {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.25em;
+      text-transform: uppercase; color: var(--accent);
+      margin-bottom: 12px;
+    }
+    .section-heading { font-size: clamp(22px, 3vw, 32px); font-weight: 800; color: var(--text); margin-bottom: 40px; }
+
+    .wins-grid {
+      columns: 3; column-gap: 20px;
+    }
+    @media (max-width: 900px) { .wins-grid { columns: 2; } }
+    @media (max-width: 600px) { .wins-grid { columns: 1; } }
+
+    .win-card {
+      break-inside: avoid;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      margin-bottom: 20px;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      display: block;
+    }
+    .win-card:hover {
+      border-color: rgba(206,169,82,0.45);
+      box-shadow: var(--shadow-gold);
+    }
+    .win-card img {
+      width: 100%; display: block;
+      border-radius: 14px 14px 0 0;
+    }
+    .win-label {
+      padding: 12px 16px;
+      font-size: 13px; font-weight: 600; color: var(--accent);
+      letter-spacing: 0.02em;
+    }
+
+    .hidden { display: none; }
+
+    /* CTA */
+    .cta-section {
+      padding: 80px 24px; text-align: center;
+      border-top: 1px solid var(--border);
+      background: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(206,169,82,0.05) 0%, transparent 70%);
+    }
+    .cta-section h2 { font-size: clamp(24px, 3vw, 40px); font-weight: 800; color: var(--text); margin-bottom: 32px; }
+    .btn-gold {
+      background: var(--accent); color: #000;
+      padding: 14px 36px; border-radius: 8px;
+      text-decoration: none; font-size: 16px; font-weight: 700;
+      display: inline-block; transition: background 0.15s;
+    }
+    .btn-gold:hover { background: var(--accent-light); }
+
+    /* FOOTER */
+    footer { padding: 40px 24px; border-top: 1px solid var(--border); text-align: center; }
+    footer p:first-child { font-family: var(--font-cinzel); font-size: 18px; font-weight: 700; color: var(--accent); margin-bottom: 10px; letter-spacing: 0.08em; }
+    footer p { font-size: 13px; color: var(--text-muted); margin-bottom: 6px; }
+    footer a { color: var(--text-muted); text-decoration: none; margin: 0 12px; }
+    footer a:hover { color: var(--accent); }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo"><img src="/logo.svg" alt="Prodigy Athletics"></a>
+  <ul class="nav-links">
+    <li><a href="/">Home</a></li>
+    <li><a href="/#how-it-works">How It Works</a></li>
+    <li><a href="/#who">Who It's For</a></li>
+    <li><a href="/results.html" class="active">Athlete Results</a></li>
+    <li><a href="/#about">About Kenny</a></li>
+    <li><a href="/#faq">FAQ</a></li>
+  </ul>
+  <a href="https://prodigy-athletics-booking.lovable.app" class="nav-cta">Book Your Call</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <h1>Athlete Results</h1>
+  <p>Real athletes. Real families. Real progress. These are the moments that make the work worth it.</p>
+  <div class="gold-divider"></div>
+</div>
+
+<!-- FILTERS -->
+<div class="filters">
+  <button class="filter-btn active" onclick="filterWins('all', this)">All Results</button>
+  <button class="filter-btn" onclick="filterWins('parent', this)">From Parents</button>
+  <button class="filter-btn" onclick="filterWins('player', this)">From Players</button>
+</div>
+
+<!-- PARENT WINS -->
+<section class="section">
+  <div class="container">
+    <p class="section-label">From Parents</p>
+    <h2 class="section-heading">What Families Are Saying</h2>
+    <div class="wins-grid" id="parent-grid">
+<!-- PARENT_WINS_START -->
+
+      <div class="win-card" data-category="parent">
+        <img src="/images/wins/parents/Cindy Morrison Win 3.png" alt="Cindy Morrison" loading="lazy">
+        <div class="win-label">Cindy Morrison — Parent</div>
+      </div>
+
+      <div class="win-card" data-category="parent">
+        <img src="/images/wins/parents/Cindy Morrison Win 2.png" alt="Cindy Morrison" loading="lazy">
+        <div class="win-label">Cindy Morrison — Parent</div>
+      </div>
+
+      <div class="win-card" data-category="parent">
+        <img src="/images/wins/parents/Robin Turnill Win 1.png" alt="Robin Turnill" loading="lazy">
+        <div class="win-label">Robin Turnill — Parent</div>
+      </div>
+
+      <div class="win-card" data-category="parent">
+        <img src="/images/wins/parents/Joey-Lynn Mann Win 1.png" alt="Joey-Lynn Mann" loading="lazy">
+        <div class="win-label">Joey-Lynn Mann — Parent</div>
+      </div>
+
+      <div class="win-card" data-category="parent">
+        <img src="/images/wins/parents/Mark Romanelli Win 1.png" alt="Mark Romanelli" loading="lazy">
+        <div class="win-label">Mark Romanelli — Parent</div>
+      </div>
+
+      <div class="win-card" data-category="parent">
+        <img src="/images/wins/parents/Cindy Morrison Win 4.png" alt="Cindy Morrison" loading="lazy">
+        <div class="win-label">Cindy Morrison — Parent</div>
+      </div>
+
+      <div class="win-card" data-category="parent">
+        <img src="/images/wins/parents/Cindy Morrison Win 1.jpg" alt="Cindy Morrison" loading="lazy">
+        <div class="win-label">Cindy Morrison — Parent</div>
+      </div>
+
+<!-- PARENT_WINS_END -->
+    </div>
+  </div>
+</section>
+
+<!-- PLAYER WINS -->
+<section class="section" style="padding-top:0;">
+  <div class="container">
+    <p class="section-label">From Players</p>
+    <h2 class="section-heading">What Athletes Are Experiencing</h2>
+    <div class="wins-grid" id="player-grid">
+<!-- PLAYER_WINS_START -->
+
+      <div class="win-card" data-category="player">
+        <img src="/images/wins/players/Brody Swartz Win 1.png" alt="Brody Swartz" loading="lazy">
+        <div class="win-label">Brody Swartz</div>
+      </div>
+
+      <div class="win-card" data-category="player">
+        <img src="/images/wins/players/Alina Kaiser Win 1.png" alt="Alina Kaiser" loading="lazy">
+        <div class="win-label">Alina Kaiser</div>
+      </div>
+
+      <div class="win-card" data-category="player">
+        <img src="/images/wins/players/Shem Moore Win 1.png" alt="Shem Moore" loading="lazy">
+        <div class="win-label">Shem Moore</div>
+      </div>
+
+      <div class="win-card" data-category="player">
+        <img src="/images/wins/players/Nathan Ayotte Win 1.png" alt="Nathan Ayotte" loading="lazy">
+        <div class="win-label">Nathan Ayotte</div>
+      </div>
+
+      <div class="win-card" data-category="player">
+        <img src="/images/wins/players/Shae Zeman Win 1.png" alt="Shae Zeman" loading="lazy">
+        <div class="win-label">Shae Zeman</div>
+      </div>
+
+      <div class="win-card" data-category="player">
+        <img src="/images/wins/players/Brody Swartz Win 2.png" alt="Brody Swartz" loading="lazy">
+        <div class="win-label">Brody Swartz</div>
+      </div>
+
+      <div class="win-card" data-category="player">
+        <img src="/images/wins/players/Shem Moore Win 2.png" alt="Shem Moore" loading="lazy">
+        <div class="win-label">Shem Moore</div>
+      </div>
+
+      <div class="win-card" data-category="player">
+        <img src="/images/wins/players/Enzo Anderst Win 1.png" alt="Enzo Anderst" loading="lazy">
+        <div class="win-label">Enzo Anderst</div>
+      </div>
+
+<!-- PLAYER_WINS_END -->
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <h2>Ready to Write Your Own Story?</h2>
+  <a href="https://prodigy-athletics-booking.lovable.app" class="btn-gold">Book Your Call</a>
+</section>
+
+<footer>
+  <p>PRODIGY ATHLETICS</p>
+  <p>Building confident leaders one athlete at a time.</p>
+  <p style="margin-top:12px;">
+    <a href="/">Home</a>
+    <a href="/privacy.html">Privacy Policy</a>
+    <a href="/terms.html">Terms of Service</a>
+  </p>
+  <p style="margin-top:12px;">© 2026 Prodigy Hockey Development. All rights reserved.</p>
+</footer>
+
+<script>
+function filterWins(category, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.win-card').forEach(card => {
+    if (category === 'all' || card.dataset.category === category) {
+      card.classList.remove('hidden');
+    } else {
+      card.classList.add('hidden');
+    }
+  });
+}
+</script>
+
+</body>
+</html>
