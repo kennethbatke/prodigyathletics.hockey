@@ -11,7 +11,7 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --bg: #080808; --surface: #0f0f0f; --surface2: #161616;
+      --bg: #080808; --surface: #0f0f0f;
       --border: #2e2e2e; --text: #ffffff; --text-muted: #a0a0a0;
       --accent: #cea952; --accent-light: #dfc06a;
       --font-cinzel: 'Cinzel', serif;
@@ -20,7 +20,6 @@
     }
     body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
 
-    /* NAV */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       background: rgba(8,8,8,0.95); backdrop-filter: blur(16px);
@@ -41,50 +40,32 @@
     }
     .nav-cta:hover { background: var(--accent-light); box-shadow: 0 0 16px rgba(206,169,82,0.4); }
 
-    /* HERO */
     .hero {
-      padding: 140px 24px 80px;
-      text-align: center;
+      padding: 140px 24px 72px; text-align: center;
       background: radial-gradient(ellipse 60% 40% at 50% 0%, rgba(206,169,82,0.1) 0%, transparent 65%);
       position: relative;
     }
-    .hero::after {
-      content: '';
-      position: absolute; bottom: 0; left: 0; right: 0; height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(206,169,82,0.3), transparent);
-    }
+    .hero::after { content:''; position:absolute; bottom:0; left:0; right:0; height:1px; background:linear-gradient(90deg,transparent,rgba(206,169,82,0.3),transparent); }
     .hero h1 { font-size: clamp(36px, 5vw, 60px); font-weight: 800; color: var(--text); margin-bottom: 16px; }
     .hero p { font-size: 18px; color: var(--text-muted); max-width: 560px; margin: 0 auto 32px; line-height: 1.7; }
     .gold-divider { width: 80px; height: 1px; background: linear-gradient(90deg, transparent, var(--accent), transparent); margin: 0 auto; }
 
-    /* FILTER TABS */
-    .filters {
-      display: flex; gap: 12px; justify-content: center;
-      padding: 48px 24px 0;
-    }
+    /* FILTER */
+    .filters { display: flex; gap: 12px; justify-content: center; padding: 48px 24px 0; }
     .filter-btn {
       padding: 10px 24px; border-radius: 999px;
       border: 1px solid var(--border); background: none;
       color: var(--text-muted); font-size: 14px; font-weight: 600;
-      cursor: pointer; transition: all 0.15s; font-family: 'Inter', sans-serif;
+      cursor: pointer; transition: all 0.2s; font-family: 'Inter', sans-serif;
     }
     .filter-btn:hover { border-color: var(--accent); color: var(--accent); }
     .filter-btn.active { background: var(--accent); color: #000; border-color: var(--accent); }
 
-    /* WINS GRID */
+    /* MIXED GRID */
     .section { padding: 48px 24px 80px; }
     .container { max-width: 1100px; margin: 0 auto; }
 
-    .section-label {
-      font-size: 11px; font-weight: 700; letter-spacing: 0.25em;
-      text-transform: uppercase; color: var(--accent);
-      margin-bottom: 12px;
-    }
-    .section-heading { font-size: clamp(22px, 3vw, 32px); font-weight: 800; color: var(--text); margin-bottom: 40px; }
-
-    .wins-grid {
-      columns: 3; column-gap: 20px;
-    }
+    .wins-grid { columns: 3; column-gap: 20px; }
     @media (max-width: 900px) { .wins-grid { columns: 2; } }
     @media (max-width: 600px) { .wins-grid { columns: 1; } }
 
@@ -95,41 +76,47 @@
       border-radius: 14px;
       overflow: hidden;
       margin-bottom: 20px;
-      transition: border-color 0.2s, box-shadow 0.2s;
-      display: block;
+      /* Superhero transition */
+      transition: opacity 0.4s ease, filter 0.4s ease, border-color 0.2s, box-shadow 0.2s;
     }
-    .win-card:hover {
-      border-color: rgba(206,169,82,0.45);
-      box-shadow: var(--shadow-gold);
-    }
-    .win-card img {
-      width: 100%; display: block;
-      border-radius: 14px 14px 0 0;
-    }
-    .win-label {
-      padding: 12px 16px;
-      font-size: 13px; font-weight: 600; color: var(--accent);
-      letter-spacing: 0.02em;
+    .win-card img { width: 100%; display: block; border-radius: 14px; }
+    .win-card:hover { border-color: rgba(206,169,82,0.45); box-shadow: var(--shadow-gold); }
+
+    /* Superhero dim state */
+    .win-card.dimmed {
+      opacity: 0.06;
+      filter: grayscale(100%) brightness(0.4);
+      pointer-events: none;
     }
 
-    .hidden { display: none; }
+    /* Inline CTA card */
+    .apply-cta-card {
+      break-inside: avoid;
+      background: linear-gradient(145deg, #161200, #0d0d00);
+      border: 1px solid rgba(206,169,82,0.35);
+      border-radius: 14px;
+      padding: 36px 24px;
+      margin-bottom: 20px;
+      text-align: center;
+      box-shadow: 0 0 40px rgba(206,169,82,0.1);
+      transition: opacity 0.4s ease, filter 0.4s ease;
+    }
 
-    /* CTA */
+    .btn-gold {
+      background: var(--accent); color: #000;
+      padding: 14px 36px; border-radius: 8px;
+      text-decoration: none; font-size: 16px; font-weight: 700;
+      display: inline-block; transition: background 0.15s; border: none; cursor: pointer; font-family: 'Inter', sans-serif;
+    }
+    .btn-gold:hover { background: var(--accent-light); }
+
     .cta-section {
       padding: 80px 24px; text-align: center;
       border-top: 1px solid var(--border);
       background: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(206,169,82,0.05) 0%, transparent 70%);
     }
     .cta-section h2 { font-size: clamp(24px, 3vw, 40px); font-weight: 800; color: var(--text); margin-bottom: 32px; }
-    .btn-gold {
-      background: var(--accent); color: #000;
-      padding: 14px 36px; border-radius: 8px;
-      text-decoration: none; font-size: 16px; font-weight: 700;
-      display: inline-block; transition: background 0.15s;
-    }
-    .btn-gold:hover { background: var(--accent-light); }
 
-    /* FOOTER */
     footer { padding: 40px 24px; border-top: 1px solid var(--border); text-align: center; }
     footer p:first-child { font-family: var(--font-cinzel); font-size: 18px; font-weight: 700; color: var(--accent); margin-bottom: 10px; letter-spacing: 0.08em; }
     footer p { font-size: 13px; color: var(--text-muted); margin-bottom: 6px; }
@@ -149,128 +136,94 @@
     <li><a href="/#about">About Kenny</a></li>
     <li><a href="/#faq">FAQ</a></li>
   </ul>
-  <a href="https://prodigy-athletics-booking.lovable.app" class="nav-cta">Book Your Call</a>
+  <a href="https://prodigy-athletics-booking.lovable.app" class="nav-cta">Apply Now</a>
 </nav>
 
-<!-- HERO -->
 <div class="hero">
   <h1>Athlete Results</h1>
   <p>Real athletes. Real families. Real progress. These are the moments that make the work worth it.</p>
   <div class="gold-divider"></div>
 </div>
 
-<!-- FILTERS -->
 <div class="filters">
   <button class="filter-btn active" onclick="filterWins('all', this)">All Results</button>
   <button class="filter-btn" onclick="filterWins('parent', this)">From Parents</button>
   <button class="filter-btn" onclick="filterWins('player', this)">From Players</button>
 </div>
 
-<!-- PARENT WINS -->
 <section class="section">
   <div class="container">
-    <p class="section-label">From Parents</p>
-    <h2 class="section-heading">What Families Are Saying</h2>
-    <div class="wins-grid" id="parent-grid">
-<!-- PARENT_WINS_START -->
+    <div class="wins-grid" id="wins-grid">
+<!-- WINS_START -->
 
       <div class="win-card" data-category="parent">
-        <img src="/images/wins/parents/Cindy Morrison Win 3.png" alt="Cindy Morrison" loading="lazy">
-        <div class="win-label">Cindy Morrison — Parent</div>
+        <img src="/images/wins/parents/Cindy Morrison Win 3.png" alt="Client win" loading="lazy">
+      </div>
+
+      <div class="win-card" data-category="player">
+        <img src="/images/wins/players/Brody Swartz Win 1.png" alt="Client win" loading="lazy">
       </div>
 
       <div class="win-card" data-category="parent">
-        <img src="/images/wins/parents/Cindy Morrison Win 2.png" alt="Cindy Morrison" loading="lazy">
-        <div class="win-label">Cindy Morrison — Parent</div>
+        <img src="/images/wins/parents/Robin Turnill Win 1.png" alt="Client win" loading="lazy">
+      </div>
+
+      <div class="win-card" data-category="player">
+        <img src="/images/wins/players/Alina Kaiser Win 1.png" alt="Client win" loading="lazy">
       </div>
 
       <div class="win-card" data-category="parent">
-        <img src="/images/wins/parents/Robin Turnill Win 1.png" alt="Robin Turnill" loading="lazy">
-        <div class="win-label">Robin Turnill — Parent</div>
+        <img src="/images/wins/parents/Joey-Lynn Mann Win 1.png" alt="Client win" loading="lazy">
+      </div>
+
+      <div class="win-card" data-category="player">
+        <img src="/images/wins/players/Shem Moore Win 1.png" alt="Client win" loading="lazy">
       </div>
 
       <div class="win-card" data-category="parent">
-        <img src="/images/wins/parents/Joey-Lynn Mann Win 1.png" alt="Joey-Lynn Mann" loading="lazy">
-        <div class="win-label">Joey-Lynn Mann — Parent</div>
+        <img src="/images/wins/parents/Mark Romanelli Win 1.png" alt="Client win" loading="lazy">
+      </div>
+
+      <div class="win-card" data-category="player">
+        <img src="/images/wins/players/Nathan Ayotte Win 1.png" alt="Client win" loading="lazy">
       </div>
 
       <div class="win-card" data-category="parent">
-        <img src="/images/wins/parents/Mark Romanelli Win 1.png" alt="Mark Romanelli" loading="lazy">
-        <div class="win-label">Mark Romanelli — Parent</div>
+        <img src="/images/wins/parents/Cindy Morrison Win 2.png" alt="Client win" loading="lazy">
+      </div>
+
+      <div class="win-card" data-category="player">
+        <img src="/images/wins/players/Shae Zeman Win 1.png" alt="Client win" loading="lazy">
       </div>
 
       <div class="win-card" data-category="parent">
-        <img src="/images/wins/parents/Cindy Morrison Win 4.png" alt="Cindy Morrison" loading="lazy">
-        <div class="win-label">Cindy Morrison — Parent</div>
+        <img src="/images/wins/parents/Cindy Morrison Win 4.png" alt="Client win" loading="lazy">
+      </div>
+
+      <div class="win-card" data-category="player">
+        <img src="/images/wins/players/Brody Swartz Win 2.png" alt="Client win" loading="lazy">
       </div>
 
       <div class="win-card" data-category="parent">
-        <img src="/images/wins/parents/Cindy Morrison Win 1.jpg" alt="Cindy Morrison" loading="lazy">
-        <div class="win-label">Cindy Morrison — Parent</div>
+        <img src="/images/wins/parents/Cindy Morrison Win 1.jpg" alt="Client win" loading="lazy">
       </div>
 
-<!-- PARENT_WINS_END -->
+      <div class="win-card" data-category="player">
+        <img src="/images/wins/players/Shem Moore Win 2.png" alt="Client win" loading="lazy">
+      </div>
+
+      <div class="win-card" data-category="player">
+        <img src="/images/wins/players/Enzo Anderst Win 1.png" alt="Client win" loading="lazy">
+      </div>
+
+<!-- WINS_END -->
     </div>
   </div>
 </section>
 
-<!-- PLAYER WINS -->
-<section class="section" style="padding-top:0;">
-  <div class="container">
-    <p class="section-label">From Players</p>
-    <h2 class="section-heading">What Athletes Are Experiencing</h2>
-    <div class="wins-grid" id="player-grid">
-<!-- PLAYER_WINS_START -->
-
-      <div class="win-card" data-category="player">
-        <img src="/images/wins/players/Brody Swartz Win 1.png" alt="Brody Swartz" loading="lazy">
-        <div class="win-label">Brody Swartz</div>
-      </div>
-
-      <div class="win-card" data-category="player">
-        <img src="/images/wins/players/Alina Kaiser Win 1.png" alt="Alina Kaiser" loading="lazy">
-        <div class="win-label">Alina Kaiser</div>
-      </div>
-
-      <div class="win-card" data-category="player">
-        <img src="/images/wins/players/Shem Moore Win 1.png" alt="Shem Moore" loading="lazy">
-        <div class="win-label">Shem Moore</div>
-      </div>
-
-      <div class="win-card" data-category="player">
-        <img src="/images/wins/players/Nathan Ayotte Win 1.png" alt="Nathan Ayotte" loading="lazy">
-        <div class="win-label">Nathan Ayotte</div>
-      </div>
-
-      <div class="win-card" data-category="player">
-        <img src="/images/wins/players/Shae Zeman Win 1.png" alt="Shae Zeman" loading="lazy">
-        <div class="win-label">Shae Zeman</div>
-      </div>
-
-      <div class="win-card" data-category="player">
-        <img src="/images/wins/players/Brody Swartz Win 2.png" alt="Brody Swartz" loading="lazy">
-        <div class="win-label">Brody Swartz</div>
-      </div>
-
-      <div class="win-card" data-category="player">
-        <img src="/images/wins/players/Shem Moore Win 2.png" alt="Shem Moore" loading="lazy">
-        <div class="win-label">Shem Moore</div>
-      </div>
-
-      <div class="win-card" data-category="player">
-        <img src="/images/wins/players/Enzo Anderst Win 1.png" alt="Enzo Anderst" loading="lazy">
-        <div class="win-label">Enzo Anderst</div>
-      </div>
-
-<!-- PLAYER_WINS_END -->
-    </div>
-  </div>
-</section>
-
-<!-- CTA -->
 <section class="cta-section">
   <h2>Ready to Write Your Own Story?</h2>
-  <a href="https://prodigy-athletics-booking.lovable.app" class="btn-gold">Book Your Call</a>
+  <a href="https://prodigy-athletics-booking.lovable.app" class="btn-gold">Apply Now</a>
 </section>
 
 <footer>
@@ -284,22 +237,21 @@
   <p style="margin-top:12px;">© 2026 Prodigy Hockey Development. All rights reserved.</p>
 </footer>
 
-<!-- Booking modal overlay -->
+<!-- Booking overlay -->
 <div id="booking-overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.88);z-index:9999;align-items:center;justify-content:center;">
   <div style="width:90%;max-width:820px;height:82vh;background:#111;border-radius:18px;border:1px solid #2a2a2a;overflow:hidden;position:relative;box-shadow:0 0 60px rgba(206,169,82,0.15);">
-    <button onclick="closeBooking()" style="position:absolute;top:14px;right:18px;background:none;border:none;color:#aaa;font-size:22px;cursor:pointer;z-index:1;line-height:1;">✕</button>
+    <button onclick="closeBooking()" style="position:absolute;top:14px;right:18px;background:none;border:none;color:#aaa;font-size:22px;cursor:pointer;z-index:1;">✕</button>
     <iframe id="booking-iframe" src="" width="100%" height="100%" frameborder="0" style="display:block;"></iframe>
   </div>
 </div>
 
-<!-- Nimbuspop floating button -->
 <script src="https://bookings.nimbuspop.com/assets/embed.js"></script>
 <script>
 const BOOKING_URL = "https://prodigy.zohobookings.ca/portal-embed#/connect";
 
 Bookings.buttonModal({
   url: BOOKING_URL,
-  text: "Book now",
+  text: "Apply Now",
   color: "#cea952",
   textColor: "#000000",
   position: "bottom-right"
@@ -311,50 +263,45 @@ function openBooking() {
   overlay.style.display = 'flex';
   document.body.style.overflow = 'hidden';
 }
-
 function closeBooking() {
   document.getElementById('booking-overlay').style.display = 'none';
   document.getElementById('booking-iframe').src = '';
   document.body.style.overflow = '';
 }
-
 document.getElementById('booking-overlay').addEventListener('click', function(e) {
   if (e.target === this) closeBooking();
 });
 
-// Insert "Apply Now" CTA after every 18 win cards
-function insertCTAs() {
-  const grids = document.querySelectorAll('.wins-grid');
-  grids.forEach(grid => {
-    const cards = Array.from(grid.querySelectorAll('.win-card'));
-    const interval = 18;
-    let inserted = 0;
-    cards.forEach((card, i) => {
-      if ((i + 1) % interval === 0) {
-        const cta = document.createElement('div');
-        cta.className = 'apply-cta-card';
-        cta.style.cssText = 'break-inside:avoid;background:linear-gradient(145deg,#161200,#0d0d00);border:1px solid rgba(206,169,82,0.35);border-radius:14px;padding:36px 28px;margin-bottom:20px;text-align:center;box-shadow:0 0 40px rgba(206,169,82,0.1);';
-        cta.innerHTML = `
-          <p style="font-size:13px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:#cea952;margin-bottom:12px;">Ready to Write Yours?</p>
-          <p style="font-size:17px;font-weight:700;color:#fff;margin-bottom:24px;">These results start with one conversation.</p>
-          <button onclick="openBooking()" style="background:#cea952;color:#000;border:none;padding:13px 32px;border-radius:8px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;transition:background 0.15s;" onmouseover="this.style.background='#dfc06a'" onmouseout="this.style.background='#cea952'">
-            Apply Now
-          </button>`;
-        card.after(cta);
-        inserted++;
-      }
-    });
-  });
-}
-
+// SUPERHERO FILTER — dim non-matching cards, spotlight the selected category
 function filterWins(category, btn) {
   document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
+
   document.querySelectorAll('.win-card').forEach(card => {
     if (category === 'all' || card.dataset.category === category) {
-      card.classList.remove('hidden');
+      card.classList.remove('dimmed');
     } else {
-      card.classList.add('hidden');
+      card.classList.add('dimmed');
+    }
+  });
+
+  // CTA cards always visible
+  document.querySelectorAll('.apply-cta-card').forEach(c => c.classList.remove('dimmed'));
+}
+
+// Insert "Apply Now" CTA after every 18 win cards
+function insertCTAs() {
+  const grid = document.getElementById('wins-grid');
+  const cards = Array.from(grid.querySelectorAll('.win-card'));
+  cards.forEach((card, i) => {
+    if ((i + 1) % 18 === 0) {
+      const cta = document.createElement('div');
+      cta.className = 'apply-cta-card';
+      cta.innerHTML = `
+        <p style="font-size:11px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:#cea952;margin-bottom:12px;">Ready to Write Yours?</p>
+        <p style="font-size:17px;font-weight:700;color:#fff;margin-bottom:24px;">These results start with one conversation.</p>
+        <button onclick="openBooking()" class="btn-gold">Apply Now</button>`;
+      card.after(cta);
     }
   });
 }

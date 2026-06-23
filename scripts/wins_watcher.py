@@ -30,15 +30,13 @@ REPO_DIR          = Path("/Users/kenny/Documents/Claude/prodigyathletics-site")
 REPO_PARENT_IMGS  = REPO_DIR / "images/wins/parents"
 REPO_PLAYER_IMGS  = REPO_DIR / "images/wins/players"
 MANIFEST_PATH     = REPO_DIR / "images/wins/manifest.json"
-RESULTS_HTML      = REPO_DIR / "results.html"
+RESULTS_HTML      = REPO_DIR / "results/index.html"
 
 IMAGE_EXTENSIONS  = {".jpg", ".jpeg", ".png", ".webp", ".gif"}
 
-# Markers in results.html that surround the auto-generated cards
-PARENT_START = "<!-- PARENT_WINS_START -->"
-PARENT_END   = "<!-- PARENT_WINS_END -->"
-PLAYER_START = "<!-- PLAYER_WINS_START -->"
-PLAYER_END   = "<!-- PLAYER_WINS_END -->"
+# Single mixed grid markers
+WINS_START = "<!-- WINS_START -->"
+WINS_END   = "<!-- WINS_END -->"
 
 
 def load_manifest() -> dict:
@@ -56,11 +54,9 @@ def display_name_from_filename(stem: str) -> str:
 
 
 def win_card_html(entry: dict) -> str:
-    suffix = " — Parent" if entry["category"] == "parent" else ""
     return (
         f'      <div class="win-card" data-category="{entry["category"]}">\n'
-        f'        <img src="{entry["web_path"]}" alt="{entry["name"]}" loading="lazy">\n'
-        f'        <div class="win-label">{entry["name"]}{suffix}</div>\n'
+        f'        <img src="{entry["web_path"]}" alt="Client win" loading="lazy">\n'
         f'      </div>'
     )
 
@@ -68,25 +64,16 @@ def win_card_html(entry: dict) -> str:
 def rebuild_results_html(manifest: dict):
     html = RESULTS_HTML.read_text()
 
-    parent_cards = "\n".join(
-        win_card_html(e) for e in manifest["entries"] if e["category"] == "parent"
-    )
-    player_cards = "\n".join(
-        win_card_html(e) for e in manifest["entries"] if e["category"] == "player"
-    )
+    all_cards = "\n\n".join(win_card_html(e) for e in manifest["entries"])
 
-    def replace_block(content, start_marker, end_marker, new_inner):
-        s = content.find(start_marker)
-        e = content.find(end_marker)
-        if s == -1 or e == -1:
-            logger.warning(f"Marker not found: {start_marker}")
-            return content
-        return content[:s + len(start_marker)] + "\n" + new_inner + "\n    " + content[e:]
-
-    html = replace_block(html, PARENT_START, PARENT_END, parent_cards)
-    html = replace_block(html, PLAYER_START, PLAYER_END, player_cards)
+    s = html.find(WINS_START)
+    e = html.find(WINS_END)
+    if s == -1 or e == -1:
+        logger.warning("WINS_START/END markers not found in results/index.html")
+        return
+    html = html[:s + len(WINS_START)] + "\n\n" + all_cards + "\n\n" + html[e:]
     RESULTS_HTML.write_text(html)
-    logger.info("results.html rebuilt")
+    logger.info("results/index.html rebuilt")
 
 
 def git_push(label: str):
