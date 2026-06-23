@@ -16,17 +16,28 @@
     .nav-logo { font-size: 18px; font-weight: 800; letter-spacing: 0.12em; color: var(--white); text-decoration: none; }
     .nav-back { font-size: 14px; color: var(--accent-light); text-decoration: none; }
     .nav-back:hover { color: var(--white); }
-    .content { max-width: 720px; margin: 0 auto; padding: 64px 24px 96px; }
+    .content { max-width: 760px; margin: 0 auto; padding: 64px 24px 96px; }
     .page-label { font-size: 11px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent-light); margin-bottom: 12px; }
-    h1 { font-size: 36px; font-weight: 800; color: var(--white); margin-bottom: 8px; }
-    .last-updated { font-size: 13px; color: var(--text-muted); margin-bottom: 48px; }
-    h2 { font-size: 18px; font-weight: 700; color: var(--white); margin: 40px 0 12px; padding-top: 8px; border-top: 1px solid var(--border); }
-    p { color: var(--text-muted); margin-bottom: 16px; }
-    ul { color: var(--text-muted); padding-left: 20px; margin-bottom: 16px; }
-    ul li { margin-bottom: 8px; }
+    h1 { font-size: 36px; font-weight: 800; color: var(--white); margin-bottom: 4px; }
+    .company-name { font-size: 14px; font-weight: 600; color: var(--accent-light); margin-bottom: 4px; }
+    .doc-subtitle { font-size: 15px; color: var(--text-muted); margin-bottom: 4px; }
+    .last-updated { font-size: 13px; color: var(--text-muted); margin-bottom: 40px; }
+    .intro-box { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 24px; margin-bottom: 48px; }
+    .intro-box p { color: var(--text-muted); margin-bottom: 12px; font-size: 15px; }
+    .intro-box p:last-child { margin-bottom: 0; }
+    .tier-labels { display: flex; flex-direction: column; gap: 8px; margin-top: 16px; }
+    .tier-label { font-size: 13px; color: var(--text-muted); padding: 8px 12px; background: var(--bg); border: 1px solid var(--border); border-radius: 6px; }
+    .tier-label code { color: var(--accent-light); font-family: monospace; }
+    h2 { font-size: 18px; font-weight: 700; color: var(--white); margin: 40px 0 12px; padding-top: 24px; border-top: 1px solid var(--border); }
+    h3 { font-size: 15px; font-weight: 700; color: var(--white); margin: 20px 0 8px; }
+    p { color: var(--text-muted); margin-bottom: 14px; font-size: 15px; }
+    ul { color: var(--text-muted); padding-left: 20px; margin-bottom: 14px; }
+    ul li { margin-bottom: 6px; font-size: 15px; }
+    .tier-note { display: inline-block; font-size: 12px; font-weight: 600; color: var(--accent-light); background: rgba(26,111,240,0.1); border: 1px solid rgba(26,111,240,0.3); border-radius: 4px; padding: 2px 8px; margin: 8px 0 4px; font-style: italic; }
     a { color: var(--accent-light); }
+    .divider { border: none; border-top: 1px solid var(--border); margin: 48px 0; }
     footer { background: var(--surface); border-top: 1px solid var(--border); padding: 32px 24px; text-align: center; }
-    .footer-links { display: flex; gap: 24px; justify-content: center; margin-bottom: 12px; }
+    .footer-links { display: flex; gap: 24px; justify-content: center; margin-bottom: 12px; flex-wrap: wrap; }
     .footer-links a { font-size: 13px; color: var(--text-muted); text-decoration: none; }
     .footer-copy { font-size: 12px; color: var(--text-muted); }
   </style>
@@ -40,69 +51,160 @@
 
 <div class="content">
   <p class="page-label">Legal</p>
-  <h1>Terms of Service</h1>
-  <p class="last-updated">Last updated: June 22, 2026</p>
+  <h1>Terms &amp; Conditions</h1>
+  <p class="company-name">PRODIGY ATHLETICS HOCKEY TRAINING INC.</p>
+  <p class="doc-subtitle">CLIENT SERVICES AGREEMENT — All Programs and Service Tiers</p>
+  <p class="last-updated">Effective on the date the Client completes enrollment and submits payment.</p>
 
-  <p>These Terms of Service ("Terms") govern your use of the Prodigy Athletics website located at prodigyathletics.hockey and any related services provided by Prodigy Athletics ("we," "us," or "our"). By accessing our website or engaging with our services, you agree to these Terms.</p>
+  <div class="intro-box">
+    <p><strong style="color:var(--white)">How to Read This Agreement</strong></p>
+    <p>This Agreement applies to all clients of Prodigy Athletics Hockey Training Inc. Certain terms apply only to specific service tiers. Where a term is tier-specific, it is noted inline using one of the following labels:</p>
+    <div class="tier-labels">
+      <div class="tier-label"><code>[ One-on-One Coaching only ]</code> — applies exclusively to clients enrolled in a personalized one-on-one coaching program</div>
+      <div class="tier-label"><code>[ Group Coaching only ]</code> — applies exclusively to clients enrolled in a group coaching program</div>
+      <div class="tier-label"><code>[ Not included with Pre-Made Training Plans ]</code> — does not apply to clients on the self-directed, pre-made training plan tier</div>
+    </div>
+    <p style="margin-top:14px">Where no tier label appears, the term applies to all clients regardless of program tier.</p>
+  </div>
 
-  <h2>1. Services</h2>
-  <p>Prodigy Athletics provides personalized hockey development mentorship and coaching services for athletes aged 12 and older. Services include but are not limited to:</p>
+  <h2>Parties</h2>
+  <p>This Agreement is entered into between Prodigy Athletics Hockey Training Inc., a Canadian corporation referred to as Prodigy Athletics, and the enrolling individual referred to as Client. If the Client is under eighteen years of age, the parent or legal guardian executing this Agreement also agrees to be bound as provided below.</p>
+  <p>If Client is under eighteen years of age, the parent or legal guardian executing this Agreement agrees to be jointly and severally liable for all obligations, including payment obligations. "Client" henceforth refers to either the enrolling athlete or the legal guardian if the athlete is younger than 18.</p>
+
+  <h2>1. Engagement and Minimum Term</h2>
+  <p>Client agrees to enroll in an online hockey performance training program operated by Prodigy Athletics.</p>
+
+  <h3>Pre-Made Training Plans</h3>
+  <p>The minimum commitment is one week from the Effective Date. This is a fixed term engagement. No pauses, deferrals, or suspensions are permitted for any reason, including injury, travel, illness, scheduling conflicts, or lack of participation.</p>
+  <p>Client agrees that the one week minimum term constitutes a binding financial commitment and that all fees for the full term are owed regardless of participation, usage, or results.</p>
+  <p><span class="tier-note">Not included with Pre-Made Training Plans: extended minimum term, installment structures, or liquidated damages provisions. See Section 5 for Pre-Made Training Plan refund terms.</span></p>
+
+  <h3>One-on-One and Group Coaching Programs</h3>
+  <p>The minimum commitment is twelve weeks from the Effective Date. This is a fixed term engagement. No pauses, deferrals, or suspensions are permitted for any reason, including injury, travel, illness, scheduling conflicts, or lack of participation.</p>
+  <p>Client agrees that the twelve week minimum term constitutes a binding financial commitment and that all fees for the full term are owed regardless of participation, usage, or results.</p>
+  <p><span class="tier-note">[ One-on-One Coaching only / Group Coaching only ]</span></p>
+
+  <h2>2. Scope of Services</h2>
+  <p>Services may include but are not limited to:</p>
   <ul>
-    <li>1:1 mentorship and coaching programs</li>
-    <li>Personalized training plans</li>
-    <li>Nutrition and recovery guidance</li>
-    <li>Mindset, confidence, and leadership development</li>
-    <li>On-ice skill and gameplay analysis</li>
-    <li>Ongoing message support and weekly check-ins</li>
+    <li>Access to the Prodigy Athletics training application</li>
+    <li>Individualized or pre-designed training programs and schedules</li>
+    <li>Nutrition guidance, meal plans, and meal planning tools</li>
+    <li>One-on-one coaching calls, if included as part of the selected package <span class="tier-note">[ One-on-One Coaching only ]</span></li>
+    <li>Group calls, community access, and educational resources, if included as part of the selected package <span class="tier-note">[ Group Coaching and One-on-One Coaching only ]</span></li>
   </ul>
+  <p>Client understands that one-on-one calls are available but not mandatory unless explicitly included. Prodigy Athletics cannot and does not force Client to book calls, complete workouts, or log nutrition. Results depend on Client participation, effort, and consistency.</p>
+  <p>Failure to engage does not excuse payment obligations.</p>
+  <p>Prodigy Athletics does not act as an employer, medical provider, or agent of the Client and does not supervise training in person.</p>
 
-  <h2>2. Eligibility</h2>
-  <p>Our services are intended for hockey athletes aged 12 and older and their parents or legal guardians. If you are under 18, a parent or guardian must consent to participation in any Prodigy Athletics program and agrees to be involved in the coaching relationship as appropriate.</p>
-
-  <h2>3. SMS Communications</h2>
-  <p>By submitting a lead capture form and consenting to SMS communications, you agree to receive text messages from Prodigy Athletics. These messages may include follow-up questions, booking links, program information, and coaching-related communications.</p>
+  <h2>3. Client Responsibilities</h2>
+  <p>Client agrees to:</p>
   <ul>
-    <li>Message and data rates may apply.</li>
-    <li>Reply <strong>STOP</strong> to opt out at any time.</li>
-    <li>Reply <strong>HELP</strong> for assistance.</li>
-    <li>SMS consent is not a condition of purchasing any service.</li>
+    <li>Download and maintain access to the training application</li>
+    <li>Complete scheduled training sessions to the best of their ability</li>
+    <li>Log nutrition and training data accurately where applicable</li>
+    <li>Schedule and attend one-on-one calls if included <span class="tier-note">[ One-on-One Coaching only ]</span></li>
+    <li>Follow all safety instructions and medical guidance</li>
   </ul>
+  <p>Client acknowledges that coaching is collaborative and that Prodigy Athletics does not guarantee results.</p>
 
-  <h2>4. Payment and Refunds</h2>
-  <p>Program investment details are provided during the discovery call. Payment terms and conditions are outlined in the individual service agreement between Prodigy Athletics and the client. By entering into a service agreement, you agree to the payment schedule specified therein.</p>
-  <p>Refunds are handled on a case-by-case basis and are subject to the terms of your individual service agreement. We are committed to your athlete's development and will work with you if circumstances change.</p>
+  <h2>4. Fees and Payment Terms</h2>
 
-  <h2>5. Intellectual Property</h2>
-  <p>All content on the Prodigy Athletics website and within our programs, including text, training materials, methodologies, videos, and graphics, is the intellectual property of Prodigy Athletics. You may not reproduce, distribute, or create derivative works from our content without prior written permission.</p>
+  <h3>Pre-Made Training Plans</h3>
+  <p>Client agrees to pay all fees associated with the selected program. Payments are made weekly. Any failed payment will result in immediate suspension of access to the training application and all associated materials until payment is resolved.</p>
+  <p>Missed or failed payments do not cancel this Agreement. Prodigy Athletics may pursue collection of any outstanding balance without further notice.</p>
+  <p><span class="tier-note">Not included with Pre-Made Training Plans: installment arrangements or extended payment structures.</span></p>
 
-  <h2>6. No Medical or Professional Sports Advice</h2>
-  <p>Prodigy Athletics provides sports development mentorship and coaching. Our services are not a substitute for medical, psychological, or licensed professional advice. Athletes with injuries, medical conditions, or mental health concerns should consult appropriate healthcare professionals. Always consult a doctor before beginning any new training program.</p>
+  <h3>One-on-One and Group Coaching Programs</h3>
+  <p>Client agrees to pay all fees associated with the selected program. Payment may be made in full or through an approved installment arrangement including every two or four weeks.</p>
+  <p>All installment arrangements are payment accommodations only and do not alter the total amount owed. Client remains responsible for the full program fee even if an installment plan is selected.</p>
+  <p>Regardless of payment structure, the full program price is earned over the twelve week minimum term.</p>
+  <p>If any payment fails, Prodigy Athletics may immediately suspend access to all services including app access, calls, and materials until payment is resolved.</p>
+  <p>Missed or failed payments do not cancel this Agreement. Prodigy Athletics may pursue collection of any outstanding balance without further notice.</p>
+  <p><span class="tier-note">[ One-on-One Coaching only / Group Coaching only ]</span></p>
 
-  <h2>7. Results Disclaimer</h2>
-  <p>Testimonials and success stories shared on our website reflect individual results and experiences. Individual outcomes vary based on the athlete's commitment, effort, physical condition, and other factors. We do not guarantee specific athletic outcomes or career advancement as a result of participation in our programs.</p>
+  <h2>5. Onboarding Package</h2>
+  <p>Upon enrollment, One-on-One and Group Coaching clients will receive a physical onboarding package valued at two hundred dollars.</p>
+  <p>If Client requests termination within seven days, the onboarding package may be returned unused at Client expense. No refund will be issued unless the package is returned.</p>
+  <p>After seven days, the onboarding package is deemed fully earned and non-refundable.</p>
+  <p><span class="tier-note">[ One-on-One Coaching only / Group Coaching only. Not included with Pre-Made Training Plans. ]</span></p>
 
-  <h2>8. Limitation of Liability</h2>
-  <p>To the fullest extent permitted by law, Prodigy Athletics and its representatives shall not be liable for any indirect, incidental, special, or consequential damages arising from your use of our services or website. Our total liability for any claim shall not exceed the amount paid by you for the relevant services in the preceding 30 days.</p>
+  <h2>6. Refund Policy and Liquidated Damages</h2>
 
-  <h2>9. Indemnification</h2>
-  <p>You agree to indemnify and hold harmless Prodigy Athletics and its representatives from any claims, damages, losses, or expenses (including legal fees) arising from your use of our services, your breach of these Terms, or your violation of any third-party rights.</p>
+  <h3>Pre-Made Training Plans</h3>
+  <p>There is a zero refund policy for Pre-Made Training Plan subscriptions under any circumstances. No refunds, credits, or prorated adjustments will be issued.</p>
+  <p><span class="tier-note">Not included with Pre-Made Training Plans: seven day cancellation window or liquidated damages provisions.</span></p>
 
-  <h2>10. Termination</h2>
-  <p>We reserve the right to terminate or suspend access to our services at any time, for any reason, including breach of these Terms. Clients who breach their service agreement may forfeit eligibility for refunds as outlined in their individual agreement.</p>
+  <h3>One-on-One and Group Coaching Programs</h3>
+  <p>Client has seven days from the Effective Date to request termination in writing.</p>
+  <p>If termination occurs within seven days and the onboarding package is returned, Client will owe no further payments and access will be revoked.</p>
+  <p>If termination occurs after seven days, Client acknowledges that services are customized and front-loaded, including onboarding review, program design, scheduling allocation, and fulfillment of a physical onboarding package valued at two hundred dollars. Capacity is limited and reserved, and Prodigy Athletics incurs substantial non-recoverable costs immediately upon enrollment.</p>
+  <p>Accordingly, Client agrees that fifty percent of the remaining unpaid balance shall become immediately due as liquidated damages, representing a reasonable estimate of Prodigy Athletics' losses and not a penalty.</p>
+  <p>No credits or prorated adjustments will be issued after seven days.</p>
+  <p><span class="tier-note">[ One-on-One Coaching only / Group Coaching only ]</span></p>
 
-  <h2>11. Governing Law</h2>
-  <p>These Terms are governed by the laws of British Columbia, Canada, without regard to conflict of law principles. Any disputes arising under these Terms shall be resolved in the courts of British Columbia, Canada.</p>
+  <h2>7. Termination and Access Removal</h2>
+  <p>Upon termination for any reason:</p>
+  <ul>
+    <li>All access to the training application, group calls, one-on-one calls, and community spaces is immediately revoked</li>
+    <li>All schedules, meal plans, training programs, and materials remain the sole property of Prodigy Athletics</li>
+    <li>Client may not retain, copy, share, distribute, or reuse any materials</li>
+  </ul>
+  <p>Payment obligations, intellectual property protections, confidentiality obligations, and dispute resolution provisions survive termination.</p>
+  <p>Unauthorized use or sharing constitutes a material breach.</p>
 
-  <h2>12. Changes to These Terms</h2>
-  <p>We may update these Terms from time to time. Changes will be posted on this page with an updated date. Continued use of our services after changes are posted constitutes acceptance of the updated Terms.</p>
+  <h2>8. Intellectual Property</h2>
+  <p>All content, programs, materials, and systems are protected intellectual property of Prodigy Athletics.</p>
+  <p>Any unauthorized reproduction, sharing, or distribution will result in immediate termination without refund and may result in legal action.</p>
+  <p>Client acknowledges that unauthorized use would cause irreparable harm and agrees that Prodigy Athletics is entitled to injunctive relief in addition to any other remedies.</p>
 
-  <h2>13. Contact Us</h2>
-  <p>If you have questions about these Terms, contact us at:</p>
-  <p>
-    Prodigy Athletics<br>
-    British Columbia, Canada<br>
-    Email: <a href="mailto:kenneth.batke@gmail.com">kenneth.batke@gmail.com</a>
-  </p>
+  <h2>9. Assumption of Risk and Release of Liability</h2>
+  <p>Client understands that physical training, nutrition guidance, and athletic performance activities involve inherent risks including injury, illness, or death.</p>
+  <p>Client understands that training may involve off-ice conditioning, strength training, speed work, and nutritional guidance, and that risks may arise from improper execution, fatigue, or undisclosed medical conditions.</p>
+  <p>Client voluntarily assumes all risks whether known or unknown.</p>
+  <p>Client represents that they are medically able to participate and have consulted a physician if necessary.</p>
+  <p>If Client is a minor, the undersigned parent or legal guardian assumes all risks and responsibilities.</p>
+  <p>To the fullest extent permitted by law, Client releases Prodigy Athletics, its officers, coaches, contractors, and agents from any and all claims, injuries, losses, or damages arising from participation, except in cases of gross negligence.</p>
+
+  <h2>10. No Guarantees</h2>
+  <p>Prodigy Athletics makes no guarantees regarding performance advancement, team placement, scholarships, or career outcomes.</p>
+  <p>Testimonials represent individual experiences and are not promises.</p>
+
+  <h2>11. Media Release and Testimonials</h2>
+  <p>Prodigy Athletics Hockey Training Inc. welcomes feedback, testimonials, reviews, comments, photographs, videos, audio recordings, and other content provided by Clients in connection with the Services.</p>
+  <p>By enrolling in the program and participating in coaching calls, training sessions, group discussions, or submitting content voluntarily, the Client grants Prodigy Athletics Hockey Training Inc. a royalty-free, worldwide, perpetual, non-exclusive, and irrevocable license to use, reproduce, modify, adapt, publish, translate, create derivative works from, distribute, and display such content for marketing, educational, promotional, and advertising purposes, in any media now known or later developed.</p>
+  <p>This may include use of the Client's first name, city, province or state, voice, likeness, written comments, performance clips, screenshots, photographs, video recordings, or audio excerpts, unless otherwise agreed in writing.</p>
+  <p>The Client understands and agrees that testimonials and shared results reflect individual experiences and are not guarantees, and that results may vary based on factors beyond Prodigy Athletics' control.</p>
+  <p>Prodigy Athletics reserves the right to edit content for clarity, length, or formatting and is under no obligation to publish or use any submitted material.</p>
+  <p>The Client represents and warrants that they own or have the right to share any content submitted and that such content does not infringe the rights of any third party.</p>
+  <p>If the Client is a minor, the parent or legal guardian signing this Agreement grants this consent on the minor's behalf.</p>
+  <p>This section survives termination of the Agreement.</p>
+
+  <h3>11a. SMS and Email Communications</h3>
+  <p>By providing your phone number and email address, you agree to receive SMS text messages and email communications from Prodigy Athletics related to your inquiry, program updates, scheduling, and promotional content.</p>
+  <p>Message and data rates may apply to all SMS communications. Message frequency varies.</p>
+  <p>Your consent to receive SMS messages is optional and is not required to purchase or receive any service from Prodigy Athletics.</p>
+  <p>You may opt out of SMS communications at any time by replying STOP to any message you receive. You will receive a single confirmation message and no further SMS messages will be sent. To opt back in, reply START at any time with no penalty.</p>
+  <p>You may opt out of email communications at any time by clicking the unsubscribe link in any email or by contacting us directly at <a href="mailto:support@prodigyathletics.ca">support@prodigyathletics.ca</a>.</p>
+  <p>For help, reply HELP to any SMS message or contact <a href="mailto:support@prodigyathletics.ca">support@prodigyathletics.ca</a>.</p>
+  <p>Prodigy Athletics will not sell or share your contact information with third parties for their marketing purposes.</p>
+
+  <h2>12. Governing Law and Dispute Resolution</h2>
+  <p>This Agreement is governed by the laws of British Columbia.</p>
+  <p>Any dispute shall be resolved by binding arbitration in British Columbia. The prevailing party is entitled to recover reasonable legal fees and costs.</p>
+
+  <h2>13. Incorporation of Terms and Privacy Policy</h2>
+  <p>Prodigy Athletics' Terms and Conditions and Privacy Policy are incorporated by reference and form part of this Agreement.</p>
+
+  <h2>14. Entire Agreement</h2>
+  <p>This Agreement constitutes the entire agreement between the parties and supersedes all prior discussions, representations, or agreements.</p>
+  <p>No modification is valid unless in writing and signed by both parties.</p>
+
+  <h2>15. Electronic Acceptance</h2>
+  <p>By completing enrollment and submitting payment, Client acknowledges that this Agreement has been reviewed in its entirety and constitutes a binding signature equivalent to a handwritten signature.</p>
+
+  <hr class="divider">
+  <p style="font-size:13px; color:var(--text-muted);">Prodigy Athletics Hockey Training Inc. | Kelowna, BC | prodigyathletics.ca</p>
 </div>
 
 <footer>
