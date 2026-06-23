@@ -266,27 +266,73 @@
       font-size: 15px; color: #ccc; line-height: 1.5;
     }
 
-    /* TESTIMONIALS */
-    .testimonials-bg { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-
-    .testimonials-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 24px;
+    /* SUCCESS STORIES */
+    .video-subheading {
+      font-size: 20px; font-weight: 700; color: var(--white);
+      text-align: center; margin: 48px 0 24px;
     }
 
-    .testimonial-card {
-      background: var(--bg); border: 1px solid var(--border);
-      border-radius: 12px; padding: 28px;
+    .video-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 20px; margin-bottom: 16px;
     }
 
-    .testimonial-card blockquote {
-      font-size: 15px; color: var(--text); line-height: 1.7;
-      font-style: italic; margin-bottom: 16px;
+    .video-embed {
+      position: relative; padding-bottom: 56.25%;
+      height: 0; overflow: hidden; border-radius: 14px;
+      border: 1px solid #2a2a2a;
     }
 
-    .testimonial-card cite {
-      font-size: 13px; font-weight: 700; color: var(--accent);
-      font-style: normal;
+    .video-embed iframe {
+      position: absolute; top: 0; left: 0;
+      width: 100%; height: 100%; border: 0;
+      border-radius: 14px;
+    }
+
+    /* IN THEIR WORDS CAROUSEL */
+    .carousel-wrap {
+      overflow-x: auto;
+      display: flex; gap: 20px;
+      padding: 8px 4px 20px;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .carousel-wrap::-webkit-scrollbar { display: none; }
+
+    .quote-card {
+      background: #161616;
+      border: 1px solid #2a2a2a;
+      border-radius: 14px;
+      padding: 32px 28px 28px;
+      min-width: 360px;
+      max-width: 360px;
+      scroll-snap-align: start;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .quote-card:hover {
+      border-color: rgba(206,169,82,0.4);
+      box-shadow: 0 0 24px rgba(206,169,82,0.07);
+    }
+
+    .quote-mark {
+      font-size: 40px; line-height: 1;
+      color: var(--accent);
+      font-family: Georgia, serif;
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    .quote-card blockquote {
+      font-size: 15px; color: var(--text);
+      line-height: 1.75; font-style: italic;
+      margin-bottom: 20px;
+    }
+
+    .quote-card cite {
+      font-size: 13px; font-weight: 700;
+      color: var(--accent); font-style: normal;
+      letter-spacing: 0.02em;
     }
 
     /* ABOUT */
@@ -483,35 +529,62 @@
 </section>
 
 <!-- RESULTS -->
-<section id="results" class="testimonials-bg">
-  <div class="container">
-    <p class="section-label">Success Stories</p>
-    <h2>Real Athletes. Real Progress.</h2>
-    <p class="section-lead">Real families who finally have clarity.</p>
-    <div class="testimonials-grid">
-      <div class="testimonial-card">
+<section id="results">
+  <div class="container" style="text-align:center;">
+    <h2 style="color:var(--accent);">Success Stories</h2>
+    <p style="color:var(--text); font-size:18px; margin-top:12px;">Real athletes. Real progress. Real families who finally have clarity.</p>
+
+    <p class="video-subheading">From Parents</p>
+    <div class="video-grid">
+      <div class="video-embed">
+        <iframe src="https://www.youtube.com/embed/VnM6RnqZ7yk?start=683" allowfullscreen loading="lazy" title="Parent testimonial - Nathan"></iframe>
+      </div>
+      <div class="video-embed">
+        <iframe src="https://www.youtube.com/embed/SHAtQsHqkh8?start=337" allowfullscreen loading="lazy" title="Parent testimonial - Noah"></iframe>
+      </div>
+    </div>
+
+    <p class="video-subheading">From Players</p>
+    <div class="video-grid">
+      <div class="video-embed">
+        <iframe src="https://www.youtube.com/embed/1oovjLLpSS0?start=45" allowfullscreen loading="lazy" title="Player testimonial - Sixten"></iframe>
+      </div>
+      <div class="video-embed">
+        <iframe src="https://www.youtube.com/embed/mNUqfLA68DM?start=370" allowfullscreen loading="lazy" title="Player interview - Cole"></iframe>
+      </div>
+    </div>
+
+    <h2 style="margin-top:80px; margin-bottom:32px;">In Their Words</h2>
+    <div class="carousel-wrap">
+      <div class="quote-card">
+        <span class="quote-mark">"</span>
         <blockquote>"Hey thanks Kenny really appreciate everything you have done. I'm really happy to have you by my side."</blockquote>
         <cite>Nathan Ayotte</cite>
       </div>
-      <div class="testimonial-card">
+      <div class="quote-card">
+        <span class="quote-mark">"</span>
         <blockquote>"Any person who asked how I made this happen you are the person I say."</blockquote>
         <cite>Nathan Ayotte</cite>
       </div>
-      <div class="testimonial-card">
-        <blockquote>"Got into my first game today. 3 to 2 win, got an assist too."</blockquote>
+      <div class="quote-card">
+        <span class="quote-mark">"</span>
+        <blockquote>"I'm excited Kenny. I really appreciate you helping me with everything."</blockquote>
+        <cite>Nathan Ayotte</cite>
+      </div>
+      <div class="quote-card">
+        <span class="quote-mark">"</span>
+        <blockquote>"Got into my first game today. 3 to 2 win got an assist too."</blockquote>
         <cite>Lucas Whitehead</cite>
       </div>
-      <div class="testimonial-card">
+      <div class="quote-card">
+        <span class="quote-mark">"</span>
         <blockquote>"It's going great so far and I feel great physically and mentally."</blockquote>
         <cite>Lucas Whitehead</cite>
       </div>
-      <div class="testimonial-card">
-        <blockquote>"Thanks so much Kenny, appreciate you more than you'd think."</blockquote>
+      <div class="quote-card">
+        <span class="quote-mark">"</span>
+        <blockquote>"Thanks so much Kenny appreciate you more than you'd think."</blockquote>
         <cite>Zialen Watson</cite>
-      </div>
-      <div class="testimonial-card">
-        <blockquote>"I'm excited Kenny. I really appreciate you helping me with everything."</blockquote>
-        <cite>Nathan Ayotte</cite>
       </div>
     </div>
   </div>
