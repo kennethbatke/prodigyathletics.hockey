@@ -191,32 +191,79 @@
     }
 
     /* WHAT YOU GET */
-    .gets-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 16px; margin-top: 48px;
+    .what-you-get-card {
+      margin-top: 56px;
+      background: #111;
+      border: 1px solid #2a2a2a;
+      border-radius: 20px;
+      padding: 52px 64px;
+      max-width: 820px;
+      margin-left: auto; margin-right: auto;
+      text-align: center;
+      box-shadow: 0 0 80px rgba(206,169,82,0.06);
+      position: relative;
+    }
+    .what-you-get-card::before {
+      content: '';
+      position: absolute; inset: -1px;
+      border-radius: 20px;
+      background: radial-gradient(ellipse 70% 50% at 50% 100%, rgba(206,169,82,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .what-you-get-card h3 {
+      font-size: 26px; font-weight: 700; color: var(--white);
+      margin-bottom: 36px;
+    }
+    .what-you-get-list {
+      list-style: none;
+      display: flex; flex-direction: column; gap: 20px;
+      text-align: left; max-width: 480px; margin: 0 auto 28px;
+    }
+    .what-you-get-list li {
+      display: flex; align-items: center; gap: 16px;
+      font-size: 16px; color: var(--text);
+    }
+    .circle-check {
+      width: 30px; height: 30px; flex-shrink: 0;
+      border-radius: 50%;
+      background: rgba(206,169,82,0.15);
+      border: 1px solid rgba(206,169,82,0.45);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--accent); font-size: 13px; font-weight: 700;
+    }
+    .what-you-get-tagline {
+      font-size: 14px; color: var(--text-muted);
+      margin-top: 28px; font-style: italic;
     }
 
-    .get-item {
-      background: var(--surface2); border: 1px solid var(--border);
-      border-radius: 8px; padding: 20px;
-      font-size: 15px; font-weight: 600; color: var(--white);
-      display: flex; align-items: center; gap: 10px;
+    /* IS PRODIGY RIGHT LINK */
+    .section-link {
+      display: block; text-align: center;
+      padding: 32px 0 8px;
+      font-size: 16px; font-weight: 600;
+      color: var(--accent); text-decoration: none;
+      letter-spacing: 0.02em;
+      transition: opacity 0.15s;
     }
-
-    .get-item::before { content: "✓"; color: var(--accent); font-weight: 700; }
+    .section-link:hover { opacity: 0.75; }
 
     /* WHO IT'S FOR */
-    .who-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
-
-    .who-list { list-style: none; display: flex; flex-direction: column; gap: 14px; }
-    .who-list li {
-      font-size: 16px; color: var(--text);
-      padding: 14px 18px; background: var(--surface); border: 1px solid var(--border);
-      border-radius: 8px; padding-left: 44px; position: relative;
+    .who-card {
+      background: #111; border: 1px solid #272727;
+      border-radius: 20px; padding: 48px 52px;
+      margin-top: 40px;
     }
-    .who-list li::before {
-      content: "→"; position: absolute; left: 16px;
-      color: var(--accent); font-weight: 700;
+    .who-card-title {
+      font-size: 17px; font-weight: 700; color: var(--white);
+      margin-bottom: 32px; text-align: center;
+    }
+    .who-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 16px 48px;
+    }
+    .who-item {
+      display: flex; align-items: flex-start; gap: 14px;
+      font-size: 15px; color: #ccc; line-height: 1.5;
     }
 
     /* TESTIMONIALS */
@@ -399,31 +446,39 @@
       </div>
     </div>
 
-    <div class="gets-grid">
-      <div class="get-item">High touch 1:1 mentorship</div>
-      <div class="get-item">Skill and gameplay analysis</div>
-      <div class="get-item">Personalized training plan</div>
-      <div class="get-item">Recovery and structure planning</div>
-      <div class="get-item">Ongoing message support</div>
-      <div class="get-item">Weekly check-ins</div>
+    <div class="what-you-get-card">
+      <h3>What You Get</h3>
+      <ul class="what-you-get-list">
+        <li><span class="circle-check">✓</span>High touch 1:1 mentorship</li>
+        <li><span class="circle-check">✓</span>Skill and gameplay analysis</li>
+        <li><span class="circle-check">✓</span>Personalized training recovery and structure planning</li>
+        <li><span class="circle-check">✓</span>Ongoing message support</li>
+        <li><span class="circle-check">✓</span>Weekly check ins</li>
+      </ul>
+      <p class="what-you-get-tagline">Built for clarity confidence and consistent performance.</p>
     </div>
   </div>
 </section>
 
+<!-- IS PRODIGY RIGHT LINK -->
+<a href="#who" class="section-link">Is Prodigy Right For You? →</a>
+
 <!-- WHO IT'S FOR -->
-<section id="who" style="background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
-  <div class="container">
-    <p class="section-label">Who It's For</p>
-    <h2>Is Prodigy Right For You?</h2>
-    <p class="section-lead">Prodigy is for committed hockey athletes who are ready to work, learn, and grow. Players who want more than talent. They want belief, structure, and leadership.</p>
-    <ul class="who-list">
-      <li>Are 12 or older and playing organized hockey</li>
-      <li>Want to eliminate inconsistency in their game</li>
-      <li>Want to stop fearing mistakes and start playing freely</li>
-      <li>Want clarity in their training and mindset</li>
-      <li>Want calm confidence in pressure moments</li>
-      <li>Are ready for honest feedback, accountability, and personal growth</li>
-    </ul>
+<section id="who">
+  <div class="container" style="text-align:center;">
+    <h2 style="color:var(--accent); font-size:clamp(32px,5vw,56px);">Is Prodigy Right For You?</h2>
+    <p style="color:var(--text); font-size:18px; max-width:680px; margin:20px auto 40px; line-height:1.7;">Prodigy is for committed hockey athletes who are ready to work, learn, and grow. Players who want more than talent. They want belief, structure, and leadership.</p>
+    <div class="who-card">
+      <p class="who-card-title">This program is built for athletes who:</p>
+      <div class="who-grid">
+        <div class="who-item"><span class="circle-check">✓</span>Are 12+</div>
+        <div class="who-item"><span class="circle-check">✓</span>Want to eliminate inconsistency</div>
+        <div class="who-item"><span class="circle-check">✓</span>Want to stop fearing mistakes and start playing freely</div>
+        <div class="who-item"><span class="circle-check">✓</span>Want clarity in their training and mindset</div>
+        <div class="who-item"><span class="circle-check">✓</span>Want calm confidence in pressure moments</div>
+        <div class="who-item"><span class="circle-check">✓</span>Are ready for honest feedback accountability and personal growth</div>
+      </div>
+    </div>
   </div>
 </section>
 
