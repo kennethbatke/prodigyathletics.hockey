@@ -30,8 +30,7 @@
     .nav-back { font-size: 14px; color: var(--text-muted); text-decoration: none; transition: color 0.15s; }
     .nav-back:hover { color: var(--accent); }
 
-    .page { max-width: 640px; margin: 0 auto; padding: 120px 24px 80px; }
-
+    .page { max-width: 600px; margin: 0 auto; padding: 120px 24px 80px; }
     .page-label { font-size: 11px; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
     h1 { font-size: clamp(28px, 4vw, 42px); font-weight: 800; color: var(--text); margin-bottom: 12px; line-height: 1.1; }
     .subtitle { font-size: 16px; color: var(--text-muted); margin-bottom: 40px; line-height: 1.6; }
@@ -44,17 +43,17 @@
       box-shadow: 0 0 60px rgba(206,169,82,0.06);
     }
 
-    /* Step dots */
-    .step-dots { display: flex; gap: 6px; margin-bottom: 28px; }
-    .step-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--border); transition: background 0.3s; flex-shrink: 0; }
-    .step-dot.active { background: var(--accent); }
-    .step-dot.done { background: rgba(206,169,82,0.35); }
+    /* Progress bar */
+    .progress-bar { height: 3px; background: #2a2a2a; border-radius: 2px; margin-bottom: 28px; overflow: hidden; }
+    .progress-fill { height: 100%; background: var(--accent); border-radius: 2px; transition: width 0.35s ease; }
 
+    /* Steps */
     .step { display: none; }
-    .step.active { display: block; animation: fadeIn 0.2s ease; }
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+    .step.active { display: block; animation: fadeSlide 0.22s ease; }
+    @keyframes fadeSlide { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
 
     .step-title { font-size: 18px; font-weight: 700; color: var(--text); margin-bottom: 20px; line-height: 1.4; }
+    .step-subtitle { font-size: 13px; color: var(--text-muted); margin-top: -14px; margin-bottom: 20px; }
 
     /* Radio options */
     .radio-group { display: flex; flex-direction: column; gap: 10px; }
@@ -70,98 +69,77 @@
     .radio-option input[type="radio"] { accent-color: var(--accent); width: 18px; height: 18px; flex-shrink: 0; cursor: pointer; }
     .radio-option span { font-size: 15px; color: var(--text); line-height: 1.3; }
 
-    /* Contact fields */
-    .form-group { margin-bottom: 20px; }
-    label { display: block; font-size: 12px; font-weight: 700; color: var(--text-muted); letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 8px; }
-    input[type="text"], input[type="tel"], input[type="email"], textarea {
-      width: 100%; background: var(--surface2); border: 1px solid var(--border);
-      color: var(--text); padding: 13px 15px; border-radius: 10px;
-      font-size: 15px; font-family: 'Inter', sans-serif; transition: border-color 0.2s;
+    /* Text inputs */
+    .field-input {
+      width: 100%;
+      background: var(--surface2); border: 1px solid var(--border);
+      color: var(--text); padding: 16px 18px;
+      border-radius: 12px; font-size: 17px;
+      font-family: 'Inter', sans-serif;
+      transition: border-color 0.2s;
+      margin-bottom: 8px;
     }
-    input:focus, textarea:focus { outline: none; border-color: var(--accent); }
-    input::placeholder, textarea::placeholder { color: #555; }
-    textarea { resize: vertical; min-height: 80px; }
+    .field-input:focus { outline: none; border-color: var(--accent); }
+    .field-input::placeholder { color: #444; }
 
-    .optional-label { font-size: 12px; color: var(--text-muted); font-weight: 400; text-transform: none; letter-spacing: 0; }
+    textarea.field-input { resize: vertical; min-height: 90px; font-size: 15px; }
 
-    /* Consent */
-    .consent-box {
-      background: rgba(206,169,82,0.05); border: 1px solid rgba(206,169,82,0.2);
-      border-radius: 10px; padding: 16px; margin: 20px 0;
-    }
-    .consent-title { font-size: 11px; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px; }
-    .consent-box p { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+    .field-hint { font-size: 12px; color: #555; margin-bottom: 20px; }
+    .field-error { font-size: 12px; color: #f85149; margin-bottom: 16px; display: none; }
 
-    .privacy-note { font-size: 12px; color: #555; margin-bottom: 20px; line-height: 1.5; }
-    .privacy-note a { color: var(--accent); }
-
-    .btn-submit {
+    /* Buttons */
+    .btn-continue {
       width: 100%; background: var(--accent); color: #000;
       border: none; padding: 15px; border-radius: 10px;
       font-size: 16px; font-weight: 700; cursor: pointer;
-      font-family: 'Inter', sans-serif; margin-top: 4px;
+      font-family: 'Inter', sans-serif;
       transition: background 0.15s, box-shadow 0.15s;
     }
-    .btn-submit:hover { background: var(--accent-light); box-shadow: 0 0 20px rgba(206,169,82,0.3); }
-    .btn-submit:disabled { background: #333; color: #666; cursor: not-allowed; box-shadow: none; }
+    .btn-continue:hover { background: var(--accent-light); box-shadow: 0 0 20px rgba(206,169,82,0.3); }
+    .btn-continue:disabled { background: #333; color: #666; cursor: not-allowed; box-shadow: none; }
 
     .btn-back { background: none; border: none; color: var(--text-muted); font-size: 13px; cursor: pointer; font-family: 'Inter', sans-serif; padding: 10px 0; display: block; transition: color 0.15s; }
     .btn-back:hover { color: var(--text); }
 
-    /* Booking screen */
-    .booking-screen { display: none; text-align: center; padding: 16px 0; }
-    .booking-screen .check { font-size: 44px; margin-bottom: 20px; }
-    .booking-screen h2 { font-size: 26px; font-weight: 800; color: var(--text); margin-bottom: 12px; }
-    .booking-screen p { font-size: 16px; color: var(--text-muted); margin-bottom: 28px; line-height: 1.7; }
-    .booking-link-box {
-      background: rgba(206,169,82,0.08); border: 1px solid rgba(206,169,82,0.3);
-      border-radius: 12px; padding: 24px; margin-bottom: 20px;
+    /* Consent */
+    .consent-box {
+      background: rgba(206,169,82,0.05); border: 1px solid rgba(206,169,82,0.2);
+      border-radius: 10px; padding: 14px 16px; margin-bottom: 16px;
     }
-    .booking-link-box p { font-size: 15px; color: var(--text); margin-bottom: 16px; line-height: 1.6; }
-    .btn-book {
-      display: inline-block; background: var(--accent); color: #000;
-      padding: 14px 36px; border-radius: 8px;
-      text-decoration: none; font-size: 16px; font-weight: 700;
-      transition: background 0.15s;
-    }
-    .btn-book:hover { background: var(--accent-light); }
+    .consent-title { font-size: 11px; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 6px; }
+    .consent-box p { font-size: 12px; color: var(--text-muted); line-height: 1.6; }
+    .privacy-note { font-size: 12px; color: #555; margin-bottom: 18px; line-height: 1.5; }
+    .privacy-note a { color: var(--accent); }
 
-    /* Redirect screens */
-    .redirect-screen { display: none; text-align: center; padding: 16px 0; }
-    .redirect-screen h2 { font-size: 22px; font-weight: 700; color: var(--text); margin-bottom: 12px; }
-    .redirect-screen p { font-size: 15px; color: var(--text-muted); margin-bottom: 24px; line-height: 1.7; }
-    .btn-secondary {
-      display: inline-block; background: var(--surface2); color: var(--text);
-      border: 1px solid var(--border); padding: 12px 28px; border-radius: 8px;
-      text-decoration: none; font-size: 15px; font-weight: 600;
-      transition: border-color 0.15s;
-    }
+    /* Outcome screens */
+    .outcome-screen { display: none; text-align: center; padding: 12px 0; }
+    .outcome-screen h2 { font-size: 24px; font-weight: 800; color: var(--text); margin-bottom: 12px; }
+    .outcome-screen p { font-size: 15px; color: var(--text-muted); margin-bottom: 24px; line-height: 1.7; }
+    .booking-box { background: rgba(206,169,82,0.08); border: 1px solid rgba(206,169,82,0.3); border-radius: 12px; padding: 24px; margin-bottom: 16px; }
+    .booking-box p { font-size: 15px; color: var(--text); margin-bottom: 18px; line-height: 1.6; }
+    .btn-book { display: inline-block; background: var(--accent); color: #000; padding: 14px 36px; border-radius: 8px; text-decoration: none; font-size: 16px; font-weight: 700; transition: background 0.15s; }
+    .btn-book:hover { background: var(--accent-light); }
+    .btn-secondary { display: inline-block; background: var(--surface2); color: var(--text); border: 1px solid var(--border); padding: 13px 28px; border-radius: 8px; text-decoration: none; font-size: 15px; font-weight: 600; transition: border-color 0.15s; }
     .btn-secondary:hover { border-color: var(--accent); }
+    .check-icon { font-size: 42px; margin-bottom: 18px; }
   </style>
 </head>
 <body>
 
 <nav>
   <a href="/" class="nav-logo"><img src="/logo.svg" alt="Prodigy Athletics"></a>
-  <a href="/" class="nav-back">← Back to Home</a>
+  <a href="/" class="nav-back">← Back</a>
 </nav>
 
 <div class="page">
   <p class="page-label">Apply for Coaching</p>
   <h1>Let's See If We're a Fit</h1>
-  <p class="subtitle">Answer a few quick questions. Takes about 90 seconds.</p>
+  <p class="subtitle">Takes about 90 seconds.</p>
 
   <div class="form-card">
-    <div class="step-dots" id="step-dots">
-      <div class="step-dot active" id="dot-1"></div>
-      <div class="step-dot" id="dot-2"></div>
-      <div class="step-dot" id="dot-3"></div>
-      <div class="step-dot" id="dot-4"></div>
-      <div class="step-dot" id="dot-5"></div>
-      <div class="step-dot" id="dot-6"></div>
-    </div>
+    <div class="progress-bar"><div class="progress-fill" id="progress" style="width:12.5%"></div></div>
 
-    <!-- STEP 1: Who -->
+    <!-- Q1: Who -->
     <div class="step active" id="step-1">
       <p class="step-title">Who is completing this form?</p>
       <div class="radio-group">
@@ -169,16 +147,15 @@
           <input type="radio" name="who" value="parent"><span>I'm a parent completing this for my player</span>
         </label>
         <label class="radio-option" onclick="pick('who','player_parents',this)">
-          <input type="radio" name="who" value="player_parents"><span>I'm a player — my parents are involved in this decision</span>
+          <input type="radio" name="who" value="player_parents"><span>I'm a player — my parents are involved</span>
         </label>
         <label class="radio-option" onclick="pick('who','player_self',this)">
-          <input type="radio" name="who" value="player_self"><span>I'm a player — I would be making this decision myself</span>
+          <input type="radio" name="who" value="player_self"><span>I'm a player — I'd be making this decision myself</span>
         </label>
       </div>
-      <button class="btn-back" style="display:none;"></button>
     </div>
 
-    <!-- STEP 2: Age -->
+    <!-- Q2: Age -->
     <div class="step" id="step-2">
       <p class="step-title">How old is the player?</p>
       <div class="radio-group">
@@ -198,12 +175,13 @@
           <input type="radio" name="age" value="21+"><span>21+</span>
         </label>
       </div>
-      <button class="btn-back" onclick="prevStep(2)">← Back</button>
+      <button class="btn-back" onclick="goTo(1)">← Back</button>
     </div>
 
-    <!-- STEP 3: Level -->
+    <!-- Q3: Level -->
     <div class="step" id="step-3">
-      <p class="step-title">What level is the athlete currently? <span style="display:block;font-size:13px;color:var(--text-muted);font-weight:400;margin-top:4px;">(Most recent winter season)</span></p>
+      <p class="step-title">What level is the athlete currently?</p>
+      <p class="step-subtitle">Most recent winter season</p>
       <div class="radio-group">
         <label class="radio-option" onclick="pick('level','recreational',this)">
           <input type="radio" name="level" value="recreational"><span>Recreational / House League</span>
@@ -221,10 +199,10 @@
           <input type="radio" name="level" value="college"><span>College</span>
         </label>
       </div>
-      <button class="btn-back" onclick="prevStep(3)">← Back</button>
+      <button class="btn-back" onclick="goTo(2)">← Back</button>
     </div>
 
-    <!-- STEP 4: Struggle -->
+    <!-- Q4: Struggle -->
     <div class="step" id="step-4">
       <p class="step-title">What does your player struggle most with?</p>
       <div class="radio-group">
@@ -241,10 +219,10 @@
           <input type="radio" name="struggle" value="all"><span>All of the Above</span>
         </label>
       </div>
-      <button class="btn-back" onclick="prevStep(4)">← Back</button>
+      <button class="btn-back" onclick="goTo(3)">← Back</button>
     </div>
 
-    <!-- STEP 5: Commitment -->
+    <!-- Q5: Commitment -->
     <div class="step" id="step-5">
       <p class="step-title">This program is a serious commitment in time, energy, and financially. For the families who are all in, the results are tangible and lasting. Is that something you and your player are ready for?</p>
       <div class="radio-group">
@@ -258,75 +236,78 @@
           <input type="radio" name="commitment" value="no"><span>Not at this time</span>
         </label>
       </div>
-      <button class="btn-back" onclick="prevStep(5)">← Back</button>
+      <button class="btn-back" onclick="goTo(4)">← Back</button>
     </div>
 
-    <!-- STEP 6: Contact + Specifics -->
+    <!-- Q6: Specifics -->
     <div class="step" id="step-6">
-      <p class="step-title">Last step — how do we reach you?</p>
+      <p class="step-title">What specifics do you notice most about your player's struggle?</p>
+      <p class="step-subtitle">Optional — share as much or as little as you'd like</p>
+      <textarea class="field-input" id="field-specifics" placeholder="Enter your answer..." rows="4"></textarea>
+      <button class="btn-continue" onclick="goTo(7)">Continue</button>
+      <button class="btn-back" onclick="goTo(5)">← Back</button>
+    </div>
 
-      <div class="form-group">
-        <label>Full Name</label>
-        <input type="text" id="field-name" placeholder="Your name">
-        <p id="err-name" style="color:#f85149;font-size:12px;margin-top:5px;display:none;">Please enter your name.</p>
-      </div>
+    <!-- Contact: Name -->
+    <div class="step" id="step-7">
+      <p class="step-title">What's your name?</p>
+      <input class="field-input" type="text" id="field-name" placeholder="First and last name" autocomplete="name">
+      <p class="field-error" id="err-name">Please enter your name.</p>
+      <button class="btn-continue" onclick="nextContact('name')">Continue</button>
+      <button class="btn-back" onclick="goTo(6)">← Back</button>
+    </div>
 
-      <div class="form-group">
-        <label>Phone Number</label>
-        <input type="tel" id="field-phone" placeholder="+1 (___) ___ ____">
-        <p id="err-phone" style="color:#f85149;font-size:12px;margin-top:5px;display:none;">Please enter a valid phone number.</p>
-      </div>
+    <!-- Contact: Email -->
+    <div class="step" id="step-8">
+      <p class="step-title">What's your email address?</p>
+      <input class="field-input" type="email" id="field-email" placeholder="you@example.com" autocomplete="email">
+      <p class="field-error" id="err-email">Please enter a valid email.</p>
+      <button class="btn-continue" onclick="nextContact('email')">Continue</button>
+      <button class="btn-back" onclick="goTo(7)">← Back</button>
+    </div>
 
-      <div class="form-group">
-        <label>Email</label>
-        <input type="email" id="field-email" placeholder="your@email.com">
-        <p id="err-email" style="color:#f85149;font-size:12px;margin-top:5px;display:none;">Please enter a valid email.</p>
-      </div>
-
-      <div class="form-group">
-        <label>What specifics do you notice most about your player's struggle? <span class="optional-label">— Optional</span></label>
-        <textarea id="field-specifics" placeholder="Enter your answer..."></textarea>
-      </div>
-
+    <!-- Contact: Phone -->
+    <div class="step" id="step-9">
+      <p class="step-title">What's the best number to reach you?</p>
+      <input class="field-input" type="tel" id="field-phone" placeholder="+1 (___) ___ ____" autocomplete="tel">
+      <p class="field-error" id="err-phone">Please enter a valid phone number.</p>
       <div class="consent-box">
         <p class="consent-title">SMS Permission</p>
         <p>By submitting this form, I agree to receive SMS text messages from Prodigy Athletics regarding hockey development coaching. Message and data rates may apply. Reply STOP at any time to opt out. Consent is not a condition of purchase.</p>
       </div>
-
-      <p class="privacy-note">By clicking Submit, you agree to our <a href="/privacy/">Privacy Policy</a> and <a href="/terms/">Terms of Service</a>.</p>
-
-      <button class="btn-submit" id="submit-btn" onclick="submitForm()">Submit Application</button>
-      <button class="btn-back" onclick="prevStep(6)">← Back</button>
+      <p class="privacy-note">By submitting, you agree to our <a href="/privacy/">Privacy Policy</a> and <a href="/terms/">Terms of Service</a>.</p>
+      <button class="btn-continue" id="submit-btn" onclick="submitForm()">Submit Application</button>
+      <button class="btn-back" onclick="goTo(8)">← Back</button>
     </div>
 
-    <!-- BOOKING SCREEN (qualified leads) -->
-    <div class="booking-screen" id="booking-screen">
-      <div class="check">✓</div>
+    <!-- Outcome: Qualified → Book -->
+    <div class="outcome-screen" id="screen-book">
+      <div class="check-icon">✓</div>
       <h2>You're in the right place.</h2>
       <p>Based on what you shared, there's something real here worth looking at properly.</p>
-      <div class="booking-link-box">
+      <div class="booking-box">
         <p>My availability changes by the hour, so it's easiest if you lock in a time directly here.</p>
         <a href="https://prodigy-athletics-booking.lovable.app" class="btn-book" target="_blank">Lock In a Time</a>
       </div>
-      <p style="font-size:13px;color:#555;">You'll receive a confirmation with the call details.</p>
+      <p style="font-size:13px;color:#555;margin-top:8px;">You'll receive a confirmation with the call details.</p>
     </div>
 
-    <!-- REDIRECT: Under 12 -->
-    <div class="redirect-screen" id="screen-young">
+    <!-- Outcome: Under 12 -->
+    <div class="outcome-screen" id="screen-young">
       <h2>Not quite the right fit yet.</h2>
-      <p>At this age the focus should be on enjoying the game and building confidence naturally. Kenny shares a ton of content specifically for younger players and families here.</p>
+      <p>At this age the focus should be on enjoying the game and building confidence naturally. Kenny shares a ton of free content specifically for younger players here.</p>
       <a href="https://www.youtube.com/@ProdigyAthletics.Hockey" class="btn-secondary" target="_blank">Watch on YouTube</a>
     </div>
 
-    <!-- REDIRECT: Not at this time - Physical -->
-    <div class="redirect-screen" id="screen-physical">
+    <!-- Outcome: Not ready — Physical -->
+    <div class="outcome-screen" id="screen-physical">
       <h2>Totally get that.</h2>
-      <p>Private coaching isn't always possible. Kenny built a structured speed and strength program for exactly this situation.</p>
+      <p>Private coaching isn't always the right fit right now. Kenny built a structured speed and strength program for exactly this situation.</p>
       <a href="https://camp-speed.lovable.app" class="btn-secondary" target="_blank">Check It Out</a>
     </div>
 
-    <!-- REDIRECT: Not at this time - Mental/Nutrition/All -->
-    <div class="redirect-screen" id="screen-mindset">
+    <!-- Outcome: Not ready — Mindset -->
+    <div class="outcome-screen" id="screen-mindset">
       <h2>Totally get that.</h2>
       <p>If confidence or mindset is part of what's holding your player back, Kenny built a self-directed program specifically for this.</p>
       <a href="https://ironcladmindset.lovable.app" class="btn-secondary" target="_blank">Check It Out</a>
@@ -336,103 +317,127 @@
 </div>
 
 <script>
-const TOTAL_STEPS = 6;
+const TOTAL_STEPS = 9;
 const answers = { who: '', age: '', level: '', struggle: '', commitment: '' };
 let currentStep = 1;
 
-function updateDots(step) {
-  for (let i = 1; i <= TOTAL_STEPS; i++) {
-    const d = document.getElementById(`dot-${i}`);
-    if (!d) continue;
-    d.className = 'step-dot' + (i < step ? ' done' : i === step ? ' active' : '');
-  }
+// ── ZOHO CRM WEB-TO-LEAD ENDPOINT ──────────────────────────────────────────
+// Replace with the POST URL from Zoho CRM → Leads → Web Forms once created
+const ZOHO_ENDPOINT = 'REPLACE_WITH_ZOHO_CRM_WEBTOLEAD_URL';
+// ───────────────────────────────────────────────────────────────────────────
+
+function setProgress(step) {
+  document.getElementById('progress').style.width = (step / TOTAL_STEPS * 100) + '%';
 }
 
-function showStep(n) {
+function goTo(n) {
   document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
   const s = document.getElementById(`step-${n}`);
-  if (s) s.classList.add('active');
-  currentStep = n;
-  updateDots(n);
+  if (s) { s.classList.add('active'); currentStep = n; }
+  setProgress(n);
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  // Focus text input if present
+  const inp = s && s.querySelector('.field-input');
+  if (inp && inp.tagName !== 'TEXTAREA') setTimeout(() => inp.focus(), 250);
+}
+
+function hideAll() {
+  document.querySelectorAll('.step').forEach(s => s.style.display = 'none');
+  document.querySelector('.progress-bar').style.display = 'none';
+}
+
+function showOutcome(id) {
+  hideAll();
+  document.getElementById(id).style.display = 'block';
+  setProgress(TOTAL_STEPS);
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 function pick(field, value, label) {
   answers[field] = value;
-  // Visually select
-  document.querySelectorAll(`[name="${field}"]`).forEach(r => {
-    r.closest('.radio-option').classList.remove('selected');
-  });
+  document.querySelectorAll(`[name="${field}"]`).forEach(r =>
+    r.closest('.radio-option').classList.remove('selected')
+  );
   label.classList.add('selected');
   label.querySelector('input').checked = true;
 
   // Auto-advance after brief pause
-  setTimeout(() => advance(currentStep), 260);
+  setTimeout(() => {
+    if (field === 'age' && value === 'under12') { showOutcome('screen-young'); return; }
+    if (field === 'commitment' && value === 'no') {
+      showOutcome(answers.struggle === 'physical' ? 'screen-physical' : 'screen-mindset');
+      return;
+    }
+    goTo(currentStep + 1);
+  }, 260);
 }
 
-function advance(current) {
-  // Special routing
-  if (current === 2 && answers.age === 'under12') {
-    hideForms(); document.getElementById('screen-young').style.display = 'block'; return;
-  }
-  if (current === 5 && answers.commitment === 'no') {
-    hideForms();
-    document.getElementById(answers.struggle === 'physical' ? 'screen-physical' : 'screen-mindset').style.display = 'block';
-    return;
-  }
-  if (current < TOTAL_STEPS) showStep(current + 1);
+function nextContact(field) {
+  const map = { name: 'field-name', email: 'field-email', phone: 'field-phone' };
+  const errMap = { name: 'err-name', email: 'err-email', phone: 'err-phone' };
+  const val = document.getElementById(map[field]).value.trim();
+  const err = document.getElementById(errMap[field]);
+  err.style.display = 'none';
+
+  if (field === 'name' && !val) { err.style.display = 'block'; return; }
+  if (field === 'email' && (!val || !val.includes('@'))) { err.style.display = 'block'; return; }
+  if (field === 'phone' && val.replace(/\D/g,'').length < 7) { err.style.display = 'block'; return; }
+
+  goTo(currentStep + 1);
 }
 
-function prevStep(current) {
-  if (current > 1) showStep(current - 1);
-}
-
-function hideForms() {
-  document.querySelectorAll('.step, .step-dots').forEach(el => el.style.display = 'none');
-}
+// Press Enter to advance on text steps
+document.addEventListener('keydown', e => {
+  if (e.key !== 'Enter') return;
+  const step = document.querySelector('.step.active');
+  if (!step) return;
+  const id = step.id;
+  if (id === 'step-7') nextContact('name');
+  if (id === 'step-8') nextContact('email');
+});
 
 function submitForm() {
-  const name = document.getElementById('field-name').value.trim();
   const phone = document.getElementById('field-phone').value.trim();
-  const email = document.getElementById('field-email').value.trim();
-  let valid = true;
-
-  ['err-name','err-phone','err-email'].forEach(id => document.getElementById(id).style.display = 'none');
-
-  if (!name) { document.getElementById('err-name').style.display = 'block'; valid = false; }
-  if (!phone || phone.replace(/\D/g,'').length < 7) { document.getElementById('err-phone').style.display = 'block'; valid = false; }
-  if (!email || !email.includes('@')) { document.getElementById('err-email').style.display = 'block'; valid = false; }
-  if (!valid) return;
+  const err = document.getElementById('err-phone');
+  err.style.display = 'none';
+  if (phone.replace(/\D/g,'').length < 7) { err.style.display = 'block'; return; }
 
   const btn = document.getElementById('submit-btn');
   btn.disabled = true; btn.textContent = 'Submitting...';
 
-  const specifics = document.getElementById('field-specifics').value.trim();
+  const name = document.getElementById('field-name').value.trim();
+  const nameParts = name.split(' ');
+  const firstName = nameParts[0] || name;
+  const lastName = nameParts.slice(1).join(' ') || '';
 
-  // POST to Zoho Flow webhook for lead tracking
   const payload = {
     source: 'website_apply',
-    full_name: name,
-    phone_number: phone,
-    email: email,
-    who: answers.who,
-    age: answers.age,
-    level: answers.level,
-    struggle: answers.struggle,
-    commitment: answers.commitment,
-    specifics: specifics,
-    sms_consent: 'true',
+    First_Name: firstName,
+    Last_Name: lastName || firstName,
+    Email: document.getElementById('field-email').value.trim(),
+    Mobile: phone,
+    Lead_Source: 'Website Apply Form',
+    Description: [
+      `Who: ${answers.who}`,
+      `Age: ${answers.age}`,
+      `Level: ${answers.level}`,
+      `Struggle: ${answers.struggle}`,
+      `Commitment: ${answers.commitment}`,
+      `Specifics: ${document.getElementById('field-specifics').value.trim() || 'Not provided'}`,
+    ].join('\n'),
   };
 
-  fetch('https://flow.zohocloud.ca/110001214544/flow/webhook/incoming?zapikey=1001.4d653937edc4decb49ba08d2d9a23e9d.abf1cd3bb6edf914e8587b15abbb23f4&isdebug=false', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(payload),
-  }).catch(() => {}); // Fail silently — don't block the user
+  // POST to Zoho CRM Web-to-Lead (silent fail — user still sees booking screen)
+  if (ZOHO_ENDPOINT && !ZOHO_ENDPOINT.includes('REPLACE')) {
+    fetch(ZOHO_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    }).catch(() => {});
+  }
 
-  // Always show booking screen for qualified leads
-  hideForms();
-  document.getElementById('booking-screen').style.display = 'block';
+  showOutcome('screen-book');
 }
 </script>
 
