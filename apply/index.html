@@ -108,6 +108,17 @@
     }
     .consent-title { font-size: 11px; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 6px; }
     .consent-box p { font-size: 12px; color: var(--text-muted); line-height: 1.6; }
+    .sms-opt-in-row {
+      display: flex; align-items: flex-start; gap: 10px;
+      margin-top: 12px; cursor: pointer;
+    }
+    .sms-opt-in-row input[type="checkbox"] {
+      width: 17px; height: 17px; flex-shrink: 0;
+      margin-top: 1px; accent-color: var(--accent); cursor: pointer;
+    }
+    .sms-opt-in-row span {
+      font-size: 13px; color: var(--text); line-height: 1.5;
+    }
     .privacy-note { font-size: 12px; color: #555; margin-bottom: 18px; line-height: 1.5; }
     .privacy-note a { color: var(--accent); }
 
@@ -273,9 +284,12 @@
       <p class="field-error" id="err-phone">Please enter a valid phone number.</p>
       <div class="consent-box">
         <p class="consent-title">SMS Permission</p>
-        <p>By submitting this form, I agree to receive SMS text messages from Prodigy Athletics regarding hockey development coaching. Message and data rates may apply. Reply STOP at any time to opt out. Consent is not a condition of purchase.</p>
+        <p>By submitting this form you agree to our <a href="/privacy/" style="color:var(--accent);">Privacy Policy</a> and <a href="/terms/" style="color:var(--accent);">Terms of Service</a>. Message and data rates may apply. Reply STOP at any time to opt out. Consent to receive SMS is not a condition of purchase.</p>
+        <label class="sms-opt-in-row">
+          <input type="checkbox" id="sms-consent-check">
+          <span>I agree to receive SMS text messages from Prodigy Athletics regarding hockey development coaching.</span>
+        </label>
       </div>
-      <p class="privacy-note">By submitting, you agree to our <a href="/privacy/">Privacy Policy</a> and <a href="/terms/">Terms of Service</a>.</p>
       <button class="btn-continue" id="submit-btn" onclick="submitForm()">Submit Application</button>
       <button class="btn-back" onclick="goTo(8)">← Back</button>
     </div>
@@ -411,6 +425,8 @@ function submitForm() {
   const firstName = nameParts[0] || name;
   const lastName = nameParts.slice(1).join(' ') || '';
 
+  const smsConsent = document.getElementById('sms-consent-check').checked;
+
   const payload = {
     source: 'website_apply',
     First_Name: firstName,
@@ -418,12 +434,14 @@ function submitForm() {
     Email: document.getElementById('field-email').value.trim(),
     Mobile: phone,
     Lead_Source: 'Website Apply Form',
+    SMS_Consent: smsConsent,
     Description: [
       `Who: ${answers.who}`,
       `Age: ${answers.age}`,
       `Level: ${answers.level}`,
       `Struggle: ${answers.struggle}`,
       `Commitment: ${answers.commitment}`,
+      `SMS Consent: ${smsConsent ? 'Yes' : 'No'}`,
       `Specifics: ${document.getElementById('field-specifics').value.trim() || 'Not provided'}`,
     ].join('\n'),
   };
