@@ -510,9 +510,11 @@ let CURRENCY = 'CAD';      // 'CAD' or 'USD'
 })();
 
 // ── Geo detect (display only; buyer confirms on step 9) ──
+// Only Canada gets the CAD path. US and everywhere else route to USD:
+// non-CA buyers aren't charged Canadian tax and don't get supplements.
 fetch('https://get.geojs.io/v1/ip/country.json')
   .then(r => r.json())
-  .then(d => { if (d && d.country) setCountry(d.country === 'US' ? 'US' : 'CA'); })
+  .then(d => { if (d && d.country) setCountry(d.country === 'CA' ? 'CA' : 'US'); })
   .catch(() => setCountry('CA'));
 
 function setCountry(c) {
