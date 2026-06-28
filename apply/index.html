@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Apply for Coaching | Prodigy Athletics</title>
-  <meta name="description" content="Apply to work with Prodigy Athletics. High-touch hockey development mentorship for committed athletes aged 12 and up.">
+  <title>Athlete Assessment | Prodigy Athletics</title>
+  <meta name="description" content="Take the 90-second athlete assessment. Get your player's recommended development path and pricing instantly.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -30,7 +30,7 @@
     .nav-back { font-size: 14px; color: var(--text-muted); text-decoration: none; transition: color 0.15s; }
     .nav-back:hover { color: var(--accent); }
 
-    .page { max-width: 600px; margin: 0 auto; padding: 120px 24px 80px; }
+    .page { max-width: 640px; margin: 0 auto; padding: 120px 24px 80px; }
     .page-label { font-size: 11px; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
     h1 { font-size: clamp(28px, 4vw, 42px); font-weight: 800; color: var(--text); margin-bottom: 12px; line-height: 1.1; }
     .subtitle { font-size: 16px; color: var(--text-muted); margin-bottom: 40px; line-height: 1.6; }
@@ -43,11 +43,9 @@
       box-shadow: 0 0 60px rgba(206,169,82,0.06);
     }
 
-    /* Progress bar */
     .progress-bar { height: 3px; background: #2a2a2a; border-radius: 2px; margin-bottom: 28px; overflow: hidden; }
     .progress-fill { height: 100%; background: var(--accent); border-radius: 2px; transition: width 0.35s ease; }
 
-    /* Steps */
     .step { display: none; }
     .step.active { display: block; animation: fadeSlide 0.22s ease; }
     @keyframes fadeSlide { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
@@ -55,7 +53,6 @@
     .step-title { font-size: 18px; font-weight: 700; color: var(--text); margin-bottom: 20px; line-height: 1.4; }
     .step-subtitle { font-size: 13px; color: var(--text-muted); margin-top: -14px; margin-bottom: 20px; }
 
-    /* Radio options */
     .radio-group { display: flex; flex-direction: column; gap: 10px; }
     .radio-option {
       display: flex; align-items: center; gap: 14px;
@@ -69,7 +66,6 @@
     .radio-option input[type="radio"] { accent-color: var(--accent); width: 18px; height: 18px; flex-shrink: 0; cursor: pointer; }
     .radio-option span { font-size: 15px; color: var(--text); line-height: 1.3; }
 
-    /* Text inputs */
     .field-input {
       width: 100%;
       background: var(--surface2); border: 1px solid var(--border);
@@ -81,13 +77,12 @@
     }
     .field-input:focus { outline: none; border-color: var(--accent); }
     .field-input::placeholder { color: #444; }
-
+    select.field-input { appearance: none; cursor: pointer; }
     textarea.field-input { resize: vertical; min-height: 90px; font-size: 15px; }
 
     .field-hint { font-size: 12px; color: #555; margin-bottom: 20px; }
     .field-error { font-size: 12px; color: #f85149; margin-bottom: 16px; display: none; }
 
-    /* Buttons */
     .btn-continue {
       width: 100%; background: var(--accent); color: #000;
       border: none; padding: 15px; border-radius: 10px;
@@ -101,38 +96,60 @@
     .btn-back { background: none; border: none; color: var(--text-muted); font-size: 13px; cursor: pointer; font-family: 'Inter', sans-serif; padding: 10px 0; display: block; transition: color 0.15s; }
     .btn-back:hover { color: var(--text); }
 
-    /* Consent */
+    /* Country toggle */
+    .country-row { display: flex; gap: 8px; margin-bottom: 16px; }
+    .country-btn {
+      flex: 1; background: var(--surface2); border: 1px solid var(--border);
+      color: var(--text-muted); padding: 10px; border-radius: 9px;
+      font-size: 14px; font-weight: 600; cursor: pointer; font-family: inherit;
+      transition: all 0.15s;
+    }
+    .country-btn.active { border-color: var(--accent); background: rgba(206,169,82,0.08); color: var(--accent); }
+
     .consent-box {
       background: rgba(206,169,82,0.05); border: 1px solid rgba(206,169,82,0.2);
       border-radius: 10px; padding: 14px 16px; margin-bottom: 16px;
     }
     .consent-title { font-size: 11px; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 6px; }
     .consent-box p { font-size: 12px; color: var(--text-muted); line-height: 1.6; }
-    .sms-opt-in-row {
-      display: flex; align-items: flex-start; gap: 10px;
-      margin-top: 12px; cursor: pointer;
-    }
-    .sms-opt-in-row input[type="checkbox"] {
-      width: 17px; height: 17px; flex-shrink: 0;
-      margin-top: 1px; accent-color: var(--accent); cursor: pointer;
-    }
-    .sms-opt-in-row span {
-      font-size: 13px; color: var(--text); line-height: 1.5;
-    }
-    .privacy-note { font-size: 12px; color: #555; margin-bottom: 18px; line-height: 1.5; }
-    .privacy-note a { color: var(--accent); }
+    .sms-opt-in-row { display: flex; align-items: flex-start; gap: 10px; margin-top: 12px; cursor: pointer; }
+    .sms-opt-in-row input[type="checkbox"] { width: 17px; height: 17px; flex-shrink: 0; margin-top: 1px; accent-color: var(--accent); cursor: pointer; }
+    .sms-opt-in-row span { font-size: 13px; color: var(--text); line-height: 1.5; }
 
     /* Outcome screens */
-    .outcome-screen { display: none; text-align: center; padding: 12px 0; }
-    .outcome-screen h2 { font-size: 24px; font-weight: 800; color: var(--text); margin-bottom: 12px; }
-    .outcome-screen p { font-size: 15px; color: var(--text-muted); margin-bottom: 24px; line-height: 1.7; }
-    .booking-box { background: rgba(206,169,82,0.08); border: 1px solid rgba(206,169,82,0.3); border-radius: 12px; padding: 24px; margin-bottom: 16px; }
-    .booking-box p { font-size: 15px; color: var(--text); margin-bottom: 18px; line-height: 1.6; }
-    .btn-book { display: inline-block; background: var(--accent); color: #000; padding: 14px 36px; border-radius: 8px; text-decoration: none; font-size: 16px; font-weight: 700; transition: background 0.15s; }
-    .btn-book:hover { background: var(--accent-light); }
+    .outcome-screen { display: none; padding: 4px 0; }
+    .outcome-screen.text-center { text-align: center; }
+    .outcome-screen h2 { font-size: 26px; font-weight: 800; color: var(--text); margin-bottom: 12px; line-height: 1.2; }
+    .outcome-screen .lede { font-size: 15px; color: var(--text-muted); margin-bottom: 28px; line-height: 1.7; }
+    .check-icon { font-size: 42px; margin-bottom: 18px; text-align: center; }
+
+    /* Offer cards */
+    .offer-card {
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: 16px; padding: 24px; margin-bottom: 16px;
+      transition: border-color 0.2s;
+    }
+    .offer-card.featured { border-color: var(--accent); box-shadow: 0 0 30px rgba(206,169,82,0.1); }
+    .offer-badge { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #000; background: var(--accent); padding: 3px 10px; border-radius: 20px; margin-bottom: 12px; }
+    .offer-name { font-size: 19px; font-weight: 800; color: var(--text); margin-bottom: 4px; }
+    .offer-price { font-size: 30px; font-weight: 800; color: var(--accent); margin-bottom: 2px; }
+    .offer-price small { font-size: 14px; font-weight: 600; color: var(--text-muted); }
+    .offer-renewal { font-size: 12px; color: #777; margin-bottom: 16px; }
+    .offer-features { list-style: none; margin-bottom: 20px; }
+    .offer-features li { font-size: 13px; color: var(--text-muted); padding: 5px 0 5px 24px; position: relative; line-height: 1.5; }
+    .offer-features li::before { content: "✓"; position: absolute; left: 0; color: var(--accent); font-weight: 700; }
+    .btn-buy { display: block; width: 100%; text-align: center; background: var(--accent); color: #000; padding: 14px; border-radius: 10px; text-decoration: none; font-size: 16px; font-weight: 700; transition: background 0.15s; cursor: pointer; border: none; font-family: inherit; }
+    .btn-buy:hover { background: var(--accent-light); }
+    .btn-buy.ghost { background: transparent; color: var(--text); border: 1px solid var(--border); }
+    .btn-buy.ghost:hover { background: var(--surface2); border-color: var(--accent); }
+
+    .upsell-card { background: linear-gradient(145deg, rgba(206,169,82,0.10), rgba(206,169,82,0.03)); border: 1px solid var(--accent); border-radius: 16px; padding: 22px; margin-bottom: 16px; }
+    .upsell-card .offer-name { color: var(--accent); }
+
     .btn-secondary { display: inline-block; background: var(--surface2); color: var(--text); border: 1px solid var(--border); padding: 13px 28px; border-radius: 8px; text-decoration: none; font-size: 15px; font-weight: 600; transition: border-color 0.15s; }
     .btn-secondary:hover { border-color: var(--accent); }
-    .check-icon { font-size: 42px; margin-bottom: 18px; }
+    .call-line { font-size: 13px; color: #777; text-align: center; margin-top: 6px; line-height: 1.6; }
+    .call-line a { color: var(--accent); text-decoration: none; }
   </style>
 </head>
 <body>
@@ -143,16 +160,16 @@
 </nav>
 
 <div class="page">
-  <p class="page-label">Apply for Coaching</p>
-  <h1>Let's See If We're a Fit</h1>
-  <p class="subtitle">Takes about 90 seconds.</p>
+  <p class="page-label">Athlete Assessment</p>
+  <h1>Let's Build Your Player's Path</h1>
+  <p class="subtitle">Answer a few questions and get your athlete's recommended program and pricing instantly. Takes about 90 seconds.</p>
 
   <div class="form-card">
-    <div class="progress-bar"><div class="progress-fill" id="progress" style="width:12.5%"></div></div>
+    <div class="progress-bar"><div class="progress-fill" id="progress" style="width:11%"></div></div>
 
     <!-- Q1: Who -->
     <div class="step active" id="step-1">
-      <p class="step-title">Who is completing this form?</p>
+      <p class="step-title">Who is completing this assessment?</p>
       <div class="radio-group">
         <label class="radio-option" onclick="pick('who','parent',this)">
           <input type="radio" name="who" value="parent"><span>I'm a parent completing this for my player</span>
@@ -166,26 +183,13 @@
       </div>
     </div>
 
-    <!-- Q2: Age -->
+    <!-- Q2: Age (exact, drives routing) -->
     <div class="step" id="step-2">
       <p class="step-title">How old is the player?</p>
-      <div class="radio-group">
-        <label class="radio-option" onclick="pick('age','under12',this)">
-          <input type="radio" name="age" value="under12"><span>Younger than 12</span>
-        </label>
-        <label class="radio-option" onclick="pick('age','12-14',this)">
-          <input type="radio" name="age" value="12-14"><span>12 to 14</span>
-        </label>
-        <label class="radio-option" onclick="pick('age','15-17',this)">
-          <input type="radio" name="age" value="15-17"><span>15 to 17</span>
-        </label>
-        <label class="radio-option" onclick="pick('age','18-20',this)">
-          <input type="radio" name="age" value="18-20"><span>18 to 20</span>
-        </label>
-        <label class="radio-option" onclick="pick('age','21+',this)">
-          <input type="radio" name="age" value="21+"><span>21+</span>
-        </label>
-      </div>
+      <p class="step-subtitle">This sets the right program for their stage</p>
+      <select class="field-input" id="field-age" onchange="pickAge(this.value)">
+        <option value="">Select age…</option>
+      </select>
       <button class="btn-back" onclick="goTo(1)">← Back</button>
     </div>
 
@@ -235,16 +239,16 @@
 
     <!-- Q5: Commitment -->
     <div class="step" id="step-5">
-      <p class="step-title">This program is a serious commitment in time, energy, and financially. For the families who are all in, the results are tangible and lasting. Is that something you and your player are ready for?</p>
+      <p class="step-title">This is a real commitment in time, energy, and money. For families who go all in, the results are tangible and lasting. Where are you and your player right now?</p>
       <div class="radio-group">
         <label class="radio-option" onclick="pick('commitment','yes',this)">
-          <input type="radio" name="commitment" value="yes"><span>Yes, we're ready to commit</span>
+          <input type="radio" name="commitment" value="yes"><span>We're ready to commit and get started</span>
         </label>
         <label class="radio-option" onclick="pick('commitment','discuss',this)">
-          <input type="radio" name="commitment" value="discuss"><span>We're interested and would need to discuss as a family</span>
+          <input type="radio" name="commitment" value="discuss"><span>Interested — we'd want to see the details first</span>
         </label>
         <label class="radio-option" onclick="pick('commitment','no',this)">
-          <input type="radio" name="commitment" value="no"><span>Not at this time</span>
+          <input type="radio" name="commitment" value="no"><span>Not the right time for full coaching yet</span>
         </label>
       </div>
       <button class="btn-back" onclick="goTo(4)">← Back</button>
@@ -252,7 +256,7 @@
 
     <!-- Q6: Specifics -->
     <div class="step" id="step-6">
-      <p class="step-title">What specifics do you notice most about your player's struggle?</p>
+      <p class="step-title">What do you notice most about your player's struggle?</p>
       <p class="step-subtitle">Optional — share as much or as little as you'd like</p>
       <textarea class="field-input" id="field-specifics" placeholder="Enter your answer..." rows="4"></textarea>
       <button class="btn-continue" onclick="goTo(7)">Continue</button>
@@ -261,7 +265,8 @@
 
     <!-- Contact: Name -->
     <div class="step" id="step-7">
-      <p class="step-title">What's your name?</p>
+      <p class="step-title">Almost there — where should we send your athlete's assessment?</p>
+      <p class="step-subtitle">Your name</p>
       <input class="field-input" type="text" id="field-name" placeholder="First and last name" autocomplete="name">
       <p class="field-error" id="err-name">Please enter your name.</p>
       <button class="btn-continue" onclick="nextContact('name')">Continue</button>
@@ -277,68 +282,245 @@
       <button class="btn-back" onclick="goTo(7)">← Back</button>
     </div>
 
-    <!-- Contact: Phone -->
+    <!-- Contact: Phone + Country -->
     <div class="step" id="step-9">
-      <p class="step-title">What's the best number to reach you?</p>
+      <p class="step-title">Last step — what's the best number to reach you?</p>
       <input class="field-input" type="tel" id="field-phone" placeholder="+1 (___) ___ ____" autocomplete="tel">
       <p class="field-error" id="err-phone">Please enter a valid phone number.</p>
+
+      <p class="step-subtitle" style="margin-top:6px;margin-bottom:8px;">Where are you based? (sets your correct pricing and tax)</p>
+      <div class="country-row">
+        <button type="button" class="country-btn" id="cbtn-CA" onclick="setCountry('CA')">🇨🇦 Canada</button>
+        <button type="button" class="country-btn" id="cbtn-US" onclick="setCountry('US')">🇺🇸 United States</button>
+      </div>
+
       <div class="consent-box">
         <p class="consent-title">SMS Permission</p>
-        <p>By submitting this form you agree to our <a href="/privacy/" style="color:var(--accent);">Privacy Policy</a> and <a href="/terms/" style="color:var(--accent);">Terms of Service</a>. Message and data rates may apply. Reply STOP at any time to opt out. Consent to receive SMS is not a condition of purchase.</p>
+        <p>By submitting you agree to our <a href="/privacy/" style="color:var(--accent);">Privacy Policy</a> and <a href="/terms/" style="color:var(--accent);">Terms of Service</a>. Message and data rates may apply. Reply STOP at any time to opt out. Consent to receive SMS is not a condition of purchase.</p>
         <label class="sms-opt-in-row">
           <input type="checkbox" id="sms-consent-check">
           <span>I agree to receive SMS text messages from Prodigy Athletics regarding hockey development coaching.</span>
         </label>
       </div>
-      <button class="btn-continue" id="submit-btn" onclick="submitForm()">Submit Application</button>
+      <button class="btn-continue" id="submit-btn" onclick="submitForm()">See My Athlete's Path →</button>
       <button class="btn-back" onclick="goTo(8)">← Back</button>
     </div>
 
-    <!-- Outcome: Qualified → Book -->
-    <div class="outcome-screen" id="screen-book">
+    <!-- ============ OUTCOME: 9–12 TRAINING PROGRAM ============ -->
+    <div class="outcome-screen" id="screen-training">
       <div class="check-icon">✓</div>
-      <h2>You're in the right place.</h2>
-      <p>Based on what you shared, there's something real here worth looking at properly.</p>
-      <div class="booking-box">
-        <p>My availability changes by the hour, so it's easiest if you lock in a time directly here.</p>
-        <a href="https://prodigy-athletics-booking.lovable.app" class="btn-book" target="_blank">Lock In a Time</a>
+      <h2 style="text-align:center;">Your athlete's path: the Training Program</h2>
+      <p class="lede" style="text-align:center;">At this stage, the win is a pro-level foundation: a done-for-you schedule, nutrition, and a custom strength plan that all fit together. Pick the level of support that fits your family.</p>
+
+      <div class="offer-card">
+        <div class="offer-name">Self-Guided</div>
+        <div class="offer-price">$<span class="px" data-tier="training_self">699</span> <small><span class="cur">CAD</span> / first 12 weeks</small></div>
+        <div class="offer-renewal">Then $<span class="rx" data-tier="training_self">175</span> <span class="cur">CAD</span> every 4 weeks</div>
+        <ul class="offer-features">
+          <li>Done-for-you training schedule</li>
+          <li>Custom nutrition plan</li>
+          <li>Personalized strength plan that fits your schedule</li>
+          <li>Full app access (one-way coaching feed)</li>
+          <li>Onboarding welcome package shipped to you</li>
+        </ul>
+        <a class="btn-buy ghost" onclick="buy('training_self')">Start Self-Guided</a>
       </div>
-      <p style="font-size:13px;color:#555;margin-top:8px;">You'll receive a confirmation with the call details.</p>
+
+      <div class="offer-card featured">
+        <div class="offer-badge">Most Popular</div>
+        <div class="offer-name">Coached</div>
+        <div class="offer-price">$<span class="px" data-tier="training_coached">999</span> <small><span class="cur">CAD</span> / first 12 weeks</small></div>
+        <div class="offer-renewal">Then $<span class="rx" data-tier="training_coached">249</span> <span class="cur">CAD</span> every 4 weeks</div>
+        <ul class="offer-features">
+          <li>Everything in Self-Guided</li>
+          <li>Two-way in-app coaching with Kenny</li>
+          <li>Accountability and plan adjustments</li>
+          <li>Onboarding welcome package shipped to you</li>
+        </ul>
+        <a class="btn-buy" onclick="buy('training_coached')">Start Coached</a>
+      </div>
     </div>
 
-    <!-- Outcome: Under 12 -->
-    <div class="outcome-screen" id="screen-young">
+    <!-- ============ OUTCOME: 13 GROUP ============ -->
+    <div class="outcome-screen" id="screen-group">
+      <div class="check-icon">✓</div>
+      <h2 style="text-align:center;">Your athlete's path: the Group Program</h2>
+      <p class="lede" style="text-align:center;">The full system plus a weekly live group call and a room full of athletes chasing the same thing.</p>
+
+      <div class="offer-card featured">
+        <div class="offer-badge">Recommended</div>
+        <div class="offer-name">Group Program</div>
+        <div class="offer-price">$<span class="px" data-tier="group">1500</span> <small><span class="cur">CAD</span> / first 12 weeks</small></div>
+        <div class="offer-renewal">Then $<span class="rx" data-tier="group">299</span> <span class="cur">CAD</span> every 4 weeks</div>
+        <ul class="offer-features">
+          <li>Done-for-you schedule, nutrition, and custom strength plan</li>
+          <li>Weekly live group call with Kenny</li>
+          <li>Two-way in-app coaching access anytime</li>
+          <li>Free access to all digital resources (IronClad Mindset and more)</li>
+          <li>Onboarding welcome package shipped to you</li>
+        </ul>
+        <a class="btn-buy" onclick="buy('group')">Enroll in the Group Program</a>
+      </div>
+      <p class="call-line">Want to talk it through first? <a href="https://prodigy-athletics-booking.lovable.app" target="_blank">Book a quick fit call.</a></p>
+    </div>
+
+    <!-- ============ OUTCOME: 14+ GROUP + 1:1 UPSELL ============ -->
+    <div class="outcome-screen" id="screen-group-1on1">
+      <div class="check-icon">✓</div>
+      <h2 style="text-align:center;">Your athlete's path: Group, with 1:1 unlocked</h2>
+      <p class="lede" style="text-align:center;">This is the window where focused athletes separate from the pack. Start with the Group Program, or add full 1:1 access — this is where our athletes succeed the most.</p>
+
+      <div class="offer-card">
+        <div class="offer-name">Group Program</div>
+        <div class="offer-price">$<span class="px" data-tier="group">1500</span> <small><span class="cur">CAD</span> / first 12 weeks</small></div>
+        <div class="offer-renewal">Then $<span class="rx" data-tier="group">299</span> <span class="cur">CAD</span> every 4 weeks</div>
+        <ul class="offer-features">
+          <li>Done-for-you schedule, nutrition, and custom strength plan</li>
+          <li>Weekly live group call with Kenny</li>
+          <li>Two-way in-app coaching access anytime</li>
+          <li>Free access to all digital resources</li>
+          <li>Onboarding welcome package shipped to you</li>
+        </ul>
+        <a class="btn-buy ghost" onclick="buy('group')">Enroll in Group</a>
+      </div>
+
+      <div class="upsell-card">
+        <div class="offer-badge">Best Results</div>
+        <div class="offer-name">Group + Full 1:1 Access</div>
+        <div class="offer-price">$<span class="px" data-tier="oneonone">2100</span> <small><span class="cur">CAD</span> / first 12 weeks</small></div>
+        <div class="offer-renewal">Then $<span class="rx" data-tier="oneonone">399</span> <span class="cur">CAD</span> every 4 weeks — just $<span class="upx">600</span> more than Group to start</div>
+        <ul class="offer-features">
+          <li>Everything in the Group Program</li>
+          <li>Full access to Kenny's 1:1 calendar — book as many calls as you need</li>
+          <li>No per-call fees, no session caps</li>
+        </ul>
+        <a class="btn-buy" onclick="buy('oneonone')">Unlock 1:1 Access</a>
+      </div>
+      <p class="call-line">Not sure which fits? <a href="https://prodigy-athletics-booking.lovable.app" target="_blank">Book a quick fit call.</a></p>
+    </div>
+
+    <!-- ============ OUTCOME: UNDER 9 ============ -->
+    <div class="outcome-screen text-center" id="screen-young">
       <h2>Not quite the right fit yet.</h2>
-      <p>At this age the focus should be on enjoying the game and building confidence naturally. Kenny shares a ton of free content specifically for younger players here.</p>
+      <p class="lede">At this age the focus should be enjoying the game and building confidence naturally. Kenny shares a ton of free content built for younger players.</p>
       <a href="https://www.youtube.com/@ProdigyAthletics.Hockey" class="btn-secondary" target="_blank">Watch on YouTube</a>
     </div>
 
-    <!-- Outcome: Not ready — Physical -->
-    <div class="outcome-screen" id="screen-physical">
-      <h2>Totally get that.</h2>
-      <p>Private coaching isn't always the right fit right now. Kenny built a structured speed and strength program for exactly this situation.</p>
-      <a href="https://camp-speed.lovable.app" class="btn-secondary" target="_blank">Check It Out</a>
+    <!-- ============ OUTCOME: NOT READY — PHYSICAL (low-ticket starter plan) ============ -->
+    <div class="outcome-screen text-center" id="screen-physical">
+      <h2>Let's get you started the right way.</h2>
+      <p class="lede">Full coaching isn't always the right fit right now, and that's fine. Kenny built a pre-made starter plan that gets your player into the app and training with structure from day one.</p>
+      <a class="btn-secondary" onclick="buy('lowticket')" style="cursor:pointer;">Get the Starter Plan</a>
     </div>
 
-    <!-- Outcome: Not ready — Mindset -->
-    <div class="outcome-screen" id="screen-mindset">
-      <h2>Totally get that.</h2>
-      <p>If confidence or mindset is part of what's holding your player back, Kenny built a self-directed program specifically for this.</p>
-      <a href="https://ironcladmindset.lovable.app" class="btn-secondary" target="_blank">Check It Out</a>
+    <!-- ============ OUTCOME: NOT READY — MINDSET (Skool locker room) ============ -->
+    <div class="outcome-screen text-center" id="screen-mindset">
+      <h2>Start with the mental side.</h2>
+      <p class="lede">If confidence or mindset is what's holding your player back, the Locker Room is where to begin. Self-directed lessons, a community of athletes, and Kenny's mindset framework.</p>
+      <a href="https://www.skool.com/the-locker-room-6503/classroom/7df72993" class="btn-secondary" target="_blank">Join the Locker Room</a>
     </div>
 
   </div>
 </div>
 
 <script>
+/* ════════════════════════════════════════════════════════════════
+   PRODIGY ATHLETE ASSESSMENT — CONFIG
+   Everything you need to edit lives in this CONFIG block.
+   ════════════════════════════════════════════════════════════════ */
+const CONFIG = {
+
+  // ── AGE ROUTING ──────────────────────────────────────────────
+  // Under youngestAge -> "not ready" (YouTube)
+  // youngestAge..trainingMaxAge -> Training Program
+  // (trainingMaxAge+1)..(oneOnOneMinAge-1) -> Group only
+  // oneOnOneMinAge and up -> Group + 1:1 upsell
+  ageRouting: {
+    youngestAge:   9,   // below this -> YouTube
+    trainingMaxAge: 12, // 9–12 -> Training  (move to 11 to push 12 into Group)
+    oneOnOneMinAge: 14, // 14+  -> 1:1 unlocked
+    maxAge: 21,
+  },
+
+  // ── PRICING (display only — real charge is set in Stripe) ──────
+  // intro = first 12 weeks, renew = every 4 weeks after
+  pricing: {
+    training_self:    { CAD: { intro: 699,  renew: 175 }, USD: { intro: 499,  renew: 125 } },
+    training_coached: { CAD: { intro: 999,  renew: 249 }, USD: { intro: 749,  renew: 175 } },
+    group:            { CAD: { intro: 1500, renew: 299 }, USD: { intro: 1200, renew: 229 } },
+    oneonone:         { CAD: { intro: 2100, renew: 399 }, USD: { intro: 1599, renew: 299 } },
+  },
+  // Difference shown on the 1:1 upsell ("just $X more than Group")
+  oneOnOneUpsellDelta: { CAD: 600, USD: 399 },
+
+  // ── STRIPE CHECKOUT LINKS ─────────────────────────────────────
+  // Paste your Stripe Payment Link per tier per currency.
+  // The buyer's email is auto-appended as ?prefilled_email= so they
+  // don't retype it. Leave as PLACEHOLDER until your links exist.
+  checkout: {
+    lowticket:        { CAD: 'https://buy.stripe.com/6oUbJ39QUeXk7634rscbC0H', USD: 'https://buy.stripe.com/8x24gB8MQ5mK8a79LMcbC0I' },
+    training_self:    { CAD: 'https://buy.stripe.com/00w5kF8MQ2aybmj3nocbC0J', USD: 'https://buy.stripe.com/eVq14p2osdTgaifbTUcbC0K' },
+    training_coached: { CAD: 'https://buy.stripe.com/8x24gB0gk9D061Ze22cbC0L', USD: 'https://buy.stripe.com/7sY28tgfi5mK8a7f66cbC0M' },
+    group:            { CAD: 'https://buy.stripe.com/14A3cx6EI3eCbmje22cbC0A', USD: 'https://buy.stripe.com/00w5kF9QU7uS9ebgaacbC0F' },
+    oneonone:         { CAD: 'https://buy.stripe.com/4gM3cx2os02q3TR8HIcbC0w', USD: 'https://buy.stripe.com/dRmbJ35AE16u0HF0bccbC0x' },
+  },
+
+  // ── LEAD CAPTURE ──────────────────────────────────────────────
+  // POST endpoint for your CRM / responder (fires before checkout
+  // so every lead is captured for follow-up even if they don't buy).
+  leadEndpoint: 'REPLACE_WITH_LEAD_ENDPOINT',
+
+  // ── META PIXEL ────────────────────────────────────────────────
+  // Paste your Pixel ID from Meta Events Manager (just the number).
+  // Fires PageView, Lead (on assessment submit), InitiateCheckout (on Buy).
+  metaPixelId: '2092599024666125',
+};
+
+/* ════════════════════════════════════════════════════════════════ */
+
+// ── Meta Pixel bootstrap (no-ops until you paste an ID) ──
+(function initPixel() {
+  if (!CONFIG.metaPixelId || CONFIG.metaPixelId.includes('REPLACE')) return;
+  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+  n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+  document,'script','https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', CONFIG.metaPixelId);
+  fbq('track', 'PageView');
+})();
+function trackPixel(event, params) {
+  if (window.fbq) { try { fbq('track', event, params || {}); } catch (e) {} }
+}
+
 const TOTAL_STEPS = 9;
 const answers = { who: '', age: '', level: '', struggle: '', commitment: '' };
 let currentStep = 1;
+let COUNTRY = 'CA';        // 'CA' or 'US' — set by geo, confirmable by buyer
+let CURRENCY = 'CAD';      // 'CAD' or 'USD'
 
-// ── ZOHO CRM WEB-TO-LEAD ENDPOINT ──────────────────────────────────────────
-// Replace with the POST URL from Zoho CRM → Leads → Web Forms once created
-const ZOHO_ENDPOINT = 'REPLACE_WITH_ZOHO_CRM_WEBTOLEAD_URL';
-// ───────────────────────────────────────────────────────────────────────────
+// ── Build age dropdown ──
+(function buildAges() {
+  const sel = document.getElementById('field-age');
+  for (let a = 6; a <= CONFIG.ageRouting.maxAge; a++) {
+    const o = document.createElement('option');
+    o.value = a; o.textContent = a + (a === CONFIG.ageRouting.maxAge ? '+' : '');
+    sel.appendChild(o);
+  }
+})();
+
+// ── Geo detect (display only; buyer confirms on step 9) ──
+fetch('https://get.geojs.io/v1/ip/country.json')
+  .then(r => r.json())
+  .then(d => { if (d && d.country) setCountry(d.country === 'US' ? 'US' : 'CA'); })
+  .catch(() => setCountry('CA'));
+
+function setCountry(c) {
+  COUNTRY = (c === 'US') ? 'US' : 'CA';
+  CURRENCY = (COUNTRY === 'US') ? 'USD' : 'CAD';
+  document.getElementById('cbtn-CA').classList.toggle('active', COUNTRY === 'CA');
+  document.getElementById('cbtn-US').classList.toggle('active', COUNTRY === 'US');
+}
 
 function setProgress(step) {
   document.getElementById('progress').style.width = (step / TOTAL_STEPS * 100) + '%';
@@ -350,10 +532,8 @@ function goTo(n) {
   if (s) { s.classList.add('active'); currentStep = n; }
   setProgress(n);
   window.scrollTo({ top: 0, behavior: 'smooth' });
-
-  // Focus text input if present
   const inp = s && s.querySelector('.field-input');
-  if (inp && inp.tagName !== 'TEXTAREA') setTimeout(() => inp.focus(), 250);
+  if (inp && inp.tagName !== 'TEXTAREA' && inp.tagName !== 'SELECT') setTimeout(() => inp.focus(), 250);
 }
 
 function hideAll() {
@@ -363,6 +543,7 @@ function hideAll() {
 
 function showOutcome(id) {
   hideAll();
+  renderPrices();
   document.getElementById(id).style.display = 'block';
   setProgress(TOTAL_STEPS);
   window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -370,92 +551,125 @@ function showOutcome(id) {
 
 function pick(field, value, label) {
   answers[field] = value;
-  document.querySelectorAll(`[name="${field}"]`).forEach(r =>
-    r.closest('.radio-option').classList.remove('selected')
-  );
+  document.querySelectorAll(`[name="${field}"]`).forEach(r => r.closest('.radio-option').classList.remove('selected'));
   label.classList.add('selected');
   label.querySelector('input').checked = true;
+  setTimeout(() => goTo(currentStep + 1), 260);
+}
 
-  // Auto-advance after brief pause
-  setTimeout(() => {
-    if (field === 'age' && value === 'under12') { showOutcome('screen-young'); return; }
-    if (field === 'commitment' && value === 'no') {
-      showOutcome(answers.struggle === 'physical' ? 'screen-physical' : 'screen-mindset');
-      return;
-    }
-    goTo(currentStep + 1);
-  }, 260);
+function pickAge(value) {
+  if (!value) return;
+  answers.age = value;
+  setTimeout(() => goTo(3), 200);
 }
 
 function nextContact(field) {
-  const map = { name: 'field-name', email: 'field-email', phone: 'field-phone' };
-  const errMap = { name: 'err-name', email: 'err-email', phone: 'err-phone' };
+  const map = { name: 'field-name', email: 'field-email' };
+  const errMap = { name: 'err-name', email: 'err-email' };
   const val = document.getElementById(map[field]).value.trim();
   const err = document.getElementById(errMap[field]);
   err.style.display = 'none';
-
   if (field === 'name' && !val) { err.style.display = 'block'; return; }
   if (field === 'email' && (!val || !val.includes('@'))) { err.style.display = 'block'; return; }
-  if (field === 'phone' && val.replace(/\D/g,'').length < 7) { err.style.display = 'block'; return; }
-
   goTo(currentStep + 1);
 }
 
-// Press Enter to advance on text steps
 document.addEventListener('keydown', e => {
   if (e.key !== 'Enter') return;
   const step = document.querySelector('.step.active');
   if (!step) return;
-  const id = step.id;
-  if (id === 'step-7') nextContact('name');
-  if (id === 'step-8') nextContact('email');
+  if (step.id === 'step-7') nextContact('name');
+  if (step.id === 'step-8') nextContact('email');
 });
+
+// ── Fill prices into the active outcome based on currency ──
+function renderPrices() {
+  document.querySelectorAll('.px').forEach(el => {
+    const t = el.dataset.tier; el.textContent = CONFIG.pricing[t][CURRENCY].intro;
+  });
+  document.querySelectorAll('.rx').forEach(el => {
+    const t = el.dataset.tier; el.textContent = CONFIG.pricing[t][CURRENCY].renew;
+  });
+  document.querySelectorAll('.cur').forEach(el => el.textContent = CURRENCY);
+  document.querySelectorAll('.upx').forEach(el => el.textContent = CONFIG.oneOnOneUpsellDelta[CURRENCY]);
+}
+
+// ── Route to the correct outcome ──
+function routeOutcome() {
+  const age = parseInt(answers.age, 10);
+  const r = CONFIG.ageRouting;
+  if (isNaN(age) || age < r.youngestAge) return 'screen-young';
+  if (answers.commitment === 'no') {
+    return (answers.struggle === 'physical') ? 'screen-physical' : 'screen-mindset';
+  }
+  if (age <= r.trainingMaxAge) return 'screen-training';
+  if (age < r.oneOnOneMinAge)  return 'screen-group';
+  return 'screen-group-1on1';
+}
+
+// ── Send buyer to Stripe with email prefilled ──
+function buy(tier) {
+  const link = CONFIG.checkout[tier][CURRENCY];
+  if (!link || link.startsWith('PLACEHOLDER')) {
+    alert('Checkout link not set yet for ' + tier + ' (' + CURRENCY + '). Add it in CONFIG.checkout.');
+    return;
+  }
+  trackPixel('InitiateCheckout', { content_name: tier, currency: CURRENCY });
+  const email = encodeURIComponent(document.getElementById('field-email').value.trim());
+  const sep = link.includes('?') ? '&' : '?';
+  window.location.href = link + sep + 'prefilled_email=' + email;
+}
 
 function submitForm() {
   const phone = document.getElementById('field-phone').value.trim();
   const err = document.getElementById('err-phone');
   err.style.display = 'none';
-  if (phone.replace(/\D/g,'').length < 7) { err.style.display = 'block'; return; }
+  if (phone.replace(/\D/g, '').length < 7) { err.style.display = 'block'; return; }
 
   const btn = document.getElementById('submit-btn');
-  btn.disabled = true; btn.textContent = 'Submitting...';
+  btn.disabled = true; btn.textContent = 'Building your path...';
 
   const name = document.getElementById('field-name').value.trim();
-  const nameParts = name.split(' ');
-  const firstName = nameParts[0] || name;
-  const lastName = nameParts.slice(1).join(' ') || '';
-
+  const parts = name.split(' ');
+  const firstName = parts[0] || name;
+  const lastName = parts.slice(1).join(' ') || '';
   const smsConsent = document.getElementById('sms-consent-check').checked;
 
   const payload = {
-    source: 'website_apply',
+    source: 'website_assessment',
     First_Name: firstName,
     Last_Name: lastName || firstName,
     Email: document.getElementById('field-email').value.trim(),
     Mobile: phone,
-    Lead_Source: 'Website Apply Form',
+    Country: COUNTRY,
+    Currency: CURRENCY,
+    Lead_Source: 'Website Assessment',
     SMS_Consent: smsConsent,
+    Recommended_Path: routeOutcome(),
     Description: [
       `Who: ${answers.who}`,
       `Age: ${answers.age}`,
       `Level: ${answers.level}`,
       `Struggle: ${answers.struggle}`,
       `Commitment: ${answers.commitment}`,
+      `Country: ${COUNTRY}`,
       `SMS Consent: ${smsConsent ? 'Yes' : 'No'}`,
       `Specifics: ${document.getElementById('field-specifics').value.trim() || 'Not provided'}`,
     ].join('\n'),
   };
 
-  // POST to Zoho CRM Web-to-Lead (silent fail — user still sees booking screen)
-  if (ZOHO_ENDPOINT && !ZOHO_ENDPOINT.includes('REPLACE')) {
-    fetch(ZOHO_ENDPOINT, {
+  trackPixel('Lead', { content_name: routeOutcome(), country: COUNTRY });
+
+  // Fire lead capture (silent fail — buyer still sees their result)
+  if (CONFIG.leadEndpoint && !CONFIG.leadEndpoint.includes('REPLACE')) {
+    fetch(CONFIG.leadEndpoint, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload),
     }).catch(() => {});
   }
 
-  showOutcome('screen-book');
+  showOutcome(routeOutcome());
 }
 </script>
 
