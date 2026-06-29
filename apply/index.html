@@ -496,8 +496,9 @@ function trackPixel(event, params) {
 const TOTAL_STEPS = 9;
 const answers = { who: '', age: '', level: '', struggle: '', commitment: '' };
 let currentStep = 1;
-let COUNTRY = 'CA';        // 'CA' or 'US' — set by geo, confirmable by buyer
+let COUNTRY = 'CA';        // 'CA' or 'US' — drives currency, confirmable by buyer
 let CURRENCY = 'CAD';      // 'CAD' or 'USD'
+let GEO_COUNTRY = '';      // raw detected country code for Web-Geo tracking
 
 // ── Build age dropdown ──
 (function buildAges() {
@@ -514,7 +515,7 @@ let CURRENCY = 'CAD';      // 'CAD' or 'USD'
 // non-CA buyers aren't charged Canadian tax and don't get supplements.
 fetch('https://get.geojs.io/v1/ip/country.json')
   .then(r => r.json())
-  .then(d => { if (d && d.country) setCountry(d.country === 'CA' ? 'CA' : 'US'); })
+  .then(d => { if (d && d.country) { GEO_COUNTRY = d.country; setCountry(d.country === 'CA' ? 'CA' : 'US'); } })
   .catch(() => setCountry('CA'));
 
 function setCountry(c) {
@@ -654,7 +655,7 @@ function submitForm() {
     Last_Name: lastName || firstName,
     Email: document.getElementById('field-email').value.trim(),
     Mobile: phone,
-    Country: (COUNTRY === 'US') ? 'United States' : 'Canada',
+    Country: (GEO_COUNTRY === 'CA') ? 'Canada' : (GEO_COUNTRY === 'US') ? 'United States' : (GEO_COUNTRY ? 'International' : ((COUNTRY === 'US') ? 'United States' : 'Canada')),
     Currency: CURRENCY,
     Lead_Source: 'Website Assessment',
     SMS_Consent: smsConsent ? 'Yes' : 'No',
