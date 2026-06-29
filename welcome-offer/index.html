@@ -52,8 +52,9 @@
     .offer-intro p { font-size: 15px; color: var(--text-muted); line-height: 1.7; max-width: 540px; margin: 0 auto; }
     .urgency { display: inline-block; font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); background: rgba(206,169,82,0.1); border: 1px solid rgba(206,169,82,0.3); padding: 6px 14px; border-radius: 20px; margin-bottom: 18px; }
 
-    .bundles { display: grid; gap: 16px; margin-bottom: 24px; }
-    .bundle { background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px; padding: 24px; transition: border-color 0.2s; }
+    .bundles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 24px; align-items: start; }
+    @media (max-width: 640px) { .bundles { grid-template-columns: 1fr; } }
+    .bundle { background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px; padding: 22px 18px; transition: border-color 0.2s; }
     .bundle.featured { border-color: var(--accent); box-shadow: 0 0 30px rgba(206,169,82,0.1); }
     .bundle-badge { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #000; background: var(--accent); padding: 3px 10px; border-radius: 20px; margin-bottom: 12px; }
     .bundle-name { font-size: 19px; font-weight: 800; margin-bottom: 6px; }
@@ -93,46 +94,7 @@
     <div class="check-badge">✓</div>
     <p class="page-label">Welcome to the team</p>
     <h1>You're in.</h1>
-    <p>Your spot is locked. Whatever tier you're on, I work with every athlete personally, so let's get you set up the right way. Here's exactly what happens next.</p>
-  </div>
-
-  <p class="section-title">Your onboarding, step by step</p>
-  <div class="steps">
-    <div class="step-row">
-      <div class="step-num">1</div>
-      <div class="step-body">
-        <h3>Check your inbox</h3>
-        <p>You'll get a welcome email within a few minutes with your athlete agreement to sign. It covers your program, expectations, and media release. This is the first step, and it has to be done before your plan goes live.</p>
-      </div>
-    </div>
-    <div class="step-row">
-      <div class="step-num">2</div>
-      <div class="step-body">
-        <h3>Complete your intake and Par-Q</h3>
-        <p>A short health and readiness screen (the Par-Q) plus a few questions about your player. This is how I build a plan that's both safe and personalized, not a generic template.</p>
-      </div>
-    </div>
-    <div class="step-row">
-      <div class="step-num">3</div>
-      <div class="step-body">
-        <h3>Pick your preferences and flavours</h3>
-        <p>Inside the onboarding form you'll choose your protein and electrolyte flavours and tell me about your schedule, so everything fits your life.</p>
-      </div>
-    </div>
-    <div class="step-row">
-      <div class="step-num">4</div>
-      <div class="step-body">
-        <h3>Get your app access and custom plan</h3>
-        <p>Once your agreement and intake are in, your Trainerize access unlocks with your done-for-you schedule, nutrition, and strength plan ready to go.</p>
-      </div>
-    </div>
-    <div class="step-row">
-      <div class="step-num">5</div>
-      <div class="step-body">
-        <h3>Your welcome package ships</h3>
-        <p>Your onboarding package goes in the mail, including anything you add below. Everything arrives in one box.</p>
-      </div>
-    </div>
+    <p>Your spot is locked. Whatever tier you're on, I work with every athlete personally. Before you head to your inbox, one thing that's only available right here.</p>
   </div>
 
   <div class="offer-intro">
@@ -183,6 +145,45 @@
     <p><strong>No need to choose flavours now.</strong> You'll pick your protein and electrolyte flavours during onboarding when we pack your box, so just grab the stack that fits.</p>
   </div>
   <p class="ship-note">Supplements ship within Canada only.</p>
+
+  <p class="section-title">Your onboarding, step by step</p>
+  <div class="steps">
+    <div class="step-row">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <h3>Check your inbox</h3>
+        <p>You'll get a welcome email within a few minutes with your athlete agreement to sign. It covers your program, expectations, and media release. This is the first step, and it has to be done before your plan goes live.</p>
+      </div>
+    </div>
+    <div class="step-row">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <h3>Complete your intake and Par-Q</h3>
+        <p>A short health and readiness screen (the Par-Q) plus a few questions about your player. This is how I build a plan that's both safe and personalized, not a generic template.</p>
+      </div>
+    </div>
+    <div class="step-row">
+      <div class="step-num">3</div>
+      <div class="step-body">
+        <h3>Pick your preferences and flavours</h3>
+        <p>Inside the onboarding form you'll choose your protein and electrolyte flavours and tell me about your schedule, so everything fits your life.</p>
+      </div>
+    </div>
+    <div class="step-row">
+      <div class="step-num">4</div>
+      <div class="step-body">
+        <h3>Get your app access and custom plan</h3>
+        <p>Once your agreement and intake are in, your Trainerize access unlocks with your done-for-you schedule, nutrition, and strength plan ready to go.</p>
+      </div>
+    </div>
+    <div class="step-row">
+      <div class="step-num">5</div>
+      <div class="step-body">
+        <h3>Your welcome package ships</h3>
+        <p>Your onboarding package goes in the mail, including any supplements you added above. Everything arrives in one box.</p>
+      </div>
+    </div>
+  </div>
 
   <div class="closing">
     <p>Any questions before we start, just reply to your welcome email. I read every one.</p>
