@@ -60,6 +60,8 @@
     .bundle-name { font-size: 19px; font-weight: 800; margin-bottom: 6px; }
     .bundle-price { font-size: 30px; font-weight: 800; color: var(--accent); margin-bottom: 4px; }
     .bundle-price small { font-size: 14px; font-weight: 600; color: var(--text-muted); }
+    .bundle-retail { font-size: 15px; color: var(--text-muted); text-decoration: line-through; margin-bottom: 2px; }
+    .bundle-save { display: inline-block; font-size: 12px; font-weight: 700; color: var(--accent); background: rgba(206,169,82,0.12); border-radius: 6px; padding: 3px 9px; margin: 6px 0 2px; }
     .bundle-contents { list-style: none; margin: 14px 0 20px; }
     .bundle-contents li { font-size: 14px; color: var(--text-muted); padding: 5px 0 5px 24px; position: relative; }
     .bundle-contents li::before { content: "✓"; position: absolute; left: 0; color: var(--accent); font-weight: 700; }
@@ -107,7 +109,9 @@
 
     <div class="bundle">
       <div class="bundle-name">Essentials Stack</div>
-      <div class="bundle-price">$89.99 <small>CAD · save 20%</small></div>
+      <div class="bundle-retail">$111.97</div>
+      <div class="bundle-price">$89.99 <small>CAD</small></div>
+      <div class="bundle-save">Save $21.98</div>
       <ul class="bundle-contents">
         <li>Isogold protein, 2 lb</li>
         <li>Pro H2O electrolytes, 30 servings</li>
@@ -118,7 +122,9 @@
 
     <div class="bundle">
       <div class="bundle-name">Performance Stack</div>
-      <div class="bundle-price">$151.99 <small>CAD · save 20%</small></div>
+      <div class="bundle-retail">$189.97</div>
+      <div class="bundle-price">$151.99 <small>CAD</small></div>
+      <div class="bundle-save">Save $37.98</div>
       <ul class="bundle-contents">
         <li>Isogold protein, 5 lb</li>
         <li>Pro H2O electrolytes, 30 servings</li>
@@ -130,7 +136,9 @@
     <div class="bundle featured">
       <div class="bundle-badge">Best Value</div>
       <div class="bundle-name">Full Stack Starter Kit</div>
-      <div class="bundle-price">$195.99 <small>CAD · save 20%</small></div>
+      <div class="bundle-retail">$244.97</div>
+      <div class="bundle-price">$195.99 <small>CAD</small></div>
+      <div class="bundle-save">Save $48.98</div>
       <ul class="bundle-contents">
         <li>Isogold protein, 5 lb</li>
         <li>Pro H2O electrolytes, 72 servings</li>
@@ -140,6 +148,8 @@
     </div>
 
   </div>
+
+  <p style="text-align:center;font-size:13px;color:var(--text-muted);margin:0 0 18px;">Stocking up for the season? Adjust the quantity at checkout.</p>
 
   <div class="flavour-note">
     <p><strong>No need to choose flavours now.</strong> You'll pick your protein and electrolyte flavours during onboarding when we pack your box, so just grab the stack that fits.</p>
