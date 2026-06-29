@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>You're In | Prodigy Athletics</title>
+  <meta name="description" content="Your agreement is signed. Here's what happens next in your onboarding.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #080808; --surface2: #161616;
+      --border: #2e2e2e; --text: #ffffff; --text-muted: #a0a0a0;
+      --accent: #cea952; --accent-light: #dfc06a;
+      --card-bg: linear-gradient(145deg, #141414, #0d0d0d);
+    }
+    body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; min-height: 100vh; }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(8,8,8,0.95); backdrop-filter: blur(16px);
+      border-bottom: 1px solid #1e1e1e;
+      padding: 0 32px; height: 68px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .nav-logo { display: flex; align-items: center; text-decoration: none; height: 44px; }
+    .nav-logo img { height: 44px; width: auto; }
+
+    .page { max-width: 600px; margin: 0 auto; padding: 130px 24px 80px; }
+
+    .hero { text-align: center; margin-bottom: 44px; }
+    .check-badge { width: 72px; height: 72px; border-radius: 50%; background: rgba(206,169,82,0.12); border: 1px solid rgba(206,169,82,0.4); display: inline-flex; align-items: center; justify-content: center; font-size: 34px; color: var(--accent); margin-bottom: 24px; }
+    .page-label { font-size: 11px; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
+    h1 { font-size: clamp(30px, 5vw, 44px); font-weight: 800; line-height: 1.1; margin-bottom: 16px; }
+    .hero p { font-size: 16px; color: var(--text-muted); line-height: 1.7; max-width: 460px; margin: 0 auto; }
+
+    .inbox-card {
+      background: var(--card-bg); border: 1px solid rgba(206,169,82,0.3);
+      border-radius: 16px; padding: 26px 28px; margin-bottom: 40px; text-align: center;
+    }
+    .inbox-card .icon { font-size: 30px; margin-bottom: 12px; }
+    .inbox-card h2 { font-size: 19px; font-weight: 700; margin-bottom: 8px; }
+    .inbox-card p { font-size: 14px; color: var(--text-muted); line-height: 1.7; }
+    .inbox-card .spam { color: var(--accent); font-weight: 600; }
+
+    .section-title { font-size: 12px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 20px; text-align: center; }
+    .steps { margin-bottom: 44px; }
+    .step-row { display: flex; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--border); }
+    .step-row:last-child { border-bottom: none; }
+    .step-num { width: 32px; height: 32px; border-radius: 50%; background: var(--accent); color: #000; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 800; flex-shrink: 0; }
+    .step-body h3 { font-size: 15px; font-weight: 700; margin-bottom: 3px; }
+    .step-body p { font-size: 14px; color: var(--text-muted); line-height: 1.6; }
+
+    .closing { text-align: center; border-top: 1px solid var(--border); padding-top: 32px; }
+    .closing p { font-size: 15px; color: var(--text-muted); line-height: 1.7; }
+    .closing a { color: var(--accent); text-decoration: none; }
+    .closing .sig { font-family: 'Cinzel', serif; color: var(--accent); font-size: 17px; margin-top: 10px; }
+
+    footer { border-top: 1px solid #1e1e1e; padding: 28px 24px; text-align: center; margin-top: 40px; }
+    footer a { color: var(--text-muted); text-decoration: none; margin: 0 12px; font-size: 13px; }
+    footer a:hover { color: var(--accent); }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo"><img src="/logo.svg" alt="Prodigy Athletics"></a>
+</nav>
+
+<div class="page">
+
+  <div class="hero">
+    <div class="check-badge">✓</div>
+    <p class="page-label">Agreement signed</p>
+    <h1>You're officially on the team.</h1>
+    <p>That's the paperwork handled. Now we get to the part that actually moves the needle for your athlete.</p>
+  </div>
+
+  <div class="inbox-card">
+    <div class="icon">📩</div>
+    <h2>Your next steps are on the way</h2>
+    <p>Check your email right now for the link to your next onboarding step. <span class="spam">Look in your spam or promotions folder too</span>, just in case. If nothing arrives within 24 hours, email <a href="mailto:support@prodigyathletics.ca" style="color:var(--accent);">support@prodigyathletics.ca</a> and we'll get you sorted fast.</p>
+  </div>
+
+  <p class="section-title">What happens from here</p>
+  <div class="steps">
+    <div class="step-row">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <h3>Complete your Par-Q and intake</h3>
+        <p>A short readiness screen and a few questions about your athlete. This is how the plan gets built around your player specifically, not from a template.</p>
+      </div>
+    </div>
+    <div class="step-row">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <h3>Your custom plan gets built</h3>
+        <p>Your done-for-you schedule, nutrition, and strength plan are put together to fit your athlete's life and goals.</p>
+      </div>
+    </div>
+    <div class="step-row">
+      <div class="step-num">3</div>
+      <div class="step-body">
+        <h3>App access unlocks</h3>
+        <p>Your Trainerize login goes live and your welcome package ships. From there, we get to work.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="closing">
+    <p>Any questions before we start, just reply to your welcome email. I read every one.</p>
+    <p class="sig">Kenny</p>
+  </div>
+
+</div>
+
+<footer>
+  <a href="/">Home</a>
+  <a href="/privacy/">Privacy Policy</a>
+  <a href="/terms/">Terms of Service</a>
+</footer>
+
+</body>
+</html>
