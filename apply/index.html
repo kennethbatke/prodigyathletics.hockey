@@ -268,7 +268,7 @@
       <p class="step-title">Almost there — where should we send your athlete's assessment?</p>
       <p class="step-subtitle">Your name</p>
       <input class="field-input" type="text" id="field-name" placeholder="First and last name" autocomplete="name">
-      <p class="field-error" id="err-name">Please enter your name.</p>
+      <p class="field-error" id="err-name">Please enter your first and last name.</p>
       <button class="btn-continue" onclick="nextContact('name')">Continue</button>
       <button class="btn-back" onclick="goTo(6)">← Back</button>
     </div>
@@ -287,12 +287,6 @@
       <p class="step-title">Last step — what's the best number to reach you?</p>
       <input class="field-input" type="tel" id="field-phone" placeholder="+1 (___) ___ ____" autocomplete="tel">
       <p class="field-error" id="err-phone">Please enter a valid phone number.</p>
-
-      <p class="step-subtitle" style="margin-top:6px;margin-bottom:8px;">Where are you based? (sets your correct pricing and tax)</p>
-      <div class="country-row">
-        <button type="button" class="country-btn" id="cbtn-CA" onclick="setCountry('CA')">🇨🇦 Canada</button>
-        <button type="button" class="country-btn" id="cbtn-US" onclick="setCountry('US')">🇺🇸 United States</button>
-      </div>
 
       <div class="consent-box">
         <p class="consent-title">SMS Permission</p>
@@ -521,8 +515,8 @@ fetch('https://get.geojs.io/v1/ip/country.json')
 function setCountry(c) {
   COUNTRY = (c === 'US') ? 'US' : 'CA';
   CURRENCY = (COUNTRY === 'US') ? 'USD' : 'CAD';
-  document.getElementById('cbtn-CA').classList.toggle('active', COUNTRY === 'CA');
-  document.getElementById('cbtn-US').classList.toggle('active', COUNTRY === 'US');
+  const ca = document.getElementById('cbtn-CA'); if (ca) ca.classList.toggle('active', COUNTRY === 'CA');
+  const us = document.getElementById('cbtn-US'); if (us) us.classList.toggle('active', COUNTRY === 'US');
 }
 
 function setProgress(step) {
@@ -572,8 +566,8 @@ function nextContact(field) {
   const val = document.getElementById(map[field]).value.trim();
   const err = document.getElementById(errMap[field]);
   err.style.display = 'none';
-  if (field === 'name' && !val) { err.style.display = 'block'; return; }
-  if (field === 'email' && (!val || !val.includes('@'))) { err.style.display = 'block'; return; }
+  if (field === 'name' && !/^\S+\s+\S+/.test(val)) { err.style.display = 'block'; return; }
+  if (field === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(val)) { err.style.display = 'block'; return; }
   goTo(currentStep + 1);
 }
 
