@@ -637,27 +637,34 @@ function submitForm() {
   const lastName = parts.slice(1).join(' ') || '';
   const smsConsent = document.getElementById('sms-consent-check').checked;
 
+  // Readable labels so the CRM shows clean values, not raw codes
+  const L = {
+    who:   { parent: 'Parent (for their player)', player_parents: 'Player (parents involved)', player_self: 'Player (self-deciding)' },
+    level: { recreational: 'Recreational / House League', b_a_aa: 'B / A / AA', aaa_prep: 'AAA / Prep', junior: 'Junior', college: 'College' },
+    str:   { mental: 'Mental game & confidence', physical: 'Physical / strength / speed', nutrition: 'Nutrition & lifestyle', all: 'All of the above' },
+    com:   { yes: 'Ready to commit', discuss: 'Wants details first', no: 'Not the right time' },
+    path:  { 'screen-young': 'Under 9 (YouTube)', 'screen-training': '9-12 Training', 'screen-group': 'Group (13)', 'screen-group-1on1': 'Group + 1:1 (14+)', 'screen-physical': 'Not ready (Starter)', 'screen-mindset': 'Not ready (Locker Room)' },
+  };
+  const path = routeOutcome();
+  const specifics = document.getElementById('field-specifics').value.trim();
+
   const payload = {
     source: 'website_assessment',
     First_Name: firstName,
     Last_Name: lastName || firstName,
     Email: document.getElementById('field-email').value.trim(),
     Mobile: phone,
-    Country: COUNTRY,
+    Country: (COUNTRY === 'US') ? 'United States' : 'Canada',
     Currency: CURRENCY,
     Lead_Source: 'Website Assessment',
-    SMS_Consent: smsConsent,
-    Recommended_Path: routeOutcome(),
-    Description: [
-      `Who: ${answers.who}`,
-      `Age: ${answers.age}`,
-      `Level: ${answers.level}`,
-      `Struggle: ${answers.struggle}`,
-      `Commitment: ${answers.commitment}`,
-      `Country: ${COUNTRY}`,
-      `SMS Consent: ${smsConsent ? 'Yes' : 'No'}`,
-      `Specifics: ${document.getElementById('field-specifics').value.trim() || 'Not provided'}`,
-    ].join('\n'),
+    SMS_Consent: smsConsent ? 'Yes' : 'No',
+    Who_Completing: L.who[answers.who] || answers.who,
+    Athlete_Age: answers.age,
+    Level: L.level[answers.level] || answers.level,
+    Primary_Struggle: L.str[answers.struggle] || answers.struggle,
+    Commitment: L.com[answers.commitment] || answers.commitment,
+    Specifics: specifics || 'Not provided',
+    Recommended_Path: L.path[path] || path,
   };
 
   trackPixel('Lead', { content_name: routeOutcome(), country: COUNTRY });
