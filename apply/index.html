@@ -468,7 +468,7 @@ const CONFIG = {
   // ── LEAD CAPTURE ──────────────────────────────────────────────
   // POST endpoint for your CRM / responder (fires before checkout
   // so every lead is captured for follow-up even if they don't buy).
-  leadEndpoint: 'REPLACE_WITH_LEAD_ENDPOINT',
+  leadEndpoint: 'https://flow.zohocloud.ca/110001214544/flow/webhook/incoming?zapikey=1001.9d5dd3d9d31b9550a3f58f00ff574010.7bc144a0910b8ba34c25b901c38e254d&isdebug=false',
 
   // ── META PIXEL ────────────────────────────────────────────────
   // Paste your Pixel ID from Meta Events Manager (just the number).
@@ -674,7 +674,7 @@ function submitForm() {
   if (CONFIG.leadEndpoint && !CONFIG.leadEndpoint.includes('REPLACE')) {
     fetch(CONFIG.leadEndpoint, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'text/plain;charset=UTF-8' },
       body: JSON.stringify(payload),
     }).catch(() => {});
   }
