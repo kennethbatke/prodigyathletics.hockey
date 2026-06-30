@@ -62,7 +62,8 @@
 
     /* Success stories */
     .stories-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; margin-bottom: 36px; }
-    .shot-placeholder { background: var(--surface2); border: 1px dashed var(--border-light, #3a3a3a); border-radius: 12px; aspect-ratio: 4/3; display: flex; align-items: center; justify-content: center; color: #555; font-size: 13px; text-align: center; padding: 16px; }
+    .win-shot { border-radius: 12px; overflow: hidden; border: 1px solid var(--border); background: var(--surface2); }
+    .win-shot img { width: 100%; height: auto; display: block; }
     .videos-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
 
     .cta-section { text-align: center; background: radial-gradient(ellipse 50% 60% at 50% 50%, rgba(206,169,82,0.08), transparent 70%); }
@@ -86,14 +87,14 @@
 
 <nav>
   <a href="/" class="nav-logo"><img src="/logo.svg" alt="Prodigy Athletics"></a>
-  <button class="nav-cta" onclick="openCall()">Book a Call</button>
+  <button class="nav-cta" onclick="openCall()">Schedule a Consult</button>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
   <div class="hero-brand">PRODIGY ATHLETICS</div>
   <p class="hero-tagline">Building confident hockey athletes who lead on and off the ice.</p>
-  <button class="btn-gold" onclick="openCall()">Book a Call</button>
+  <button class="btn-gold" onclick="openCall()">Schedule a Consult</button>
 </section>
 
 <!-- VSL -->
@@ -110,7 +111,7 @@
         </div>
       </div>
     </div>
-    <div style="text-align:center;"><button class="btn-gold" onclick="openCall()">Book a Call</button></div>
+    <div style="text-align:center;"><button class="btn-gold" onclick="openCall()">Schedule a Consult</button></div>
   </div>
 </section>
 
@@ -151,18 +152,18 @@
     <h2>Success Stories</h2>
 
     <div class="stories-grid">
-      <div class="shot-placeholder">Success screenshot 1</div>
-      <div class="shot-placeholder">Success screenshot 2</div>
-      <div class="shot-placeholder">Success screenshot 3</div>
-      <div class="shot-placeholder">Success screenshot 4</div>
+      <div class="win-shot"><img src="/images/wins/parents/Bridget F Win 1.jpg" alt="Parent testimonial" loading="lazy"></div>
+      <div class="win-shot"><img src="/images/wins/parents/Chris Farmer Win 1.jpg" alt="Parent testimonial" loading="lazy"></div>
+      <div class="win-shot"><img src="/images/wins/parents/Cindy Morrison Win 1.jpg" alt="Parent testimonial" loading="lazy"></div>
+      <div class="win-shot"><img src="/images/wins/parents/Joey-Lynn Mann Win 1.png" alt="Parent testimonial" loading="lazy"></div>
     </div>
 
     <div class="videos-grid">
       <div class="video-frame">
-        <div class="video-placeholder"><div class="big">▶</div><div>YouTube testimonial 1</div></div>
+        <iframe src="https://www.youtube.com/embed/1oovjLLpSS0" allowfullscreen loading="lazy" title="Parent testimonial"></iframe>
       </div>
       <div class="video-frame">
-        <div class="video-placeholder"><div class="big">▶</div><div>YouTube testimonial 2</div></div>
+        <iframe src="https://www.youtube.com/embed/SHAtQsHqkh8" allowfullscreen loading="lazy" title="Parent testimonial"></iframe>
       </div>
     </div>
 
@@ -175,7 +176,7 @@
   <div class="container">
     <h2>Ready to talk it through?</h2>
     <p style="font-size:17px;color:var(--text-muted);max-width:560px;margin:0 auto 32px;line-height:1.7;">Book a call and let's map out exactly what your athlete needs to reach the next level.</p>
-    <button class="btn-gold" onclick="openCall()">Book a Call</button>
+    <button class="btn-gold" onclick="openCall()">Schedule a Consult</button>
   </div>
 </section>
 
@@ -200,7 +201,7 @@
 
 <script>
 // ── Booking link embedded in the popup (change here if your call service differs) ──
-const BOOKING_URL = "https://meet.prodigyathletics.ca/#/Webmeet";
+const BOOKING_URL = "https://meet.prodigyathletics.ca/connect/#/connect";
 
 function openCall() {
   const o = document.getElementById('call-overlay');
