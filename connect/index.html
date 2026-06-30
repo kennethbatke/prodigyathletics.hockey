@@ -60,7 +60,7 @@
     .expect-item p { font-size: 16px; color: var(--text); line-height: 1.6; }
     .expect-item.parent-note p { color: var(--text-muted); font-style: italic; font-size: 15px; }
 
-    /* Success stories — video testimonials */
+    /* Success stories, video testimonials */
     .video-testimonials { display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px 22px; margin-bottom: 8px; }
     .vt-desc { font-size: 15px; font-weight: 600; color: var(--text); line-height: 1.5; margin-bottom: 12px; }
     .vt-group-label { font-size: clamp(24px, 4.5vw, 36px); font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); text-align: center; text-shadow: 0 0 28px rgba(206,169,82,0.6); margin: 18px 0 26px; }
@@ -69,7 +69,7 @@
     .yt-lite iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
     .yt-play { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 66px; height: 46px; border: none; border-radius: 12px; background: rgba(206,169,82,0.92); color: #000; font-size: 20px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.15s, transform 0.15s; }
     .yt-lite:hover .yt-play { background: var(--accent-light); transform: translate(-50%,-50%) scale(1.08); }
-    /* Screenshot masonry — fills space cleanly with varying-height images */
+    /* Screenshot masonry, fills space cleanly with varying-height images */
     .stories-grid { columns: 2; column-gap: 16px; }
     .win-shot { break-inside: avoid; margin-bottom: 16px; border-radius: 12px; overflow: hidden; border: 1px solid var(--border); background: var(--surface2); }
     .win-shot img { width: 100%; height: auto; display: block; }
@@ -103,24 +103,6 @@
   <div class="hero-brand">PRODIGY ATHLETICS</div>
   <p class="hero-tagline">Building confident hockey athletes who lead on and off the ice.</p>
   <button class="btn-gold" onclick="openCall()">Schedule a Consult</button>
-</section>
-
-<!-- VSL -->
-<section>
-  <div class="container">
-    <p class="section-label">Watch This First</p>
-    <h2>See if Prodigy is right for your athlete</h2>
-    <div class="vsl-wrap">
-      <div class="video-frame">
-        <!-- VSL_EMBED: paste your video iframe here (YouTube/Vimeo). Placeholder until then. -->
-        <div class="video-placeholder">
-          <div class="big">▶</div>
-          <div>Your VSL goes here</div>
-        </div>
-      </div>
-    </div>
-    <div style="text-align:center;"><button class="btn-gold" onclick="openCall()">Schedule a Consult</button></div>
-  </div>
 </section>
 
 <!-- WHAT TO EXPECT -->
@@ -245,14 +227,10 @@
 
 <script>
 // ── Booking link embedded in the popup (change here if your call service differs) ──
-const BOOKING_URL = "https://meet.prodigyathletics.ca/portal-embed#/connect";
+const BOOKING_URL = "https://meet.prodigyathletics.ca/#/connect";
 
 function openCall() {
-  const o = document.getElementById('call-overlay');
-  const f = document.getElementById('call-iframe');
-  if (!f.src) f.src = BOOKING_URL;
-  o.classList.add('open');
-  document.body.style.overflow = 'hidden';
+  window.open(BOOKING_URL, '_blank', 'noopener');
 }
 function closeCall() {
   document.getElementById('call-overlay').classList.remove('open');
