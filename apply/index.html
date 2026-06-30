@@ -688,10 +688,12 @@ function submitForm() {
 
   // Fire lead capture (silent fail, buyer still sees their result)
   if (CONFIG.leadEndpoint && !CONFIG.leadEndpoint.includes('REPLACE')) {
+    const form = new URLSearchParams();
+    Object.keys(payload).forEach(k => form.append(k, payload[k] == null ? '' : String(payload[k])));
     fetch(CONFIG.leadEndpoint, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload),
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
+      body: form.toString(),
     }).catch(() => {});
   }
 

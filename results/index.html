@@ -345,7 +345,7 @@
 
 <section class="cta-section">
   <h2>Ready to Write Your Own Story?</h2>
-  <a href="https://prodigy-athletics-booking.lovable.app" class="btn-gold">Apply Now</a>
+  <a href="/apply/" class="btn-gold">Apply Now</a>
 </section>
 
 <footer>
@@ -367,32 +367,9 @@
   </div>
 </div>
 
-<script src="https://bookings.nimbuspop.com/assets/embed.js"></script>
 <script>
-const BOOKING_URL = "https://prodigy.zohobookings.ca/portal-embed#/connect";
-
-Bookings.buttonModal({
-  url: BOOKING_URL,
-  text: "Apply Now",
-  color: "#cea952",
-  textColor: "#000000",
-  position: "bottom-right"
-});
-
-function openBooking() {
-  const overlay = document.getElementById('booking-overlay');
-  document.getElementById('booking-iframe').src = BOOKING_URL;
-  overlay.style.display = 'flex';
-  document.body.style.overflow = 'hidden';
-}
-function closeBooking() {
-  document.getElementById('booking-overlay').style.display = 'none';
-  document.getElementById('booking-iframe').src = '';
-  document.body.style.overflow = '';
-}
-document.getElementById('booking-overlay').addEventListener('click', function(e) {
-  if (e.target === this) closeBooking();
-});
+// All CTAs route to the assessment funnel
+function openBooking() { window.location.href = '/apply/'; }
 
 // SUPERHERO FILTER, dim non-matching cards, spotlight the selected category
 function filterWins(category, btn) {
@@ -421,8 +398,8 @@ function insertCTAs() {
       cta.className = 'apply-cta-card';
       cta.innerHTML = `
         <p style="font-size:11px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:#cea952;margin-bottom:12px;">Ready to Write Yours?</p>
-        <p style="font-size:17px;font-weight:700;color:#fff;margin-bottom:24px;">These results start with one conversation.</p>
-        <button onclick="openBooking()" class="btn-gold">Apply Now</button>`;
+        <p style="font-size:17px;font-weight:700;color:#fff;margin-bottom:24px;">See where your athlete fits in 90 seconds.</p>
+        <a href="/apply/" class="btn-gold">Take the Assessment</a>`;
       card.after(cta);
     }
   });
