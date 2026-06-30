@@ -60,11 +60,18 @@
     .expect-item p { font-size: 16px; color: var(--text); line-height: 1.6; }
     .expect-item.parent-note p { color: var(--text-muted); font-style: italic; font-size: 15px; }
 
-    /* Success stories */
-    .stories-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; margin-bottom: 36px; }
-    .win-shot { border-radius: 12px; overflow: hidden; border: 1px solid var(--border); background: var(--surface2); }
+    /* Success stories — video testimonials */
+    .video-testimonials { display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px 22px; margin-bottom: 8px; }
+    .vt-desc { font-size: 15px; font-weight: 600; color: var(--text); line-height: 1.5; margin-bottom: 12px; }
+    .yt-lite { position: relative; width: 100%; padding-top: 56.25%; border-radius: 14px; overflow: hidden; border: 1px solid var(--border); cursor: pointer; background: #000; }
+    .yt-lite img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .yt-lite iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+    .yt-play { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 66px; height: 46px; border: none; border-radius: 12px; background: rgba(206,169,82,0.92); color: #000; font-size: 20px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.15s, transform 0.15s; }
+    .yt-lite:hover .yt-play { background: var(--accent-light); transform: translate(-50%,-50%) scale(1.08); }
+    /* Screenshot masonry — fills space cleanly with varying-height images */
+    .stories-grid { columns: 2; column-gap: 16px; }
+    .win-shot { break-inside: avoid; margin-bottom: 16px; border-radius: 12px; overflow: hidden; border: 1px solid var(--border); background: var(--surface2); }
     .win-shot img { width: 100%; height: auto; display: block; }
-    .videos-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
 
     .cta-section { text-align: center; background: radial-gradient(ellipse 50% 60% at 50% 50%, rgba(206,169,82,0.08), transparent 70%); }
 
@@ -80,7 +87,7 @@
     .call-modal .close-x { position: absolute; top: 12px; right: 16px; background: rgba(0,0,0,0.5); border: none; color: #ccc; font-size: 24px; cursor: pointer; z-index: 2; width: 36px; height: 36px; border-radius: 50%; }
     .call-modal iframe { width: 100%; height: 100%; border: 0; }
 
-    @media (max-width: 640px) { .stories-grid, .videos-grid { grid-template-columns: 1fr; } .expect-card { padding: 28px 22px; } }
+    @media (max-width: 640px) { .video-testimonials { grid-template-columns: 1fr; } .stories-grid { columns: 1; } .expect-card { padding: 28px 22px; } }
   </style>
 </head>
 <body>
@@ -151,23 +158,34 @@
     <p class="section-label">Proof</p>
     <h2>Success Stories</h2>
 
+    <div class="video-testimonials">
+      <div>
+        <p class="vt-desc">Watch how Noah gained 20 lbs, mastered his emotions, and made the jump to Junior A.</p>
+        <div class="yt-lite" data-id="SHAtQsHqkh8"><img src="https://i.ytimg.com/vi/SHAtQsHqkh8/maxresdefault.jpg" onerror="this.src='https://i.ytimg.com/vi/SHAtQsHqkh8/hqdefault.jpg'" alt="" loading="lazy"><button class="yt-play" aria-label="Play video">▶</button></div>
+      </div>
+      <div>
+        <p class="vt-desc">Why one hockey family says the investment was worth every dollar.</p>
+        <div class="yt-lite" data-id="1oovjLLpSS0"><img src="https://i.ytimg.com/vi/1oovjLLpSS0/maxresdefault.jpg" onerror="this.src='https://i.ytimg.com/vi/1oovjLLpSS0/hqdefault.jpg'" alt="" loading="lazy"><button class="yt-play" aria-label="Play video">▶</button></div>
+      </div>
+    </div>
+
+    <div style="text-align:center;margin:12px 0 52px;">
+      <a href="/results/" class="btn-gold">See How More of Our Athletes are Winning</a>
+    </div>
+
     <div class="stories-grid">
       <div class="win-shot"><img src="/images/wins/parents/Bridget F Win 1.jpg" alt="Parent testimonial" loading="lazy"></div>
       <div class="win-shot"><img src="/images/wins/parents/Chris Farmer Win 1.jpg" alt="Parent testimonial" loading="lazy"></div>
-      <div class="win-shot"><img src="/images/wins/parents/Cindy Morrison Win 1.jpg" alt="Parent testimonial" loading="lazy"></div>
       <div class="win-shot"><img src="/images/wins/parents/Joey-Lynn Mann Win 1.png" alt="Parent testimonial" loading="lazy"></div>
+      <div class="win-shot"><img src="/images/wins/parents/John Allenbeck Win 1.jpg" alt="Parent testimonial" loading="lazy"></div>
+      <div class="win-shot"><img src="/images/wins/parents/Mark Romanelli Win 1.png" alt="Parent testimonial" loading="lazy"></div>
+      <div class="win-shot"><img src="/images/wins/parents/Robin Turnill Win 1.png" alt="Parent testimonial" loading="lazy"></div>
+      <div class="win-shot"><img src="/images/wins/parents/Cindy Morrison Win 2.png" alt="Parent testimonial" loading="lazy"></div>
     </div>
 
-    <div class="videos-grid">
-      <div class="video-frame">
-        <iframe src="https://www.youtube.com/embed/1oovjLLpSS0" allowfullscreen loading="lazy" title="Parent testimonial"></iframe>
-      </div>
-      <div class="video-frame">
-        <iframe src="https://www.youtube.com/embed/SHAtQsHqkh8" allowfullscreen loading="lazy" title="Parent testimonial"></iframe>
-      </div>
+    <div style="text-align:center;margin-top:40px;">
+      <a href="/results/" class="btn-gold">See How More of Our Athletes are Winning</a>
     </div>
-
-    <p style="text-align:center;margin-top:28px;"><a href="/results/" style="color:var(--accent);text-decoration:none;font-weight:600;">See all 45+ athlete wins →</a></p>
   </div>
 </section>
 
@@ -215,6 +233,14 @@ function closeCall() {
   document.body.style.overflow = '';
 }
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeCall(); });
+
+// Click-to-play: swap clean thumbnail for the player on click
+document.querySelectorAll('.yt-lite').forEach(el => {
+  el.addEventListener('click', () => {
+    const id = el.dataset.id;
+    el.innerHTML = '<iframe src="https://www.youtube.com/embed/' + id + '?autoplay=1&rel=0&modestbranding=1" allow="autoplay; encrypted-media" allowfullscreen title="Athlete testimonial"></iframe>';
+  });
+});
 </script>
 
 </body>
