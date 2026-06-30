@@ -394,7 +394,7 @@ document.getElementById('booking-overlay').addEventListener('click', function(e)
   if (e.target === this) closeBooking();
 });
 
-// SUPERHERO FILTER — dim non-matching cards, spotlight the selected category
+// SUPERHERO FILTER, dim non-matching cards, spotlight the selected category
 function filterWins(category, btn) {
   document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');

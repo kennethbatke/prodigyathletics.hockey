@@ -175,10 +175,10 @@
           <input type="radio" name="who" value="parent"><span>I'm a parent completing this for my player</span>
         </label>
         <label class="radio-option" onclick="pick('who','player_parents',this)">
-          <input type="radio" name="who" value="player_parents"><span>I'm a player — my parents are involved</span>
+          <input type="radio" name="who" value="player_parents"><span>I'm a player, my parents are involved</span>
         </label>
         <label class="radio-option" onclick="pick('who','player_self',this)">
-          <input type="radio" name="who" value="player_self"><span>I'm a player — I'd be making this decision myself</span>
+          <input type="radio" name="who" value="player_self"><span>I'm a player, I'd be making this decision myself</span>
         </label>
       </div>
     </div>
@@ -245,7 +245,7 @@
           <input type="radio" name="commitment" value="yes"><span>We're ready to commit and get started</span>
         </label>
         <label class="radio-option" onclick="pick('commitment','discuss',this)">
-          <input type="radio" name="commitment" value="discuss"><span>Interested — we'd want to see the details first</span>
+          <input type="radio" name="commitment" value="discuss"><span>Interested, we'd want to see the details first</span>
         </label>
         <label class="radio-option" onclick="pick('commitment','no',this)">
           <input type="radio" name="commitment" value="no"><span>Not the right time for full coaching yet</span>
@@ -257,7 +257,7 @@
     <!-- Q6: Specifics -->
     <div class="step" id="step-6">
       <p class="step-title">What do you notice most about your player's struggle?</p>
-      <p class="step-subtitle">Optional — share as much or as little as you'd like</p>
+      <p class="step-subtitle">Optional, share as much or as little as you'd like</p>
       <textarea class="field-input" id="field-specifics" placeholder="Enter your answer..." rows="4"></textarea>
       <button class="btn-continue" onclick="goTo(7)">Continue</button>
       <button class="btn-back" onclick="goTo(5)">← Back</button>
@@ -265,7 +265,7 @@
 
     <!-- Contact: Name -->
     <div class="step" id="step-7">
-      <p class="step-title">Almost there — where should we send your athlete's assessment?</p>
+      <p class="step-title">Almost there, where should we send your athlete's assessment?</p>
       <p class="step-subtitle">Your name</p>
       <input class="field-input" type="text" id="field-name" placeholder="First and last name" autocomplete="name">
       <p class="field-error" id="err-name">Please enter your first and last name.</p>
@@ -284,7 +284,7 @@
 
     <!-- Contact: Phone + Country -->
     <div class="step" id="step-9">
-      <p class="step-title">Last step — what's the best number to reach you?</p>
+      <p class="step-title">Last step, what's the best number to reach you?</p>
       <input class="field-input" type="tel" id="field-phone" placeholder="+1 (___) ___ ____" autocomplete="tel">
       <p class="field-error" id="err-phone">Please enter a valid phone number.</p>
 
@@ -300,7 +300,7 @@
       <button class="btn-back" onclick="goTo(8)">← Back</button>
     </div>
 
-    <!-- ============ OUTCOME: 9–12 TRAINING PROGRAM ============ -->
+    <!-- ============ OUTCOME: 9-12 TRAINING PROGRAM ============ -->
     <div class="outcome-screen" id="screen-training">
       <div class="check-icon">✓</div>
       <h2 style="text-align:center;">Your athlete's path: the Training Program</h2>
@@ -362,7 +362,7 @@
     <div class="outcome-screen" id="screen-group-1on1">
       <div class="check-icon">✓</div>
       <h2 style="text-align:center;">Your athlete's path: Group, with 1:1 unlocked</h2>
-      <p class="lede" style="text-align:center;">This is the window where focused athletes separate from the pack. Start with the Group Program, or add full 1:1 access — this is where our athletes succeed the most.</p>
+      <p class="lede" style="text-align:center;">This is the window where focused athletes separate from the pack. Start with the Group Program, or add full 1:1 access, this is where our athletes succeed the most.</p>
 
       <div class="offer-card">
         <div class="offer-name">Group Program</div>
@@ -382,10 +382,10 @@
         <div class="offer-badge">Best Results</div>
         <div class="offer-name">Group + Full 1:1 Access</div>
         <div class="offer-price">$<span class="px" data-tier="oneonone">2100</span> <small><span class="cur">CAD</span> / first 12 weeks</small></div>
-        <div class="offer-renewal">Then $<span class="rx" data-tier="oneonone">399</span> <span class="cur">CAD</span> every 4 weeks — just $<span class="upx">600</span> more than Group to start</div>
+        <div class="offer-renewal">Then $<span class="rx" data-tier="oneonone">399</span> <span class="cur">CAD</span> every 4 weeks, just $<span class="upx">600</span> more than Group to start</div>
         <ul class="offer-features">
           <li>Everything in the Group Program</li>
-          <li>Full access to Kenny's 1:1 calendar — book as many calls as you need</li>
+          <li>Full access to Kenny's 1:1 calendar, book as many calls as you need</li>
           <li>No per-call fees, no session caps</li>
         </ul>
         <a class="btn-buy" onclick="buy('oneonone')">Unlock 1:1 Access</a>
@@ -400,14 +400,14 @@
       <a href="https://www.youtube.com/@ProdigyAthletics.Hockey" class="btn-secondary" target="_blank">Watch on YouTube</a>
     </div>
 
-    <!-- ============ OUTCOME: NOT READY — PHYSICAL (low-ticket starter plan) ============ -->
+    <!-- ============ OUTCOME: NOT READY, PHYSICAL (low-ticket starter plan) ============ -->
     <div class="outcome-screen text-center" id="screen-physical">
       <h2>Let's get you started the right way.</h2>
       <p class="lede">Full coaching isn't always the right fit right now, and that's fine. Kenny built a pre-made starter plan that gets your player into the app and training with structure from day one.</p>
       <a class="btn-secondary" onclick="buy('lowticket')" style="cursor:pointer;">Get the Starter Plan</a>
     </div>
 
-    <!-- ============ OUTCOME: NOT READY — MINDSET (Skool locker room) ============ -->
+    <!-- ============ OUTCOME: NOT READY, MINDSET (Skool locker room) ============ -->
     <div class="outcome-screen text-center" id="screen-mindset">
       <h2>Start with the mental side.</h2>
       <p class="lede">If confidence or mindset is what's holding your player back, the Locker Room is where to begin. Self-directed lessons, a community of athletes, and Kenny's mindset framework.</p>
@@ -419,7 +419,7 @@
 
 <script>
 /* ════════════════════════════════════════════════════════════════
-   PRODIGY ATHLETE ASSESSMENT — CONFIG
+   PRODIGY ATHLETE ASSESSMENT, CONFIG
    Everything you need to edit lives in this CONFIG block.
    ════════════════════════════════════════════════════════════════ */
 const CONFIG = {
@@ -431,12 +431,12 @@ const CONFIG = {
   // oneOnOneMinAge and up -> Group + 1:1 upsell
   ageRouting: {
     youngestAge:   9,   // below this -> YouTube
-    trainingMaxAge: 12, // 9–12 -> Training  (move to 11 to push 12 into Group)
+    trainingMaxAge: 12, // 9-12 -> Training  (move to 11 to push 12 into Group)
     oneOnOneMinAge: 14, // 14+  -> 1:1 unlocked
     maxAge: 21,
   },
 
-  // ── PRICING (display only — real charge is set in Stripe) ──────
+  // ── PRICING (display only, real charge is set in Stripe) ──────
   // intro = first 12 weeks, renew = every 4 weeks after
   pricing: {
     training_self:    { CAD: { intro: 699,  renew: 175 }, USD: { intro: 499,  renew: 125 } },
@@ -490,7 +490,7 @@ function trackPixel(event, params) {
 const TOTAL_STEPS = 9;
 const answers = { who: '', age: '', level: '', struggle: '', commitment: '' };
 let currentStep = 1;
-let COUNTRY = 'CA';        // 'CA' or 'US' — drives currency, confirmable by buyer
+let COUNTRY = 'CA';        // 'CA' or 'US', drives currency, confirmable by buyer
 let CURRENCY = 'CAD';      // 'CAD' or 'USD'
 let GEO_COUNTRY = '';      // raw detected country code for Web-Geo tracking
 
@@ -621,7 +621,8 @@ function submitForm() {
   const phone = document.getElementById('field-phone').value.trim();
   const err = document.getElementById('err-phone');
   err.style.display = 'none';
-  if (phone.replace(/\D/g, '').length < 7) { err.style.display = 'block'; return; }
+  const phoneDigits = phone.replace(/\D/g, '');
+  if (phoneDigits.length < 10 || phoneDigits.length > 15 || /^(\d)\1+$/.test(phoneDigits)) { err.style.display = 'block'; return; }
 
   const btn = document.getElementById('submit-btn');
   btn.disabled = true; btn.textContent = 'Building your path...';
@@ -664,7 +665,7 @@ function submitForm() {
 
   trackPixel('Lead', { content_name: routeOutcome(), country: COUNTRY });
 
-  // Fire lead capture (silent fail — buyer still sees their result)
+  // Fire lead capture (silent fail, buyer still sees their result)
   if (CONFIG.leadEndpoint && !CONFIG.leadEndpoint.includes('REPLACE')) {
     fetch(CONFIG.leadEndpoint, {
       method: 'POST',
