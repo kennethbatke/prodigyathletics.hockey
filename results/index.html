@@ -147,6 +147,64 @@
   <div class="gold-divider"></div>
 </div>
 
+<style>
+  .vid-section { padding: 10px 24px 30px; }
+  .vid-section .container { max-width: 1000px; margin: 0 auto; }
+  .vid-h2 { font-size: clamp(24px,4vw,38px); font-weight: 800; text-align: center; color: var(--accent); margin-bottom: 8px; }
+  .vid-sub { text-align:center; color: var(--text, #fff); opacity:0.8; font-size:16px; margin-bottom: 30px; }
+  .vt-group-label { font-size: 13px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); text-align: center; margin: 18px 0; }
+  .video-testimonials { display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px 22px; }
+  .vt-desc { font-size: 15px; font-weight: 600; color: var(--text, #fff); line-height: 1.5; margin-bottom: 12px; }
+  .yt-lite { position: relative; width: 100%; padding-top: 56.25%; border-radius: 14px; overflow: hidden; border: 1px solid var(--border, #2e2e2e); cursor: pointer; background: #000; }
+  .yt-lite img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .yt-lite iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+  .yt-play { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 66px; height: 46px; border: none; border-radius: 12px; background: rgba(206,169,82,0.92); color: #000; font-size: 20px; cursor: pointer; }
+  .yt-lite:hover .yt-play { background: #dfc06a; }
+  @media (max-width: 640px) { .video-testimonials { grid-template-columns: 1fr; } }
+</style>
+<section class="vid-section">
+  <div class="container">
+    <h2 class="vid-h2">Watch Their Transformations</h2>
+    <p class="vid-sub">Hear it straight from the families and athletes who lived it.</p>
+
+    <p class="vt-group-label">From Parents</p>
+    <div class="video-testimonials">
+      <div>
+        <p class="vt-desc">Noah's parents on him gaining 20 lbs in one off-season, locking in his habits and emotions, and jumping to Junior A.</p>
+        <div class="yt-lite" data-id="SHAtQsHqkh8"><img src="https://i.ytimg.com/vi/SHAtQsHqkh8/maxresdefault.jpg" onerror="this.src='https://i.ytimg.com/vi/SHAtQsHqkh8/hqdefault.jpg'" alt="" loading="lazy"><button class="yt-play" aria-label="Play video">▶</button></div>
+      </div>
+      <div>
+        <p class="vt-desc">Nathan's parents on him getting his spark back, finding confidence as a late bloomer, and reaching U Sports without any Junior A experience.</p>
+        <div class="yt-lite" data-id="VnM6RnqZ7yk"><img src="https://i.ytimg.com/vi/VnM6RnqZ7yk/maxresdefault.jpg" onerror="this.src='https://i.ytimg.com/vi/VnM6RnqZ7yk/hqdefault.jpg'" alt="" loading="lazy"><button class="yt-play" aria-label="Play video">▶</button></div>
+      </div>
+      <div>
+        <p class="vt-desc">Sixten's parents on him owning his development, nutrition, and training, all before his 13th birthday.</p>
+        <div class="yt-lite" data-id="1oovjLLpSS0"><img src="https://i.ytimg.com/vi/1oovjLLpSS0/maxresdefault.jpg" onerror="this.src='https://i.ytimg.com/vi/1oovjLLpSS0/hqdefault.jpg'" alt="" loading="lazy"><button class="yt-play" aria-label="Play video">▶</button></div>
+      </div>
+    </div>
+
+    <p class="vt-group-label" style="margin-top:36px;">From Players</p>
+    <div class="video-testimonials">
+      <div>
+        <p class="vt-desc">Brody on gaining rapid confidence through nutrition and personalized training, even with academy experience behind him.</p>
+        <div class="yt-lite" data-id="YYNCiW8fpPM"><img src="https://i.ytimg.com/vi/YYNCiW8fpPM/maxresdefault.jpg" onerror="this.src='https://i.ytimg.com/vi/YYNCiW8fpPM/hqdefault.jpg'" alt="" loading="lazy"><button class="yt-play" aria-label="Play video">▶</button></div>
+      </div>
+      <div>
+        <p class="vt-desc">Nathan on finding his confidence and his spark after his own agent thought it was too late.</p>
+        <div class="yt-lite" data-id="mLUe31a334k"><img src="https://i.ytimg.com/vi/mLUe31a334k/maxresdefault.jpg" onerror="this.src='https://i.ytimg.com/vi/mLUe31a334k/hqdefault.jpg'" alt="" loading="lazy"><button class="yt-play" aria-label="Play video">▶</button></div>
+      </div>
+      <div>
+        <p class="vt-desc">Lucas on rebuilding his body after a devastating injury and getting faster and more explosive heading into college hockey.</p>
+        <div class="yt-lite" data-id="8AFkoJ0-X2Y"><img src="https://i.ytimg.com/vi/8AFkoJ0-X2Y/maxresdefault.jpg" onerror="this.src='https://i.ytimg.com/vi/8AFkoJ0-X2Y/hqdefault.jpg'" alt="" loading="lazy"><button class="yt-play" aria-label="Play video">▶</button></div>
+      </div>
+      <div>
+        <p class="vt-desc">Noah on feeling more confident, focused, and in control once his habits and mindset locked in.</p>
+        <div class="yt-lite" data-id="oWCnQBxlBEM"><img src="https://i.ytimg.com/vi/oWCnQBxlBEM/maxresdefault.jpg" onerror="this.src='https://i.ytimg.com/vi/oWCnQBxlBEM/hqdefault.jpg'" alt="" loading="lazy"><button class="yt-play" aria-label="Play video">▶</button></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <div class="filters">
   <button class="filter-btn active" onclick="filterWins('all', this)">All Results</button>
   <button class="filter-btn" onclick="filterWins('parent', this)">From Parents</button>
@@ -370,6 +428,14 @@
 <script>
 // All CTAs route to the assessment funnel
 function openBooking() { window.location.href = '/apply/'; }
+
+// Click-to-play video thumbnails
+document.querySelectorAll('.yt-lite').forEach(el => {
+  el.addEventListener('click', () => {
+    const id = el.dataset.id;
+    el.innerHTML = '<iframe src="https://www.youtube.com/embed/' + id + '?autoplay=1&rel=0&modestbranding=1" allow="autoplay; encrypted-media" allowfullscreen title="Athlete testimonial"></iframe>';
+  });
+});
 
 // SUPERHERO FILTER, dim non-matching cards, spotlight the selected category
 function filterWins(category, btn) {
