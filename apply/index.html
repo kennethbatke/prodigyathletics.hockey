@@ -362,12 +362,14 @@
     <div class="outcome-screen" id="screen-group-1on1">
       <div class="check-icon">✓</div>
       <h2 style="text-align:center;">Your athlete's path: Group, with 1:1 unlocked</h2>
-      <p class="lede" style="text-align:center;">This is the window where focused athletes separate from the pack. Start with the Group Program, or add full 1:1 access, this is where our athletes succeed the most.</p>
+      <p class="lede" style="text-align:center;">Both tiers include the complete program. The only difference is how much direct, private time with Kenny your athlete wants.</p>
 
       <div class="offer-card">
+        <div class="offer-badge">Most Popular</div>
         <div class="offer-name">Group Program</div>
         <div class="offer-price">$<span class="px" data-tier="group">1500</span> <small><span class="cur">CAD</span> / first 12 weeks</small></div>
         <div class="offer-renewal">Then $<span class="rx" data-tier="group">299</span> <span class="cur">CAD</span> every 4 weeks</div>
+        <p style="font-size:13px;color:var(--text-muted);line-height:1.6;margin:10px 0 14px;">The best starting point for almost every athlete. The full system, a weekly live group call, and a room of athletes chasing the same thing.</p>
         <ul class="offer-features">
           <li>Done-for-you schedule, nutrition, and custom strength plan</li>
           <li>Weekly live group call with Kenny</li>
@@ -383,9 +385,10 @@
         <div class="offer-name">Group + Full 1:1 Access</div>
         <div class="offer-price">$<span class="px" data-tier="oneonone">2100</span> <small><span class="cur">CAD</span> / first 12 weeks</small></div>
         <div class="offer-renewal">Then $<span class="rx" data-tier="oneonone">399</span> <span class="cur">CAD</span> every 4 weeks, just $<span class="upx">600</span> more than Group to start</div>
+        <p style="font-size:13px;color:var(--text-muted);line-height:1.6;margin:10px 0 14px;">For athletes who want the highest-touch experience and the fastest, most personal feedback loop. Everything in Group, plus your own direct line to Kenny.</p>
         <ul class="offer-features">
           <li>Everything in the Group Program</li>
-          <li>Full access to Kenny's 1:1 calendar, book as many calls as you need</li>
+          <li>Direct access to Kenny's private calendar, book calls whenever you need them</li>
           <li>No per-call fees, no session caps</li>
         </ul>
         <a class="btn-buy" onclick="buy('oneonone')">Unlock 1:1 Access</a>
@@ -551,7 +554,8 @@ function pick(field, value, label) {
   document.querySelectorAll(`[name="${field}"]`).forEach(r => r.closest('.radio-option').classList.remove('selected'));
   label.classList.add('selected');
   label.querySelector('input').checked = true;
-  setTimeout(() => goTo(currentStep + 1), 260);
+  const target = currentStep + 1;
+  setTimeout(() => goTo(target), 260);
 }
 
 function pickAge(value) {
