@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Onboarding | Prodigy Athletics</title>
+  <link rel="icon" href="/logo.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #080808;
+      --surface: #0f0f0f;
+      --border: #2e2e2e;
+      --text: #ffffff;
+      --text-muted: #a0a0a0;
+      --accent: #cea952;
+      --accent-light: #dfc06a;
+      --accent-glow: rgba(206,169,82,0.15);
+      --font-cinzel: 'Cinzel', serif;
+      --font-inter: 'Inter', sans-serif;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-inter);
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Layered gold glows for depth */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 50% 0%, rgba(206,169,82,0.22), transparent 45%),
+        radial-gradient(circle at 50% 55%, rgba(206,169,82,0.10), transparent 40%),
+        radial-gradient(circle at 100% 100%, rgba(206,169,82,0.06), transparent 35%);
+    }
+
+    /* Faint tiled hockey silhouette watermark */
+    .hockey-bg {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background-image: url('/images/hockey-bg.png');
+      background-repeat: repeat;
+      background-size: 340px auto;
+      opacity: 0.12;
+    }
+
+    .accent-bar {
+      height: 10px;
+      width: 100%;
+      background: linear-gradient(90deg, var(--accent), var(--accent-light), var(--accent));
+      box-shadow: 0 0 24px rgba(206,169,82,0.45);
+      position: relative;
+      z-index: 2;
+    }
+
+    .wrap {
+      position: relative;
+      z-index: 1;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 48px 20px 64px;
+      max-width: 860px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .logo {
+      width: 260px;
+      max-width: 70vw;
+      height: auto;
+      filter: drop-shadow(0 0 30px rgba(206,169,82,0.35));
+      margin-bottom: 28px;
+    }
+
+    h1 {
+      font-family: var(--font-inter);
+      font-weight: 800;
+      font-size: clamp(1.9rem, 5vw, 3rem);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, var(--accent), var(--accent-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      filter: drop-shadow(0 0 18px rgba(206,169,82,0.35));
+      margin-bottom: 10px;
+    }
+
+    .sub {
+      color: var(--text-muted);
+      font-size: clamp(1rem, 2.4vw, 1.15rem);
+      max-width: 620px;
+      margin-bottom: 36px;
+      line-height: 1.6;
+    }
+
+    /* Loom video in a glowing premium frame */
+    .video-card {
+      width: 100%;
+      max-width: 780px;
+      border-radius: 18px;
+      padding: 10px;
+      background: linear-gradient(145deg, #161616, #0c0c0c);
+      border: 1px solid rgba(206,169,82,0.35);
+      box-shadow:
+        0 0 0 1px rgba(206,169,82,0.10),
+        0 20px 60px rgba(0,0,0,0.6),
+        0 0 50px rgba(206,169,82,0.18);
+      margin-bottom: 44px;
+    }
+
+    .video-ratio {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .video-ratio iframe {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      border: 0;
+    }
+
+    .then {
+      font-family: var(--font-inter);
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      font-size: clamp(1.3rem, 3.5vw, 1.9rem);
+      color: var(--accent-light);
+      margin-bottom: 22px;
+      filter: drop-shadow(0 0 12px rgba(206,169,82,0.3));
+    }
+
+    .cta {
+      display: inline-block;
+      font-family: var(--font-inter);
+      font-weight: 700;
+      font-size: clamp(1rem, 2.5vw, 1.2rem);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #0a0a0a;
+      text-decoration: none;
+      padding: 20px 48px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--accent-light), var(--accent));
+      box-shadow: 0 12px 34px rgba(206,169,82,0.35), 0 0 0 1px rgba(255,255,255,0.15) inset;
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+      max-width: 100%;
+    }
+
+    .cta:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 18px 46px rgba(206,169,82,0.5), 0 0 0 1px rgba(255,255,255,0.2) inset;
+    }
+
+    .cta:active { transform: translateY(-1px); }
+
+    .fineprint {
+      margin-top: 20px;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      max-width: 520px;
+      line-height: 1.5;
+    }
+
+    .tagline {
+      font-family: var(--font-inter);
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      color: rgba(255,255,255,0.55);
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      text-align: center;
+      padding: 20px;
+      position: relative;
+      z-index: 1;
+    }
+  </style>
+</head>
+<body>
+  <!-- Hockey silhouette watermark: drop a transparent PNG at /images/hockey-bg.png and it tiles here -->
+  <div class="hockey-bg" aria-hidden="true"></div>
+
+  <div class="accent-bar"></div>
+
+  <main class="wrap">
+    <img class="logo" src="/logo.svg" alt="Prodigy Athletics">
+
+    <h1>Watch This Video First&nbsp;👇</h1>
+    <p class="sub">A quick word from Coach Kenny on exactly what happens next. Watch it start to finish, then continue below.</p>
+
+    <div class="video-card">
+      <div class="video-ratio">
+        <iframe src="https://www.loom.com/embed/7b3b168aff164bf3898c2b425fea5542"
+                allowfullscreen webkitallowfullscreen mozallowfullscreen></iframe>
+      </div>
+    </div>
+
+    <p class="then">Then Click Here&nbsp;👇</p>
+
+    <!-- href is set at runtime: base form URL + the rid carried from the previous step -->
+    <a id="cta" class="cta" href="https://forms.zohopublic.ca/prodigy/form/ParQWaiverTsCs/formperma/sZDf3I1SE8_xVIP9AKHkuGT2UgGdGJia9OXvrS37WN0">PAR-Q, Waiver &amp; Terms</a>
+
+    <p class="fineprint">Takes about 3 minutes. Your details carry over automatically, so there is nothing to re-enter.</p>
+  </main>
+
+  <div class="accent-bar"></div>
+  <p class="tagline">We Use Hockey As A Vehicle To Build Leaders For Life</p>
+
+  <script>
+    // Carry the identity forward. Only the opaque record id (rid) travels in the URL,
+    // never the athlete's email, so no personal data is exposed in a link.
+    (function () {
+      var rid = new URLSearchParams(window.location.search).get('rid');
+      var cta = document.getElementById('cta');
+      if (!rid || !cta) return;
+      try {
+        var u = new URL(cta.href, window.location.origin);
+        u.searchParams.set('rid', rid);
+        cta.href = u.toString();
+      } catch (e) {}
+    })();
+  </script>
+</body>
+</html>
