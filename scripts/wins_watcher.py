@@ -1,10 +1,9 @@
 #!/usr/bin/env python3
 """
 Prodigy Results Watcher
-Watches the Wins folders and auto-updates results.html when new files are dropped.
-Install: pip3 install watchdog
+Polls the Wins folders every 30s and auto-updates results/index.html when new
+screenshots are dropped. Pure standard library, no third-party dependencies.
 """
-import os
 import re
 import json
 import time
@@ -12,8 +11,6 @@ import shutil
 import subprocess
 import logging
 from pathlib import Path
-from watchdog.observers import Observer
-from watchdog.events import FileSystemEventHandler
 
 logging.basicConfig(
     level=logging.INFO,
@@ -119,18 +116,9 @@ def ingest_file(src: Path, category: str, manifest: dict) -> bool:
     return True
 
 
-def process_new_file(src: Path, category: str):
-    manifest = load_manifest()
-    if not ingest_file(src, category, manifest):
-        return
-    save_manifest(manifest)
-    rebuild_results_html(manifest)
-    git_push(src.name)
-
-
-def startup_backfill():
-    """Catch up on any wins dropped while the watcher wasn't running.
-    Runs once on launch, before live watching begins, so nothing is ever silently missed."""
+def sync_wins() -> int:
+    """Scan both Wins folders and publish any wins not already on the site.
+    Returns the number added. Idempotent, so it's safe to call on a loop."""
     manifest = load_manifest()
     existing = {e["filename"] for e in manifest["entries"]}
     added = 0
@@ -148,57 +136,26 @@ def startup_backfill():
     if added:
         save_manifest(manifest)
         rebuild_results_html(manifest)
-        git_push(f"startup backfill ({added} win{'s' if added != 1 else ''})")
-        logger.info(f"Startup backfill: added {added} win(s)")
-    else:
-        logger.info("Startup backfill: nothing new, already up to date")
+        git_push(f"add {added} win{'s' if added != 1 else ''}")
+        logger.info("Published %d new win(s)", added)
+    return added
 
 
-class WinsHandler(FileSystemEventHandler):
-    def __init__(self, category: str):
-        self.category = category
-        self._pending: dict[str, float] = {}
-
-    def on_created(self, event):
-        if not event.is_directory:
-            self._pending[event.src_path] = time.time()
-
-    def on_moved(self, event):
-        if not event.is_directory:
-            self._pending[event.dest_path] = time.time()
-
-    def flush_pending(self):
-        now = time.time()
-        ready = [p for p, t in list(self._pending.items()) if now - t > 2.0]
-        for p in ready:
-            del self._pending[p]
-            process_new_file(Path(p), self.category)
+POLL_INTERVAL = 30  # seconds between folder scans
 
 
 def main():
-    logger.info("Prodigy Results Watcher started")
+    logger.info("Prodigy Results Watcher started (polling every %ds, no dependencies)", POLL_INTERVAL)
     logger.info(f"  Parent Wins: {PARENT_WINS}")
     logger.info(f"  Player Wins: {PLAYER_WINS}")
     logger.info(f"  Repo:        {REPO_DIR}")
 
-    startup_backfill()
-
-    parent_h = WinsHandler("parent")
-    player_h = WinsHandler("player")
-
-    observer = Observer()
-    observer.schedule(parent_h, str(PARENT_WINS), recursive=False)
-    observer.schedule(player_h, str(PLAYER_WINS), recursive=False)
-    observer.start()
-
-    try:
-        while True:
-            time.sleep(1)
-            parent_h.flush_pending()
-            player_h.flush_pending()
-    except KeyboardInterrupt:
-        observer.stop()
-    observer.join()
+    while True:
+        try:
+            sync_wins()
+        except Exception:
+            logger.exception("sync_wins failed; will retry next cycle")
+        time.sleep(POLL_INTERVAL)
 
 
 if __name__ == "__main__":
