@@ -206,21 +206,26 @@
 
     .callout {
       max-width: 640px;
-      margin: 12px auto 0;
-      background: linear-gradient(145deg, #161616, #0c0c0c);
-      border: 1px solid rgba(206,169,82,0.3);
-      border-radius: 14px;
-      padding: 24px 26px;
+      margin: 20px auto 0;
+      background: linear-gradient(145deg, rgba(206,169,82,0.10), rgba(12,12,12,0.92));
+      border: 2px solid var(--accent);
+      border-radius: 16px;
+      padding: 28px 30px;
       text-align: left;
-      color: var(--text-muted);
-      line-height: 1.6;
+      color: var(--text);
+      line-height: 1.65;
+      box-shadow: 0 0 40px rgba(206,169,82,0.25);
     }
+
+    .callout p { margin-bottom: 12px; }
+    .callout p:last-of-type { margin-bottom: 0; }
 
     .callout-title {
       color: var(--accent-light);
-      font-weight: 700;
-      font-size: 1.05rem;
-      margin-bottom: 8px;
+      font-weight: 800;
+      font-size: 1.35rem;
+      margin-bottom: 12px;
+      letter-spacing: -0.01em;
     }
 
     .callout strong { color: var(--text); }
@@ -244,7 +249,7 @@
     <img class="logo" src="/images/logo-full.png" alt="Prodigy Athletics">
 
     <h1>One Last Video&nbsp;👇</h1>
-    <p class="sub">Watch this all the way through, then book your onboarding call right below. This is where we map out your athlete's plan together.</p>
+    <p class="sub">Watch this all the way through, then book your onboarding call right below. This is where we review the plan we've built together.</p>
 
     <div class="video-card">
       <div class="video-ratio">
@@ -262,9 +267,10 @@
     </div>
 
     <div class="callout">
-      <p class="callout-title">📩 Then watch your inbox</p>
-      <p>Right after you book, we set up your training app and email you an invite to join. <strong>Open that email and accept the invite</strong> to get started. Here is exactly what it looks like so you know to look for it:</p>
-      <img class="email-shot" src="/images/trainerize-invite.png" alt="Example of the training app invite email" onerror="this.style.display='none'">
+      <p class="callout-title">📩 Important: watch your inbox</p>
+      <p>Right after you book, we set up your training app and email you an invite. <strong>You must open it and set your password before you can log in.</strong></p>
+      <p>Look for an email titled <strong>"Welcome to Prodigy Athletics"</strong> from <strong>noreply@trainerize.com</strong> with a yellow <strong>Set Up Your Account</strong> button. <strong>If you do not see it within a few minutes, check your spam or junk folder.</strong> Here is exactly what it looks like:</p>
+      <img class="email-shot" src="/images/trainerize-invite.png" alt="The Welcome to Prodigy Athletics training app invite email" onerror="this.style.display='none'">
     </div>
   </main>
 

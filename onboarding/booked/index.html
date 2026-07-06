@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>You're Booked | Prodigy Athletics</title>
+  <link rel="icon" href="/images/logo-full.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #080808;
+      --border: #2e2e2e;
+      --text: #ffffff;
+      --text-muted: #a0a0a0;
+      --accent: #cea952;
+      --accent-light: #dfc06a;
+      --font-inter: 'Inter', sans-serif;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: var(--font-inter);
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 50% 0%, rgba(206,169,82,0.22), transparent 45%),
+        radial-gradient(circle at 50% 60%, rgba(206,169,82,0.08), transparent 40%);
+    }
+
+    .accent-bar {
+      height: 10px;
+      width: 100%;
+      background: linear-gradient(90deg, var(--accent), var(--accent-light), var(--accent));
+      box-shadow: 0 0 24px rgba(206,169,82,0.45);
+      position: relative;
+      z-index: 2;
+    }
+
+    .wrap {
+      position: relative;
+      z-index: 1;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 48px 20px 64px;
+      max-width: 720px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .logo {
+      width: 240px;
+      max-width: 70vw;
+      height: auto;
+      filter: drop-shadow(0 0 30px rgba(206,169,82,0.35));
+      margin-bottom: 28px;
+    }
+
+    h1 {
+      font-family: var(--font-inter);
+      font-weight: 800;
+      font-size: clamp(2rem, 5.5vw, 3.1rem);
+      line-height: 1.12;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, var(--accent), var(--accent-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      filter: drop-shadow(0 0 18px rgba(206,169,82,0.35));
+      margin-bottom: 12px;
+    }
+
+    .sub {
+      color: var(--text-muted);
+      font-size: clamp(1rem, 2.4vw, 1.15rem);
+      max-width: 560px;
+      margin-bottom: 8px;
+      line-height: 1.6;
+    }
+
+    .callout {
+      max-width: 620px;
+      margin: 28px auto 0;
+      background: linear-gradient(145deg, rgba(206,169,82,0.10), rgba(12,12,12,0.92));
+      border: 2px solid var(--accent);
+      border-radius: 16px;
+      padding: 28px 30px;
+      text-align: left;
+      color: var(--text);
+      line-height: 1.65;
+      box-shadow: 0 0 40px rgba(206,169,82,0.25);
+    }
+
+    .callout p { margin-bottom: 12px; }
+    .callout p:last-of-type { margin-bottom: 0; }
+
+    .callout-title {
+      color: var(--accent-light);
+      font-weight: 800;
+      font-size: 1.35rem;
+      margin-bottom: 12px;
+      letter-spacing: -0.01em;
+    }
+
+    .callout strong { color: var(--text); }
+
+    .email-shot {
+      display: block;
+      width: 100%;
+      margin-top: 16px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+    }
+
+    .tagline {
+      font-family: var(--font-inter);
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      color: rgba(255,255,255,0.55);
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      text-align: center;
+      padding: 20px;
+      position: relative;
+      z-index: 1;
+    }
+  </style>
+</head>
+<body>
+  <div class="accent-bar"></div>
+
+  <main class="wrap">
+    <img class="logo" src="/images/logo-full.png" alt="Prodigy Athletics">
+
+    <h1>You're Booked!&nbsp;🎉</h1>
+    <p class="sub">Your onboarding call is locked in. Check your email for the calendar invite, and we'll see you there.</p>
+
+    <div class="callout">
+      <p class="callout-title">📩 Haven't set up your app yet?</p>
+      <p>If you have not set up your training app, <strong>watch for an email now.</strong> You must open it and set your password before you can log in.</p>
+      <p>Look for an email titled <strong>"Welcome to Prodigy Athletics"</strong> from <strong>noreply@trainerize.com</strong> with a yellow <strong>Set Up Your Account</strong> button. <strong>If you do not see it within a few minutes, check your spam or junk folder.</strong> Here is exactly what it looks like:</p>
+      <img class="email-shot" src="/images/trainerize-invite.png" alt="The Welcome to Prodigy Athletics training app invite email" onerror="this.style.display='none'">
+    </div>
+  </main>
+
+  <div class="accent-bar"></div>
+  <p class="tagline">We Use Hockey As A Vehicle To Build Leaders For Life</p>
+</body>
+</html>
