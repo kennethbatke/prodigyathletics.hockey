@@ -141,11 +141,11 @@ def sync_wins() -> int:
     return added
 
 
-POLL_INTERVAL = 30  # seconds between folder scans
+POLL_INTERVAL = 43200  # seconds between folder scans (12 hours)
 
 
 def main():
-    logger.info("Prodigy Results Watcher started (polling every %ds, no dependencies)", POLL_INTERVAL)
+    logger.info("Prodigy Results Watcher started (scan every %dh, no dependencies)", POLL_INTERVAL // 3600)
     logger.info(f"  Parent Wins: {PARENT_WINS}")
     logger.info(f"  Player Wins: {PLAYER_WINS}")
     logger.info(f"  Repo:        {REPO_DIR}")
