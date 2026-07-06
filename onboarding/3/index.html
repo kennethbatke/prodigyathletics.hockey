@@ -207,7 +207,7 @@
     <img class="logo" src="/images/logo-full.png" alt="Prodigy Athletics">
 
     <h1>One Last Video&nbsp;👇</h1>
-    <p class="sub">This is the final step. Watch it through and you are all set.</p>
+    <p class="sub">Watch this through, then book your onboarding call using the gold <strong>Complete On-Boarding</strong> button. This is where we map out your athlete's plan together.</p>
 
     <div class="video-card">
       <div class="video-ratio">
@@ -216,31 +216,22 @@
       </div>
     </div>
 
-    <!-- OPEN QUESTION: does page 3 end here, or does its button go somewhere
-         (final intake form, book onboarding call, open the training app)?
-         Set the href + label below, or remove this block if page 3 is terminal. -->
-    <p class="then">Then Click Here&nbsp;👇</p>
-    <a id="cta" class="cta" href="PASTE_PAGE_3_DESTINATION_HERE">Finish</a>
-
-    <p class="fineprint">Your details carry over automatically, so there is nothing to re-enter.</p>
+    <p class="fineprint">Once you book, your coach will get your training app set up. Keep an eye on your email for your app invite, and accept it to get started.</p>
   </main>
 
   <div class="accent-bar"></div>
   <p class="tagline">We Use Hockey As A Vehicle To Build Leaders For Life</p>
 
+  <!-- Zoho Bookings floating "Complete On-Boarding" button -->
+  <script src="https://bookings.nimbuspop.com/assets/embed.js"></script>
   <script>
-    // Carry the identity forward. Only the opaque record id (rid) travels in the URL,
-    // never the athlete's email, so no personal data is exposed in a link.
-    (function () {
-      var rid = new URLSearchParams(window.location.search).get('rid');
-      var cta = document.getElementById('cta');
-      if (!rid || !cta) return;
-      try {
-        var u = new URL(cta.href, window.location.origin);
-        u.searchParams.set('rid', rid);
-        cta.href = u.toString();
-      } catch (e) {}
-    })();
+    Bookings.buttonModal({
+      url: "https://meet.prodigyathletics.ca/portal-embed#/onboarding",
+      text: "Complete On-Boarding",
+      color: "#cea952",
+      textColor: "#000000",
+      position: "bottom-right"
+    });
   </script>
 </body>
 </html>
