@@ -195,6 +195,43 @@
       position: relative;
       z-index: 1;
     }
+
+    .booking-frame {
+      width: 100%;
+      height: 760px;
+      border: 0;
+      border-radius: 10px;
+      display: block;
+    }
+
+    .callout {
+      max-width: 640px;
+      margin: 12px auto 0;
+      background: linear-gradient(145deg, #161616, #0c0c0c);
+      border: 1px solid rgba(206,169,82,0.3);
+      border-radius: 14px;
+      padding: 24px 26px;
+      text-align: left;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .callout-title {
+      color: var(--accent-light);
+      font-weight: 700;
+      font-size: 1.05rem;
+      margin-bottom: 8px;
+    }
+
+    .callout strong { color: var(--text); }
+
+    .email-shot {
+      display: block;
+      width: 100%;
+      margin-top: 16px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+    }
   </style>
 </head>
 <body>
@@ -207,7 +244,7 @@
     <img class="logo" src="/images/logo-full.png" alt="Prodigy Athletics">
 
     <h1>One Last Video&nbsp;👇</h1>
-    <p class="sub">Watch this through, then book your onboarding call using the gold <strong>Complete On-Boarding</strong> button. This is where we map out your athlete's plan together.</p>
+    <p class="sub">Watch this all the way through, then book your onboarding call right below. This is where we map out your athlete's plan together.</p>
 
     <div class="video-card">
       <div class="video-ratio">
@@ -216,22 +253,23 @@
       </div>
     </div>
 
-    <p class="fineprint">Once you book, your coach will get your training app set up. Keep an eye on your email for your app invite, and accept it to get started.</p>
+    <p class="then">Book Your Onboarding Call&nbsp;👇</p>
+
+    <div class="video-card">
+      <iframe class="booking-frame"
+              src="https://meet.prodigyathletics.ca/portal-embed#/onboarding"
+              title="Book your onboarding call"></iframe>
+    </div>
+
+    <div class="callout">
+      <p class="callout-title">📩 Then watch your inbox</p>
+      <p>Right after you book, we set up your training app and email you an invite to join. <strong>Open that email and accept the invite</strong> to get started. Here is exactly what it looks like so you know to look for it:</p>
+      <img class="email-shot" src="/images/trainerize-invite.png" alt="Example of the training app invite email" onerror="this.style.display='none'">
+    </div>
   </main>
 
   <div class="accent-bar"></div>
   <p class="tagline">We Use Hockey As A Vehicle To Build Leaders For Life</p>
 
-  <!-- Zoho Bookings floating "Complete On-Boarding" button -->
-  <script src="https://bookings.nimbuspop.com/assets/embed.js"></script>
-  <script>
-    Bookings.buttonModal({
-      url: "https://meet.prodigyathletics.ca/portal-embed#/onboarding",
-      text: "Complete On-Boarding",
-      color: "#cea952",
-      textColor: "#000000",
-      position: "bottom-right"
-    });
-  </script>
 </body>
 </html>
