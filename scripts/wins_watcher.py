@@ -92,11 +92,12 @@ def git_push(label: str):
         logger.error(f"Git error: {e}")
 
 
-def process_new_file(src: Path, category: str):
+def ingest_file(src: Path, category: str, manifest: dict) -> bool:
+    """Copy one win into the repo and add it to the in-memory manifest. Returns True if added."""
     if src.suffix.lower() not in IMAGE_EXTENSIONS:
-        return
+        return False
     if src.name.startswith("."):
-        return
+        return False
 
     dest_dir = REPO_PARENT_IMGS if category == "parent" else REPO_PLAYER_IMGS
     dest = dest_dir / src.name
@@ -107,7 +108,6 @@ def process_new_file(src: Path, category: str):
     web_path = f"/images/wins/{'parents' if category == 'parent' else 'players'}/{src.name}"
     name = display_name_from_filename(src.stem)
 
-    manifest = load_manifest()
     manifest["entries"] = [e for e in manifest["entries"] if e["filename"] != src.name]
     manifest["entries"].insert(0, {
         "filename": src.name,
@@ -116,9 +116,42 @@ def process_new_file(src: Path, category: str):
         "web_path": web_path,
         "added_at": time.time(),
     })
+    return True
+
+
+def process_new_file(src: Path, category: str):
+    manifest = load_manifest()
+    if not ingest_file(src, category, manifest):
+        return
     save_manifest(manifest)
     rebuild_results_html(manifest)
     git_push(src.name)
+
+
+def startup_backfill():
+    """Catch up on any wins dropped while the watcher wasn't running.
+    Runs once on launch, before live watching begins, so nothing is ever silently missed."""
+    manifest = load_manifest()
+    existing = {e["filename"] for e in manifest["entries"]}
+    added = 0
+    for folder, category in [(PARENT_WINS, "parent"), (PLAYER_WINS, "player")]:
+        if not folder.exists():
+            continue
+        files = [p for p in folder.iterdir()
+                 if p.suffix.lower() in IMAGE_EXTENSIONS and not p.name.startswith(".")]
+        files.sort(key=lambda p: p.stat().st_mtime)  # oldest first so newest ends up on top
+        for src in files:
+            if src.name in existing:
+                continue
+            if ingest_file(src, category, manifest):
+                added += 1
+    if added:
+        save_manifest(manifest)
+        rebuild_results_html(manifest)
+        git_push(f"startup backfill ({added} win{'s' if added != 1 else ''})")
+        logger.info(f"Startup backfill: added {added} win(s)")
+    else:
+        logger.info("Startup backfill: nothing new, already up to date")
 
 
 class WinsHandler(FileSystemEventHandler):
@@ -147,6 +180,8 @@ def main():
     logger.info(f"  Parent Wins: {PARENT_WINS}")
     logger.info(f"  Player Wins: {PLAYER_WINS}")
     logger.info(f"  Repo:        {REPO_DIR}")
+
+    startup_backfill()
 
     parent_h = WinsHandler("parent")
     player_h = WinsHandler("player")
