@@ -295,6 +295,7 @@
           <input type="checkbox" id="sms-consent-check">
           <span>I agree to receive SMS text messages from Prodigy Athletics regarding hockey development coaching.</span>
         </label>
+        <p class="field-error" id="err-sms" style="margin-top:10px; margin-bottom:0;">Please check the box above — texting is how we follow up on your athlete's plan.</p>
       </div>
       <button class="btn-continue" id="submit-btn" onclick="submitForm()">See My Athlete's Path →</button>
       <button class="btn-back" onclick="goTo(8)">← Back</button>
@@ -646,8 +647,11 @@ function submitForm() {
   const phone = document.getElementById('field-phone').value.trim();
   const err = document.getElementById('err-phone');
   err.style.display = 'none';
+  const errSms = document.getElementById('err-sms');
+  errSms.style.display = 'none';
   const phoneDigits = phone.replace(/\D/g, '');
   if (phoneDigits.length < 10 || phoneDigits.length > 15 || /^(\d)\1+$/.test(phoneDigits)) { err.style.display = 'block'; return; }
+  if (!document.getElementById('sms-consent-check').checked) { errSms.style.display = 'block'; return; }
 
   const btn = document.getElementById('submit-btn');
   btn.disabled = true; btn.textContent = 'Building your path...';
