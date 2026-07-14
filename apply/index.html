@@ -140,8 +140,16 @@
     .offer-features li::before { content: "✓"; position: absolute; left: 0; color: var(--accent); font-weight: 700; }
     .btn-buy { display: block; width: 100%; text-align: center; background: var(--accent); color: #000; padding: 14px; border-radius: 10px; text-decoration: none; font-size: 16px; font-weight: 700; transition: background 0.15s; cursor: pointer; border: none; font-family: inherit; }
     .btn-buy:hover { background: var(--accent-light); }
-    .btn-buy.ghost { background: transparent; color: var(--text); border: 1px solid var(--border); }
-    .btn-buy.ghost:hover { background: var(--surface2); border-color: var(--accent); }
+    .btn-buy.ghost { background: transparent; color: var(--accent); border: 1.5px solid var(--accent); }
+    .btn-buy.ghost:hover { background: rgba(206,169,82,0.12); }
+
+    .share-row { display: flex; gap: 10px; flex-wrap: wrap; margin: 18px 0 10px; }
+    .share-row a { flex: 1 1 30%; min-width: 120px; text-align: center; background: transparent; color: var(--accent); border: 1.5px solid var(--accent); padding: 13px 10px; border-radius: 10px; text-decoration: none; font-size: 15px; font-weight: 700; }
+    .share-row a:hover { background: rgba(206,169,82,0.12); }
+    .reassure { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 18px; }
+    .reassure a { flex: 1 1 40%; min-width: 180px; text-align: center; background: var(--surface2); color: var(--text); border: 1px solid var(--border); padding: 12px 10px; border-radius: 10px; text-decoration: none; font-size: 14px; font-weight: 600; }
+    .reassure a:hover { border-color: var(--accent); }
+    .reassure-title { font-size: 13px; color: #777; text-align: center; margin-top: 26px; }
 
     .upsell-card { background: linear-gradient(145deg, rgba(206,169,82,0.10), rgba(206,169,82,0.03)); border: 1px solid var(--accent); border-radius: 16px; padding: 22px; margin-bottom: 16px; }
     .upsell-card .offer-name { color: var(--accent); }
@@ -300,6 +308,21 @@
       <button class="btn-back" onclick="goTo(8)">← Back</button>
     </div>
 
+    <!-- ============ OUTCOME: PLAYER, PARENTS INVOLVED (no pricing) ============ -->
+    <div class="outcome-screen" id="screen-parent-loop">
+      <div class="check-icon">✓</div>
+      <h2 style="text-align:center;">You're a strong fit. Next step: bring your parents in.</h2>
+      <p class="lede" style="text-align:center;">Based on your answers, you're exactly the kind of player we work with. Since your parents are part of this decision, they need to see what you just saw. You don't have to sell them. Send them the link and let Kenny do the talking.</p>
+
+      <div class="share-row">
+        <a id="share-sms" href="#">Text it to them</a>
+        <a id="share-wa" href="#" target="_blank" rel="noopener">WhatsApp</a>
+        <a id="share-email" href="#">Email it</a>
+      </div>
+
+      <p class="call-line" style="margin-top:14px;">Want them to see the full picture? Have them take the same 90 second assessment at <a href="/apply">prodigyathletics.ca/apply</a></p>
+    </div>
+
     <!-- ============ OUTCOME: 9-12 TRAINING PROGRAM ============ -->
     <div class="outcome-screen" id="screen-training">
       <div class="check-icon">✓</div>
@@ -331,6 +354,12 @@
         </ul>
         <a class="btn-buy" onclick="buy('training_coached')">Start Coached</a>
       </div>
+
+      <p class="reassure-title">Not sure it's the right fit?</p>
+      <div class="reassure">
+        <a href="/results" target="_blank">See what other families are saying</a>
+        <a href="/connect" target="_blank">Book a free consult with Kenny</a>
+      </div>
     </div>
 
     <!-- ============ OUTCOME: 13 GROUP ============ -->
@@ -353,7 +382,11 @@
         </ul>
         <a class="btn-buy" onclick="buy('group')">Enroll in the Group Program</a>
       </div>
-      <p class="call-line">Want to talk it through first? <a href="https://meet.prodigyathletics.ca/#/Webmeet" target="_blank">Book a quick fit call.</a></p>
+      <p class="reassure-title">Not sure it's the right fit?</p>
+      <div class="reassure">
+        <a href="/results" target="_blank">See what other families are saying</a>
+        <a href="/connect" target="_blank">Book a free consult with Kenny</a>
+      </div>
     </div>
 
     <!-- ============ OUTCOME: 14+ GROUP + 1:1 UPSELL ============ -->
@@ -391,7 +424,11 @@
         </ul>
         <a class="btn-buy" onclick="buy('oneonone')">Unlock 1:1 Access</a>
       </div>
-      <p class="call-line">Not sure which fits? <a href="https://meet.prodigyathletics.ca/#/Webmeet" target="_blank">Book a quick fit call.</a></p>
+      <p class="reassure-title">Not sure it's the right fit?</p>
+      <div class="reassure">
+        <a href="/results" target="_blank">See what other families are saying</a>
+        <a href="/connect" target="_blank">Book a free consult with Kenny</a>
+      </div>
     </div>
 
     <!-- ============ OUTCOME: UNDER 9 ============ -->
@@ -615,10 +652,28 @@ function renderPrices() {
 }
 
 // ── Route to the correct outcome ──
+// Prefilled parent-share links (player -> parent handoff, /connect does the selling)
+(function initShareLinks() {
+  const msg = "Hey, I just did a hockey development assessment with Prodigy Athletics and it says I'm a strong fit for their program. Can you take a look? https://prodigyathletics.ca/connect";
+  const enc = encodeURIComponent(msg);
+  document.addEventListener('DOMContentLoaded', () => {
+    const sms = document.getElementById('share-sms');
+    const wa = document.getElementById('share-wa');
+    const em = document.getElementById('share-email');
+    if (!sms) return;
+    sms.href = 'sms:?&body=' + enc;
+    wa.href = 'https://wa.me/?text=' + enc;
+    em.href = 'mailto:?subject=' + encodeURIComponent('Prodigy Athletics, worth a look') + '&body=' + enc;
+  });
+})();
+
 function routeOutcome() {
   const age = parseInt(answers.age, 10);
   const r = CONFIG.ageRouting;
   if (isNaN(age) || age < r.youngestAge) return 'screen-young';
+  // Minor players whose parents share the decision never see pricing.
+  // The parent is the buyer; the page's job is to hand them a clean way in.
+  if (answers.who === 'player_parents' && age < 18) return 'screen-parent-loop';
   if (answers.commitment === 'no') {
     return (answers.struggle === 'physical') ? 'screen-physical' : 'screen-mindset';
   }
@@ -665,7 +720,7 @@ function submitForm() {
     level: { recreational: 'Recreational / House League', b_a_aa: 'B / A / AA', aaa_prep: 'AAA / Prep', junior: 'Junior', college: 'College' },
     str:   { mental: 'Mental game & confidence', physical: 'Physical / strength / speed', nutrition: 'Nutrition & lifestyle', all: 'All of the above' },
     com:   { yes: 'Ready to commit', discuss: 'Wants details first', no: 'Not the right time' },
-    path:  { 'screen-young': 'Under 9 (YouTube)', 'screen-training': '9-12 Training', 'screen-group': 'Group (13)', 'screen-group-1on1': 'Group + 1:1 (14+)', 'screen-physical': 'Not ready (Starter)', 'screen-mindset': 'Not ready (Locker Room)' },
+    path:  { 'screen-young': 'Under 9 (YouTube)', 'screen-training': '9-12 Training', 'screen-group': 'Group (13)', 'screen-group-1on1': 'Group + 1:1 (14+)', 'screen-physical': 'Not ready (Starter)', 'screen-mindset': 'Not ready (Locker Room)', 'screen-parent-loop': 'Parent Loop (player, parents involved)' },
   };
   const path = routeOutcome();
   const specifics = document.getElementById('field-specifics').value.trim();
