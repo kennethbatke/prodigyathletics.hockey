@@ -311,8 +311,8 @@
     <!-- ============ OUTCOME: PLAYER, PARENTS INVOLVED (no pricing) ============ -->
     <div class="outcome-screen" id="screen-parent-loop">
       <div class="check-icon">✓</div>
-      <h2 style="text-align:center;">You're a strong fit. Next step: bring your parents in.</h2>
-      <p class="lede" style="text-align:center;">Based on your answers, you're exactly the kind of player we work with. Since your parents are part of this decision, they need to see what you just saw. You don't have to sell them. Send them the link and let Kenny do the talking.</p>
+      <h2 style="text-align:center;">You could be a strong fit. Next step: bring your parents in.</h2>
+      <p class="lede" style="text-align:center;">Based on your answers, you could be exactly the kind of player we work with. Since your parents are part of this decision, they need to see what you just saw. Send them the link and let Kenny do the talking.</p>
 
       <div class="share-row">
         <a id="share-sms" href="#">Text it to them</a>
@@ -654,7 +654,7 @@ function renderPrices() {
 // ── Route to the correct outcome ──
 // Prefilled parent-share links (player -> parent handoff, /connect does the selling)
 (function initShareLinks() {
-  const msg = "Hey, I just did a hockey development assessment with Prodigy Athletics and it says I'm a strong fit for their program. Can you take a look? https://prodigyathletics.ca/connect";
+  const msg = "Hey, I just did a hockey development assessment with Prodigy Athletics and it says I could be a strong fit for their program. Can you take a look? https://prodigyathletics.ca/connect";
   const enc = encodeURIComponent(msg);
   document.addEventListener('DOMContentLoaded', () => {
     const sms = document.getElementById('share-sms');
