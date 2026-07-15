@@ -156,6 +156,31 @@
 
     .btn-secondary { display: inline-block; background: var(--surface2); color: var(--text); border: 1px solid var(--border); padding: 13px 28px; border-radius: 8px; text-decoration: none; font-size: 15px; font-weight: 600; transition: border-color 0.15s; }
     .btn-secondary:hover { border-color: var(--accent); }
+
+    /* Trust strip (top of page) */
+    .trust-strip { font-size: 13px; color: var(--text-muted); margin: -26px 0 34px; }
+    .trust-strip .star { color: var(--accent); margin-right: 6px; }
+
+    /* Proof at the price step */
+    .proof-quote {
+      display: none;
+      border-left: 2px solid var(--accent);
+      background: rgba(206,169,82,0.05);
+      border-radius: 0 10px 10px 0;
+      padding: 14px 18px; margin-bottom: 20px;
+    }
+    .proof-quote p { font-size: 14px; color: var(--text); line-height: 1.65; font-style: italic; }
+    .proof-quote .pq-name { font-size: 12px; color: var(--text-muted); font-style: normal; margin-top: 8px; }
+
+    .proof-video { display: none; margin: 28px 0 4px; }
+    .proof-video .pv-label { font-size: 11px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); text-align: center; margin-bottom: 10px; }
+    .proof-video .pv-desc { font-size: 13px; color: var(--text-muted); line-height: 1.5; margin-bottom: 12px; text-align: center; }
+    .yt-lite { position: relative; width: 100%; padding-top: 56.25%; border-radius: 14px; overflow: hidden; border: 1px solid var(--border); cursor: pointer; background: #000; }
+    .yt-lite img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .yt-lite iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+    .yt-play { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 66px; height: 46px; border: none; border-radius: 12px; background: rgba(206,169,82,0.92); color: #000; font-size: 20px; cursor: pointer; }
+    .yt-lite:hover .yt-play { background: var(--accent-light); }
+    .coach-line { font-size: 12.5px; color: #777; text-align: center; margin-top: 14px; line-height: 1.6; }
     .call-line { font-size: 13px; color: #777; text-align: center; margin-top: 6px; line-height: 1.6; }
     .call-line a { color: var(--accent); text-decoration: none; }
   </style>
@@ -171,6 +196,7 @@
   <p class="page-label">Athlete Assessment</p>
   <h1>Let's Build Your Player's Path</h1>
   <p class="subtitle">Answer a few questions and get your athlete's recommended program and pricing instantly. Takes about 90 seconds.</p>
+  <p class="trust-strip"><span class="star">★</span>Trusted by hockey families across Canada, the US, Sweden and Switzerland</p>
 
   <div class="form-card">
     <div class="progress-bar"><div class="progress-fill" id="progress" style="width:11%"></div></div>
@@ -329,6 +355,8 @@
       <h2 style="text-align:center;">Your athlete's path: the Training Program</h2>
       <p class="lede" style="text-align:center;">At this stage, the win is a pro-level foundation: a done-for-you schedule, nutrition, and a custom strength plan that all fit together. Pick the level of support that fits your family.</p>
 
+      <div class="proof-quote"></div>
+
       <div class="offer-card">
         <div class="offer-name">Self-Guided</div>
         <div class="offer-price">$<span class="px" data-tier="training_self">699</span> <small><span class="cur">CAD</span> / first 12 weeks</small></div>
@@ -355,6 +383,8 @@
         <a class="btn-buy" onclick="buy('training_coached')">Start Coached</a>
       </div>
 
+      <div class="proof-video"></div>
+
       <p class="reassure-title">Not sure it's the right fit?</p>
       <div class="reassure">
         <a href="/results" target="_blank">See what other families are saying</a>
@@ -367,6 +397,8 @@
       <div class="check-icon">✓</div>
       <h2 style="text-align:center;">Your athlete's path: the Group Program</h2>
       <p class="lede" style="text-align:center;">The full system plus a weekly live group call and a room full of athletes chasing the same thing.</p>
+
+      <div class="proof-quote"></div>
 
       <div class="offer-card featured">
         <div class="offer-badge">Recommended</div>
@@ -382,6 +414,9 @@
         </ul>
         <a class="btn-buy" onclick="buy('group')">Enroll in the Group Program</a>
       </div>
+
+      <div class="proof-video"></div>
+
       <p class="reassure-title">Not sure it's the right fit?</p>
       <div class="reassure">
         <a href="/results" target="_blank">See what other families are saying</a>
@@ -394,6 +429,8 @@
       <div class="check-icon">✓</div>
       <h2 style="text-align:center;">Your athlete's path: Group, with 1:1 unlocked</h2>
       <p class="lede" style="text-align:center;">Both tiers include the complete program. The only difference is how much direct, private time with Kenny your athlete wants.</p>
+
+      <div class="proof-quote"></div>
 
       <div class="offer-card">
         <div class="offer-badge">Most Popular</div>
@@ -424,6 +461,9 @@
         </ul>
         <a class="btn-buy" onclick="buy('oneonone')">Unlock 1:1 Access</a>
       </div>
+
+      <div class="proof-video"></div>
+
       <p class="reassure-title">Not sure it's the right fit?</p>
       <div class="reassure">
         <a href="/results" target="_blank">See what other families are saying</a>
@@ -573,15 +613,91 @@ function goTo(n) {
 
 function hideAll() {
   document.querySelectorAll('.step').forEach(s => s.style.display = 'none');
+  document.querySelectorAll('.outcome-screen').forEach(s => s.style.display = 'none');
   document.querySelector('.progress-bar').style.display = 'none';
 }
 
 function showOutcome(id) {
   hideAll();
   renderPrices();
+  renderProof(id);
   document.getElementById(id).style.display = 'block';
   setProgress(TOTAL_STEPS);
   window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+/* ── PROOF AT THE PRICE STEP ─────────────────────────────────────
+   Real quotes + a video testimonial matched to the viewer (parent
+   vs player), the athlete's age band, and their stated struggle.
+   Quotes are verbatim from the wins on /results (light trims only). */
+const PROOF = {
+  videos: {
+    parents_sixten: { id: '1oovjLLpSS0', desc: "Sixten's parents on him owning his development, nutrition, and training, all before his 13th birthday." },
+    parents_nathan: { id: 'VnM6RnqZ7yk', desc: "Nathan's parents on him getting his spark back, finding confidence as a late bloomer, and reaching U Sports." },
+    parents_noah:   { id: 'SHAtQsHqkh8', desc: "Noah's parents on him gaining 20 lbs in one off-season, locking in his habits and emotions, and jumping to Junior A." },
+    player_brody:   { id: 'YYNCiW8fpPM', desc: "Brody on gaining rapid confidence through nutrition and personalized training." },
+    player_nathan:  { id: 'mLUe31a334k', desc: "Nathan on finding his confidence and his spark after his own agent thought it was too late." },
+    player_lucas:   { id: '8AFkoJ0-X2Y', desc: "Lucas on rebuilding his body after a devastating injury and getting faster and more explosive heading into college hockey." },
+    player_noah:    { id: 'oWCnQBxlBEM', desc: "Noah on feeling more confident, focused, and in control once his habits and mindset locked in." },
+  },
+  quotes: {
+    parent: {
+      mental:    { text: "You've been a positive for Jack and given him reassured self confidence.", name: "Joey-Lynn, hockey parent" },
+      physical:  { text: "A really good program and trainer to get you into better shape and taking hockey to the next level.", name: "Jack, hockey parent" },
+      nutrition: { text: "Kenny took the time to understand what our son was looking for and what our hopes and reservations were as parents. He really did help change his habits and mindset.", name: "Peter, hockey parent" },
+      all:       { text: "Kenny has been great for our son's development and growth on and off the ice. We have seen significant results.", name: "Nick, hockey parent" },
+    },
+    player: {
+      mental:    { text: "Felt stronger and more motivated to keep pushing after showing results.", name: "Sixten, athlete" },
+      physical:  { text: "If I hadn't worked on my explosiveness and leg strength I would've been gassed after the first 10 minutes.", name: "Alina, after her first game at Worlds" },
+      nutrition: { text: "I was over a point per game player. Notice a lot of change in my game, had three goals this weekend and 4 assists.", name: "Brody, athlete" },
+      all:       { text: "I was over a point per game player. Notice a lot of change in my game, had three goals this weekend and 4 assists.", name: "Brody, athlete" },
+    },
+  },
+};
+
+function pickProofVideo(screenId, struggle, isParent) {
+  // 9-13: age match beats struggle match (Sixten is the youngest story we have)
+  if (screenId === 'screen-training' || screenId === 'screen-group') {
+    if (isParent) return (struggle === 'mental') ? 'parents_nathan' : 'parents_sixten';
+    return (struggle === 'mental') ? 'player_nathan' : 'player_brody';
+  }
+  // 14+
+  if (isParent) return (struggle === 'mental') ? 'parents_nathan' : 'parents_noah';
+  if (struggle === 'mental') return 'player_nathan';
+  if (struggle === 'physical') return 'player_lucas';
+  if (struggle === 'nutrition') return 'player_brody';
+  return 'player_noah';
+}
+
+function renderProof(screenId) {
+  if (!['screen-training', 'screen-group', 'screen-group-1on1'].includes(screenId)) return;
+  const isParent = answers.who === 'parent';
+  const voice = isParent ? 'parent' : 'player';
+  const struggle = PROOF.quotes[voice][answers.struggle] ? answers.struggle : 'all';
+  const q = PROOF.quotes[voice][struggle];
+  const v = PROOF.videos[pickProofVideo(screenId, struggle, isParent)];
+  const screen = document.getElementById(screenId);
+
+  screen.querySelectorAll('.proof-quote').forEach(el => {
+    el.innerHTML = '<p>“' + q.text + '”</p><p class="pq-name">' + q.name + '</p>';
+    el.style.display = 'block';
+  });
+
+  screen.querySelectorAll('.proof-video').forEach(el => {
+    el.innerHTML =
+      '<p class="pv-label">' + (isParent ? 'From Families Like Yours' : 'From Athletes Like You') + '</p>' +
+      '<p class="pv-desc">' + v.desc + '</p>' +
+      '<div class="yt-lite" data-id="' + v.id + '">' +
+        '<img src="https://i.ytimg.com/vi/' + v.id + '/maxresdefault.jpg" onerror="this.src=\'https://i.ytimg.com/vi/' + v.id + '/hqdefault.jpg\'" alt="" loading="lazy">' +
+        '<button class="yt-play" aria-label="Play video">▶</button>' +
+      '</div>' +
+      '<p class="coach-line">Coaching by Kenny Batke. 3 years of junior hockey, 5 years of university hockey on scholarship.</p>';
+    el.style.display = 'block';
+    el.querySelector('.yt-lite').addEventListener('click', function () {
+      this.innerHTML = '<iframe src="https://www.youtube.com/embed/' + v.id + '?autoplay=1&rel=0&modestbranding=1" allow="autoplay; encrypted-media" allowfullscreen title="Athlete testimonial"></iframe>';
+    });
+  });
 }
 
 function pick(field, value, label) {
