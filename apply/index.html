@@ -161,6 +161,20 @@
     .trust-strip { font-size: 13px; color: var(--text-muted); margin: -26px 0 34px; }
     .trust-strip .star { color: var(--accent); margin-right: 6px; }
 
+    /* A note from Kenny (LLM-personalized, fades in when generated) */
+    .kenny-note {
+      display: none;
+      background: linear-gradient(145deg, rgba(206,169,82,0.10), rgba(206,169,82,0.03));
+      border: 1px solid rgba(206,169,82,0.35);
+      border-radius: 14px; padding: 18px 20px; margin-bottom: 22px;
+      text-align: left;
+      opacity: 0; transform: translateY(6px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .kenny-note.show { opacity: 1; transform: none; }
+    .kenny-note .kn-label { font-size: 11px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
+    .kenny-note .kn-text { font-size: 14.5px; color: var(--text); line-height: 1.7; }
+
     /* Proof at the price step */
     .proof-quote {
       display: none;
@@ -340,6 +354,8 @@
       <h2 style="text-align:center;">You could be a strong fit. Next step: bring your parents in.</h2>
       <p class="lede" style="text-align:center;">Based on your answers, you could be exactly the kind of player we work with. Since your parents are part of this decision, they need to see what you just saw. Send them the link and let Kenny do the talking.</p>
 
+      <div class="kenny-note"></div>
+
       <div class="share-row">
         <a id="share-sms" href="#">Text it to them</a>
         <a id="share-wa" href="#" target="_blank" rel="noopener">WhatsApp</a>
@@ -354,6 +370,8 @@
       <div class="check-icon">✓</div>
       <h2 style="text-align:center;">Your athlete's path: the Training Program</h2>
       <p class="lede" style="text-align:center;">At this stage, the win is a pro-level foundation: a done-for-you schedule, nutrition, and a custom strength plan that all fit together. Pick the level of support that fits your family.</p>
+
+      <div class="kenny-note"></div>
 
       <div class="proof-quote"></div>
 
@@ -398,6 +416,8 @@
       <h2 style="text-align:center;">Your athlete's path: the Group Program</h2>
       <p class="lede" style="text-align:center;">The full system plus a weekly live group call and a room full of athletes chasing the same thing.</p>
 
+      <div class="kenny-note"></div>
+
       <div class="proof-quote"></div>
 
       <div class="offer-card featured">
@@ -429,6 +449,8 @@
       <div class="check-icon">✓</div>
       <h2 style="text-align:center;">Your athlete's path: Group, with 1:1 unlocked</h2>
       <p class="lede" style="text-align:center;">Both tiers include the complete program. The only difference is how much direct, private time with Kenny your athlete wants.</p>
+
+      <div class="kenny-note"></div>
 
       <div class="proof-quote"></div>
 
@@ -475,6 +497,8 @@
     <div class="outcome-screen text-center" id="screen-young">
       <h2>Not quite the right fit yet.</h2>
       <p class="lede">At this age the focus should be enjoying the game and building confidence naturally. Kenny shares a ton of free content built for younger players.</p>
+
+      <div class="kenny-note"></div>
       <a href="https://www.youtube.com/@ProdigyAthletics.Hockey" class="btn-secondary" target="_blank">Watch on YouTube</a>
     </div>
 
@@ -482,6 +506,8 @@
     <div class="outcome-screen text-center" id="screen-physical">
       <h2>Let's get you started the right way.</h2>
       <p class="lede">Full coaching isn't always the right fit right now, and that's fine. Kenny built a pre-made starter plan that gets your player into the app and training with structure from day one.</p>
+
+      <div class="kenny-note"></div>
       <a class="btn-secondary" onclick="buy('lowticket')" style="cursor:pointer;">Get the Starter Plan</a>
     </div>
 
@@ -489,6 +515,8 @@
     <div class="outcome-screen text-center" id="screen-mindset">
       <h2>Start with the mental side.</h2>
       <p class="lede">If confidence or mindset is what's holding your player back, the Locker Room is where to begin. Self-directed lessons, a community of athletes, and Kenny's mindset framework.</p>
+
+      <div class="kenny-note"></div>
       <a href="https://www.skool.com/the-locker-room-6503/classroom/7df72993" class="btn-secondary" target="_blank">Join the Locker Room</a>
     </div>
 
@@ -536,6 +564,11 @@ const CONFIG = {
     group:            { CAD: 'https://buy.stripe.com/14A3cx6EI3eCbmje22cbC0A', USD: 'https://buy.stripe.com/00w5kF9QU7uS9ebgaacbC0F' },
     oneonone:         { CAD: 'https://buy.stripe.com/4gM3cx2os02q3TR8HIcbC0w', USD: 'https://buy.stripe.com/dRmbJ35AE16u0HF0bccbC0x' },
   },
+
+  // ── NOTE FROM KENNY ───────────────────────────────────────────
+  // LLM-personalized note rendered on the outcome screen. Served by
+  // the LCH on the VPS; every failure mode = no note, page unchanged.
+  noteEndpoint: 'https://lch.prodigyathletics.ca/webhooks/apply-note',
 
   // ── LEAD CAPTURE ──────────────────────────────────────────────
   // POST endpoint for your CRM / responder (fires before checkout
@@ -668,6 +701,41 @@ function pickProofVideo(screenId, struggle, isParent) {
   if (struggle === 'physical') return 'player_lucas';
   if (struggle === 'nutrition') return 'player_brody';
   return 'player_noah';
+}
+
+// ── Note from Kenny: fires with the submit, fades in when it lands ──
+function requestKennyNote(payload) {
+  if (!CONFIG.noteEndpoint) return;
+  const form = new URLSearchParams();
+  form.append('first_name', payload.First_Name || '');
+  form.append('who', payload.Who_Completing || '');
+  form.append('age', payload.Athlete_Age || '');
+  form.append('level', payload.Level || '');
+  form.append('struggle', payload.Primary_Struggle || '');
+  form.append('commitment', payload.Commitment || '');
+  form.append('path', payload.Recommended_Path || '');
+  form.append('specifics', payload.Specifics === 'Not provided' ? '' : (payload.Specifics || ''));
+
+  const ctrl = new AbortController();
+  const timer = setTimeout(() => ctrl.abort(), 10000);
+  fetch(CONFIG.noteEndpoint, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
+    body: form.toString(),
+    signal: ctrl.signal,
+  })
+    .then(r => r.json())
+    .then(d => {
+      clearTimeout(timer);
+      if (!d || !d.note) return;
+      document.querySelectorAll('.kenny-note').forEach(el => {
+        el.innerHTML = '<p class="kn-label">A note from Kenny</p><p class="kn-text"></p>';
+        el.querySelector('.kn-text').textContent = d.note;
+        el.style.display = 'block';
+        requestAnimationFrame(() => requestAnimationFrame(() => el.classList.add('show')));
+      });
+    })
+    .catch(() => clearTimeout(timer));
 }
 
 function renderProof(screenId) {
@@ -861,6 +929,9 @@ function submitForm() {
   };
 
   trackPixel('Lead', { content_name: routeOutcome(), country: COUNTRY });
+
+  // Personalized note generates while they read their result (silent fail)
+  try { requestKennyNote(payload); } catch (e) {}
 
   // Fire lead capture (silent fail, buyer still sees their result)
   if (CONFIG.leadEndpoint && !CONFIG.leadEndpoint.includes('REPLACE')) {
