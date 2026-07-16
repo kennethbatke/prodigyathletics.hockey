@@ -182,13 +182,13 @@
     </div>
 
     <div class="stories-grid">
-      <div class="win-shot"><img src="/images/wins/parents/Bridget F Win 1.jpg" alt="Parent testimonial" loading="lazy"></div>
-      <div class="win-shot"><img src="/images/wins/parents/Chris Farmer Win 1.jpg" alt="Parent testimonial" loading="lazy"></div>
-      <div class="win-shot"><img src="/images/wins/parents/Joey-Lynn Mann Win 1.png" alt="Parent testimonial" loading="lazy"></div>
-      <div class="win-shot"><img src="/images/wins/parents/John Allenbeck Win 1.jpg" alt="Parent testimonial" loading="lazy"></div>
-      <div class="win-shot"><img src="/images/wins/parents/Mark Romanelli Win 1.png" alt="Parent testimonial" loading="lazy"></div>
-      <div class="win-shot"><img src="/images/wins/parents/Robin Turnill Win 1.png" alt="Parent testimonial" loading="lazy"></div>
-      <div class="win-shot"><img src="/images/wins/parents/Cindy Morrison Win 2.png" alt="Parent testimonial" loading="lazy"></div>
+      <div class="win-shot"><img src="/images/wins/parents/Bridget F Win 1.jpg" alt="Parent testimonial" loading="lazy" width="1199" height="767"></div>
+      <div class="win-shot"><img src="/images/wins/parents/Chris Farmer Win 1.jpg" alt="Parent testimonial" loading="lazy" width="885" height="1920"></div>
+      <div class="win-shot"><img src="/images/wins/parents/Joey-Lynn Mann Win 1.png" alt="Parent testimonial" loading="lazy" width="903" height="554"></div>
+      <div class="win-shot"><img src="/images/wins/parents/John Allenbeck Win 1.jpg" alt="Parent testimonial" loading="lazy" width="1206" height="2007"></div>
+      <div class="win-shot"><img src="/images/wins/parents/Mark Romanelli Win 1.png" alt="Parent testimonial" loading="lazy" width="760" height="334"></div>
+      <div class="win-shot"><img src="/images/wins/parents/Robin Turnill Win 1.png" alt="Parent testimonial" loading="lazy" width="1206" height="590"></div>
+      <div class="win-shot"><img src="/images/wins/parents/Cindy Morrison Win 2.png" alt="Parent testimonial" loading="lazy" width="804" height="502"></div>
     </div>
 
     <div style="text-align:center;margin-top:40px;">
@@ -224,10 +224,25 @@ window.addEventListener('load', function () {
   if (window.Bookings) Bookings.inlineEmbed({ url: "https://meet.prodigyathletics.ca/portal-embed#/connect", parent: "#inline-container", height: "640px" });
 });
 
-// All "Schedule a Consult" buttons smooth-scroll to the embedded booking
+// All "Schedule a Consult" buttons smooth-scroll to the embedded booking.
+// Lazy content above #book can expand mid-scroll and move the target, so
+// re-correct until the position holds still.
 function openCall() {
   const b = document.getElementById('book');
-  if (b) b.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  if (!b) return;
+  b.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  let tries = 0;
+  const stop = () => { clearInterval(settle); removeEventListener('wheel', stop); removeEventListener('touchstart', stop); };
+  const settle = setInterval(() => {
+    tries++;
+    if (Math.abs(b.getBoundingClientRect().top) > 8) {
+      b.scrollIntoView({ behavior: tries > 2 ? 'instant' : 'smooth', block: 'start' });
+    } else if (tries >= 3) stop();
+    if (tries >= 6) stop();
+  }, 700);
+  // The user grabbing the scroll always wins
+  addEventListener('wheel', stop, { passive: true });
+  addEventListener('touchstart', stop, { passive: true });
 }
 
 // Click-to-play: swap clean thumbnail for the player on click
