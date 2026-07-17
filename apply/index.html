@@ -598,6 +598,18 @@ function trackPixel(event, params) {
   if (window.fbq) { try { fbq('track', event, params || {}); } catch (e) {} }
 }
 
+// ── Step-level funnel tracking (Meta custom events) ──
+// Fires AssessmentStep once per step per session, only on furthest-forward
+// progress (back-navigation never re-fires). Reaching step 2 = started Q1;
+// reaching 9 without a Lead = died at the phone/consent wall.
+const STEP_NAMES = { 2: 'age', 3: 'level', 4: 'struggle', 5: 'commitment', 6: 'specifics', 7: 'name', 8: 'email', 9: 'phone_consent' };
+let maxStepTracked = 1;
+function trackStep(n) {
+  if (n <= maxStepTracked || !STEP_NAMES[n]) return;
+  maxStepTracked = n;
+  if (window.fbq) { try { fbq('trackCustom', 'AssessmentStep', { step: n, step_name: STEP_NAMES[n] }); } catch (e) {} }
+}
+
 const TOTAL_STEPS = 9;
 const answers = { who: '', age: '', level: '', struggle: '', commitment: '' };
 let currentStep = 1;
@@ -635,6 +647,7 @@ function setProgress(step) {
 }
 
 function goTo(n) {
+  trackStep(n);
   document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
   const s = document.getElementById(`step-${n}`);
   if (s) { s.classList.add('active'); currentStep = n; }
@@ -886,8 +899,16 @@ function submitForm() {
   const errSms = document.getElementById('err-sms');
   errSms.style.display = 'none';
   const phoneDigits = phone.replace(/\D/g, '');
-  if (phoneDigits.length < 10 || phoneDigits.length > 15 || /^(\d)\1+$/.test(phoneDigits)) { err.style.display = 'block'; return; }
-  if (!document.getElementById('sms-consent-check').checked) { errSms.style.display = 'block'; return; }
+  if (phoneDigits.length < 10 || phoneDigits.length > 15 || /^(\d)\1+$/.test(phoneDigits)) {
+    err.style.display = 'block';
+    if (window.fbq) { try { fbq('trackCustom', 'AssessmentBlocked', { reason: 'phone_invalid' }); } catch (e) {} }
+    return;
+  }
+  if (!document.getElementById('sms-consent-check').checked) {
+    errSms.style.display = 'block';
+    if (window.fbq) { try { fbq('trackCustom', 'AssessmentBlocked', { reason: 'consent_unchecked' }); } catch (e) {} }
+    return;
+  }
 
   const btn = document.getElementById('submit-btn');
   btn.disabled = true; btn.textContent = 'Building your path...';
