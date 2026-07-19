@@ -598,6 +598,30 @@ function trackPixel(event, params) {
   if (window.fbq) { try { fbq('track', event, params || {}); } catch (e) {} }
 }
 
+// ── First-party funnel mirror (LCH) ──
+// Fires alongside every pixel event so the drop-off curve lives on our own
+// droplet too: no ad blockers, no Meta UI. No PII — session is a random id
+// per pageload. text/plain body avoids a CORS preflight; sendBeacon survives
+// the checkout redirect.
+const LCH_FUNNEL_URL = 'https://lch.prodigyathletics.ca/webhooks/funnel-event';
+const FUNNEL_SESSION = (window.crypto && crypto.randomUUID) ? crypto.randomUUID()
+  : 'f' + Date.now().toString(36) + Math.random().toString(36).slice(2, 10);
+function lchEvent(event, step) {
+  try {
+    const payload = JSON.stringify({
+      funnel: 'apply', session: FUNNEL_SESSION,
+      event: String(event).toLowerCase().replace(/[^a-z0-9_-]/g, '_').slice(0, 40),
+      step: step || 0, ts: Date.now()
+    });
+    if (navigator.sendBeacon) {
+      navigator.sendBeacon(LCH_FUNNEL_URL, new Blob([payload], { type: 'text/plain' }));
+    } else {
+      fetch(LCH_FUNNEL_URL, { method: 'POST', body: payload, keepalive: true, mode: 'no-cors' });
+    }
+  } catch (e) {}
+}
+lchEvent('view', 1);
+
 // ── Step-level funnel tracking (Meta custom events) ──
 // Fires AssessmentStep once per step per session, only on furthest-forward
 // progress (back-navigation never re-fires). Reaching step 2 = started Q1;
@@ -608,6 +632,7 @@ function trackStep(n) {
   if (n <= maxStepTracked || !STEP_NAMES[n]) return;
   maxStepTracked = n;
   if (window.fbq) { try { fbq('trackCustom', 'AssessmentStep', { step: n, step_name: STEP_NAMES[n] }); } catch (e) {} }
+  lchEvent(STEP_NAMES[n], n);
 }
 
 const TOTAL_STEPS = 9;
@@ -652,9 +677,19 @@ function goTo(n) {
   const s = document.getElementById(`step-${n}`);
   if (s) { s.classList.add('active'); currentStep = n; }
   setProgress(n);
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  if (n > 1) {
+    // Mobile: the page title + trust strip push the question below the fold,
+    // so scrolling to top forced a scroll-down on every answer (Kenny
+    // 2026-07-18). From Q2 on, anchor at the progress bar so the question is
+    // immediately in view; step 1 keeps the full header.
+    const bar = document.querySelector('.progress-bar');
+    const y = bar ? bar.getBoundingClientRect().top + window.scrollY - 10 : 0;
+    window.scrollTo({ top: y, behavior: 'smooth' });
+  } else {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
   const inp = s && s.querySelector('.field-input');
-  if (inp && inp.tagName !== 'TEXTAREA' && inp.tagName !== 'SELECT') setTimeout(() => inp.focus(), 250);
+  if (inp && inp.tagName !== 'TEXTAREA' && inp.tagName !== 'SELECT') setTimeout(() => inp.focus({ preventScroll: true }), 250);
 }
 
 function hideAll() {
@@ -664,6 +699,7 @@ function hideAll() {
 }
 
 function showOutcome(id) {
+  lchEvent('outcome_' + id);
   hideAll();
   renderPrices();
   renderProof(id);
@@ -902,11 +938,13 @@ function submitForm() {
   if (phoneDigits.length < 10 || phoneDigits.length > 15 || /^(\d)\1+$/.test(phoneDigits)) {
     err.style.display = 'block';
     if (window.fbq) { try { fbq('trackCustom', 'AssessmentBlocked', { reason: 'phone_invalid' }); } catch (e) {} }
+    lchEvent('blocked_phone_invalid', 9);
     return;
   }
   if (!document.getElementById('sms-consent-check').checked) {
     errSms.style.display = 'block';
     if (window.fbq) { try { fbq('trackCustom', 'AssessmentBlocked', { reason: 'consent_unchecked' }); } catch (e) {} }
+    lchEvent('blocked_consent_unchecked', 9);
     return;
   }
 
@@ -950,6 +988,7 @@ function submitForm() {
   };
 
   trackPixel('Lead', { content_name: routeOutcome(), country: COUNTRY });
+  lchEvent('lead');
 
   // Personalized note generates while they read their result (silent fail)
   try { requestKennyNote(payload); } catch (e) {}
