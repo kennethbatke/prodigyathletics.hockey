@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Player Audit | Prodigy Athletics</title>
+  <meta name="description" content="25 questions that find the one thing actually holding your hockey player back. Free score and biggest gap, full breakdown reviewed by Kenny.">
+  <link rel="canonical" href="https://prodigyathletics.ca/AuditMyPlayer/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #080808; --surface2: #161616;
+      --border: #2e2e2e; --text: #ffffff; --text-muted: #a0a0a0;
+      --accent: #cea952; --accent-light: #dfc06a;
+      --card-bg: linear-gradient(145deg, #141414, #0d0d0d);
+    }
+    body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; min-height: 100vh; }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(8,8,8,0.95); backdrop-filter: blur(16px);
+      border-bottom: 1px solid #1e1e1e;
+      padding: 0 32px; height: 68px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo { display: flex; align-items: center; text-decoration: none; height: 44px; }
+    .nav-logo img { height: 44px; width: auto; }
+    .nav-back { font-size: 14px; color: var(--text-muted); text-decoration: none; transition: color 0.15s; }
+    .nav-back:hover { color: var(--accent); }
+
+    .page { max-width: 640px; margin: 0 auto; padding: 110px 24px 80px; }
+    .page-label { font-size: 11px; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
+    h1 { font-family: 'Cinzel', serif; font-size: clamp(30px, 5vw, 46px); font-weight: 800; margin-bottom: 10px; line-height: 1.1; }
+    .trust-strip { font-size: 12.5px; color: var(--text-muted); margin-bottom: 28px; }
+
+    .form-card {
+      background: var(--card-bg); border: 1px solid var(--border);
+      border-radius: 20px; padding: 36px 32px;
+      box-shadow: 0 0 60px rgba(206,169,82,0.06);
+    }
+
+    .progress-wrap { margin-bottom: 26px; }
+    .progress-bar { height: 3px; background: #2a2a2a; border-radius: 2px; overflow: hidden; }
+    .progress-fill { height: 100%; background: var(--accent); border-radius: 2px; transition: width 0.35s ease; width: 3.7%; }
+    .progress-label { font-size: 11px; color: #6d6d6d; margin-top: 8px; letter-spacing: 0.04em; }
+
+    .step { display: none; }
+    .step.active { display: block; animation: fadeSlide 0.22s ease; }
+    @keyframes fadeSlide { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+    .step-eyebrow { font-size: 10.5px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; }
+    .step-title { font-size: 19px; font-weight: 700; margin-bottom: 20px; line-height: 1.4; }
+    .step-subtitle { font-size: 13.5px; color: var(--text-muted); margin-top: -14px; margin-bottom: 20px; line-height: 1.6; }
+    .intro-body { font-size: 15px; color: var(--text-muted); margin-bottom: 16px; line-height: 1.7; }
+    .intro-list { list-style: none; margin: 4px 0 26px; }
+    .intro-list li { font-size: 14px; color: var(--text-muted); padding: 6px 0 6px 26px; position: relative; }
+    .intro-list li::before { content: "\2713"; position: absolute; left: 0; color: var(--accent); font-weight: 700; }
+    .intro-fine { font-size: 12px; color: #6d6d6d; margin-top: 14px; text-align: center; }
+
+    .radio-group { display: flex; flex-direction: column; gap: 10px; }
+    .radio-option {
+      display: flex; align-items: center; gap: 14px;
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: 10px; padding: 14px 16px; cursor: pointer;
+      transition: border-color 0.15s, background 0.15s;
+      font-size: 14.5px; line-height: 1.45;
+    }
+    .radio-option:hover { border-color: var(--accent); background: rgba(206,169,82,0.06); }
+    .radio-option.selected { border-color: var(--accent); background: rgba(206,169,82,0.1); }
+    .radio-dot { width: 17px; height: 17px; border-radius: 50%; border: 2px solid #4a4a4a; flex-shrink: 0; transition: border-color 0.15s, box-shadow 0.15s; }
+    .radio-option:hover .radio-dot, .radio-option.selected .radio-dot { border-color: var(--accent); box-shadow: inset 0 0 0 3.5px var(--accent); }
+
+    .field-label { display: block; font-size: 12.5px; font-weight: 600; color: var(--text-muted); margin-bottom: 6px; }
+    .field-input {
+      width: 100%; background: var(--surface2); border: 1px solid var(--border);
+      border-radius: 10px; padding: 14px 16px; color: var(--text);
+      font-size: 15px; font-family: inherit; margin-bottom: 16px;
+    }
+    .field-input:focus { outline: none; border-color: var(--accent); }
+    .field-textarea { min-height: 120px; resize: vertical; line-height: 1.6; }
+    .field-error { display: none; color: #e06666; font-size: 12.5px; margin: -10px 0 14px; }
+
+    .btn-continue {
+      width: 100%; background: var(--accent); color: #000; border: none;
+      padding: 15px; border-radius: 10px; font-size: 16px; font-weight: 700;
+      cursor: pointer; font-family: inherit; margin-top: 22px; transition: background 0.15s;
+    }
+    .btn-continue:hover { background: var(--accent-light); }
+    .btn-continue:disabled { opacity: 0.6; cursor: default; }
+    .btn-back { background: none; border: none; color: var(--text-muted); font-size: 13px; cursor: pointer; font-family: 'Inter', sans-serif; padding: 10px 0; display: block; transition: color 0.15s; }
+    .btn-back:hover { color: var(--text); }
+
+    .consent-box {
+      background: rgba(206,169,82,0.05); border: 1px solid rgba(206,169,82,0.2);
+      border-radius: 10px; padding: 14px 16px; margin-bottom: 16px;
+    }
+    .consent-title { font-size: 11px; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 6px; }
+    .consent-box p { font-size: 12px; color: var(--text-muted); line-height: 1.6; }
+    .consent-box a { color: var(--accent); }
+    .sms-opt-in-row { display: flex; align-items: flex-start; gap: 10px; margin-top: 12px; cursor: pointer; }
+    .sms-opt-in-row input[type="checkbox"] { width: 17px; height: 17px; flex-shrink: 0; margin-top: 1px; accent-color: var(--accent); cursor: pointer; }
+    .sms-opt-in-row span { font-size: 13px; color: var(--text); line-height: 1.5; }
+
+    /* ── Result ── */
+    #result { display: none; }
+    .score-ring { text-align: center; margin-bottom: 6px; }
+    .score-num { font-family: 'Cinzel', serif; font-size: 64px; font-weight: 800; color: var(--accent); line-height: 1; }
+    .score-den { font-size: 14px; color: #6d6d6d; letter-spacing: 0.05em; }
+    .band-label { text-align: center; font-size: 11px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin: 16px 0 10px; }
+    .band-headline { text-align: center; font-size: 21px; font-weight: 800; line-height: 1.3; margin-bottom: 14px; }
+    .band-frame { font-size: 14.5px; color: var(--text-muted); line-height: 1.75; margin-bottom: 30px; }
+
+    .gap-card {
+      background: rgba(206,169,82,0.07); border: 1px solid rgba(206,169,82,0.35);
+      border-radius: 14px; padding: 22px; margin-bottom: 28px;
+    }
+    .gap-eyebrow { font-size: 10.5px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
+    .gap-name { font-family: 'Cinzel', serif; font-size: 30px; font-weight: 800; margin-bottom: 12px; }
+    .gap-premise { font-size: 14.5px; color: var(--text-muted); line-height: 1.7; }
+
+    .bars { margin-bottom: 30px; }
+    .bars h3 { font-size: 12px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #6d6d6d; margin-bottom: 16px; }
+    .bar-row { margin-bottom: 13px; }
+    .bar-head { display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 5px; }
+    .bar-head .nm { font-weight: 600; }
+    .bar-head .pc { color: var(--text-muted); font-variant-numeric: tabular-nums; }
+    .bar-track { height: 7px; background: #232323; border-radius: 4px; overflow: hidden; }
+    .bar-fill { height: 100%; border-radius: 4px; background: #4a4a4a; width: 0; transition: width 0.7s ease; }
+    .bar-row.primary .nm { color: var(--accent); }
+    .bar-row.primary .bar-fill { background: var(--accent); }
+
+    .next-card { background: var(--surface2); border: 1px solid var(--border); border-radius: 14px; padding: 22px; margin-bottom: 24px; }
+    .next-card h3 { font-size: 16px; font-weight: 800; margin-bottom: 14px; }
+    .next-list { list-style: none; }
+    .next-list li { font-size: 14px; color: var(--text-muted); padding: 8px 0 8px 28px; position: relative; line-height: 1.6; }
+    .next-list li::before { content: attr(data-n); position: absolute; left: 0; top: 8px; width: 19px; height: 19px; border-radius: 50%; background: rgba(206,169,82,0.15); color: var(--accent); font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+    .result-cta { display: block; width: 100%; text-align: center; background: transparent; color: var(--accent); border: 1.5px solid var(--accent); padding: 14px; border-radius: 10px; text-decoration: none; font-size: 15px; font-weight: 700; transition: background 0.15s; }
+    .result-cta:hover { background: rgba(206,169,82,0.12); }
+    .result-fine { font-size: 12.5px; color: #6d6d6d; text-align: center; margin-top: 16px; line-height: 1.6; }
+
+    @media (max-width: 560px) {
+      nav { padding: 0 18px; }
+      .page { padding: 96px 16px 60px; }
+      .form-card { padding: 26px 20px; border-radius: 16px; }
+      .score-num { font-size: 54px; }
+      .gap-name { font-size: 25px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo"><img src="/images/logo-full.png" alt="Prodigy Athletics"></a>
+  <a href="/" class="nav-back">&larr; Home</a>
+</nav>
+
+<div class="page">
+  <p class="page-label">Player Audit</p>
+  <h1>The Player Audit</h1>
+  <p class="trust-strip">Used by hockey families across Canada, the US, Sweden and Switzerland.</p>
+
+  <div class="form-card">
+    <div class="progress-wrap" id="progress-wrap">
+      <div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
+      <p class="progress-label" id="progress-label">25 questions, about 5 minutes</p>
+    </div>
+
+    <div class="step active" id="step-1">
+      <p class="step-title">25 questions. One honest answer about what is actually holding your player back.</p>
+      <p class="intro-body">Most players are not held back by talent. They are held back by one thing that nobody has named yet, and it is usually not the thing everyone is looking at.</p>
+      <p class="intro-body">This takes about 5 minutes. Answer honestly, including the ones that sting. A flattering audit is worth nothing to you.</p>
+      <ul class="intro-list">
+        <li>25 questions across the 7 areas that decide development</li>
+        <li>Your score and your single biggest gap, free</li>
+        <li>The full breakdown by email once Kenny has read your file</li>
+      </ul>
+      <button class="btn-continue" onclick="goTo(2)">Start the audit &rarr;</button>
+      <p class="intro-fine">No payment. No account. Nothing to install.</p>
+    </div>
+
+    <div class="step" id="step-2">
+      <p class="step-title">First, who is filling this out?</p>
+      <div class="radio-group">
+        <div class="radio-option" onclick="pickContext(this, 'who', 'parent', 2)"><span class="radio-dot"></span><span>I am the parent</span></div>
+        <div class="radio-option" onclick="pickContext(this, 'who', 'player_parents', 2)"><span class="radio-dot"></span><span>I am the player, my parents are involved</span></div>
+        <div class="radio-option" onclick="pickContext(this, 'who', 'player_self', 2)"><span class="radio-dot"></span><span>I am the player, I make my own calls</span></div>
+      </div>
+      <button class="btn-back" onclick="goTo(1)">&larr; Back</button>
+    </div>
+
+    <div class="step" id="step-3">
+      <p class="step-title">How old is the player?</p>
+      <p class="step-subtitle">This changes what every answer below means. A 12 year old and a 16 year old with identical habits are in completely different situations.</p>
+      <select class="field-input" id="field-age">
+        <option value="">Select an age</option>
+      </select>
+      <p class="field-error" id="err-age">Please choose an age.</p>
+      <button class="btn-continue" onclick="pickAge(3)">Continue &rarr;</button>
+      <button class="btn-back" onclick="goTo(2)">&larr; Back</button>
+    </div>
+
+    <div class="step" id="step-4">
+      <p class="step-title">What level are they playing right now?</p>
+      <div class="radio-group">
+        <div class="radio-option" onclick="pickContext(this, 'level', 'recreational', 4)"><span class="radio-dot"></span><span>Recreational or house league</span></div>
+        <div class="radio-option" onclick="pickContext(this, 'level', 'b_a_aa', 4)"><span class="radio-dot"></span><span>B, A or AA</span></div>
+        <div class="radio-option" onclick="pickContext(this, 'level', 'aaa_prep', 4)"><span class="radio-dot"></span><span>AAA or prep</span></div>
+        <div class="radio-option" onclick="pickContext(this, 'level', 'junior', 4)"><span class="radio-dot"></span><span>Junior</span></div>
+        <div class="radio-option" onclick="pickContext(this, 'level', 'college', 4)"><span class="radio-dot"></span><span>College or university</span></div>
+      </div>
+      <button class="btn-back" onclick="goTo(3)">&larr; Back</button>
+    </div>
+
+    <div class="step" id="step-5">
+      <p class="step-eyebrow">Fueling</p>
+      <p class="step-title">On a normal day, how many times do they actually eat?</p>
+      <p class="step-subtitle">Count everything. Meals, snacks, the thing they grab in the car.</p>
+      <div class="radio-group">
+        <div class="radio-option" onclick="pickScored(this, 'fuel_1', 'fueling', 0, 5)"><span class="radio-dot"></span><span>2 or 3, and one of those usually gets skipped</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'fuel_1', 'fueling', 1, 5)"><span class="radio-dot"></span><span>3 solid meals, not much in between</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'fuel_1', 'fueling', 2, 5)"><span class="radio-dot"></span><span>3 meals plus a snack or two, roughly the same times daily</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'fuel_1', 'fueling', 3, 5)"><span class="radio-dot"></span><span>5 or 6 eating occasions on a consistent clock</span></div>
+      </div>
+      <button class="btn-back" onclick="goTo(4)">&larr; Back</button>
+    </div>
+
+    <div class="step" id="step-6">
+      <p class="step-eyebrow">Fueling</p>
+      <p class="step-title">What do they eat in the 2 hours before a skate or a workout?</p>
+      <div class="radio-group">
+        <div class="radio-option" onclick="pickScored(this, 'fuel_2', 'fueling', 0, 6)"><span class="radio-dot"></span><span>Usually nothing, or we are eating in the car on the way</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'fuel_2', 'fueling', 1, 6)"><span class="radio-dot"></span><span>Whatever is around, it is different every time</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'fuel_2', 'fueling', 2, 6)"><span class="radio-dot"></span><span>Something most times, but it is not planned</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'fuel_2', 'fueling', 3, 6)"><span class="radio-dot"></span><span>A planned carb-forward snack, same window every time</span></div>
+      </div>
+      <button class="btn-back" onclick="goTo(5)">&larr; Back</button>
+    </div>
+
+    <div class="step" id="step-7">
+      <p class="step-eyebrow">Fueling</p>
+      <p class="step-title">Do they know how much they need to eat to fuel a season?</p>
+      <p class="step-subtitle">Not a diet. An actual number for calories or protein that matches their body and their load.</p>
+      <div class="radio-group">
+        <div class="radio-option" onclick="pickScored(this, 'fuel_3', 'fueling', 0, 7)"><span class="radio-dot"></span><span>No idea, honestly. We have never looked at it</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'fuel_3', 'fueling', 1, 7)"><span class="radio-dot"></span><span>We have a rough sense, mostly guessing</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'fuel_3', 'fueling', 2, 7)"><span class="radio-dot"></span><span>We know roughly what they should be eating, we just do not track it</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'fuel_3', 'fueling', 3, 7)"><span class="radio-dot"></span><span>They have a target and they know when they have hit it</span></div>
+      </div>
+      <button class="btn-back" onclick="goTo(6)">&larr; Back</button>
+    </div>
+
+    <div class="step" id="step-8">
+      <p class="step-eyebrow">Recovery</p>
+      <p class="step-title">On a school night, how much sleep are they actually getting?</p>
+      <p class="step-subtitle">Lights out to alarm. Be honest, most parents overestimate this by about an hour.</p>
+      <div class="radio-group">
+        <div class="radio-option" onclick="pickScored(this, 'rec_1', 'recovery', 0, 8)"><span class="radio-dot"></span><span>Under 7 hours</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'rec_1', 'recovery', 1, 8)"><span class="radio-dot"></span><span>7 to 8 hours</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'rec_1', 'recovery', 2, 8)"><span class="radio-dot"></span><span>8 to 9 hours</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'rec_1', 'recovery', 3, 8)"><span class="radio-dot"></span><span>9.5 hours or more</span></div>
+      </div>
+      <button class="btn-back" onclick="goTo(7)">&larr; Back</button>
+    </div>
+
+    <div class="step" id="step-9">
+      <p class="step-eyebrow">Recovery</p>
+      <p class="step-title">How much does their sleep move around from night to night?</p>
+      <div class="radio-group">
+        <div class="radio-option" onclick="pickScored(this, 'rec_2', 'recovery', 0, 9)"><span class="radio-dot"></span><span>It is all over the place, weekends especially</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'rec_2', 'recovery', 1, 9)"><span class="radio-dot"></span><span>Weeknights are okay, weekends blow it up completely</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'rec_2', 'recovery', 2, 9)"><span class="radio-dot"></span><span>Mostly steady, off by an hour or so on weekends</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'rec_2', 'recovery', 3, 9)"><span class="radio-dot"></span><span>Same bedtime and same wake time 7 days a week</span></div>
+      </div>
+      <button class="btn-back" onclick="goTo(8)">&larr; Back</button>
+    </div>
+
+    <div class="step" id="step-10">
+      <p class="step-eyebrow">Recovery</p>
+      <p class="step-title">What happens in the last hour before lights out?</p>
+      <div class="radio-group">
+        <div class="radio-option" onclick="pickScored(this, 'rec_3', 'recovery', 0, 10)"><span class="radio-dot"></span><span>Phone or game until they fall asleep with it</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'rec_3', 'recovery', 1, 10)"><span class="radio-dot"></span><span>Screens right up to lights out most nights</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'rec_3', 'recovery', 2, 10)"><span class="radio-dot"></span><span>They wind down sometimes, no real routine</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'rec_3', 'recovery', 3, 10)"><span class="radio-dot"></span><span>A wind-down routine they run on their own, screens away</span></div>
+      </div>
+      <button class="btn-back" onclick="goTo(9)">&larr; Back</button>
+    </div>
+
+    <div class="step" id="step-11">
+      <p class="step-eyebrow">Training</p>
+      <p class="step-title">How many real off-ice training sessions do they get in a week?</p>
+      <p class="step-subtitle">Off ice only. Team practices and games do not count here.</p>
+      <div class="radio-group">
+        <div class="radio-option" onclick="pickScored(this, 'trn_1', 'training', 0, 11)"><span class="radio-dot"></span><span>None, or once in a while when they feel like it</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'trn_1', 'training', 1, 11)"><span class="radio-dot"></span><span>1 or 2</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'trn_1', 'training', 2, 11)"><span class="radio-dot"></span><span>3</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'trn_1', 'training', 3, 11)"><span class="radio-dot"></span><span>4 or more, every week</span></div>
+      </div>
+      <button class="btn-back" onclick="goTo(10)">&larr; Back</button>
+    </div>
+
+    <div class="step" id="step-12">
+      <p class="step-eyebrow">Training</p>
+      <p class="step-title">Where does that training come from?</p>
+      <div class="radio-group">
+        <div class="radio-option" onclick="pickScored(this, 'trn_2', 'training', 0, 12)"><span class="radio-dot"></span><span>They make it up as they go</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'trn_2', 'training', 1, 12)"><span class="radio-dot"></span><span>Stuff from YouTube, or what their buddies are doing</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'trn_2', 'training', 2, 12)"><span class="radio-dot"></span><span>A team program or a generic plan they found</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'trn_2', 'training', 3, 12)"><span class="radio-dot"></span><span>A written program built for them specifically</span></div>
+      </div>
+      <button class="btn-back" onclick="goTo(11)">&larr; Back</button>
+    </div>
+
+    <div class="step" id="step-13">
+      <p class="step-eyebrow">Training</p>
+      <p class="step-title">Compared to 3 months ago, are they measurably stronger or faster?</p>
+      <p class="step-subtitle">Measurably means you could point at a number, not a feeling.</p>
+      <div class="radio-group">
+        <div class="radio-option" onclick="pickScored(this, 'trn_3', 'training', 0, 13)"><span class="radio-dot"></span><span>No, and we would not be able to tell either way</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'trn_3', 'training', 1, 13)"><span class="radio-dot"></span><span>Maybe, but nothing we can point to</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'trn_3', 'training', 2, 13)"><span class="radio-dot"></span><span>Yes, we can see it even if we do not track it</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'trn_3', 'training', 3, 13)"><span class="radio-dot"></span><span>Yes, and we have the numbers to prove it</span></div>
+      </div>
+      <button class="btn-back" onclick="goTo(12)">&larr; Back</button>
+    </div>
+
+    <div class="step" id="step-14">
+      <p class="step-eyebrow">Structure</p>
+      <p class="step-title">How does their week get decided?</p>
+      <div class="radio-group">
+        <div class="radio-option" onclick="pickScored(this, 'str_1', 'structure', 0, 14)"><span class="radio-dot"></span><span>Day by day, whatever comes up</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'str_1', 'structure', 1, 14)"><span class="radio-dot"></span><span>We know the hockey schedule, everything else is loose</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'str_1', 'structure', 2, 14)"><span class="radio-dot"></span><span>We plan most of it on Sunday, it holds about half the time</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'str_1', 'structure', 3, 14)"><span class="radio-dot"></span><span>The whole week is mapped, and they know it without asking</span></div>
+      </div>
+      <button class="btn-back" onclick="goTo(13)">&larr; Back</button>
+    </div>
+
+    <div class="step" id="step-15">
+      <p class="step-eyebrow">Structure</p>
+      <p class="step-title">How often does something important get dropped because the day ran out?</p>
+      <p class="step-subtitle">Training, a real meal, homework, sleep. Whichever one loses.</p>
+      <div class="radio-group">
+        <div class="radio-option" onclick="pickScored(this, 'str_2', 'structure', 0, 15)"><span class="radio-dot"></span><span>Most days, something gives</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'str_2', 'structure', 1, 15)"><span class="radio-dot"></span><span>Two or three times a week</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'str_2', 'structure', 2, 15)"><span class="radio-dot"></span><span>Once a week or so, usually a busy night</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'str_2', 'structure', 3, 15)"><span class="radio-dot"></span><span>Rarely, the week is built so it does not have to</span></div>
+      </div>
+      <button class="btn-back" onclick="goTo(14)">&larr; Back</button>
+    </div>
+
+    <div class="step" id="step-16">
+      <p class="step-eyebrow">Structure</p>
+      <p class="step-title">How is school sitting alongside all of this?</p>
+      <div class="radio-group">
+        <div class="radio-option" onclick="pickScored(this, 'str_3', 'structure', 0, 16)"><span class="radio-dot"></span><span>It is a constant fight, and it is affecting hockey</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'str_3', 'structure', 1, 16)"><span class="radio-dot"></span><span>It gets done late at night, or in a panic before it is due</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'str_3', 'structure', 2, 16)"><span class="radio-dot"></span><span>It gets done, but it eats whatever time is left</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'str_3', 'structure', 3, 16)"><span class="radio-dot"></span><span>There is a set study block and it holds year round</span></div>
+      </div>
+      <button class="btn-back" onclick="goTo(15)">&larr; Back</button>
+    </div>
+
+    <div class="step" id="step-17">
+      <p class="step-eyebrow">Consistency</p>
+      <p class="step-title">When they are not feeling it, does the work still happen?</p>
+      <div class="radio-group">
+        <div class="radio-option" onclick="pickScored(this, 'con_1', 'consistency', 0, 17)"><span class="radio-dot"></span><span>No, a bad mood ends the day</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'con_1', 'consistency', 1, 17)"><span class="radio-dot"></span><span>Only if someone pushes them into it</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'con_1', 'consistency', 2, 17)"><span class="radio-dot"></span><span>Usually, though it is a shorter or easier version</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'con_1', 'consistency', 3, 17)"><span class="radio-dot"></span><span>Yes. They do not negotiate with themselves about it</span></div>
+      </div>
+      <button class="btn-back" onclick="goTo(16)">&larr; Back</button>
+    </div>
+
+    <div class="step" id="step-18">
+      <p class="step-eyebrow">Consistency</p>
+      <p class="step-title">When they start something new, how long does it survive?</p>
+      <div class="radio-group">
+        <div class="radio-option" onclick="pickScored(this, 'con_2', 'consistency', 0, 18)"><span class="radio-dot"></span><span>Days. There is a lot of starting over in this house</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'con_2', 'consistency', 1, 18)"><span class="radio-dot"></span><span>A couple of weeks, then it fades</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'con_2', 'consistency', 2, 18)"><span class="radio-dot"></span><span>A month or two before something interrupts it</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'con_2', 'consistency', 3, 18)"><span class="radio-dot"></span><span>It sticks. Things they start become how they operate</span></div>
+      </div>
+      <button class="btn-back" onclick="goTo(17)">&larr; Back</button>
+    </div>
+
+    <div class="step" id="step-19">
+      <p class="step-eyebrow">Consistency</p>
+      <p class="step-title">After a bad game or a bad week, what does the next week look like?</p>
+      <div class="radio-group">
+        <div class="radio-option" onclick="pickScored(this, 'con_3', 'consistency', 0, 19)"><span class="radio-dot"></span><span>It spirals. One bad week turns into a bad month</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'con_3', 'consistency', 1, 19)"><span class="radio-dot"></span><span>They are flat for a while and slowly come back</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'con_3', 'consistency', 2, 19)"><span class="radio-dot"></span><span>They reset by the next practice or two</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'con_3', 'consistency', 3, 19)"><span class="radio-dot"></span><span>It barely registers. The routine carries them through</span></div>
+      </div>
+      <button class="btn-back" onclick="goTo(18)">&larr; Back</button>
+    </div>
+
+    <div class="step" id="step-20">
+      <p class="step-eyebrow">Mindset</p>
+      <p class="step-title">What happens on the shift right after they make a mistake?</p>
+      <div class="radio-group">
+        <div class="radio-option" onclick="pickScored(this, 'mnd_1', 'mindset', 0, 20)"><span class="radio-dot"></span><span>They are gone. The rest of the game is a write-off</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'mnd_1', 'mindset', 1, 20)"><span class="radio-dot"></span><span>They play scared, stop asking for the puck</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'mnd_1', 'mindset', 2, 20)"><span class="radio-dot"></span><span>They shake it off within a period</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'mnd_1', 'mindset', 3, 20)"><span class="radio-dot"></span><span>Next shift they are back to normal, sometimes better</span></div>
+      </div>
+      <button class="btn-back" onclick="goTo(19)">&larr; Back</button>
+    </div>
+
+    <div class="step" id="step-21">
+      <p class="step-eyebrow">Mindset</p>
+      <p class="step-title">How do they show up to the biggest games?</p>
+      <p class="step-subtitle">Tryouts, playoffs, the game with scouts in the building.</p>
+      <div class="radio-group">
+        <div class="radio-option" onclick="pickScored(this, 'mnd_2', 'mindset', 0, 21)"><span class="radio-dot"></span><span>They shrink. Their worst hockey shows up when it matters most</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'mnd_2', 'mindset', 1, 21)"><span class="radio-dot"></span><span>Nervous, and it takes a period to settle in</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'mnd_2', 'mindset', 2, 21)"><span class="radio-dot"></span><span>About the same as any other game</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'mnd_2', 'mindset', 3, 21)"><span class="radio-dot"></span><span>They want those games. They are better when it is bigger</span></div>
+      </div>
+      <button class="btn-back" onclick="goTo(20)">&larr; Back</button>
+    </div>
+
+    <div class="step" id="step-22">
+      <p class="step-eyebrow">Mindset</p>
+      <p class="step-title">Do they train the mental side on purpose?</p>
+      <p class="step-subtitle">Journaling, visualization, a pre-game routine, reviewing their own shifts.</p>
+      <div class="radio-group">
+        <div class="radio-option" onclick="pickScored(this, 'mnd_3', 'mindset', 0, 22)"><span class="radio-dot"></span><span>No. We have never really treated it as trainable</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'mnd_3', 'mindset', 1, 22)"><span class="radio-dot"></span><span>They talk about it sometimes, nothing they actually do</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'mnd_3', 'mindset', 2, 22)"><span class="radio-dot"></span><span>They have a pre-game routine, nothing beyond that</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'mnd_3', 'mindset', 3, 22)"><span class="radio-dot"></span><span>Yes, something deliberate most days</span></div>
+      </div>
+      <button class="btn-back" onclick="goTo(21)">&larr; Back</button>
+    </div>
+
+    <div class="step" id="step-23">
+      <p class="step-eyebrow">Ownership</p>
+      <p class="step-title">Who is driving this?</p>
+      <p class="step-subtitle">The honest answer here matters more than any other question on this audit.</p>
+      <div class="radio-group">
+        <div class="radio-option" onclick="pickScored(this, 'own_1', 'ownership', 0, 23)"><span class="radio-dot"></span><span>Me. If I stop pushing, all of it stops</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'own_1', 'ownership', 1, 23)"><span class="radio-dot"></span><span>Mostly me, they go along with it</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'own_1', 'ownership', 2, 23)"><span class="radio-dot"></span><span>Shared. They want it, they need reminders</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'own_1', 'ownership', 3, 23)"><span class="radio-dot"></span><span>Them. They are the one bringing it to me</span></div>
+      </div>
+      <button class="btn-back" onclick="goTo(22)">&larr; Back</button>
+    </div>
+
+    <div class="step" id="step-24">
+      <p class="step-eyebrow">Ownership</p>
+      <p class="step-title">Do they know exactly what to work on to reach the next level?</p>
+      <div class="radio-group">
+        <div class="radio-option" onclick="pickScored(this, 'own_2', 'ownership', 0, 24)"><span class="radio-dot"></span><span>No. We are guessing, and that is partly why we are here</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'own_2', 'ownership', 1, 24)"><span class="radio-dot"></span><span>They know the general idea, not what to actually do about it</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'own_2', 'ownership', 2, 24)"><span class="radio-dot"></span><span>They know what, they are fuzzy on how</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'own_2', 'ownership', 3, 24)"><span class="radio-dot"></span><span>They could name the 3 things and tell you their plan for each</span></div>
+      </div>
+      <button class="btn-back" onclick="goTo(23)">&larr; Back</button>
+    </div>
+
+    <div class="step" id="step-25">
+      <p class="step-eyebrow">Ownership</p>
+      <p class="step-title">Outside your house, who holds them to a standard week to week?</p>
+      <p class="step-subtitle">Someone who notices when they skip, and says something about it.</p>
+      <div class="radio-group">
+        <div class="radio-option" onclick="pickScored(this, 'own_3', 'ownership', 0, 25)"><span class="radio-dot"></span><span>Nobody. It is on us</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'own_3', 'ownership', 1, 25)"><span class="radio-dot"></span><span>Their coach, in season only, and only about hockey</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'own_3', 'ownership', 2, 25)"><span class="radio-dot"></span><span>A trainer or coach they see now and then</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'own_3', 'ownership', 3, 25)"><span class="radio-dot"></span><span>Someone checks in on them every single week, year round</span></div>
+      </div>
+      <button class="btn-back" onclick="goTo(24)">&larr; Back</button>
+    </div>
+
+    <div class="step" id="step-26">
+      <p class="step-title">Last one. If you could fix one thing for them in the next 90 days, what would it be?</p>
+      <p class="step-subtitle">Your words, not a category. This is the part Kenny reads first.</p>
+      <textarea class="field-input field-textarea" id="field-one-thing" maxlength="800" placeholder="They have the skill, they just disappear in the big games and I do not know how to help with that..."></textarea>
+      <button class="btn-continue" onclick="goTo(27)">Continue &rarr;</button>
+      <button class="btn-back" onclick="goTo(25)">&larr; Back</button>
+    </div>
+
+    <div class="step" id="step-27">
+      <p class="step-title">Their audit is ready.</p>
+      <p class="step-subtitle">Your score and your biggest gap are on the next screen. The full breakdown, what the gap is costing on the ice and the plan to close it, comes by email once Kenny has gone through the file himself.</p>
+
+      <label class="field-label" for="field-player">Player's first name</label>
+      <input class="field-input" type="text" id="field-player" placeholder="Tommy" autocomplete="off">
+      <p class="field-error" id="err-player">Please add their first name.</p>
+
+      <label class="field-label" for="field-name">Your name</label>
+      <input class="field-input" type="text" id="field-name" placeholder="Your full name" autocomplete="name">
+      <p class="field-error" id="err-name">Please add your name.</p>
+
+      <label class="field-label" for="field-email">Your email</label>
+      <input class="field-input" type="email" id="field-email" placeholder="you@email.com" autocomplete="email" inputmode="email">
+      <p class="field-error" id="err-email">Please enter a valid email. This is where the audit goes.</p>
+
+      <label class="field-label" for="field-phone">Your mobile number</label>
+      <input class="field-input" type="tel" id="field-phone" placeholder="+1 (___) ___-____" autocomplete="tel" inputmode="tel">
+      <p class="field-error" id="err-phone">Please enter a valid phone number.</p>
+
+      <div class="consent-box">
+        <p class="consent-title">SMS Permission</p>
+        <p>By submitting you agree to our <a href="/privacy/">Privacy Policy</a> and <a href="/terms/">Terms of Service</a>. Message and data rates may apply. Reply STOP at any time to opt out. Consent to receive SMS is not a condition of purchase.</p>
+        <label class="sms-opt-in-row">
+          <input type="checkbox" id="sms-consent-check" onchange="if(this.checked) document.getElementById('err-sms').style.display='none'">
+          <span>I agree to receive SMS text messages from Prodigy Athletics regarding hockey development coaching.</span>
+        </label>
+        <p class="field-error" id="err-sms" style="margin-top:10px; margin-bottom:0;">Please check the box above. Kenny texts you when the audit lands so it does not sit unread.</p>
+      </div>
+
+      <button class="btn-continue" id="submit-btn" onclick="submitAudit()">Show me the results &rarr;</button>
+      <button class="btn-back" onclick="goTo(26)">&larr; Back</button>
+    </div>
+
+    <!-- ── RESULT ── -->
+    <div id="result">
+      <div class="score-ring">
+        <div class="score-num" id="r-score">0</div>
+        <div class="score-den">FOUNDATION SCORE / 100</div>
+      </div>
+      <p class="band-label" id="r-band"></p>
+      <p class="band-headline" id="r-headline"></p>
+      <p class="band-frame" id="r-frame"></p>
+
+      <div class="gap-card">
+        <p class="gap-eyebrow">Biggest gap</p>
+        <p class="gap-name" id="r-gap"></p>
+        <p class="gap-premise" id="r-premise"></p>
+      </div>
+
+      <div class="bars">
+        <h3>Every area, scored</h3>
+        <div id="r-bars"></div>
+      </div>
+
+      <div class="next-card">
+        <h3>What happens now</h3>
+        <ul class="next-list">
+          <li data-n="1">A confirmation email is on its way to you right now.</li>
+          <li data-n="2">Kenny reads your file himself and writes back on that same email thread. Usually inside 24 hours, depending on how many audits are in front of yours.</li>
+          <li data-n="3">He texts you once it lands, so it does not sit unread at the bottom of your inbox.</li>
+        </ul>
+      </div>
+
+      <a class="result-cta" href="/results/">See what this looks like when it is working &rarr;</a>
+      <p class="result-fine">Nothing to buy here. If you want to talk it through before the audit arrives, Kenny takes a limited number of fit calls at <a href="/connect/" style="color:var(--accent);">prodigyathletics.ca/connect</a>.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ══════════════════════════════════════════════════════════════════
+   GENERATED FROM audit_spec.json v1.1 by build_page.py.
+   Do not hand-edit the questions or the scoring here. Edit the spec
+   and re-run the builder, or this page and the droplet's report
+   generator will describe different audits.
+   Lead capture is owned by the droplet, NOT the /apply Zoho webhook.
+   ══════════════════════════════════════════════════════════════════ */
+
+const CONFIG = {
+  // The droplet owns audit capture end to end: it writes the Zoho lead
+  // itself with Convo_Status "Audit Submitted" so the LCH abandoner
+  // poller does NOT text them within minutes and step on the
+  // "Kenny is reviewing your file" promise. Do not point this at the
+  // /apply Zoho webhook.
+  auditEndpoint: 'https://lch.prodigyathletics.ca/webhooks/audit-submitted',
+  metaPixelId: '2092599024666125',
+};
+
+const SPEC = {
+  "domains": {
+    "fueling": {
+      "label": "Fueling",
+      "order": 1,
+      "handicap": 8,
+      "premise": "Nutrition and sleep drive more than 90 percent of results. Everything else gets built on top of these two."
+    },
+    "recovery": {
+      "label": "Recovery",
+      "order": 2,
+      "handicap": 8,
+      "premise": "The target is 9.5 to 10 hours, held on the same clock 7 days a week. Sleep is where the training actually lands."
+    },
+    "training": {
+      "label": "Training",
+      "order": 3,
+      "handicap": 0,
+      "premise": "Around 4 to 5 real sessions a week, on a written program that progresses, built around the equipment they actually have."
+    },
+    "structure": {
+      "label": "Structure",
+      "order": 4,
+      "handicap": 4,
+      "premise": "The plan is a whole-day life grid, not a workout list. Wake, meals, training, skills, study, wind-down, lights out."
+    },
+    "consistency": {
+      "label": "Consistency",
+      "order": 5,
+      "handicap": 0,
+      "premise": "Standards over motivation. Motivation decides whether today feels good. Standards decide whether today happens."
+    },
+    "mindset": {
+      "label": "Mindset",
+      "order": 6,
+      "handicap": 0,
+      "premise": "Pressure is a privilege. Reactive becomes proactive. The mental side gets trained on purpose, the same as the physical side."
+    },
+    "ownership": {
+      "label": "Ownership",
+      "order": 7,
+      "handicap": 0,
+      "premise": "Hockey is the vehicle. We are building a leader, and the athlete follows. The more questions they ask, the further they go."
+    }
+  },
+  "bands": [
+    {
+      "min": 0,
+      "max": 39,
+      "key": "foundation",
+      "label": "Foundation Stage",
+      "headline": "The talent is not the issue. The base underneath it is.",
+      "frame": "There is more than one gap open here, and that is genuinely good news, because it means the current results are not a ceiling. They are a reflection of a base that was never built. We do not fix all of it at once. We fix the one thing that unlocks the rest."
+    },
+    {
+      "min": 40,
+      "max": 59,
+      "key": "building",
+      "label": "Building Stage",
+      "headline": "There is real work happening. It is leaking out somewhere specific.",
+      "frame": "Some of this is solid, which is why the effort feels like it should be paying off more than it is. There is one clear gap draining the rest. Close it and the work already being done starts counting twice."
+    },
+    {
+      "min": 60,
+      "max": 79,
+      "key": "competing",
+      "label": "Competing Stage",
+      "headline": "Most of it is in place. The gap is now the difference maker.",
+      "frame": "They are ahead of most players their age on the things that matter. At this stage the remaining gap stops being a small leak and starts being the thing separating them from the players getting looked at. It is the smallest fix on this list and the highest leverage."
+    },
+    {
+      "min": 80,
+      "max": 100,
+      "key": "elite",
+      "label": "Elite Habits",
+      "headline": "This is a rare profile. Protect it and sharpen the edge.",
+      "frame": "Very few players their age come back at this level, and you should know that. The work now is not repair, it is refinement, and holding these standards through the seasons where everything gets busier and most players quietly slide backward."
+    }
+  ],
+  "questionCount": 21,
+  "maxScore": 63,
+  "specVersion": "1.1"
+};
+const TOTAL_STEPS = 27;
+const STEP_NAMES = {"2": "who", "3": "age", "4": "level", "5": "fuel_1", "6": "fuel_2", "7": "fuel_3", "8": "rec_1", "9": "rec_2", "10": "rec_3", "11": "trn_1", "12": "trn_2", "13": "trn_3", "14": "str_1", "15": "str_2", "16": "str_3", "17": "con_1", "18": "con_2", "19": "con_3", "20": "mnd_1", "21": "mnd_2", "22": "mnd_3", "23": "own_1", "24": "own_2", "25": "own_3", "26": "one_thing", "27": "capture"};
+
+/* ── Meta Pixel ── */
+(function initPixel() {
+  if (!CONFIG.metaPixelId) return;
+  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+  n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+  document,'script','https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', CONFIG.metaPixelId);
+  fbq('track', 'PageView');
+})();
+function trackPixel(ev, p) { if (window.fbq) { try { fbq('track', ev, p || {}); } catch (e) {} } }
+
+/* ── First-party funnel mirror (same endpoint /apply uses, funnel: 'audit') ── */
+const LCH_FUNNEL_URL = 'https://lch.prodigyathletics.ca/webhooks/funnel-event';
+const FUNNEL_SESSION = (window.crypto && crypto.randomUUID) ? crypto.randomUUID()
+  : 'f' + Date.now().toString(36) + Math.random().toString(36).slice(2, 10);
+function lchEvent(event, step) {
+  try {
+    const payload = JSON.stringify({
+      funnel: 'audit', session: FUNNEL_SESSION,
+      event: String(event).toLowerCase().replace(/[^a-z0-9_-]/g, '_').slice(0, 40),
+      step: step || 0, ts: Date.now()
+    });
+    if (navigator.sendBeacon) {
+      navigator.sendBeacon(LCH_FUNNEL_URL, new Blob([payload], { type: 'text/plain' }));
+    } else {
+      fetch(LCH_FUNNEL_URL, { method: 'POST', body: payload, keepalive: true, mode: 'no-cors' });
+    }
+  } catch (e) {}
+}
+lchEvent('view', 1);
+
+let maxStepTracked = 1;
+function trackStep(n) {
+  if (n <= maxStepTracked || !STEP_NAMES[n]) return;
+  maxStepTracked = n;
+  if (window.fbq) { try { fbq('trackCustom', 'AuditStep', { step: n, step_name: STEP_NAMES[n] }); } catch (e) {} }
+  lchEvent(STEP_NAMES[n], n);
+}
+
+/* ── State ── */
+const context = { who: '', age: '', level: '' };
+const responses = {};            // questionId -> { domain, score, label }
+let currentStep = 1;
+
+/* ── Age dropdown ── */
+(function buildAges() {
+  const sel = document.getElementById('field-age');
+  for (let a = 6; a <= 21; a++) {
+    const o = document.createElement('option');
+    o.value = a; o.textContent = a + (a === 21 ? '+' : '');
+    sel.appendChild(o);
+  }
+})();
+
+/* ── Navigation ── */
+/* Steps 2..26 are the 25 questions. Step 1 is the intro and the last step
+   is the contact form, so neither is numbered: labelling the intro
+   "Question 1 of 27" both miscounts and contradicts the 25 on the page. */
+const FIRST_Q_STEP = 2, LAST_Q_STEP = 26, QUESTION_COUNT = 25;
+function setProgress(step) {
+  const done = Math.min(Math.max(step - 1, 0), QUESTION_COUNT);
+  document.getElementById('progress').style.width = (done / QUESTION_COUNT * 100) + '%';
+  const label = document.getElementById('progress-label');
+  if (step < FIRST_Q_STEP)      label.textContent = '25 questions, about 5 minutes';
+  else if (step > LAST_Q_STEP)  label.textContent = 'All 25 answered. Last step.';
+  else label.textContent = 'Question ' + (step - 1) + ' of ' + QUESTION_COUNT;
+}
+function goTo(n) {
+  trackStep(n);
+  document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+  const s = document.getElementById('step-' + n);
+  if (!s) return;
+  s.classList.add('active');
+  currentStep = n;
+  setProgress(n);
+  // Mobile: anchor at the progress bar from Q2 on, so answering does not
+  // force a manual scroll on every question (the /apply fix, Kenny 2026-07-18).
+  if (n > 1) {
+    const bar = document.querySelector('.progress-bar');
+    const y = bar ? bar.getBoundingClientRect().top + window.scrollY - 10 : 0;
+    window.scrollTo({ top: y, behavior: 'smooth' });
+  } else {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+}
+function markSelected(el) {
+  const grp = el.parentElement;
+  grp.querySelectorAll('.radio-option').forEach(o => o.classList.remove('selected'));
+  el.classList.add('selected');
+}
+function pickContext(el, id, value, step) {
+  context[id] = value;
+  markSelected(el);
+  setTimeout(() => goTo(step + 1), 140);
+}
+function pickAge(step) {
+  const sel = document.getElementById('field-age');
+  const err = document.getElementById('err-age');
+  if (!sel.value) { err.style.display = 'block'; return; }
+  err.style.display = 'none';
+  context.age = sel.value;
+  goTo(step + 1);
+}
+function pickScored(el, id, domain, score, step) {
+  responses[id] = { domain: domain, score: score, label: el.innerText.trim() };
+  markSelected(el);
+  setTimeout(() => goTo(step + 1), 140);
+}
+
+/* ── Scoring ──
+   Domain percent = sum of its 3 answers / 9.
+   Foundation score = total / 63.
+   PRIMARY GAP is ranked on (percent - handicap), not raw percent: fueling
+   and recovery carry a handicap because nutrition and sleep drive >90% of
+   results, so those get fixed first even when another area scores slightly
+   lower. Ties break toward the methodology's own domain order. */
+function computeResult() {
+  const totals = {};
+  Object.keys(SPEC.domains).forEach(d => totals[d] = { sum: 0, n: 0 });
+  Object.keys(responses).forEach(qid => {
+    const r = responses[qid];
+    if (totals[r.domain]) { totals[r.domain].sum += r.score; totals[r.domain].n += 1; }
+  });
+
+  const rows = Object.keys(totals).map(d => {
+    const t = totals[d];
+    const pct = t.n ? Math.round((t.sum / (t.n * 3)) * 100) : 0;
+    return {
+      key: d, label: SPEC.domains[d].label, order: SPEC.domains[d].order,
+      premise: SPEC.domains[d].premise, sum: t.sum, n: t.n, pct: pct,
+      rank: pct - SPEC.domains[d].handicap
+    };
+  });
+
+  let answered = 0, scoreSum = 0;
+  Object.keys(responses).forEach(q => { answered += 1; scoreSum += responses[q].score; });
+  const foundation = answered ? Math.round((scoreSum / (answered * 3)) * 100) : 0;
+
+  const ranked = rows.slice().sort((a, b) => (a.rank - b.rank) || (a.order - b.order));
+  const band = SPEC.bands.find(b => foundation >= b.min && foundation <= b.max) || SPEC.bands[0];
+
+  return { foundation: foundation, rows: rows.sort((a, b) => a.order - b.order),
+           primary: ranked[0], runnerUp: ranked[1], band: band };
+}
+
+function renderResult(res) {
+  document.getElementById('progress-wrap').style.display = 'none';
+  document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+  document.getElementById('result').style.display = 'block';
+
+  document.getElementById('r-band').textContent = res.band.label;
+  document.getElementById('r-headline').textContent = res.band.headline;
+  document.getElementById('r-frame').textContent = res.band.frame;
+  document.getElementById('r-gap').textContent = res.primary.label;
+  document.getElementById('r-premise').textContent = res.primary.premise;
+
+  const bars = document.getElementById('r-bars');
+  bars.innerHTML = res.rows.map(r =>
+    '<div class="bar-row' + (r.key === res.primary.key ? ' primary' : '') + '">' +
+      '<div class="bar-head"><span class="nm">' + r.label + '</span><span class="pc">' + r.pct + '%</span></div>' +
+      '<div class="bar-track"><div class="bar-fill" data-w="' + r.pct + '"></div></div>' +
+    '</div>').join('');
+
+  // Count the score up, then fill the bars, so the number lands first.
+  const el = document.getElementById('r-score');
+  let cur = 0;
+  const tick = setInterval(() => {
+    cur += Math.max(1, Math.ceil(res.foundation / 28));
+    if (cur >= res.foundation) { cur = res.foundation; clearInterval(tick); }
+    el.textContent = cur;
+  }, 22);
+  setTimeout(() => {
+    bars.querySelectorAll('.bar-fill').forEach(f => f.style.width = f.dataset.w + '%');
+  }, 260);
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+/* ── Submit ── */
+function validEmail(v) { return /^[^@\s]+@[^@\s]+\.[^@\s]{2,}$/.test(v); }
+function normalizePhone(v) {
+  const digits = (v || '').replace(/\D/g, '');
+  if (digits.length === 10) return '+1' + digits;
+  if (digits.length === 11 && digits[0] === '1') return '+' + digits;
+  if (digits.length >= 11 && digits.length <= 15) return '+' + digits;
+  return null;
+}
+
+function submitAudit() {
+  const player = document.getElementById('field-player').value.trim();
+  const name   = document.getElementById('field-name').value.trim();
+  const email  = document.getElementById('field-email').value.trim();
+  const phone  = normalizePhone(document.getElementById('field-phone').value);
+  const consent = document.getElementById('sms-consent-check').checked;
+
+  const show = (id, on) => document.getElementById(id).style.display = on ? 'block' : 'none';
+  show('err-player', false); show('err-name', false);
+  show('err-email', false); show('err-phone', false); show('err-sms', false);
+
+  if (!player) { show('err-player', true); lchEvent('blocked_player_name', TOTAL_STEPS); return; }
+  if (!name)   { show('err-name', true);   lchEvent('blocked_name', TOTAL_STEPS); return; }
+  if (!validEmail(email)) { show('err-email', true); lchEvent('blocked_email_invalid', TOTAL_STEPS); return; }
+  if (!phone)  {
+    show('err-phone', true);
+    if (window.fbq) { try { fbq('trackCustom', 'AuditBlocked', { reason: 'phone_invalid' }); } catch (e) {} }
+    lchEvent('blocked_phone_invalid', TOTAL_STEPS); return;
+  }
+  if (!consent) {
+    show('err-sms', true);
+    if (window.fbq) { try { fbq('trackCustom', 'AuditBlocked', { reason: 'consent_unchecked' }); } catch (e) {} }
+    lchEvent('blocked_consent_unchecked', TOTAL_STEPS); return;
+  }
+
+  const btn = document.getElementById('submit-btn');
+  btn.disabled = true; btn.textContent = 'Scoring the audit...';
+
+  const res = computeResult();
+  const parts = name.split(' ');
+
+  const payload = {
+    source: 'player_audit',
+    spec_version: SPEC.specVersion,
+    session: FUNNEL_SESSION,
+    parent_first_name: parts[0] || name,
+    parent_last_name: parts.slice(1).join(' ') || (parts[0] || name),
+    player_first_name: player,
+    email: email,
+    phone: phone,
+    sms_consent: consent,
+    who_completing: context.who,
+    player_age: context.age,
+    level: context.level,
+    one_thing: document.getElementById('field-one-thing').value.trim(),
+    foundation_score: res.foundation,
+    band: res.band.key,
+    primary_gap: res.primary.key,
+    runner_up_gap: res.runnerUp ? res.runnerUp.key : '',
+    domain_scores: res.rows.reduce((a, r) => { a[r.key] = r.pct; return a; }, {}),
+    // Verbatim answers: the report generator needs the parent's own words
+    // for every question, not just the numbers.
+    answers: Object.keys(responses).map(qid => ({
+      id: qid, domain: responses[qid].domain,
+      score: responses[qid].score, answer: responses[qid].label
+    })),
+    page_url: location.href,
+    submitted_at: new Date().toISOString(),
+  };
+
+  trackPixel('Lead', { content_name: 'player_audit', primary_gap: res.primary.key });
+  lchEvent('lead', TOTAL_STEPS);
+
+  // The droplet stores the submission before it does any LLM work, so a slow
+  // report never costs the lead. Retry once, then show the result regardless:
+  // a captured parent who sees their score beats a spinner that never resolves.
+  const send = (attempt) => fetch(CONFIG.auditEndpoint, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain;charset=UTF-8' },  // no CORS preflight
+      body: JSON.stringify(payload),
+      keepalive: true,
+    }).catch(() => { if (attempt < 2) return new Promise(r => setTimeout(() => r(send(attempt + 1)), 900)); });
+  send(1);
+
+  renderResult(res);
+}
+</script>
+
+</body>
+</html>
