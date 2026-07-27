@@ -719,6 +719,7 @@ const PROOF = {
     parents_noah:   { id: 'SHAtQsHqkh8', desc: "Noah's parents on him gaining 20 lbs in one off-season, locking in his habits and emotions, and jumping to Junior A." },
     player_brody:   { id: 'YYNCiW8fpPM', desc: "Brody on gaining rapid confidence through nutrition and personalized training." },
     player_nathan:  { id: 'mLUe31a334k', desc: "Nathan on finding his confidence and his spark after his own agent thought it was too late." },
+    player_ronan:   { id: 'IZ5iRV7MgBg', desc: "Ronan, 18, on going from dwelling on mistakes to unshakeable confidence in four weeks." },
     player_lucas:   { id: '8AFkoJ0-X2Y', desc: "Lucas on rebuilding his body after a devastating injury and getting faster and more explosive heading into college hockey." },
     player_noah:    { id: 'oWCnQBxlBEM', desc: "Noah on feeling more confident, focused, and in control once his habits and mindset locked in." },
   },
@@ -746,7 +747,7 @@ function pickProofVideo(screenId, struggle, isParent) {
   }
   // 14+
   if (isParent) return (struggle === 'mental') ? 'parents_nathan' : 'parents_noah';
-  if (struggle === 'mental') return 'player_nathan';
+  if (struggle === 'mental') return 'player_ronan';
   if (struggle === 'physical') return 'player_lucas';
   if (struggle === 'nutrition') return 'player_brody';
   return 'player_noah';
