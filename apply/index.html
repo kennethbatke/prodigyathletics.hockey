@@ -714,7 +714,7 @@ function showOutcome(id) {
    Quotes are verbatim from the wins on /results (light trims only). */
 const PROOF = {
   videos: {
-    parents_sixten: { id: '1oovjLLpSS0', desc: "Sixten's parents on him owning his development, nutrition, and training, all before his 13th birthday." },
+    parents_cindy: { id: 'eZrnWuB29lg', desc: "Cindy on her 16 year old going from falling behind to AAA potential in just seven weeks." },
     parents_nathan: { id: 'VnM6RnqZ7yk', desc: "Nathan's parents on him getting his spark back, finding confidence as a late bloomer, and reaching U Sports." },
     parents_noah:   { id: 'SHAtQsHqkh8', desc: "Noah's parents on him gaining 20 lbs in one off-season, locking in his habits and emotions, and jumping to Junior A." },
     player_brody:   { id: 'YYNCiW8fpPM', desc: "Brody on gaining rapid confidence through nutrition and personalized training." },
@@ -739,9 +739,9 @@ const PROOF = {
 };
 
 function pickProofVideo(screenId, struggle, isParent) {
-  // 9-13: age match beats struggle match (Sixten is the youngest story we have)
+  // 9-13: Cindy's falling-behind story is the most age-flexible parent proof
   if (screenId === 'screen-training' || screenId === 'screen-group') {
-    if (isParent) return (struggle === 'mental') ? 'parents_nathan' : 'parents_sixten';
+    if (isParent) return (struggle === 'mental') ? 'parents_nathan' : 'parents_cindy';
     return (struggle === 'mental') ? 'player_nathan' : 'player_brody';
   }
   // 14+
