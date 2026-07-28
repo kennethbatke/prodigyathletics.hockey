@@ -59,6 +59,9 @@
     .intro-list li { font-size: 14px; color: var(--text-muted); padding: 6px 0 6px 26px; position: relative; }
     .intro-list li::before { content: "\2713"; position: absolute; left: 0; color: var(--accent); font-weight: 700; }
     .intro-fine { font-size: 12px; color: #6d6d6d; margin-top: 14px; text-align: center; }
+    .preface { background: rgba(206,169,82,0.06); border: 1px solid rgba(206,169,82,0.22); border-radius: 12px; padding: 16px 18px; margin: 4px 0 24px; }
+    .preface-title { font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
+    .preface p:not(.preface-title) { font-size: 14px; color: var(--text); line-height: 1.7; }
 
     .radio-group { display: flex; flex-direction: column; gap: 10px; }
     .radio-option {
@@ -165,15 +168,15 @@
   <div class="form-card">
     <div class="progress-wrap" id="progress-wrap">
       <div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
-      <p class="progress-label" id="progress-label">25 questions, about 5 minutes</p>
+      <p class="progress-label" id="progress-label">25 questions, about 6 minutes</p>
     </div>
 
     <div class="step active" id="step-1">
-      <p class="step-title">25 questions. One honest answer about what is actually holding your player back.</p>
-      <p class="intro-body">Most players are not held back by talent. They are held back by one thing that nobody has named yet, and it is usually not the thing everyone is looking at.</p>
-      <p class="intro-body">This takes about 5 minutes. Answer honestly, including the ones that sting. A flattering audit is worth nothing to you.</p>
+      <p class="step-title">25 questions that find the one thing holding your player back.</p>
+      <p class="intro-body">Most players are not held back by talent. They are held back by one thing that nobody has named yet, and it is not the thing everyone is looking at.</p>
+      <div class="preface"><p class="preface-title">Read this first</p><p>The point of this audit is an honest look at where your player is today. Not where you would like them to be, or where you wish they were. It works best when your answers come from a typical day, not their best day or a dream day.</p></div>
       <ul class="intro-list">
-        <li>25 questions across the 7 areas that decide development</li>
+        <li>25 questions across the 5 areas that decide how far a player goes</li>
         <li>Your score and your single biggest gap, free</li>
         <li>The full breakdown by email once Kenny has read your file</li>
       </ul>
@@ -182,7 +185,7 @@
     </div>
 
     <div class="step" id="step-2">
-      <p class="step-title">First, who is filling this out?</p>
+      <p class="step-title">Before we start, who is filling this out?</p>
       <div class="radio-group">
         <div class="radio-option" onclick="pickContext(this, 'who', 'parent', 2)"><span class="radio-dot"></span><span>I am the parent</span></div>
         <div class="radio-option" onclick="pickContext(this, 'who', 'player_parents', 2)"><span class="radio-dot"></span><span>I am the player, my parents are involved</span></div>
@@ -193,7 +196,7 @@
 
     <div class="step" id="step-3">
       <p class="step-title">How old is the player?</p>
-      <p class="step-subtitle">This changes what every answer below means. A 12 year old and a 16 year old with identical habits are in completely different situations.</p>
+      <p class="step-subtitle">This changes what every answer below means. A 12 year old and a 16 year old with the same habits are in different situations.</p>
       <select class="field-input" id="field-age">
         <option value="">Select an age</option>
       </select>
@@ -215,276 +218,323 @@
     </div>
 
     <div class="step" id="step-5">
-      <p class="step-eyebrow">Fueling</p>
-      <p class="step-title">On a normal day, how many times do they actually eat?</p>
+      <p class="step-eyebrow">Nutrition</p>
+      <p class="step-title">On a normal day, how many times does your player eat?</p>
       <p class="step-subtitle">Count everything. Meals, snacks, the thing they grab in the car.</p>
       <div class="radio-group">
-        <div class="radio-option" onclick="pickScored(this, 'fuel_1', 'fueling', 0, 5)"><span class="radio-dot"></span><span>2 or 3, and one of those usually gets skipped</span></div>
-        <div class="radio-option" onclick="pickScored(this, 'fuel_1', 'fueling', 1, 5)"><span class="radio-dot"></span><span>3 solid meals, not much in between</span></div>
-        <div class="radio-option" onclick="pickScored(this, 'fuel_1', 'fueling', 2, 5)"><span class="radio-dot"></span><span>3 meals plus a snack or two, roughly the same times daily</span></div>
-        <div class="radio-option" onclick="pickScored(this, 'fuel_1', 'fueling', 3, 5)"><span class="radio-dot"></span><span>5 or 6 eating occasions on a consistent clock</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'nut_1', 'nutrition', 0, 5)"><span class="radio-dot"></span><span>2 or 3, and one of those gets skipped</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'nut_1', 'nutrition', 1, 5)"><span class="radio-dot"></span><span>3 solid meals, not much in between</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'nut_1', 'nutrition', 2, 5)"><span class="radio-dot"></span><span>3 meals plus a snack or two, around the same times each day</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'nut_1', 'nutrition', 3, 5)"><span class="radio-dot"></span><span>5 or 6 eating occasions on a set clock</span></div>
       </div>
       <button class="btn-back" onclick="goTo(4)">&larr; Back</button>
     </div>
 
     <div class="step" id="step-6">
-      <p class="step-eyebrow">Fueling</p>
-      <p class="step-title">What do they eat in the 2 hours before a skate or a workout?</p>
+      <p class="step-eyebrow">Sleep</p>
+      <p class="step-title">On a school night, how much sleep are they getting?</p>
+      <p class="step-subtitle">Lights out to alarm. Be honest, most parents overestimate this by about an hour.</p>
       <div class="radio-group">
-        <div class="radio-option" onclick="pickScored(this, 'fuel_2', 'fueling', 0, 6)"><span class="radio-dot"></span><span>Usually nothing, or we are eating in the car on the way</span></div>
-        <div class="radio-option" onclick="pickScored(this, 'fuel_2', 'fueling', 1, 6)"><span class="radio-dot"></span><span>Whatever is around, it is different every time</span></div>
-        <div class="radio-option" onclick="pickScored(this, 'fuel_2', 'fueling', 2, 6)"><span class="radio-dot"></span><span>Something most times, but it is not planned</span></div>
-        <div class="radio-option" onclick="pickScored(this, 'fuel_2', 'fueling', 3, 6)"><span class="radio-dot"></span><span>A planned carb-forward snack, same window every time</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'slp_1', 'sleep', 0, 6)"><span class="radio-dot"></span><span>Under 7 hours</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'slp_1', 'sleep', 1, 6)"><span class="radio-dot"></span><span>7 to 8 hours</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'slp_1', 'sleep', 2, 6)"><span class="radio-dot"></span><span>8 to 9 hours</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'slp_1', 'sleep', 3, 6)"><span class="radio-dot"></span><span>9.5 hours or more</span></div>
       </div>
       <button class="btn-back" onclick="goTo(5)">&larr; Back</button>
     </div>
 
     <div class="step" id="step-7">
-      <p class="step-eyebrow">Fueling</p>
-      <p class="step-title">Do they know how much they need to eat to fuel a season?</p>
-      <p class="step-subtitle">Not a diet. An actual number for calories or protein that matches their body and their load.</p>
+      <p class="step-eyebrow">Physical Training</p>
+      <p class="step-title">How many real off-ice training sessions do they get in a normal week?</p>
+      <p class="step-subtitle">Off ice only. Team practices and games do not count here.</p>
       <div class="radio-group">
-        <div class="radio-option" onclick="pickScored(this, 'fuel_3', 'fueling', 0, 7)"><span class="radio-dot"></span><span>No idea, honestly. We have never looked at it</span></div>
-        <div class="radio-option" onclick="pickScored(this, 'fuel_3', 'fueling', 1, 7)"><span class="radio-dot"></span><span>We have a rough sense, mostly guessing</span></div>
-        <div class="radio-option" onclick="pickScored(this, 'fuel_3', 'fueling', 2, 7)"><span class="radio-dot"></span><span>We know roughly what they should be eating, we just do not track it</span></div>
-        <div class="radio-option" onclick="pickScored(this, 'fuel_3', 'fueling', 3, 7)"><span class="radio-dot"></span><span>They have a target and they know when they have hit it</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'trn_1', 'training', 0, 7)"><span class="radio-dot"></span><span>None, or once in a while when they feel like it</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'trn_1', 'training', 1, 7)"><span class="radio-dot"></span><span>1 or 2</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'trn_1', 'training', 2, 7)"><span class="radio-dot"></span><span>3</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'trn_1', 'training', 3, 7)"><span class="radio-dot"></span><span>4 or more, every week</span></div>
       </div>
       <button class="btn-back" onclick="goTo(6)">&larr; Back</button>
     </div>
 
     <div class="step" id="step-8">
-      <p class="step-eyebrow">Recovery</p>
-      <p class="step-title">On a school night, how much sleep are they actually getting?</p>
-      <p class="step-subtitle">Lights out to alarm. Be honest, most parents overestimate this by about an hour.</p>
+      <p class="step-eyebrow">Mental</p>
+      <p class="step-title">What happens on the shift right after they make a mistake?</p>
       <div class="radio-group">
-        <div class="radio-option" onclick="pickScored(this, 'rec_1', 'recovery', 0, 8)"><span class="radio-dot"></span><span>Under 7 hours</span></div>
-        <div class="radio-option" onclick="pickScored(this, 'rec_1', 'recovery', 1, 8)"><span class="radio-dot"></span><span>7 to 8 hours</span></div>
-        <div class="radio-option" onclick="pickScored(this, 'rec_1', 'recovery', 2, 8)"><span class="radio-dot"></span><span>8 to 9 hours</span></div>
-        <div class="radio-option" onclick="pickScored(this, 'rec_1', 'recovery', 3, 8)"><span class="radio-dot"></span><span>9.5 hours or more</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'mnd_1', 'mental', 0, 8)"><span class="radio-dot"></span><span>They are gone. The rest of the game is a write-off</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'mnd_1', 'mental', 1, 8)"><span class="radio-dot"></span><span>They play scared, stop asking for the puck</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'mnd_1', 'mental', 2, 8)"><span class="radio-dot"></span><span>They shake it off within a period</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'mnd_1', 'mental', 3, 8)"><span class="radio-dot"></span><span>Next shift they are back to normal, or better</span></div>
       </div>
       <button class="btn-back" onclick="goTo(7)">&larr; Back</button>
     </div>
 
     <div class="step" id="step-9">
-      <p class="step-eyebrow">Recovery</p>
-      <p class="step-title">How much does their sleep move around from night to night?</p>
+      <p class="step-eyebrow">Screen Time</p>
+      <p class="step-title">Outside of school, how many hours a day is your player on a phone or gaming?</p>
       <div class="radio-group">
-        <div class="radio-option" onclick="pickScored(this, 'rec_2', 'recovery', 0, 9)"><span class="radio-dot"></span><span>It is all over the place, weekends especially</span></div>
-        <div class="radio-option" onclick="pickScored(this, 'rec_2', 'recovery', 1, 9)"><span class="radio-dot"></span><span>Weeknights are okay, weekends blow it up completely</span></div>
-        <div class="radio-option" onclick="pickScored(this, 'rec_2', 'recovery', 2, 9)"><span class="radio-dot"></span><span>Mostly steady, off by an hour or so on weekends</span></div>
-        <div class="radio-option" onclick="pickScored(this, 'rec_2', 'recovery', 3, 9)"><span class="radio-dot"></span><span>Same bedtime and same wake time 7 days a week</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'scr_1', 'screen_time', 0, 9)"><span class="radio-dot"></span><span>5 or more</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'scr_1', 'screen_time', 1, 9)"><span class="radio-dot"></span><span>3 to 4</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'scr_1', 'screen_time', 2, 9)"><span class="radio-dot"></span><span>1 to 2</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'scr_1', 'screen_time', 3, 9)"><span class="radio-dot"></span><span>Under an hour, and they manage it themselves</span></div>
       </div>
       <button class="btn-back" onclick="goTo(8)">&larr; Back</button>
     </div>
 
     <div class="step" id="step-10">
-      <p class="step-eyebrow">Recovery</p>
-      <p class="step-title">What happens in the last hour before lights out?</p>
+      <p class="step-eyebrow">Nutrition</p>
+      <p class="step-title">What do they eat in the 2 hours before a skate or a workout?</p>
       <div class="radio-group">
-        <div class="radio-option" onclick="pickScored(this, 'rec_3', 'recovery', 0, 10)"><span class="radio-dot"></span><span>Phone or game until they fall asleep with it</span></div>
-        <div class="radio-option" onclick="pickScored(this, 'rec_3', 'recovery', 1, 10)"><span class="radio-dot"></span><span>Screens right up to lights out most nights</span></div>
-        <div class="radio-option" onclick="pickScored(this, 'rec_3', 'recovery', 2, 10)"><span class="radio-dot"></span><span>They wind down sometimes, no real routine</span></div>
-        <div class="radio-option" onclick="pickScored(this, 'rec_3', 'recovery', 3, 10)"><span class="radio-dot"></span><span>A wind-down routine they run on their own, screens away</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'nut_2', 'nutrition', 0, 10)"><span class="radio-dot"></span><span>Nothing, or we are eating in the car on the way</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'nut_2', 'nutrition', 1, 10)"><span class="radio-dot"></span><span>Whatever is around, it is different every time</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'nut_2', 'nutrition', 2, 10)"><span class="radio-dot"></span><span>Something most times, but it is not planned</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'nut_2', 'nutrition', 3, 10)"><span class="radio-dot"></span><span>A planned carb-forward snack, same window every time</span></div>
       </div>
       <button class="btn-back" onclick="goTo(9)">&larr; Back</button>
     </div>
 
     <div class="step" id="step-11">
-      <p class="step-eyebrow">Training</p>
-      <p class="step-title">How many real off-ice training sessions do they get in a week?</p>
-      <p class="step-subtitle">Off ice only. Team practices and games do not count here.</p>
+      <p class="step-eyebrow">Sleep</p>
+      <p class="step-title">How much does their sleep move around from night to night?</p>
       <div class="radio-group">
-        <div class="radio-option" onclick="pickScored(this, 'trn_1', 'training', 0, 11)"><span class="radio-dot"></span><span>None, or once in a while when they feel like it</span></div>
-        <div class="radio-option" onclick="pickScored(this, 'trn_1', 'training', 1, 11)"><span class="radio-dot"></span><span>1 or 2</span></div>
-        <div class="radio-option" onclick="pickScored(this, 'trn_1', 'training', 2, 11)"><span class="radio-dot"></span><span>3</span></div>
-        <div class="radio-option" onclick="pickScored(this, 'trn_1', 'training', 3, 11)"><span class="radio-dot"></span><span>4 or more, every week</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'slp_2', 'sleep', 0, 11)"><span class="radio-dot"></span><span>It is all over the place, weekends the worst</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'slp_2', 'sleep', 1, 11)"><span class="radio-dot"></span><span>Weeknights are okay, weekends blow it up</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'slp_2', 'sleep', 2, 11)"><span class="radio-dot"></span><span>Steady, off by an hour or so on weekends</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'slp_2', 'sleep', 3, 11)"><span class="radio-dot"></span><span>Same bedtime and same wake time 7 days a week</span></div>
       </div>
       <button class="btn-back" onclick="goTo(10)">&larr; Back</button>
     </div>
 
     <div class="step" id="step-12">
-      <p class="step-eyebrow">Training</p>
-      <p class="step-title">Where does that training come from?</p>
+      <p class="step-eyebrow">Mental</p>
+      <p class="step-title">How do they show up to the biggest games?</p>
+      <p class="step-subtitle">Tryouts, playoffs, the game with scouts in the building.</p>
       <div class="radio-group">
-        <div class="radio-option" onclick="pickScored(this, 'trn_2', 'training', 0, 12)"><span class="radio-dot"></span><span>They make it up as they go</span></div>
-        <div class="radio-option" onclick="pickScored(this, 'trn_2', 'training', 1, 12)"><span class="radio-dot"></span><span>Stuff from YouTube, or what their buddies are doing</span></div>
-        <div class="radio-option" onclick="pickScored(this, 'trn_2', 'training', 2, 12)"><span class="radio-dot"></span><span>A team program or a generic plan they found</span></div>
-        <div class="radio-option" onclick="pickScored(this, 'trn_2', 'training', 3, 12)"><span class="radio-dot"></span><span>A written program built for them specifically</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'mnd_2', 'mental', 0, 12)"><span class="radio-dot"></span><span>They shrink. Their worst hockey shows up when it matters most</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'mnd_2', 'mental', 1, 12)"><span class="radio-dot"></span><span>Nervous, and it takes a period to settle in</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'mnd_2', 'mental', 2, 12)"><span class="radio-dot"></span><span>About the same as any other game</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'mnd_2', 'mental', 3, 12)"><span class="radio-dot"></span><span>They want those games. They are better when it is bigger</span></div>
       </div>
       <button class="btn-back" onclick="goTo(11)">&larr; Back</button>
     </div>
 
     <div class="step" id="step-13">
-      <p class="step-eyebrow">Training</p>
-      <p class="step-title">Compared to 3 months ago, are they measurably stronger or faster?</p>
-      <p class="step-subtitle">Measurably means you could point at a number, not a feeling.</p>
+      <p class="step-eyebrow">Physical Training</p>
+      <p class="step-title">Where does that off-ice training come from?</p>
       <div class="radio-group">
-        <div class="radio-option" onclick="pickScored(this, 'trn_3', 'training', 0, 13)"><span class="radio-dot"></span><span>No, and we would not be able to tell either way</span></div>
-        <div class="radio-option" onclick="pickScored(this, 'trn_3', 'training', 1, 13)"><span class="radio-dot"></span><span>Maybe, but nothing we can point to</span></div>
-        <div class="radio-option" onclick="pickScored(this, 'trn_3', 'training', 2, 13)"><span class="radio-dot"></span><span>Yes, we can see it even if we do not track it</span></div>
-        <div class="radio-option" onclick="pickScored(this, 'trn_3', 'training', 3, 13)"><span class="radio-dot"></span><span>Yes, and we have the numbers to prove it</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'trn_2', 'training', 0, 13)"><span class="radio-dot"></span><span>They make it up as they go</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'trn_2', 'training', 1, 13)"><span class="radio-dot"></span><span>Stuff from YouTube, or what their buddies are doing</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'trn_2', 'training', 2, 13)"><span class="radio-dot"></span><span>A team program or a generic plan they found</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'trn_2', 'training', 3, 13)"><span class="radio-dot"></span><span>A written program built for them specifically</span></div>
       </div>
       <button class="btn-back" onclick="goTo(12)">&larr; Back</button>
     </div>
 
     <div class="step" id="step-14">
-      <p class="step-eyebrow">Structure</p>
-      <p class="step-title">How does their week get decided?</p>
+      <p class="step-eyebrow">Screen Time</p>
+      <p class="step-title">Where does the phone spend the night?</p>
       <div class="radio-group">
-        <div class="radio-option" onclick="pickScored(this, 'str_1', 'structure', 0, 14)"><span class="radio-dot"></span><span>Day by day, whatever comes up</span></div>
-        <div class="radio-option" onclick="pickScored(this, 'str_1', 'structure', 1, 14)"><span class="radio-dot"></span><span>We know the hockey schedule, everything else is loose</span></div>
-        <div class="radio-option" onclick="pickScored(this, 'str_1', 'structure', 2, 14)"><span class="radio-dot"></span><span>We plan most of it on Sunday, it holds about half the time</span></div>
-        <div class="radio-option" onclick="pickScored(this, 'str_1', 'structure', 3, 14)"><span class="radio-dot"></span><span>The whole week is mapped, and they know it without asking</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'scr_2', 'screen_time', 0, 14)"><span class="radio-dot"></span><span>In the bed with them</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'scr_2', 'screen_time', 1, 14)"><span class="radio-dot"></span><span>In the room, within reach</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'scr_2', 'screen_time', 2, 14)"><span class="radio-dot"></span><span>In the room, but across it</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'scr_2', 'screen_time', 3, 14)"><span class="radio-dot"></span><span>Out of the bedroom entirely</span></div>
       </div>
       <button class="btn-back" onclick="goTo(13)">&larr; Back</button>
     </div>
 
     <div class="step" id="step-15">
-      <p class="step-eyebrow">Structure</p>
-      <p class="step-title">How often does something important get dropped because the day ran out?</p>
-      <p class="step-subtitle">Training, a real meal, homework, sleep. Whichever one loses.</p>
+      <p class="step-eyebrow">Nutrition</p>
+      <p class="step-title">Do they know how much they need to eat to fuel a season?</p>
+      <p class="step-subtitle">Not a diet. An actual number for calories or protein that matches their body and their load.</p>
       <div class="radio-group">
-        <div class="radio-option" onclick="pickScored(this, 'str_2', 'structure', 0, 15)"><span class="radio-dot"></span><span>Most days, something gives</span></div>
-        <div class="radio-option" onclick="pickScored(this, 'str_2', 'structure', 1, 15)"><span class="radio-dot"></span><span>Two or three times a week</span></div>
-        <div class="radio-option" onclick="pickScored(this, 'str_2', 'structure', 2, 15)"><span class="radio-dot"></span><span>Once a week or so, usually a busy night</span></div>
-        <div class="radio-option" onclick="pickScored(this, 'str_2', 'structure', 3, 15)"><span class="radio-dot"></span><span>Rarely, the week is built so it does not have to</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'nut_3', 'nutrition', 0, 15)"><span class="radio-dot"></span><span>No idea. We have not looked at it</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'nut_3', 'nutrition', 1, 15)"><span class="radio-dot"></span><span>We have a rough sense, more of a guess</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'nut_3', 'nutrition', 2, 15)"><span class="radio-dot"></span><span>We know about what they should eat, we do not track it</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'nut_3', 'nutrition', 3, 15)"><span class="radio-dot"></span><span>They have a target and they know when they have hit it</span></div>
       </div>
       <button class="btn-back" onclick="goTo(14)">&larr; Back</button>
     </div>
 
     <div class="step" id="step-16">
-      <p class="step-eyebrow">Structure</p>
-      <p class="step-title">How is school sitting alongside all of this?</p>
+      <p class="step-eyebrow">Sleep</p>
+      <p class="step-title">How do they wake up in the morning?</p>
       <div class="radio-group">
-        <div class="radio-option" onclick="pickScored(this, 'str_3', 'structure', 0, 16)"><span class="radio-dot"></span><span>It is a constant fight, and it is affecting hockey</span></div>
-        <div class="radio-option" onclick="pickScored(this, 'str_3', 'structure', 1, 16)"><span class="radio-dot"></span><span>It gets done late at night, or in a panic before it is due</span></div>
-        <div class="radio-option" onclick="pickScored(this, 'str_3', 'structure', 2, 16)"><span class="radio-dot"></span><span>It gets done, but it eats whatever time is left</span></div>
-        <div class="radio-option" onclick="pickScored(this, 'str_3', 'structure', 3, 16)"><span class="radio-dot"></span><span>There is a set study block and it holds year round</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'slp_3', 'sleep', 0, 16)"><span class="radio-dot"></span><span>Wrecked. It is a battle to get them up</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'slp_3', 'sleep', 1, 16)"><span class="radio-dot"></span><span>Groggy most days</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'slp_3', 'sleep', 2, 16)"><span class="radio-dot"></span><span>Okay once they get moving</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'slp_3', 'sleep', 3, 16)"><span class="radio-dot"></span><span>Rested, and up on their own</span></div>
       </div>
       <button class="btn-back" onclick="goTo(15)">&larr; Back</button>
     </div>
 
     <div class="step" id="step-17">
-      <p class="step-eyebrow">Consistency</p>
-      <p class="step-title">When they are not feeling it, does the work still happen?</p>
+      <p class="step-eyebrow">Mental</p>
+      <p class="step-title">Do they train the mental side on purpose?</p>
+      <p class="step-subtitle">Journaling, visualization, a pre-game routine, reviewing their own shifts.</p>
       <div class="radio-group">
-        <div class="radio-option" onclick="pickScored(this, 'con_1', 'consistency', 0, 17)"><span class="radio-dot"></span><span>No, a bad mood ends the day</span></div>
-        <div class="radio-option" onclick="pickScored(this, 'con_1', 'consistency', 1, 17)"><span class="radio-dot"></span><span>Only if someone pushes them into it</span></div>
-        <div class="radio-option" onclick="pickScored(this, 'con_1', 'consistency', 2, 17)"><span class="radio-dot"></span><span>Usually, though it is a shorter or easier version</span></div>
-        <div class="radio-option" onclick="pickScored(this, 'con_1', 'consistency', 3, 17)"><span class="radio-dot"></span><span>Yes. They do not negotiate with themselves about it</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'mnd_3', 'mental', 0, 17)"><span class="radio-dot"></span><span>No. We have not treated it as trainable</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'mnd_3', 'mental', 1, 17)"><span class="radio-dot"></span><span>They talk about it, but they do not do it</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'mnd_3', 'mental', 2, 17)"><span class="radio-dot"></span><span>They have a pre-game routine, nothing beyond that</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'mnd_3', 'mental', 3, 17)"><span class="radio-dot"></span><span>Yes, something deliberate most days</span></div>
       </div>
       <button class="btn-back" onclick="goTo(16)">&larr; Back</button>
     </div>
 
     <div class="step" id="step-18">
-      <p class="step-eyebrow">Consistency</p>
-      <p class="step-title">When they start something new, how long does it survive?</p>
+      <p class="step-eyebrow">Screen Time</p>
+      <p class="step-title">What is the last thing they look at before sleep?</p>
       <div class="radio-group">
-        <div class="radio-option" onclick="pickScored(this, 'con_2', 'consistency', 0, 18)"><span class="radio-dot"></span><span>Days. There is a lot of starting over in this house</span></div>
-        <div class="radio-option" onclick="pickScored(this, 'con_2', 'consistency', 1, 18)"><span class="radio-dot"></span><span>A couple of weeks, then it fades</span></div>
-        <div class="radio-option" onclick="pickScored(this, 'con_2', 'consistency', 2, 18)"><span class="radio-dot"></span><span>A month or two before something interrupts it</span></div>
-        <div class="radio-option" onclick="pickScored(this, 'con_2', 'consistency', 3, 18)"><span class="radio-dot"></span><span>It sticks. Things they start become how they operate</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'scr_3', 'screen_time', 0, 18)"><span class="radio-dot"></span><span>Phone or game until they fall asleep with it</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'scr_3', 'screen_time', 1, 18)"><span class="radio-dot"></span><span>Screens up to lights out most nights</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'scr_3', 'screen_time', 2, 18)"><span class="radio-dot"></span><span>They wind down off screens some nights, no set rule</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'scr_3', 'screen_time', 3, 18)"><span class="radio-dot"></span><span>Screens are gone before bed</span></div>
       </div>
       <button class="btn-back" onclick="goTo(17)">&larr; Back</button>
     </div>
 
     <div class="step" id="step-19">
-      <p class="step-eyebrow">Consistency</p>
-      <p class="step-title">After a bad game or a bad week, what does the next week look like?</p>
+      <p class="step-eyebrow">Physical Training</p>
+      <p class="step-title">Compared to 3 months ago, are they stronger or faster?</p>
+      <p class="step-subtitle">Something you could point to with a number, not a feeling.</p>
       <div class="radio-group">
-        <div class="radio-option" onclick="pickScored(this, 'con_3', 'consistency', 0, 19)"><span class="radio-dot"></span><span>It spirals. One bad week turns into a bad month</span></div>
-        <div class="radio-option" onclick="pickScored(this, 'con_3', 'consistency', 1, 19)"><span class="radio-dot"></span><span>They are flat for a while and slowly come back</span></div>
-        <div class="radio-option" onclick="pickScored(this, 'con_3', 'consistency', 2, 19)"><span class="radio-dot"></span><span>They reset by the next practice or two</span></div>
-        <div class="radio-option" onclick="pickScored(this, 'con_3', 'consistency', 3, 19)"><span class="radio-dot"></span><span>It barely registers. The routine carries them through</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'trn_3', 'training', 0, 19)"><span class="radio-dot"></span><span>No, and we would not be able to tell either way</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'trn_3', 'training', 1, 19)"><span class="radio-dot"></span><span>Maybe, but nothing we can point to</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'trn_3', 'training', 2, 19)"><span class="radio-dot"></span><span>Yes, we can see it even if we do not track it</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'trn_3', 'training', 3, 19)"><span class="radio-dot"></span><span>Yes, and we have the numbers to prove it</span></div>
       </div>
       <button class="btn-back" onclick="goTo(18)">&larr; Back</button>
     </div>
 
     <div class="step" id="step-20">
-      <p class="step-eyebrow">Mindset</p>
-      <p class="step-title">What happens on the shift right after they make a mistake?</p>
+      <p class="step-eyebrow">Nutrition</p>
+      <p class="step-title">How is their hydration through a normal day?</p>
       <div class="radio-group">
-        <div class="radio-option" onclick="pickScored(this, 'mnd_1', 'mindset', 0, 20)"><span class="radio-dot"></span><span>They are gone. The rest of the game is a write-off</span></div>
-        <div class="radio-option" onclick="pickScored(this, 'mnd_1', 'mindset', 1, 20)"><span class="radio-dot"></span><span>They play scared, stop asking for the puck</span></div>
-        <div class="radio-option" onclick="pickScored(this, 'mnd_1', 'mindset', 2, 20)"><span class="radio-dot"></span><span>They shake it off within a period</span></div>
-        <div class="radio-option" onclick="pickScored(this, 'mnd_1', 'mindset', 3, 20)"><span class="radio-dot"></span><span>Next shift they are back to normal, sometimes better</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'nut_4', 'nutrition', 0, 20)"><span class="radio-dot"></span><span>Barely drinks water, it is pop or energy drinks</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'nut_4', 'nutrition', 1, 20)"><span class="radio-dot"></span><span>Drinks when they think of it, or when thirsty</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'nut_4', 'nutrition', 2, 20)"><span class="radio-dot"></span><span>Decent water, but not consistent</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'nut_4', 'nutrition', 3, 20)"><span class="radio-dot"></span><span>Steady water all day, and they know it matters</span></div>
       </div>
       <button class="btn-back" onclick="goTo(19)">&larr; Back</button>
     </div>
 
     <div class="step" id="step-21">
-      <p class="step-eyebrow">Mindset</p>
-      <p class="step-title">How do they show up to the biggest games?</p>
-      <p class="step-subtitle">Tryouts, playoffs, the game with scouts in the building.</p>
+      <p class="step-eyebrow">Sleep</p>
+      <p class="step-title">What is the main thing getting in the way of their sleep?</p>
+      <p class="step-subtitle">The honest one.</p>
       <div class="radio-group">
-        <div class="radio-option" onclick="pickScored(this, 'mnd_2', 'mindset', 0, 21)"><span class="radio-dot"></span><span>They shrink. Their worst hockey shows up when it matters most</span></div>
-        <div class="radio-option" onclick="pickScored(this, 'mnd_2', 'mindset', 1, 21)"><span class="radio-dot"></span><span>Nervous, and it takes a period to settle in</span></div>
-        <div class="radio-option" onclick="pickScored(this, 'mnd_2', 'mindset', 2, 21)"><span class="radio-dot"></span><span>About the same as any other game</span></div>
-        <div class="radio-option" onclick="pickScored(this, 'mnd_2', 'mindset', 3, 21)"><span class="radio-dot"></span><span>They want those games. They are better when it is bigger</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'slp_4', 'sleep', 0, 21)"><span class="radio-dot"></span><span>Late screens or gaming</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'slp_4', 'sleep', 1, 21)"><span class="radio-dot"></span><span>Late practices, homework, or a packed schedule</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'slp_4', 'sleep', 2, 21)"><span class="radio-dot"></span><span>A busy mind, they struggle to shut it off</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'slp_4', 'sleep', 3, 21)"><span class="radio-dot"></span><span>Nothing much. Sleep is protected in our house</span></div>
       </div>
       <button class="btn-back" onclick="goTo(20)">&larr; Back</button>
     </div>
 
     <div class="step" id="step-22">
-      <p class="step-eyebrow">Mindset</p>
-      <p class="step-title">Do they train the mental side on purpose?</p>
-      <p class="step-subtitle">Journaling, visualization, a pre-game routine, reviewing their own shifts.</p>
+      <p class="step-eyebrow">Mental</p>
+      <p class="step-title">Who is driving this whole thing?</p>
+      <p class="step-subtitle">This one matters more than any other question on the audit.</p>
       <div class="radio-group">
-        <div class="radio-option" onclick="pickScored(this, 'mnd_3', 'mindset', 0, 22)"><span class="radio-dot"></span><span>No. We have never really treated it as trainable</span></div>
-        <div class="radio-option" onclick="pickScored(this, 'mnd_3', 'mindset', 1, 22)"><span class="radio-dot"></span><span>They talk about it sometimes, nothing they actually do</span></div>
-        <div class="radio-option" onclick="pickScored(this, 'mnd_3', 'mindset', 2, 22)"><span class="radio-dot"></span><span>They have a pre-game routine, nothing beyond that</span></div>
-        <div class="radio-option" onclick="pickScored(this, 'mnd_3', 'mindset', 3, 22)"><span class="radio-dot"></span><span>Yes, something deliberate most days</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'mnd_4', 'mental', 0, 22)"><span class="radio-dot"></span><span>Me. If I stop pushing, all of it stops</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'mnd_4', 'mental', 1, 22)"><span class="radio-dot"></span><span>Me, and they go along with it</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'mnd_4', 'mental', 2, 22)"><span class="radio-dot"></span><span>Shared. They want it, they need reminders</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'mnd_4', 'mental', 3, 22)"><span class="radio-dot"></span><span>Them. They are the one bringing it to me</span></div>
       </div>
       <button class="btn-back" onclick="goTo(21)">&larr; Back</button>
     </div>
 
     <div class="step" id="step-23">
-      <p class="step-eyebrow">Ownership</p>
-      <p class="step-title">Who is driving this?</p>
-      <p class="step-subtitle">The honest answer here matters more than any other question on this audit.</p>
+      <p class="step-eyebrow">Screen Time</p>
+      <p class="step-title">Does screen time eat into their training, homework or sleep?</p>
       <div class="radio-group">
-        <div class="radio-option" onclick="pickScored(this, 'own_1', 'ownership', 0, 23)"><span class="radio-dot"></span><span>Me. If I stop pushing, all of it stops</span></div>
-        <div class="radio-option" onclick="pickScored(this, 'own_1', 'ownership', 1, 23)"><span class="radio-dot"></span><span>Mostly me, they go along with it</span></div>
-        <div class="radio-option" onclick="pickScored(this, 'own_1', 'ownership', 2, 23)"><span class="radio-dot"></span><span>Shared. They want it, they need reminders</span></div>
-        <div class="radio-option" onclick="pickScored(this, 'own_1', 'ownership', 3, 23)"><span class="radio-dot"></span><span>Them. They are the one bringing it to me</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'scr_4', 'screen_time', 0, 23)"><span class="radio-dot"></span><span>It wins. Given the choice, the screen takes the time</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'scr_4', 'screen_time', 1, 23)"><span class="radio-dot"></span><span>It happens a few times a week</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'scr_4', 'screen_time', 2, 23)"><span class="radio-dot"></span><span>Here and there, on a slow night</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'scr_4', 'screen_time', 3, 23)"><span class="radio-dot"></span><span>Not an issue. It has its place and stays there</span></div>
       </div>
       <button class="btn-back" onclick="goTo(22)">&larr; Back</button>
     </div>
 
     <div class="step" id="step-24">
-      <p class="step-eyebrow">Ownership</p>
-      <p class="step-title">Do they know exactly what to work on to reach the next level?</p>
+      <p class="step-eyebrow">Physical Training</p>
+      <p class="step-title">When they are not feeling it, does the training still happen?</p>
       <div class="radio-group">
-        <div class="radio-option" onclick="pickScored(this, 'own_2', 'ownership', 0, 24)"><span class="radio-dot"></span><span>No. We are guessing, and that is partly why we are here</span></div>
-        <div class="radio-option" onclick="pickScored(this, 'own_2', 'ownership', 1, 24)"><span class="radio-dot"></span><span>They know the general idea, not what to actually do about it</span></div>
-        <div class="radio-option" onclick="pickScored(this, 'own_2', 'ownership', 2, 24)"><span class="radio-dot"></span><span>They know what, they are fuzzy on how</span></div>
-        <div class="radio-option" onclick="pickScored(this, 'own_2', 'ownership', 3, 24)"><span class="radio-dot"></span><span>They could name the 3 things and tell you their plan for each</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'trn_4', 'training', 0, 24)"><span class="radio-dot"></span><span>No, a bad mood ends the day</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'trn_4', 'training', 1, 24)"><span class="radio-dot"></span><span>Only if someone pushes them into it</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'trn_4', 'training', 2, 24)"><span class="radio-dot"></span><span>It happens, though a shorter or easier version</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'trn_4', 'training', 3, 24)"><span class="radio-dot"></span><span>Yes. They do not negotiate with themselves about it</span></div>
       </div>
       <button class="btn-back" onclick="goTo(23)">&larr; Back</button>
     </div>
 
     <div class="step" id="step-25">
-      <p class="step-eyebrow">Ownership</p>
-      <p class="step-title">Outside your house, who holds them to a standard week to week?</p>
-      <p class="step-subtitle">Someone who notices when they skip, and says something about it.</p>
+      <p class="step-eyebrow">Nutrition</p>
+      <p class="step-title">What does most of their food look like?</p>
       <div class="radio-group">
-        <div class="radio-option" onclick="pickScored(this, 'own_3', 'ownership', 0, 25)"><span class="radio-dot"></span><span>Nobody. It is on us</span></div>
-        <div class="radio-option" onclick="pickScored(this, 'own_3', 'ownership', 1, 25)"><span class="radio-dot"></span><span>Their coach, in season only, and only about hockey</span></div>
-        <div class="radio-option" onclick="pickScored(this, 'own_3', 'ownership', 2, 25)"><span class="radio-dot"></span><span>A trainer or coach they see now and then</span></div>
-        <div class="radio-option" onclick="pickScored(this, 'own_3', 'ownership', 3, 25)"><span class="radio-dot"></span><span>Someone checks in on them every single week, year round</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'nut_5', 'nutrition', 0, 25)"><span class="radio-dot"></span><span>Grab-and-go, fast food, packaged stuff</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'nut_5', 'nutrition', 1, 25)"><span class="radio-dot"></span><span>A mix, whatever is easy</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'nut_5', 'nutrition', 2, 25)"><span class="radio-dot"></span><span>Home-cooked, with some junk</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'nut_5', 'nutrition', 3, 25)"><span class="radio-dot"></span><span>Real whole food, and they think about what they put in</span></div>
       </div>
       <button class="btn-back" onclick="goTo(24)">&larr; Back</button>
     </div>
 
     <div class="step" id="step-26">
-      <p class="step-title">Last one. If you could fix one thing for them in the next 90 days, what would it be?</p>
-      <p class="step-subtitle">Your words, not a category. This is the part Kenny reads first.</p>
-      <textarea class="field-input field-textarea" id="field-one-thing" maxlength="800" placeholder="They have the skill, they just disappear in the big games and I do not know how to help with that..."></textarea>
-      <button class="btn-continue" onclick="goTo(27)">Continue &rarr;</button>
+      <p class="step-eyebrow">Mental</p>
+      <p class="step-title">Do they know what to work on to reach the next level?</p>
+      <div class="radio-group">
+        <div class="radio-option" onclick="pickScored(this, 'mnd_5', 'mental', 0, 26)"><span class="radio-dot"></span><span>No. We are guessing, and that is part of why we are here</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'mnd_5', 'mental', 1, 26)"><span class="radio-dot"></span><span>They know the general idea, not what to do about it</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'mnd_5', 'mental', 2, 26)"><span class="radio-dot"></span><span>They know what, they are fuzzy on how</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'mnd_5', 'mental', 3, 26)"><span class="radio-dot"></span><span>They could name the 3 things and tell you their plan for each</span></div>
+      </div>
       <button class="btn-back" onclick="goTo(25)">&larr; Back</button>
     </div>
 
     <div class="step" id="step-27">
+      <p class="step-eyebrow">Sleep</p>
+      <p class="step-title">Is there a set bedtime and a wind-down routine?</p>
+      <div class="radio-group">
+        <div class="radio-option" onclick="pickScored(this, 'slp_5', 'sleep', 0, 27)"><span class="radio-dot"></span><span>No. Bedtime is whenever they crash</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'slp_5', 'sleep', 1, 27)"><span class="radio-dot"></span><span>A rough target we miss more than hit</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'slp_5', 'sleep', 2, 27)"><span class="radio-dot"></span><span>Most nights, though it slips on weekends</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'slp_5', 'sleep', 3, 27)"><span class="radio-dot"></span><span>Same wind-down every night, and they own it</span></div>
+      </div>
+      <button class="btn-back" onclick="goTo(26)">&larr; Back</button>
+    </div>
+
+    <div class="step" id="step-28">
+      <p class="step-eyebrow">Physical Training</p>
+      <p class="step-title">How do they treat the stuff around training, the warmups, mobility and nagging tweaks?</p>
+      <div class="radio-group">
+        <div class="radio-option" onclick="pickScored(this, 'trn_5', 'training', 0, 28)"><span class="radio-dot"></span><span>They do not think about it until something hurts</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'trn_5', 'training', 1, 28)"><span class="radio-dot"></span><span>Only when something is already sore</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'trn_5', 'training', 2, 28)"><span class="radio-dot"></span><span>Some warmup, but it is inconsistent</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'trn_5', 'training', 3, 28)"><span class="radio-dot"></span><span>A built-in routine they run without being told</span></div>
+      </div>
+      <button class="btn-back" onclick="goTo(27)">&larr; Back</button>
+    </div>
+
+    <div class="step" id="step-29">
+      <p class="step-eyebrow">Screen Time</p>
+      <p class="step-title">Can they put the phone down on their own?</p>
+      <div class="radio-group">
+        <div class="radio-option" onclick="pickScored(this, 'scr_5', 'screen_time', 0, 29)"><span class="radio-dot"></span><span>No. It is a daily fight</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'scr_5', 'screen_time', 1, 29)"><span class="radio-dot"></span><span>Only with a fight</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'scr_5', 'screen_time', 2, 29)"><span class="radio-dot"></span><span>With reminders</span></div>
+        <div class="radio-option" onclick="pickScored(this, 'scr_5', 'screen_time', 3, 29)"><span class="radio-dot"></span><span>Yes. They self-regulate without being told</span></div>
+      </div>
+      <button class="btn-back" onclick="goTo(28)">&larr; Back</button>
+    </div>
+
+    <div class="step" id="step-30">
+      <p class="step-title">Last one. If you could fix one thing for them in the next 90 days, what would it be?</p>
+      <p class="step-subtitle">Your words, not a category. This is the part Kenny reads first.</p>
+      <textarea class="field-input field-textarea" id="field-one-thing" maxlength="800" placeholder="They have the skill, they just disappear in the big games and I do not know how to help with that..."></textarea>
+      <button class="btn-continue" onclick="goTo(31)">Continue &rarr;</button>
+      <button class="btn-back" onclick="goTo(29)">&larr; Back</button>
+    </div>
+
+    <div class="step" id="step-31">
       <p class="step-title">Their audit is ready.</p>
       <p class="step-subtitle">Your score and your biggest gap are on the next screen. The full breakdown, what the gap is costing on the ice and the plan to close it, comes by email once Kenny has gone through the file himself.</p>
 
@@ -515,7 +565,7 @@
       </div>
 
       <button class="btn-continue" id="submit-btn" onclick="submitAudit()">Show me the results &rarr;</button>
-      <button class="btn-back" onclick="goTo(26)">&larr; Back</button>
+      <button class="btn-back" onclick="goTo(30)">&larr; Back</button>
     </div>
 
     <!-- ── RESULT ── -->
@@ -556,7 +606,7 @@
 
 <script>
 /* ══════════════════════════════════════════════════════════════════
-   GENERATED FROM audit_spec.json v1.1 by build_page.py.
+   GENERATED FROM audit_spec.json v2.1 by build_page.py.
    Do not hand-edit the questions or the scoring here. Edit the spec
    and re-run the builder, or this page and the droplet's report
    generator will describe different audits.
@@ -575,47 +625,35 @@ const CONFIG = {
 
 const SPEC = {
   "domains": {
-    "fueling": {
-      "label": "Fueling",
+    "nutrition": {
+      "label": "Nutrition",
       "order": 1,
       "handicap": 8,
       "premise": "Nutrition and sleep drive more than 90 percent of results. Everything else gets built on top of these two."
     },
-    "recovery": {
-      "label": "Recovery",
+    "sleep": {
+      "label": "Sleep",
       "order": 2,
       "handicap": 8,
-      "premise": "The target is 9.5 to 10 hours, held on the same clock 7 days a week. Sleep is where the training actually lands."
+      "premise": "The target is 9.5 to 10 hours, held on the same clock 7 days a week. Sleep is where the training lands."
+    },
+    "screen_time": {
+      "label": "Screen Time",
+      "order": 3,
+      "handicap": 4,
+      "premise": "Screens are the quietest thief of development. Every hour on a phone is an hour not training, sleeping or recovering, and the late scrolling wrecks the sleep everything else sits on."
     },
     "training": {
-      "label": "Training",
-      "order": 3,
-      "handicap": 0,
-      "premise": "Around 4 to 5 real sessions a week, on a written program that progresses, built around the equipment they actually have."
-    },
-    "structure": {
-      "label": "Structure",
+      "label": "Physical Training",
       "order": 4,
-      "handicap": 4,
-      "premise": "The plan is a whole-day life grid, not a workout list. Wake, meals, training, skills, study, wind-down, lights out."
+      "handicap": 0,
+      "premise": "Around 4 to 5 real sessions a week, on a written program that progresses, built around the equipment they have."
     },
-    "consistency": {
-      "label": "Consistency",
+    "mental": {
+      "label": "Mental",
       "order": 5,
       "handicap": 0,
-      "premise": "Standards over motivation. Motivation decides whether today feels good. Standards decide whether today happens."
-    },
-    "mindset": {
-      "label": "Mindset",
-      "order": 6,
-      "handicap": 0,
-      "premise": "Pressure is a privilege. Reactive becomes proactive. The mental side gets trained on purpose, the same as the physical side."
-    },
-    "ownership": {
-      "label": "Ownership",
-      "order": 7,
-      "handicap": 0,
-      "premise": "Hockey is the vehicle. We are building a leader, and the athlete follows. The more questions they ask, the further they go."
+      "premise": "Pressure is a privilege. Reactive becomes proactive. Hockey is the vehicle, we are building a leader, and the athlete follows. The mental side gets trained on purpose, the same as the physical side."
     }
   },
   "bands": [
@@ -652,12 +690,13 @@ const SPEC = {
       "frame": "Very few players their age come back at this level, and you should know that. The work now is not repair, it is refinement, and holding these standards through the seasons where everything gets busier and most players quietly slide backward."
     }
   ],
-  "questionCount": 21,
-  "maxScore": 63,
-  "specVersion": "1.1"
+  "questionCount": 25,
+  "maxScore": 75,
+  "specVersion": "2.1"
 };
-const TOTAL_STEPS = 27;
-const STEP_NAMES = {"2": "who", "3": "age", "4": "level", "5": "fuel_1", "6": "fuel_2", "7": "fuel_3", "8": "rec_1", "9": "rec_2", "10": "rec_3", "11": "trn_1", "12": "trn_2", "13": "trn_3", "14": "str_1", "15": "str_2", "16": "str_3", "17": "con_1", "18": "con_2", "19": "con_3", "20": "mnd_1", "21": "mnd_2", "22": "mnd_3", "23": "own_1", "24": "own_2", "25": "own_3", "26": "one_thing", "27": "capture"};
+const TOTAL_STEPS = 31;
+const STEP_NAMES = {"2": "who", "3": "age", "4": "level", "5": "nut_1", "6": "slp_1", "7": "trn_1", "8": "mnd_1", "9": "scr_1", "10": "nut_2", "11": "slp_2", "12": "mnd_2", "13": "trn_2", "14": "scr_2", "15": "nut_3", "16": "slp_3", "17": "mnd_3", "18": "scr_3", "19": "trn_3", "20": "nut_4", "21": "slp_4", "22": "mnd_4", "23": "scr_4", "24": "trn_4", "25": "nut_5", "26": "mnd_5", "27": "slp_5", "28": "trn_5", "29": "scr_5", "30": "one_thing", "31": "capture"};
+const N_QUESTIONS = 25;
 
 /* ── Meta Pixel ── */
 (function initPixel() {
@@ -716,17 +755,30 @@ let currentStep = 1;
 })();
 
 /* ── Navigation ── */
-/* Steps 2..26 are the 25 questions. Step 1 is the intro and the last step
-   is the contact form, so neither is numbered: labelling the intro
-   "Question 1 of 27" both miscounts and contradicts the 25 on the page. */
-const FIRST_Q_STEP = 2, LAST_Q_STEP = 26, QUESTION_COUNT = 25;
+/* Only the scored questions are numbered. who/age/level are setup and the
+   free-text is a bonus, so neither counts toward the 25 the page promises.
+   SCORED_STEPS is the ordered list of step numbers that ARE the 25. */
+const SCORED_STEPS = [5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29];
+const QNUM = {};
+SCORED_STEPS.forEach((s, i) => { QNUM[s] = i + 1; });
+const QUESTION_COUNT = SCORED_STEPS.length;
+const FIRST_SCORED = SCORED_STEPS[0];
 function setProgress(step) {
-  const done = Math.min(Math.max(step - 1, 0), QUESTION_COUNT);
-  document.getElementById('progress').style.width = (done / QUESTION_COUNT * 100) + '%';
   const label = document.getElementById('progress-label');
-  if (step < FIRST_Q_STEP)      label.textContent = '25 questions, about 5 minutes';
-  else if (step > LAST_Q_STEP)  label.textContent = 'All 25 answered. Last step.';
-  else label.textContent = 'Question ' + (step - 1) + ' of ' + QUESTION_COUNT;
+  const fill = document.getElementById('progress');
+  if (QNUM[step]) {
+    fill.style.width = (QNUM[step] / QUESTION_COUNT * 100) + '%';
+    label.textContent = 'Question ' + QNUM[step] + ' of ' + QUESTION_COUNT;
+  } else if (step === 1) {
+    fill.style.width = '0%';
+    label.textContent = QUESTION_COUNT + ' questions, about 6 minutes';
+  } else if (step < FIRST_SCORED) {
+    fill.style.width = '2%';
+    label.textContent = 'Quick setup';
+  } else {
+    fill.style.width = '100%';
+    label.textContent = 'All ' + QUESTION_COUNT + ' answered. Last step.';
+  }
 }
 function goTo(n) {
   trackStep(n);
@@ -772,7 +824,7 @@ function pickScored(el, id, domain, score, step) {
 
 /* ── Scoring ──
    Domain percent = sum of its 3 answers / 9.
-   Foundation score = total / 63.
+   Foundation score = total / 75.
    PRIMARY GAP is ranked on (percent - handicap), not raw percent: fueling
    and recovery carry a handicap because nutrition and sleep drive >90% of
    results, so those get fixed first even when another area scores slightly
