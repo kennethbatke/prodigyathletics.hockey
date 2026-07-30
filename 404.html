@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prodigy Athletics</title>
+  <meta name="robots" content="noindex">
+  <!-- Case-insensitive router. GitHub Pages serves files case-SENSITIVELY and
+       has no server-side redirects, so any wrong-cased URL (e.g. /auditmyplayer
+       for /AuditMyPlayer/) lands here on the 404 page. This script lowercases
+       the first path segment, matches it to the canonical route, and forwards.
+       One file makes every page case-insensitive; no duplicate folders to keep
+       in sync. Add new routes to ROUTES as pages are built. -->
+  <script>
+    (function () {
+      var ROUTES = {
+        "auditmyplayer": "/AuditMyPlayer/",
+        "apply": "/apply/",
+        "connect": "/connect/",
+        "results": "/results/",
+        "welcome-offer": "/welcome-offer/",
+        "signed": "/signed/",
+        "enrolled": "/enrolled/",
+        "supplements-added": "/supplements-added/",
+        "resources": "/resources/",
+        "privacy": "/privacy/",
+        "terms": "/terms/",
+        "data-deletion": "/data-deletion/"
+      };
+      try {
+        var seg = location.pathname.replace(/^\/+/, "").replace(/\/+$/, "").split("/")[0].toLowerCase();
+        var target = ROUTES[seg];
+        // Only redirect if we resolved a route and are not already on it
+        // (prevents any loop if a canonical page were ever missing).
+        if (target && location.pathname.toLowerCase() !== target.toLowerCase()) {
+          location.replace(target + location.search + location.hash);
+        }
+      } catch (e) { /* fall through to the static page below */ }
+    })();
+  </script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', -apple-system, Segoe UI, Roboto, sans-serif;
+      background: #080808; color: #fff; min-height: 100vh;
+      display: flex; align-items: center; justify-content: center; text-align: center; padding: 24px; }
+    .wrap { max-width: 460px; }
+    .k { font-size: 12px; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: #cea952; margin-bottom: 14px; }
+    h1 { font-size: 30px; font-weight: 800; margin-bottom: 12px; }
+    p { color: #a0a0a0; line-height: 1.7; margin-bottom: 26px; }
+    a { display: inline-block; background: #cea952; color: #000; text-decoration: none;
+      font-weight: 700; padding: 13px 26px; border-radius: 10px; }
+    a:hover { background: #dfc06a; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="k">Prodigy Athletics</p>
+    <h1>Page not found</h1>
+    <p>That link did not lead anywhere. Head back and we will get you where you meant to go.</p>
+    <a href="/">Back to home</a>
+  </div>
+</body>
+</html>
