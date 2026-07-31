@@ -665,6 +665,7 @@ function setCountry(c) {
   CURRENCY = (COUNTRY === 'US') ? 'USD' : 'CAD';
   const ca = document.getElementById('cbtn-CA'); if (ca) ca.classList.toggle('active', COUNTRY === 'CA');
   const us = document.getElementById('cbtn-US'); if (us) us.classList.toggle('active', COUNTRY === 'US');
+  renderPrices();   // an outcome restored before geo resolves must re-price
 }
 
 function setProgress(step) {
@@ -677,6 +678,7 @@ function goTo(n) {
   const s = document.getElementById(`step-${n}`);
   if (s) { s.classList.add('active'); currentStep = n; }
   setProgress(n);
+  saveProgress();
   if (n > 1) {
     // Mobile: the page title + trust strip push the question below the fold,
     // so scrolling to top forced a scroll-down on every answer (Kenny
@@ -698,8 +700,8 @@ function hideAll() {
   document.querySelector('.progress-bar').style.display = 'none';
 }
 
-function showOutcome(id) {
-  lchEvent('outcome_' + id);
+function showOutcome(id, restored) {
+  if (!restored) lchEvent('outcome_' + id);
   hideAll();
   renderPrices();
   renderProof(id);
@@ -990,6 +992,8 @@ function submitForm() {
 
   trackPixel('Lead', { content_name: routeOutcome(), country: COUNTRY });
   lchEvent('lead');
+  SAVED_OUTCOME = path;
+  saveProgress();
 
   // Personalized note generates while they read their result (silent fail)
   try { requestKennyNote(payload); } catch (e) {}
@@ -1007,6 +1011,98 @@ function submitForm() {
 
   showOutcome(routeOutcome());
 }
+
+/* ── PROGRESS PERSISTENCE ─────────────────────────────────────────
+   The form lives entirely in JS memory, so ANY reload (mobile tab
+   eviction while typing, back-swipe, webview refresh) dumped people
+   back to step 1 with everything gone — "it keeps sending me back to
+   the beginning" (Justin Madison, 2026-07-30). Telemetry showed
+   sessions dying at the specifics textarea and restarting from
+   scratch seconds later. Every answer now saves to localStorage:
+   a reload resumes mid-form on the same step, and a completed
+   assessment restores straight to its options screen. */
+const APPLY_STORE_KEY = 'prodigy_apply_v1';
+const APPLY_STORE_TTL = 48 * 3600 * 1000;   // fresh enough to resume; stale answers expire
+let SAVED_OUTCOME = null;
+
+function _fv(id) { const el = document.getElementById(id); return el ? el.value : ''; }
+
+function saveProgress() {
+  try {
+    localStorage.setItem(APPLY_STORE_KEY, JSON.stringify({
+      answers: answers,
+      step: currentStep,
+      outcome: SAVED_OUTCOME,
+      fields: {
+        name: _fv('field-name'), email: _fv('field-email'),
+        phone: _fv('field-phone'), specifics: _fv('field-specifics'),
+      },
+      consent: !!(document.getElementById('sms-consent-check') || {}).checked,
+      ts: Date.now(),
+    }));
+  } catch (e) {}   // private mode / storage full: form still works, just no resume
+}
+
+function resetApply() {
+  try { localStorage.removeItem(APPLY_STORE_KEY); } catch (e) {}
+  window.location.reload();
+}
+
+// Typing also saves (steps only save on navigation)
+['field-name', 'field-email', 'field-phone', 'field-specifics'].forEach(id => {
+  const el = document.getElementById(id);
+  if (el) el.addEventListener('input', saveProgress);
+});
+(function () {
+  const c = document.getElementById('sms-consent-check');
+  if (c) c.addEventListener('change', saveProgress);
+})();
+
+(function restoreProgress() {
+  let st = null;
+  try { st = JSON.parse(localStorage.getItem(APPLY_STORE_KEY) || 'null'); } catch (e) {}
+  if (!st || !st.ts || (Date.now() - st.ts) > APPLY_STORE_TTL) return;
+  try {
+    Object.assign(answers, st.answers || {});
+    const f = st.fields || {};
+    if (f.name) document.getElementById('field-name').value = f.name;
+    if (f.email) document.getElementById('field-email').value = f.email;
+    if (f.phone) document.getElementById('field-phone').value = f.phone;
+    if (f.specifics) document.getElementById('field-specifics').value = f.specifics;
+    if (st.consent) document.getElementById('sms-consent-check').checked = true;
+    if (answers.age) document.getElementById('field-age').value = answers.age;
+    ['who', 'level', 'struggle', 'commitment'].forEach(k => {
+      if (!answers[k]) return;
+      const input = document.querySelector(`input[name="${k}"][value="${answers[k]}"]`);
+      if (input) { input.checked = true; input.closest('.radio-option').classList.add('selected'); }
+    });
+
+    if (st.outcome && document.getElementById(st.outcome)) {
+      // They finished the assessment: bring back their options, not the form.
+      SAVED_OUTCOME = st.outcome;
+      maxStepTracked = TOTAL_STEPS;
+      lchEvent('restore_outcome', TOTAL_STEPS);
+      showOutcome(st.outcome, true);
+      const scr = document.getElementById(st.outcome);
+      if (scr && !scr.querySelector('.resume-note')) {
+        const p = document.createElement('p');
+        p.className = 'resume-note';
+        p.style.cssText = 'font-size:12px;color:#777;text-align:center;margin-top:20px;';
+        p.innerHTML = 'Picked up where you left off. <a href="#" style="color:var(--accent);" onclick="resetApply();return false;">Start over</a>';
+        scr.appendChild(p);
+      }
+      return;
+    }
+
+    let step = parseInt(st.step, 10) || 1;
+    step = Math.min(Math.max(step, 1), TOTAL_STEPS);
+    if (step > 1) {
+      maxStepTracked = step;   // already reached these steps in a prior pageload
+      lchEvent('restore_step', step);
+      goTo(step);
+    }
+  } catch (e) {}
+})();
 </script>
 
 </body>
