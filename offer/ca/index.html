@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Work With Prodigy | Prodigy Athletics</title>
+  <meta name="description" content="Everything about how Kenny works with hockey families: what the program is, who it works for, what it costs, and how to know if it's right for your player.">
+  <meta property="og:title" content="Work With Prodigy Athletics">
+  <meta property="og:description" content="A 7 minute read. A 2 minute decision. What we do, who it's for, and what it costs. Nothing held back.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #080808; --surface: #0f0f0f; --surface2: #161616;
+      --border: #2e2e2e; --text: #ffffff; --text-muted: #a0a0a0;
+      --accent: #cea952; --accent-light: #dfc06a;
+      --font-cinzel: 'Cinzel', serif;
+      --shadow-gold: 0 0 40px rgba(206,169,82,0.12);
+      --card-bg: linear-gradient(145deg, #141414, #0d0d0d);
+    }
+    body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(8,8,8,0.95); backdrop-filter: blur(16px);
+      border-bottom: 1px solid #1e1e1e;
+      padding: 0 32px; height: 68px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo { display: flex; align-items: center; text-decoration: none; height: 44px; }
+    .nav-logo img { height: 44px; width: auto; display: block; }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a { color: #888; text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.15s; }
+    .nav-links a:hover { color: var(--accent); }
+    @media (max-width: 640px) { .nav-links { display: none; } }
+    .nav-cta {
+      background: var(--accent); color: #000;
+      padding: 9px 22px; border-radius: 6px;
+      text-decoration: none; font-size: 14px; font-weight: 700;
+      transition: background 0.15s, box-shadow 0.15s;
+    }
+    .nav-cta:hover { background: var(--accent-light); box-shadow: 0 0 16px rgba(206,169,82,0.4); }
+
+    /* ── LETTER LAYOUT ── */
+    .letter { max-width: 720px; margin: 0 auto; padding: 130px 24px 40px; }
+    .letter-label { font-size: 11px; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent); text-align: center; margin-bottom: 16px; }
+    .letter h1 { font-size: clamp(32px, 5vw, 52px); font-weight: 800; text-align: center; line-height: 1.15; margin-bottom: 18px; }
+    .byline { text-align: center; font-size: 15px; color: var(--text-muted); margin-bottom: 6px; }
+    .readtime { text-align: center; font-size: 15px; color: var(--accent); font-weight: 600; margin-bottom: 28px; }
+    .gold-divider { width: 80px; height: 1px; background: linear-gradient(90deg, transparent, var(--accent), transparent); margin: 0 auto 40px; }
+
+    .letter p { font-size: 17px; line-height: 1.85; color: var(--text); margin-bottom: 22px; }
+    .letter .muted { color: var(--text-muted); }
+    .letter h2 { font-size: clamp(24px, 3.5vw, 32px); font-weight: 800; color: var(--accent); margin: 56px 0 20px; line-height: 1.25; }
+    .letter h3 { font-size: 19px; font-weight: 700; color: var(--text); margin: 34px 0 12px; }
+    .letter strong { color: var(--text); }
+    .letter a { color: var(--accent); }
+
+    /* pain mirror */
+    .mirror { display: flex; flex-direction: column; gap: 12px; margin: 26px 0 30px; }
+    .mirror div {
+      background: var(--surface2); border-left: 3px solid rgba(206,169,82,0.5);
+      border-radius: 0 10px 10px 0; padding: 14px 18px;
+      font-size: 16px; line-height: 1.6; color: var(--text); font-style: italic;
+    }
+
+    /* pull quote */
+    .creed {
+      background: var(--card-bg); border: 1px solid rgba(206,169,82,0.35); border-radius: 16px;
+      padding: 32px 28px; text-align: center; margin: 34px 0;
+      box-shadow: var(--shadow-gold);
+    }
+    .creed p { font-size: 19px; color: var(--accent); font-weight: 600; line-height: 1.9; margin: 0; }
+
+    /* feature cards */
+    .fronts { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 28px 0; }
+    @media (max-width: 640px) { .fronts { grid-template-columns: 1fr; } }
+    .front-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 14px; padding: 22px; }
+    .front-card h4 { font-size: 15px; font-weight: 700; color: var(--accent); margin-bottom: 8px; }
+    .front-card p { font-size: 14px; color: var(--text-muted); line-height: 1.65; margin: 0; }
+
+    /* qualify lists */
+    .no-list, .yes-list { display: flex; flex-direction: column; gap: 12px; margin: 22px 0 30px; }
+    .no-list div, .yes-list div {
+      display: flex; gap: 14px; align-items: flex-start;
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: 10px; padding: 14px 18px; font-size: 16px; line-height: 1.6;
+    }
+    .no-list span { color: #c96a5a; font-weight: 800; flex-shrink: 0; margin-top: 1px; }
+    .yes-list div { border-color: rgba(206,169,82,0.35); }
+    .yes-list span { color: var(--accent); font-weight: 800; flex-shrink: 0; margin-top: 1px; }
+
+    /* video proof */
+    .vt-group-label { font-size: clamp(20px, 4vw, 28px); font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); text-align: center; text-shadow: 0 0 28px rgba(206,169,82,0.6); margin: 34px 0 20px; }
+    .video-testimonials { display: grid; grid-template-columns: repeat(2, 1fr); gap: 26px 20px; }
+    @media (max-width: 640px) { .video-testimonials { grid-template-columns: 1fr; } }
+    .vt-desc { font-size: 14px; font-weight: 600; color: var(--text); line-height: 1.5; margin-bottom: 10px; }
+    .yt-lite { position: relative; width: 100%; padding-top: 56.25%; border-radius: 14px; overflow: hidden; border: 1px solid var(--border); cursor: pointer; background: #000; }
+    .yt-lite img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .yt-lite iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+    .yt-play { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 66px; height: 46px; border: none; border-radius: 12px; background: rgba(206,169,82,0.92); color: #000; font-size: 20px; cursor: pointer; }
+    .yt-lite:hover .yt-play { background: var(--accent-light); }
+
+    .quote-card {
+      background: var(--card-bg); border: 1px solid var(--border); border-radius: 14px;
+      padding: 24px; margin-bottom: 16px;
+    }
+    .quote-card blockquote { font-size: 15px; line-height: 1.7; color: var(--text); margin-bottom: 10px; font-style: italic; }
+    .quote-card cite { font-size: 13px; color: var(--accent); font-style: normal; font-weight: 600; }
+
+    /* ── OFFER CARDS ── */
+    .offers { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+    .offer-card {
+      background: var(--card-bg); border: 1px solid var(--border); border-radius: 18px;
+      padding: 34px 30px; margin-bottom: 24px; position: relative;
+    }
+    .offer-card.featured { border-color: rgba(206,169,82,0.55); box-shadow: var(--shadow-gold); }
+    .offer-badge {
+      position: absolute; top: -13px; left: 28px;
+      background: var(--accent); color: #000;
+      font-size: 12px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase;
+      padding: 5px 14px; border-radius: 999px;
+    }
+    .offer-name { font-size: 24px; font-weight: 800; color: var(--text); margin-bottom: 6px; }
+    .offer-price { font-size: 34px; font-weight: 800; color: var(--accent); margin-bottom: 2px; }
+    .offer-price small { font-size: 15px; color: var(--text-muted); font-weight: 600; }
+    .offer-renewal { font-size: 14px; color: var(--text-muted); margin-bottom: 18px; }
+    .offer-features { list-style: none; margin: 0 0 24px; display: flex; flex-direction: column; gap: 10px; }
+    .offer-features li { display: flex; gap: 12px; font-size: 15px; line-height: 1.55; color: var(--text); }
+    .offer-features li::before { content: '✓'; color: var(--accent); font-weight: 800; flex-shrink: 0; }
+    .btn-buy {
+      display: block; text-align: center;
+      background: var(--accent); color: #000;
+      padding: 16px 20px; border-radius: 10px;
+      font-size: 16px; font-weight: 800; text-decoration: none;
+      cursor: pointer; transition: background 0.15s, box-shadow 0.15s;
+    }
+    .btn-buy:hover { background: var(--accent-light); box-shadow: 0 0 18px rgba(206,169,82,0.4); }
+    .btn-buy.ghost { background: none; border: 2px solid var(--accent); color: var(--accent); }
+    .btn-buy.ghost:hover { background: rgba(206,169,82,0.08); box-shadow: none; }
+
+    .spots-pill {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(206,169,82,0.1); border: 1px solid rgba(206,169,82,0.45);
+      color: var(--accent); font-size: 13px; font-weight: 700;
+      border-radius: 999px; padding: 7px 16px; margin-bottom: 16px;
+    }
+    .spots-pill .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 8px rgba(206,169,82,0.8); }
+
+    /* full state for the 1:1 card */
+    .offer-card.full { filter: grayscale(1); opacity: 0.55; }
+    .offer-card.full .btn-buy { background: #3a3a3a; color: #888; cursor: not-allowed; pointer-events: none; box-shadow: none; }
+    .offer-card.full .spots-pill { background: #222; border-color: #444; color: #999; }
+    .offer-card.full .spots-pill .dot { background: #666; box-shadow: none; }
+    .offer-card.full .offer-badge { background: #3a3a3a; color: #999; }
+
+    .cur-note { text-align: center; font-size: 13px; color: var(--text-muted); margin-bottom: 28px; }
+    .cur-note a { color: var(--accent); text-decoration: none; }
+
+    /* FAQ */
+    .faq-item { border-bottom: 1px solid var(--border); padding: 22px 0; }
+    .faq-item h3 { margin: 0 0 10px; font-size: 17px; }
+    .faq-item p { font-size: 15px; color: var(--text-muted); margin: 0; line-height: 1.75; }
+
+    .cta-section {
+      padding: 72px 24px; text-align: center;
+      border-top: 1px solid var(--border); margin-top: 64px;
+      background: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(206,169,82,0.05) 0%, transparent 70%);
+    }
+    .cta-section h2 { font-size: clamp(24px, 3vw, 38px); font-weight: 800; margin-bottom: 14px; }
+    .cta-section p { font-size: 16px; color: var(--text-muted); max-width: 560px; margin: 0 auto 30px; line-height: 1.7; }
+    .btn-gold {
+      background: var(--accent); color: #000;
+      padding: 15px 38px; border-radius: 8px;
+      text-decoration: none; font-size: 16px; font-weight: 700;
+      display: inline-block; transition: background 0.15s; cursor: pointer;
+    }
+    .btn-gold:hover { background: var(--accent-light); }
+    .btn-outline {
+      display: inline-block; padding: 15px 38px; border-radius: 8px;
+      border: 1px solid rgba(206,169,82,0.45); color: var(--accent);
+      font-size: 16px; font-weight: 700; text-decoration: none; margin-left: 12px;
+    }
+    .btn-outline:hover { background: rgba(206,169,82,0.08); }
+    @media (max-width: 560px) { .btn-outline { margin-left: 0; margin-top: 12px; } }
+
+    footer { padding: 40px 24px; border-top: 1px solid var(--border); text-align: center; }
+    footer p:first-child { font-family: var(--font-cinzel); font-size: 18px; font-weight: 700; color: var(--accent); margin-bottom: 10px; letter-spacing: 0.08em; }
+    footer p { font-size: 13px; color: var(--text-muted); margin-bottom: 6px; }
+    footer a { color: var(--text-muted); text-decoration: none; margin: 0 12px; }
+    footer a:hover { color: var(--accent); }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo"><img src="/logo.svg" alt="Prodigy Athletics"></a>
+  <ul class="nav-links">
+    <li><a href="/">Home</a></li>
+    <li><a href="/results/">Athlete Results</a></li>
+  </ul>
+  <a href="/connect/" class="nav-cta">Book a Fit Call</a>
+</nav>
+
+<!-- ══════════ TITLE BLOCK ══════════ -->
+<div class="letter">
+  <p class="letter-label">For Hockey Parents</p>
+  <h1>Build the Leader.<br>The Athlete Will Follow.</h1>
+  <p class="byline">A letter from Kenny, founder of Prodigy Athletics</p>
+  <p class="readtime">A 7 minute read. A 2 minute decision.</p>
+  <div class="gold-divider"></div>
+
+  <!-- ══════════ CALLOUT + PAIN MIRROR ══════════ -->
+  <p>Hey, Kenny here.</p>
+  <p>I work with a small number of committed hockey families, and this page is everything I would tell you on a call. What I actually do, who it works for, what it costs, and how to know if your player is one of ours. Nothing held back, no call required.</p>
+  <p>Before any of that, take a second and ask yourself how you honestly feel about your player's development right now.</p>
+  <p class="muted">For most parents who find me, it sounds something like this:</p>
+
+  <div class="mirror">
+    <div>"My kid has the tools. Everyone sees it. Something is holding them back."</div>
+    <div>"They're a different player in practice than they are in games."</div>
+    <div>"One bad shift ruins the whole night."</div>
+    <div>"We keep paying for more ice time, more camps, more skills sessions, and I honestly can't tell if any of it is adding up."</div>
+    <div>"They know what they should be doing. Getting them to actually do it is the daily battle."</div>
+    <div>"The car rides home are getting quieter. Or turning into arguments."</div>
+    <div>"I can see the confidence slipping, and nothing I say brings it back."</div>
+  </div>
+
+  <p>If a few of those hit home, keep reading. And before anything else, I want to be clear about something.</p>
+  <p><strong>It's not because your kid is soft. And it's not because you've failed them.</strong> It's because the standard model of hockey development is incomplete.</p>
+  <p>Think about what your family is buying right now. An hour of skills here. A camp week there. A dryland group in the fall. Every one of them trains your player for the hour they're on site, then sends them home.</p>
+  <p>But games aren't won in that hour. They're won in the other 165. Sleep. Food. Training. Recovery. The voice in their head after a mistake. Nobody is coaching that part of your player's week, and that part is what actually decides how far they go.</p>
+  <p><strong>That's the part I coach.</strong></p>
+
+  <!-- ══════════ SHIFT BELIEFS ══════════ -->
+  <h2>Confidence is not a personality trait</h2>
+  <p>Most people think some kids are born with confidence and some aren't. I've coached enough athletes across North America and Europe to tell you that's wrong.</p>
+  <p>Confidence is learned. It's built on evidence: promises a player makes to themselves and keeps, day after day, until they trust themselves under pressure because they've earned that trust. You can't talk a player into it. You can't buy it in a weekend camp. It gets built, brick by brick, in the boring hours nobody claps for.</p>
+
+  <div class="creed">
+    <p>"Action is mandatory.<br>Effort is imperative.<br>Failure is necessary.<br>Confidence is learned."</p>
+  </div>
+
+  <p>And here's the part that matters most to me, and the part most programs never touch.</p>
+  <p><strong>This was never just a hockey play. It's a life play that runs through hockey.</strong></p>
+  <p>The habits that make a 15 year old dangerous on the ice, owning their sleep, fueling their body, training with intent, resetting after failure, speaking up to a coach, are the exact same habits that make a 25 year old dangerous in whatever they choose to do next.</p>
+  <p>Your player doesn't need to see that yet. They just want to make the next team, and that's perfect. We use the goal they care about to build the person you care about. We give them the skills and the reps now, so when the opportunity comes, they're ready for it. On the ice and everywhere after it.</p>
+
+  <!-- ══════════ WHO I AM ══════════ -->
+  <h2>Who you'd be trusting with your kid</h2>
+  <p>I'm a former junior and university hockey player. I developed late, battled injuries, and carved my path forward with structure, belief, and relentless effort. Nobody handed me a roadmap. I had to build one the hard way, and I remember exactly what it felt like to be the player everyone was unsure about.</p>
+  <p>That roadmap became Prodigy. Today I mentor players across North America and Europe, and I run every call, every plan, and every conversation myself. This isn't an academy with my name on the door and someone else doing the work. When your family works with Prodigy, you work with me.</p>
+
+  <!-- ══════════ MECHANISM ══════════ -->
+  <h2>How it works: built from the inside out</h2>
+  <p>When a player joins, the first thing I build is what I call the textbook week. The 100% version of their life: sleep locked in, meals planned around training, strength work placed around their ice times, skills, school, recovery, all of it laid out hour by hour. Then we work backwards from the textbook to their real life and get the two as close together as we can.</p>
+  <p class="muted">From there, we work on four fronts:</p>
+
+  <div class="fronts">
+    <div class="front-card">
+      <h4>Training That Transfers</h4>
+      <p>Personalized strength, speed, and conditioning built around your player's actual schedule, adjusted weekly based on feedback and fatigue.</p>
+    </div>
+    <div class="front-card">
+      <h4>Fueling and Recovery</h4>
+      <p>A custom nutrition plan they'll actually follow, sleep standards, and structure that prevents burnout instead of causing it.</p>
+    </div>
+    <div class="front-card">
+      <h4>Confidence and Leadership</h4>
+      <p>The root of inconsistency, staying calm under pressure, resetting after mistakes, and handling the tough conversations.</p>
+    </div>
+    <div class="front-card">
+      <h4>On Ice IQ</h4>
+      <p>Game breakdowns and skill analysis, so the off-ice work shows up where it counts: in games.</p>
+    </div>
+  </div>
+
+  <p>And the piece parents tell me changes their house the most: <strong>the accountability comes from me now, not from you.</strong> You get to go back to being the parent. The one who watches, supports, and enjoys the games. I'll hold the standard.</p>
+
+  <!-- ══════════ PROOF ══════════ -->
+  <h2>Don't take my word for it</h2>
+  <p class="muted">Hear it from the families who lived it.</p>
+
+  <p class="vt-group-label">From Parents</p>
+  <div class="video-testimonials">
+    <div>
+      <p class="vt-desc">Noah's parents on him gaining 20 lbs in one off-season, locking in his habits and emotions, and jumping to Junior A.</p>
+      <div class="yt-lite" data-id="SHAtQsHqkh8"><img src="https://i.ytimg.com/vi/SHAtQsHqkh8/maxresdefault.jpg" onerror="this.src='https://i.ytimg.com/vi/SHAtQsHqkh8/hqdefault.jpg'" alt="" loading="lazy"><button class="yt-play" aria-label="Play video">▶</button></div>
+    </div>
+    <div>
+      <p class="vt-desc">Cindy on her 16 year old going from falling behind to AAA potential in just seven weeks.</p>
+      <div class="yt-lite" data-id="eZrnWuB29lg"><img src="https://i.ytimg.com/vi/eZrnWuB29lg/maxresdefault.jpg" onerror="this.src='https://i.ytimg.com/vi/eZrnWuB29lg/hqdefault.jpg'" alt="" loading="lazy"><button class="yt-play" aria-label="Play video">▶</button></div>
+    </div>
+  </div>
+
+  <p class="vt-group-label">From Players</p>
+  <div class="video-testimonials">
+    <div>
+      <p class="vt-desc">Nathan on finding his confidence and his spark after his own agent thought it was too late.</p>
+      <div class="yt-lite" data-id="mLUe31a334k"><img src="https://i.ytimg.com/vi/mLUe31a334k/maxresdefault.jpg" onerror="this.src='https://i.ytimg.com/vi/mLUe31a334k/hqdefault.jpg'" alt="" loading="lazy"><button class="yt-play" aria-label="Play video">▶</button></div>
+    </div>
+    <div>
+      <p class="vt-desc">Ronan on going from dwelling on mistakes to unshakeable confidence in four weeks.</p>
+      <div class="yt-lite" data-id="IZ5iRV7MgBg"><img src="https://i.ytimg.com/vi/IZ5iRV7MgBg/maxresdefault.jpg" onerror="this.src='https://i.ytimg.com/vi/IZ5iRV7MgBg/hqdefault.jpg'" alt="" loading="lazy"><button class="yt-play" aria-label="Play video">▶</button></div>
+    </div>
+  </div>
+
+  <div style="margin-top:34px;">
+    <div class="quote-card">
+      <blockquote>"I'm not sure what you did to my kid, but I'm in disbelief. He's doing fantastic. He was like the least motivated kid I knew. Now he seems to be on top of it."</blockquote>
+      <cite>Cindy Morrison, Parent</cite>
+    </div>
+    <div class="quote-card">
+      <blockquote>"I know Noah appreciates you and Melissa and I appreciate you. Thank you for supporting Noah in this journey and I hope you can keep supporting him through his next challenges."</blockquote>
+      <cite>Mark Romanelli, Parent</cite>
+    </div>
+    <div class="quote-card">
+      <blockquote>"I'm really grateful that I reached out to you and all the work you put in to get me to the point where I'm right now. I honestly can't remember ever playing a game with that intensity."</blockquote>
+      <cite>Alina Kaiser, Player</cite>
+    </div>
+  </div>
+  <p style="text-align:center; margin-top:20px;"><a href="/results/" target="_blank">See the full results wall →</a></p>
+
+  <!-- ══════════ QUALIFY / DISQUALIFY ══════════ -->
+  <h2>Read this part carefully</h2>
+  <p>I'd rather lose your enrollment than take it and fail your kid. So let me be straight about who this doesn't work for.</p>
+  <p><strong>This won't work for your family if:</strong></p>
+
+  <div class="no-list">
+    <div><span>✕</span><p style="margin:0;">Your player is being sent. If this is your dream and not theirs, no coach on earth can outwork that. The desire has to be in the player.</p></div>
+    <div><span>✕</span><p style="margin:0;">You're shopping for a miracle before tryouts. We build in 12 week blocks, and the compounding is the whole point.</p></div>
+    <div><span>✕</span><p style="margin:0;">You want a coach who tells your player what they want to hear. I care about my athletes too much to lie to them.</p></div>
+    <div><span>✕</span><p style="margin:0;">You believe talent alone decides who makes it, and everything else is politics.</p></div>
+    <div><span>✕</span><p style="margin:0;">You need to sit between your player and their coach. The athlete owns the relationship with me. That ownership is where the growth comes from.</p></div>
+  </div>
+
+  <p><strong>But if:</strong></p>
+
+  <div class="yes-list">
+    <div><span>✓</span><p style="margin:0;">Your player wants this, even if their habits haven't caught up to their ambition yet.</p></div>
+    <div><span>✓</span><p style="margin:0;">You believe habits compound, and character is built, not born.</p></div>
+    <div><span>✓</span><p style="margin:0;">You can hand your player the keys and let me hold the standard.</p></div>
+    <div><span>✓</span><p style="margin:0;">You care as much about who they're becoming as where they play next season.</p></div>
+  </div>
+
+  <p>Then keep reading, because this was built for your family.</p>
+
+  <!-- ══════════ PRICING ══════════ -->
+  <h2>Let's talk numbers</h2>
+  <p>I publish my pricing because I'd want the same respect if I were on your side of the table. There are two ways to work with me, and both include the complete program. The only difference is how much direct, private time with me your player gets.</p>
+</div>
+
+<div class="offers">
+
+  <div class="offer-card featured">
+    <div class="offer-badge">Most Popular</div>
+    <div class="offer-name">The Group Program</div>
+    <div class="offer-price">$<span id="price-group">1,500</span> <small><span class="cur-label">CAD</span> / first 12 weeks</small></div>
+    <div class="offer-renewal">Then $<span id="renew-group">299</span> <span class="cur-label">CAD</span> every 4 weeks. Continue as long as it's working for your family.</div>
+    <ul class="offer-features">
+      <li>The full system: done-for-you weekly schedule, custom nutrition plan, and a personalized strength plan</li>
+      <li>Weekly live group call with me and a room full of athletes chasing the same thing</li>
+      <li>Two-way in-app coaching access anytime</li>
+      <li>Free access to all digital resources, including IronClad Mindset</li>
+      <li>Onboarding welcome package shipped to your door</li>
+    </ul>
+    <a class="btn-buy" id="buy-group" onclick="buy('group')">Enroll in the Group Program</a>
+  </div>
+
+  <div class="offer-card" id="card-oneonone">
+    <div class="offer-badge">Highest Touch</div>
+    <div class="offer-name">Group + Full 1:1 Access</div>
+    <div class="spots-pill"><span class="dot"></span><span id="spots-text">3 of 3 spots open</span></div>
+    <div class="offer-price">$<span id="price-oneonone">2,100</span> <small><span class="cur-label">CAD</span> / first 12 weeks</small></div>
+    <div class="offer-renewal">Then $<span id="renew-oneonone">399</span> <span class="cur-label">CAD</span> every 4 weeks.</div>
+    <ul class="offer-features">
+      <li>Everything in the Group Program</li>
+      <li>Direct access to my private calendar. Your player books 1:1 calls with me whenever they need them</li>
+      <li>No per-call fees, no session caps</li>
+      <li>The fastest, most personal feedback loop I offer</li>
+    </ul>
+    <a class="btn-buy" id="buy-oneonone" onclick="buy('oneonone')">Claim a 1:1 Spot</a>
+  </div>
+
+  <p class="cur-note">Prices in <span id="cur-word">Canadian dollars</span>. Outside Canada? <a id="cur-switch" href="/offer/us/">See USD pricing here.</a></p>
+</div>
+
+<div class="letter" style="padding-top:0;">
+  <p><strong>Why only three 1:1 spots?</strong> Because I take every single call myself. Nothing gets passed to an assistant coach, and I won't lower that standard to sell more spots. Three is what I can hold right now while giving every athlete what I promised them. When they're gone, the button above greys out and the Group Program is the way in.</p>
+  <p><strong>Why 12 weeks first?</strong> Because that's how long it takes to build the foundation and prove the habits are real. After that it's every 4 weeks, and you stay because it's working, not because you're locked in.</p>
+
+  <!-- ══════════ FAQ ══════════ -->
+  <h2>Questions you're probably asking</h2>
+
+  <div class="faq-item">
+    <h3>"What if my player starts hot and fades after a few weeks?"</h3>
+    <p>That's not a risk to the program. That IS the program. Motivation fades for every athlete on earth. The difference here is that when it fades, there's a plan, a standard, and a coach who notices and reaches out. Consistency when they don't feel like it is the exact skill we're building.</p>
+  </div>
+  <div class="faq-item">
+    <h3>"How much time does this take? Their schedule is already packed."</h3>
+    <p>The plan is built around your player's real life: their school, their team schedule, their family commitments. Most families find it replaces chaos with structure rather than adding load. If the week doesn't fit, we adjust the plan, not your family.</p>
+  </div>
+  <div class="faq-item">
+    <h3>"Is my player old enough? Good enough?"</h3>
+    <p>I work with committed players 13 and up, from kids fighting for a AA spot to junior and college athletes. Skill level matters far less than desire. If your player is younger, take the 90 second assessment at <a href="/apply/">prodigyathletics.ca/apply</a> and it will route you to the right starting point.</p>
+  </div>
+  <div class="faq-item">
+    <h3>"What if I'm still not sure?"</h3>
+    <p>Book a fit call. I don't take on athletes unless I know I can move them, so you'll get my honest read and a straight answer either way. If it's not a fit, I'll tell you, and I'll point you at what I'd do instead.</p>
+  </div>
+
+  <!-- ══════════ CLOSE ══════════ -->
+  <h2>The decision</h2>
+  <p>A year from now your player will either have four seasons of compounding habits behind them, or another year of the same. More camps, more ice time, same gap between what everyone sees in them and what shows up in games.</p>
+  <p>You already know which one of those you're hoping for. The two minutes it takes to decide are yours.</p>
+  <p>Whatever you choose, I'm glad you read this far. It means you take your kid's dream seriously, and kids with parents like that tend to be my favourite athletes to coach.</p>
+  <p>See you inside.</p>
+  <p><strong>Kenny</strong><br><span class="muted">Founder, Prodigy Athletics</span></p>
+</div>
+
+<section class="cta-section">
+  <h2>Ready When You Are</h2>
+  <p>Enroll directly below, or book a fit call and get my honest read on your player first.</p>
+  <a class="btn-gold" onclick="buy('group')">Enroll in Group</a>
+  <a class="btn-outline" href="/connect/">Book a Fit Call</a>
+</section>
+
+<footer>
+  <p>PRODIGY ATHLETICS</p>
+  <p>Building confident leaders one athlete at a time.</p>
+  <p style="margin-top:12px;">
+    <a href="/">Home</a>
+    <a href="/privacy/">Privacy Policy</a>
+    <a href="/terms/">Terms of Service</a>
+  </p>
+  <p style="margin-top:12px;">© 2026 Prodigy Hockey Development. All rights reserved.</p>
+</footer>
+
+<script>
+/* ════════════════════════════════════════════════════════════════
+   OFFER DOC CONFIG — everything editable lives here.
+
+   CUR: this file's pinned currency. The CAD doc lives at /offer/ca/,
+   the USD doc at /offer/us/. The two files are IDENTICAL except this
+   one line. If you edit anything else, copy the file to the other
+   folder and flip CUR back.
+
+   SPOTS_TAKEN: bump this by 1 each time a 1:1 spot sells (in BOTH
+   files). At 3 of 3 the card greys out and only Group stays live.
+   ════════════════════════════════════════════════════════════════ */
+const CUR = 'CAD';
+const SPOTS_TOTAL = 3;
+const SPOTS_TAKEN = 0;
+
+const PRICING = {
+  CAD: {
+    word: 'Canadian dollars',
+    switchHref: '/offer/us/', switchText: 'See USD pricing here.',
+    group:    { intro: '1,500', renew: '299', link: 'https://buy.stripe.com/14A3cx6EI3eCbmje22cbC0A' },
+    oneonone: { intro: '2,100', renew: '399', link: 'https://buy.stripe.com/4gM3cx2os02q3TR8HIcbC0w' },
+  },
+  USD: {
+    word: 'US dollars',
+    switchHref: '/offer/ca/', switchText: 'In Canada? See CAD pricing here.',
+    group:    { intro: '1,200', renew: '229', link: 'https://buy.stripe.com/00w5kF9QU7uS9ebgaacbC0F' },
+    oneonone: { intro: '1,599', renew: '299', link: 'https://buy.stripe.com/dRmbJ35AE16u0HF0bccbC0x' },
+  },
+};
+
+const metaPixelId = '2092599024666125';
+
+/* ── render pinned currency ── */
+const P = PRICING[CUR];
+document.getElementById('price-group').textContent = P.group.intro;
+document.getElementById('renew-group').textContent = P.group.renew;
+document.getElementById('price-oneonone').textContent = P.oneonone.intro;
+document.getElementById('renew-oneonone').textContent = P.oneonone.renew;
+document.getElementById('cur-word').textContent = P.word;
+const sw = document.getElementById('cur-switch');
+sw.href = P.switchHref; sw.textContent = P.switchText;
+document.querySelectorAll('.cur-label').forEach(el => el.textContent = CUR);
+
+/* ── 1:1 spot cap ── */
+const open = Math.max(0, SPOTS_TOTAL - SPOTS_TAKEN);
+const spotsText = document.getElementById('spots-text');
+if (open <= 0) {
+  document.getElementById('card-oneonone').classList.add('full');
+  spotsText.textContent = 'All ' + SPOTS_TOTAL + ' spots taken';
+  const btn = document.getElementById('buy-oneonone');
+  btn.textContent = 'Spots full. Group is open.';
+  btn.removeAttribute('onclick');
+} else {
+  spotsText.textContent = open + ' of ' + SPOTS_TOTAL + ' spots open';
+}
+
+/* ── buy ── */
+function buy(tier) {
+  trackPixel('InitiateCheckout', { content_name: tier, currency: CUR });
+  window.location.href = P[tier].link;
+}
+
+/* ── click-to-play videos ── */
+document.querySelectorAll('.yt-lite').forEach(el => {
+  el.addEventListener('click', () => {
+    const id = el.dataset.id;
+    el.innerHTML = '<iframe src="https://www.youtube.com/embed/' + id + '?autoplay=1&rel=0&modestbranding=1" allow="autoplay; encrypted-media" allowfullscreen title="Athlete testimonial"></iframe>';
+  });
+});
+
+/* ── Meta pixel ── */
+(function initPixel() {
+  if (!metaPixelId || metaPixelId.includes('REPLACE')) return;
+  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+  n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+  document,'script','https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', metaPixelId);
+  fbq('track', 'PageView');
+})();
+function trackPixel(event, params) {
+  if (window.fbq) { try { fbq('track', event, params || {}); } catch (e) {} }
+}
+</script>
+
+</body>
+</html>
