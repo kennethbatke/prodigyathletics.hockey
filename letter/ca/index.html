@@ -149,7 +149,7 @@
       border-radius: 999px; padding: 7px 16px; margin-bottom: 16px;
     }
     .spots-pill .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 8px rgba(206,169,82,0.8); }
-    .spots-pill s { color: #8a7440; text-decoration-thickness: 2px; }
+    .spots-pill s { color: rgba(206,169,82,0.55); text-decoration-line: line-through; text-decoration-thickness: 1.5px; text-decoration-color: rgba(255,255,255,0.75); margin-right: 3px; }
 
     /* full state for the 1:1 card */
     .offer-card.full { filter: grayscale(1); opacity: 0.55; }
@@ -211,7 +211,7 @@
   <p class="letter-label">For Hockey Parents</p>
   <h1>Build the Leader.<br>The Athlete Will Follow.</h1>
   <p class="byline">A letter from Kenny, founder of Prodigy Athletics</p>
-  <p class="readtime">A 7 minute read. A 2 minute decision.</p>
+  <p class="readtime">A 10 minute read. A 2 minute decision.</p>
   <div class="gold-divider"></div>
 
   <!-- ══════════ CALLOUT + PAIN MIRROR ══════════ -->
@@ -377,7 +377,7 @@
   <div class="offer-card" id="card-oneonone">
     <div class="offer-badge">Highest Touch</div>
     <div class="offer-name">Group + Full 1:1 Access</div>
-    <div class="spots-pill"><span class="dot"></span><span id="spots-text"><s>5</s> 3 spots open</span></div>
+    <div class="spots-pill"><span class="dot"></span><span id="spots-text"><s>5 spots</s> 3 spots remaining</span></div>
     <div class="offer-price">$<span id="price-oneonone">2,100</span> <small><span class="cur-label">CAD</span> / first 12 weeks</small></div>
     <div class="offer-renewal">Then $<span id="renew-oneonone">399</span> <span class="cur-label">CAD</span> every 4 weeks.</div>
     <p style="font-size:14px;color:var(--text-muted);line-height:1.65;margin:4px 0 16px;">For the families who want the fastest development. The same complete system, with a private line to me on top of it.</p>
@@ -394,7 +394,7 @@
 </div>
 
 <div class="letter" style="padding-top:0;">
-  <p><strong>Why only three 1:1 spots?</strong> Because I take every single call myself. Nothing gets passed to an assistant coach, and I won't lower that standard to sell more spots. I'm close to capacity for 1-on-1, and three is what I'm comfortable onboarding right now while giving every athlete what I promised them. When they're gone, the button above greys out and the Group Program is the way in.</p>
+  <p><strong>Why are 1-on-1 spots capped?</strong> Because I take every single call myself. Nothing gets passed to an assistant coach, and I won't lower that standard to sell more spots. I'm close to capacity for 1-on-1, and the number above is what I'm comfortable onboarding right now while giving every athlete what I promised them. When those spots are gone, the button greys out and the Group Program is the way in.</p>
   <p><strong>Why 12 weeks first?</strong> Because that's how long it takes to build the foundation and prove the habits are real. After that it's every 4 weeks, and you stay because it's working, not because you're locked in.</p>
 
   <!-- ══════════ FAQ ══════════ -->
@@ -520,7 +520,7 @@ if (open <= 0) {
     ctaBtn.style.pointerEvents = 'none';
   }
 } else {
-  spotsText.innerHTML = '<s>' + SPOTS_TOTAL + '</s> ' + open + ' spots open';
+  spotsText.innerHTML = '<s>' + SPOTS_TOTAL + ' spots</s> ' + open + ' spots remaining';
   if (ctaBtn) ctaBtn.textContent = 'Claim a 1:1 Spot · ' + open + ' left';
 }
 
