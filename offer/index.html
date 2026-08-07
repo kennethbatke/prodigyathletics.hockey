@@ -2,26 +2,13 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Work With Prodigy | Prodigy Athletics</title>
-  <meta name="description" content="Everything about how Kenny works with hockey families: what the program is, who it works for, what it costs, and how to know if it's right for your player.">
+  <meta http-equiv="refresh" content="0; url=/letter/">
+  <link rel="canonical" href="https://prodigyathletics.ca/letter/">
   <meta name="robots" content="noindex">
-  <style>
-    body { background: #080808; color: #a0a0a0; font-family: sans-serif; display: flex; align-items: center; justify-content: center; min-height: 100vh; margin: 0; }
-    a { color: #cea952; }
-  </style>
+  <title>Prodigy Athletics</title>
+  <script>window.location.replace('/letter/');</script>
 </head>
-<body>
-  <noscript><p>Choose your version: <a href="/offer/ca/">Canada (CAD)</a> · <a href="/offer/us/">United States (USD)</a></p></noscript>
-  <p id="loading">One second...</p>
-  <script>
-    // Routes to the CAD or USD offer doc by IP country. Canada -> /offer/ca/, everyone else -> /offer/us/.
-    // Same geo source as /apply. Any failure defaults to CAD.
-    fetch('https://get.geojs.io/v1/ip/country.json')
-      .then(r => r.json())
-      .then(d => { window.location.replace((d && d.country === 'CA') ? '/offer/ca/' : '/offer/us/'); })
-      .catch(() => window.location.replace('/offer/ca/'));
-    setTimeout(() => { window.location.replace('/offer/ca/'); }, 4000);
-  </script>
+<body style="background:#080808;color:#a0a0a0;font-family:sans-serif;text-align:center;padding-top:40vh;">
+  <p>This page moved. <a href="/letter/" style="color:#cea952;">Continue here</a>.</p>
 </body>
 </html>
