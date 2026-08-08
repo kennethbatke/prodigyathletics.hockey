@@ -527,6 +527,7 @@ if (open <= 0) {
 /* ── buy ── */
 function buy(tier) {
   trackPixel('InitiateCheckout', { content_name: tier, currency: CUR });
+  lchEvent('checkout_click_' + tier, 2);
   window.location.href = P[tier].link;
 }
 
@@ -552,6 +553,27 @@ document.querySelectorAll('.yt-lite').forEach(el => {
 function trackPixel(event, params) {
   if (window.fbq) { try { fbq('track', event, params || {}); } catch (e) {} }
 }
+
+/* ── First-party funnel mirror (LCH) — same pattern as /apply ── */
+const LCH_FUNNEL_URL = 'https://lch.prodigyathletics.ca/webhooks/funnel-event';
+const FUNNEL_SESSION = (window.crypto && crypto.randomUUID) ? crypto.randomUUID()
+  : 'f' + Date.now().toString(36) + Math.random().toString(36).slice(2, 10);
+function lchEvent(event, step) {
+  try {
+    const payload = JSON.stringify({
+      funnel: 'letter', session: FUNNEL_SESSION,
+      event: String(event).toLowerCase().replace(/[^a-z0-9_-]/g, '_').slice(0, 40),
+      step: step || 0, ts: Date.now()
+    });
+    if (navigator.sendBeacon) {
+      navigator.sendBeacon(LCH_FUNNEL_URL, new Blob([payload], { type: 'text/plain' }));
+    } else {
+      fetch(LCH_FUNNEL_URL, { method: 'POST', body: payload, keepalive: true, mode: 'no-cors' });
+    }
+  } catch (e) {}
+}
+lchEvent('view', 1);
+
 </script>
 
 </body>
