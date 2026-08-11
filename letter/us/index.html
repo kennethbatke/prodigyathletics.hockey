@@ -382,7 +382,7 @@
   <div class="offer-card" id="card-oneonone">
     <div class="offer-badge">Highest Touch</div>
     <div class="offer-name">Group + Full 1:1 Access</div>
-    <div class="spots-pill"><span class="dot"></span><span id="spots-text"><s>5 spots</s> 3 spots remaining</span></div>
+    <div class="spots-pill"><span class="dot"></span><span id="spots-text"><s>5 spots</s> 1 spot remaining</span></div>
     <div class="offer-price">$<span id="price-oneonone">2,100</span> <small><span class="cur-label">CAD</span> / first 12 weeks</small></div>
     <div class="offer-renewal">Then $<span id="renew-oneonone">399</span> <span class="cur-label">CAD</span> every 4 weeks.</div>
     <p style="font-size:14px;color:var(--text-muted);line-height:1.65;margin:4px 0 16px;">For the families who want the fastest development. The same complete system, with a private line to me on top of it.</p>
@@ -444,7 +444,7 @@
   <p>Two ways in. The only difference is how much direct, private time with me your player gets.</p>
   <div style="display:flex;justify-content:center;gap:14px;flex-wrap:wrap;">
     <a class="btn-gold" onclick="buy('group')">Enroll in Group</a>
-    <a class="btn-gold" id="cta-oneonone" onclick="buy('oneonone')">Claim a 1:1 Spot · 3 left</a>
+    <a class="btn-gold" id="cta-oneonone" onclick="buy('oneonone')">Claim a 1:1 Spot · 1 left</a>
   </div>
   <p style="margin:24px auto 0;">Not sure yet? <a href="/connect/" style="color:var(--accent);">Book a free fit call</a> and get my honest read first.</p>
 </section>
@@ -471,13 +471,13 @@
 
    SPOTS: Taki-style scarcity. SPOTS_TOTAL is the struck-out number
    shown on the pill; SPOTS_TAKEN is how many are gone. Open spots =
-   TOTAL - TAKEN (currently 5 - 2 = 3). Bump SPOTS_TAKEN by 1 each
+   TOTAL - TAKEN (currently 5 - 4 = 1). Bump SPOTS_TAKEN by 1 each
    time a 1:1 spot sells (in BOTH files). When open hits 0 the card
    and both 1:1 buttons grey out and only Group stays live.
    ════════════════════════════════════════════════════════════════ */
 const CUR = 'USD';
 const SPOTS_TOTAL = 5;
-const SPOTS_TAKEN = 2;
+const SPOTS_TAKEN = 4;
 
 const PRICING = {
   CAD: {
@@ -525,7 +525,7 @@ if (open <= 0) {
     ctaBtn.style.pointerEvents = 'none';
   }
 } else {
-  spotsText.innerHTML = '<s>' + SPOTS_TOTAL + ' spots</s> ' + open + ' spots remaining';
+  spotsText.innerHTML = '<s>' + SPOTS_TOTAL + ' spots</s> ' + open + (open === 1 ? ' spot remaining' : ' spots remaining');
   if (ctaBtn) ctaBtn.textContent = 'Claim a 1:1 Spot · ' + open + ' left';
 }
 
