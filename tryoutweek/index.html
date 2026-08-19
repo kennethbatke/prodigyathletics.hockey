@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tryout Week Performance Checklist | Prodigy Athletics</title>
+  <meta name="description" content="Free from Kenny at Prodigy Athletics: the exact three-days-out to day-of checklist for the most prepared player at tryouts. Sleep, water, screens, food, the bag, the warm-up, the cool-down, and fueling between skates.">
+  <meta property="og:title" content="Tryout Week Performance Checklist">
+  <meta property="og:description" content="Three nights out to the final skate. The checklist for the most prepared kid at tryouts. Free from Prodigy Athletics.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #080808; --surface2: #161616; --border: #2e2e2e;
+      --text: #ffffff; --text-muted: #a0a0a0;
+      --accent: #cea952; --accent-light: #dfc06a;
+      --font-cinzel: 'Cinzel', serif;
+      --shadow-gold: 0 0 40px rgba(206,169,82,0.12);
+      --card-bg: linear-gradient(145deg, #141414, #0d0d0d);
+    }
+    body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(8,8,8,0.95); backdrop-filter: blur(16px); border-bottom: 1px solid #1e1e1e; padding: 0 24px; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo img { height: 40px; width: auto; display: block; }
+    .nav-links { display: flex; gap: 24px; list-style: none; }
+    .nav-links a { color: #888; text-decoration: none; font-size: 14px; font-weight: 500; }
+    .nav-links a:hover { color: var(--accent); }
+
+    .page { max-width: 640px; margin: 0 auto; padding: 108px 20px 60px; }
+    .label { font-size: 11px; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent); text-align: center; margin-bottom: 14px; }
+    h1 { font-size: clamp(30px, 5.4vw, 46px); font-weight: 800; text-align: center; line-height: 1.12; margin-bottom: 16px; }
+    h1 span { color: var(--accent); }
+    .sub { text-align: center; font-size: 16px; color: var(--text-muted); line-height: 1.7; margin: 0 auto 28px; max-width: 540px; }
+    .sub strong { color: var(--text); }
+
+    .inside { background: var(--card-bg); border: 1px solid rgba(206,169,82,0.35); border-radius: 16px; padding: 22px 22px 14px; margin-bottom: 26px; box-shadow: var(--shadow-gold); }
+    .inside h2 { font-size: 12px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
+    .inside ul { list-style: none; }
+    .inside li { font-size: 15px; color: var(--text); padding: 6px 0 6px 26px; position: relative; line-height: 1.5; }
+    .inside li::before { content: "✓"; position: absolute; left: 0; color: var(--accent); font-weight: 800; }
+    .inside li span { color: var(--text-muted); }
+
+    .form { background: var(--surface2); border: 1px solid var(--border); border-radius: 16px; padding: 24px 22px; }
+    .form h2 { font-size: 18px; font-weight: 800; margin-bottom: 4px; }
+    .form .lede { font-size: 14px; color: var(--text-muted); margin-bottom: 18px; line-height: 1.6; }
+    .row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    @media (max-width: 520px) { .row { grid-template-columns: 1fr; } }
+    .field { margin-bottom: 14px; }
+    .field label { display: block; font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 6px; }
+    .field label small { text-transform: none; letter-spacing: 0; font-weight: 500; color: #777; }
+    .field-input { width: 100%; background: #0d0d0d; border: 1px solid var(--border); border-radius: 10px; color: var(--text); font-family: inherit; font-size: 16px; padding: 13px 14px; outline: none; }
+    .field-input:focus { border-color: var(--accent); }
+    select.field-input { appearance: none; -webkit-appearance: none; background-image: linear-gradient(45deg, transparent 50%, #888 50%), linear-gradient(135deg, #888 50%, transparent 50%); background-position: calc(100% - 18px) 50%, calc(100% - 13px) 50%; background-size: 5px 5px, 5px 5px; background-repeat: no-repeat; }
+    input[type="date"].field-input { color-scheme: dark; }
+    .field-error { display: none; font-size: 13px; color: #e07b6c; margin-top: 6px; }
+
+    .consent-box { background: #0d0d0d; border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px; margin: 6px 0 16px; }
+    .consent-title { font-size: 11px; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 6px; }
+    .consent-box p { font-size: 12px; color: var(--text-muted); line-height: 1.6; }
+    .consent-box a { color: var(--accent); }
+    .sms-opt-in-row { display: flex; gap: 10px; align-items: flex-start; margin-top: 10px; font-size: 13px; color: var(--text); line-height: 1.5; cursor: pointer; }
+    .sms-opt-in-row input { margin-top: 3px; width: 18px; height: 18px; accent-color: var(--accent); flex-shrink: 0; }
+
+    .btn { display: block; width: 100%; background: var(--accent); color: #000; border: none; font-family: inherit; font-size: 16px; font-weight: 800; padding: 16px; border-radius: 12px; cursor: pointer; transition: background 0.15s; }
+    .btn:hover { background: var(--accent-light); }
+    .btn:disabled { opacity: 0.6; cursor: default; }
+    .fine { text-align: center; font-size: 12px; color: #777; margin-top: 10px; }
+
+    .proof { text-align: center; font-size: 13px; color: var(--text-muted); margin: 26px auto 0; }
+    .proof .star { color: var(--accent); margin-right: 6px; }
+
+    footer { padding: 40px 24px; border-top: 1px solid var(--border); text-align: center; margin-top: 50px; }
+    footer p:first-child { font-family: var(--font-cinzel); font-size: 18px; font-weight: 700; color: var(--accent); margin-bottom: 10px; letter-spacing: 0.08em; }
+    footer p { font-size: 13px; color: var(--text-muted); margin-bottom: 6px; }
+    footer a { color: var(--text-muted); text-decoration: none; margin: 0 12px; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo"><img src="/logo.svg" alt="Prodigy Athletics"></a>
+  <ul class="nav-links"><li><a href="/">Home</a></li><li><a href="/results/">Athlete Results</a></li></ul>
+</nav>
+
+<div class="page">
+  <p class="label">Free from Kenny at Prodigy Athletics</p>
+  <h1>The Tryout Week<br><span>Performance Checklist</span></h1>
+  <p class="sub">Three nights out to the last skate of the day. Sleep, water, screens, food, the bag, the warm-up, the cool-down, and exactly what to eat between skates. <strong>The checklist for the most prepared kid at the rink.</strong></p>
+
+  <div class="inside">
+    <h2>What's inside</h2>
+    <ul>
+      <li>3 nights out, 2 nights out, night before: <span>the sleep, water, and screen numbers that actually matter</span></li>
+      <li>The bag packed list <span>so nothing gets forgotten at 6am</span></li>
+      <li>Day of: <span>a 10 minute morning mobility routine and the off ice warm-up, step by step</span></li>
+      <li>Fueling between skates <span>by how much time there is: under 2 hours, 2 to 4, 4 plus</span></li>
+      <li>The post skate cool-down <span>and the recovery meal that closes the day</span></li>
+      <li>Put in your tryout date and <span>Kenny texts you the right piece on the right day</span></li>
+    </ul>
+  </div>
+
+  <div class="form" id="form">
+    <h2>Send me the checklist</h2>
+    <p class="lede">It opens right away and the link comes to your phone so it's there at the rink.</p>
+
+    <div class="row">
+      <div class="field"><label>Your first name</label><input class="field-input" id="f-first" autocomplete="given-name" placeholder="First name"></div>
+      <div class="field"><label>Last name</label><input class="field-input" id="f-last" autocomplete="family-name" placeholder="Last name"></div>
+    </div>
+    <div class="field"><label>Email</label><input class="field-input" id="f-email" type="email" autocomplete="email" placeholder="you@email.com"><p class="field-error" id="err-email">Please enter a valid email.</p></div>
+    <div class="field"><label>Cell phone</label><input class="field-input" id="f-phone" type="tel" autocomplete="tel" placeholder="(555) 555-5555"><p class="field-error" id="err-phone">Please enter a valid cell number.</p></div>
+    <div class="row">
+      <div class="field">
+        <label>Player's age</label>
+        <select class="field-input" id="f-age">
+          <option value="">Select</option>
+          <option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option>15</option><option>16</option><option>17</option><option>18</option><option value="19+">19 or older</option>
+        </select>
+        <p class="field-error" id="err-age">Please pick an age.</p>
+      </div>
+      <div class="field"><label>Tryout date <small>(optional)</small></label><input class="field-input" id="f-date" type="date"></div>
+    </div>
+
+    <div class="consent-box">
+      <p class="consent-title">SMS Permission</p>
+      <p>By submitting you agree to our <a href="/privacy/">Privacy Policy</a> and <a href="/terms/">Terms of Service</a>. Message and data rates may apply. Reply STOP at any time to opt out. Consent to receive SMS is not a condition of purchase.</p>
+      <label class="sms-opt-in-row">
+        <input type="checkbox" id="sms-consent-check" onchange="if(this.checked) document.getElementById('err-sms').style.display='none'">
+        <span>I agree to receive SMS text messages from Prodigy Athletics regarding hockey development coaching.</span>
+      </label>
+      <p class="field-error" id="err-sms" style="margin-top:10px; margin-bottom:0;">Please check the box above. Texting is how the checklist and the tryout week reminders reach you.</p>
+    </div>
+
+    <button class="btn" id="submit-btn" onclick="submitForm()">Send me the checklist →</button>
+    <p class="fine">Free. No program pitch on the checklist, just the list.</p>
+    <p class="field-error" id="err-net" style="text-align:center;margin-top:10px;">Something hiccuped sending that. Try once more, or text Kenny at (272) 348-2161.</p>
+  </div>
+
+  <p class="proof"><span class="star">★★★★★</span>Trusted by hockey families across Canada, the US, Sweden and Switzerland</p>
+</div>
+
+<footer>
+  <p>PRODIGY ATHLETICS</p>
+  <p>Building confident leaders one athlete at a time.</p>
+  <p style="margin-top:12px;"><a href="/">Home</a><a href="/privacy/">Privacy Policy</a><a href="/terms/">Terms of Service</a></p>
+  <p style="margin-top:12px;">© 2026 Prodigy Hockey Development. All rights reserved.</p>
+</footer>
+
+<script>
+const ENDPOINT = 'https://lch.prodigyathletics.ca/webhooks/tryout-checklist';
+const CHECKLIST = '/tryoutweek/checklist/';
+const metaPixelId = '2092599024666125';
+(function initPixel() {
+  if (!metaPixelId) return;
+  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+  n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+  document,'script','https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', metaPixelId);
+  fbq('track', 'PageView');
+})();
+
+function v(id) { return (document.getElementById(id).value || '').trim(); }
+function show(id, on) { document.getElementById(id).style.display = on ? 'block' : 'none'; }
+
+async function submitForm() {
+  ['err-email','err-phone','err-age','err-sms','err-net'].forEach(i => show(i, false));
+  const first = v('f-first'), last = v('f-last'), email = v('f-email'), phone = v('f-phone'), age = v('f-age'), date = v('f-date');
+  let ok = true;
+  if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) { show('err-email', true); ok = false; }
+  const digits = phone.replace(/\D/g, '');
+  if (digits.length < 10 || digits.length > 11 || /^(\d)\1+$/.test(digits)) { show('err-phone', true); ok = false; }
+  if (!age) { show('err-age', true); ok = false; }
+  if (!document.getElementById('sms-consent-check').checked) { show('err-sms', true); ok = false; }
+  if (!ok) return;
+
+  const btn = document.getElementById('submit-btn');
+  btn.disabled = true; btn.textContent = 'Sending...';
+  const payload = { first_name: first, last_name: last, email, phone, player_age: age, tryout_date: date, sms_consent: true, source: 'tryoutweek' };
+  try {
+    const r = await fetch(ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+    if (!r.ok) throw new Error('http ' + r.status);
+    if (window.fbq) { try { fbq('track', 'Lead', { content_name: 'tryout_checklist' }); } catch (e) {} }
+    window.location.href = CHECKLIST;
+  } catch (e) {
+    btn.disabled = false; btn.textContent = 'Send me the checklist →';
+    show('err-net', true);
+  }
+}
+</script>
+</body>
+</html>

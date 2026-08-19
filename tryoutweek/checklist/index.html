@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tryout Week Performance Checklist | Prodigy Athletics</title>
+  <meta name="description" content="Three nights out to the final skate of the day: sleep, water, screens, food, the bag, the warm-up, between-ice fueling, and the cool-down. Tap to check off each step.">
+  <meta name="robots" content="noindex">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #080808; --surface2: #161616; --border: #2e2e2e;
+      --text: #ffffff; --text-muted: #a0a0a0;
+      --accent: #cea952; --accent-light: #dfc06a;
+      --font-cinzel: 'Cinzel', serif;
+      --shadow-gold: 0 0 40px rgba(206,169,82,0.12);
+      --card-bg: linear-gradient(145deg, #141414, #0d0d0d);
+    }
+    body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(8,8,8,0.95); backdrop-filter: blur(16px); border-bottom: 1px solid #1e1e1e; padding: 0 24px; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo img { height: 40px; width: auto; display: block; }
+    .progress { font-size: 12px; font-weight: 700; color: var(--accent); letter-spacing: 0.08em; }
+
+    .page { max-width: 680px; margin: 0 auto; padding: 104px 20px 60px; }
+    .label { font-size: 11px; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent); text-align: center; margin-bottom: 12px; }
+    h1 { font-size: clamp(28px, 5vw, 42px); font-weight: 800; text-align: center; line-height: 1.15; margin-bottom: 14px; }
+    .sub { text-align: center; font-size: 15px; color: var(--text-muted); line-height: 1.7; margin: 0 auto 26px; max-width: 560px; }
+    .note { background: var(--card-bg); border: 1px solid rgba(206,169,82,0.35); border-radius: 16px; padding: 22px 22px; margin: 0 0 30px; box-shadow: var(--shadow-gold); }
+    .note .note-label { font-size: 11px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; }
+    .note p { font-size: 15px; line-height: 1.75; color: var(--text); margin-bottom: 10px; }
+    .note p:last-child { margin-bottom: 0; }
+    .note .sig { color: var(--text-muted); font-size: 13px; }
+
+    .jump { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 34px; }
+    .jump a { font-size: 12px; font-weight: 600; color: var(--accent); text-decoration: none; border: 1px solid rgba(206,169,82,0.4); border-radius: 20px; padding: 6px 12px; }
+    .jump a:hover { background: rgba(206,169,82,0.08); }
+
+    .day { margin-bottom: 38px; scroll-margin-top: 84px; }
+    .day-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; border-bottom: 1px solid var(--border); padding-bottom: 10px; margin-bottom: 14px; }
+    .day-head h2 { font-size: clamp(22px, 4vw, 28px); font-weight: 800; color: var(--accent); line-height: 1.2; }
+    .day-head .count { font-size: 12px; color: var(--text-muted); white-space: nowrap; }
+    .day-intro { font-size: 14px; color: var(--text-muted); line-height: 1.7; margin-bottom: 14px; }
+
+    h3 { font-size: 13px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); margin: 20px 0 8px; }
+    .block { background: var(--surface2); border: 1px solid var(--border); border-radius: 14px; padding: 6px 14px; }
+    .item { display: flex; align-items: flex-start; gap: 12px; padding: 11px 0; border-bottom: 1px solid #1f1f1f; cursor: pointer; user-select: none; }
+    .item:last-child { border-bottom: none; }
+    .box { width: 22px; height: 22px; border-radius: 6px; border: 1.5px solid #555; flex-shrink: 0; margin-top: 2px; display: flex; align-items: center; justify-content: center; color: transparent; font-size: 14px; font-weight: 800; transition: all 0.12s; }
+    .item.done .box { color: #000; }
+    .item.done .box { background: var(--accent); border-color: var(--accent); }
+    .item .txt { font-size: 15px; line-height: 1.55; color: var(--text); }
+    .item.done .txt { color: var(--text-muted); text-decoration: line-through; text-decoration-color: rgba(206,169,82,0.6); }
+    .item .txt small { display: block; font-size: 13px; color: var(--text-muted); margin-top: 2px; }
+
+    .routine { background: var(--card-bg); border: 1px solid var(--border); border-radius: 14px; padding: 16px 18px; margin: 8px 0 6px; }
+    .routine .r-title { font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 2px; }
+    .routine .r-sub { font-size: 12px; color: var(--text-muted); margin-bottom: 10px; }
+    .routine ol { padding-left: 20px; }
+    .routine li { font-size: 14px; color: var(--text); line-height: 1.55; padding: 3px 0; }
+    .routine li span { color: var(--text-muted); }
+
+    .gap { display: grid; grid-template-columns: 1fr; gap: 10px; margin: 8px 0 6px; }
+    .gap div { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px; }
+    .gap h4 { font-size: 14px; font-weight: 800; color: var(--accent); margin-bottom: 4px; }
+    .gap p { font-size: 14px; color: var(--text); line-height: 1.6; }
+    .gap p span { color: var(--text-muted); }
+
+    .rule { background: rgba(206,169,82,0.06); border-left: 2px solid var(--accent); border-radius: 0 10px 10px 0; padding: 12px 16px; font-size: 14px; color: var(--text); line-height: 1.65; margin: 10px 0; }
+
+    .foot-note { text-align: center; font-size: 15px; color: var(--text-muted); line-height: 1.7; margin: 44px auto 0; max-width: 560px; }
+    .foot-note strong { color: var(--accent); }
+    .foot-note a { color: var(--accent); text-decoration: none; font-weight: 600; }
+    .reset { display: block; margin: 22px auto 0; background: transparent; border: 1px solid var(--border); color: var(--text-muted); font-family: inherit; font-size: 12px; padding: 8px 14px; border-radius: 20px; cursor: pointer; }
+
+    footer { padding: 40px 24px; border-top: 1px solid var(--border); text-align: center; margin-top: 50px; }
+    footer p:first-child { font-family: var(--font-cinzel); font-size: 18px; font-weight: 700; color: var(--accent); margin-bottom: 10px; letter-spacing: 0.08em; }
+    footer p { font-size: 13px; color: var(--text-muted); margin-bottom: 6px; }
+    footer a { color: var(--text-muted); text-decoration: none; margin: 0 12px; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo"><img src="/logo.svg" alt="Prodigy Athletics"></a>
+  <span class="progress" id="progress">0 / 0 done</span>
+</nav>
+
+<div class="page">
+  <p class="label">Prodigy Athletics</p>
+  <h1>Tryout Week<br>Performance Checklist</h1>
+  <p class="sub">Three nights out to the last skate of the day. Tap each line when it's done, your phone remembers it. Same list every tryout, every camp.</p>
+
+  <div class="note">
+    <p class="note-label">From Kenny</p>
+    <p>Tryouts aren't won at tryouts. They're won in the three days before, by the kid who shows up slept, fed, hydrated, and already warm when the others are still lacing up. None of this is complicated. The edge is that almost nobody does all of it.</p>
+    <p>One rule for the whole week: nothing new. No new foods, no new gear, no new routine. Tryout week is for doing the known things perfectly.</p>
+    <p class="sig">Kenny, Prodigy Athletics</p>
+  </div>
+
+  <div class="jump">
+    <a href="#d3">3 nights out</a><a href="#d2">2 nights out</a><a href="#d1">Night before</a><a href="#d0">Day of</a><a href="#between">Between skates</a><a href="#after">After the last skate</a>
+  </div>
+
+  <!-- ───────── 3 NIGHTS OUT ───────── -->
+  <section class="day" id="d3">
+    <div class="day-head"><h2>3 nights out</h2><span class="count" data-count="d3"></span></div>
+    <p class="day-intro">This is where the week starts. Everything from here forward is about arriving rested and fueled, and sleep is the one you can't make up later.</p>
+    <h3>Sleep</h3>
+    <div class="block">
+      <div class="item" data-k="d3-sleep"><div class="box">✓</div><div class="txt">9.5 hours of sleep tonight. 10 or more is ideal.<small>Count back from wake-up time and set the bedtime now. That's the number, not "go to bed early."</small></div></div>
+    </div>
+    <h3>Screen time</h3>
+    <div class="block">
+      <div class="item" data-k="d3-screen1"><div class="box">✓</div><div class="txt">No screens in the hour before bed.</div></div>
+      <div class="item" data-k="d3-screen2"><div class="box">✓</div><div class="txt">Under 4 hours of total screen time today.</div></div>
+    </div>
+    <h3>Water</h3>
+    <div class="block">
+      <div class="item" data-k="d3-water"><div class="box">✓</div><div class="txt">Minimum 3 litres today.<small>Sip it through the day. Cramming it at night just wrecks the sleep.</small></div></div>
+    </div>
+    <h3>Food</h3>
+    <div class="block">
+      <div class="item" data-k="d3-food"><div class="box">✓</div><div class="txt">Three real meals, nothing new.<small>Familiar food, normal portions. This week is not the week to try anything.</small></div></div>
+    </div>
+  </section>
+
+  <!-- ───────── 2 NIGHTS OUT ───────── -->
+  <section class="day" id="d2">
+    <div class="day-head"><h2>2 nights out</h2><span class="count" data-count="d2"></span></div>
+    <p class="day-intro">Same standards as last night, fully locked in. No slipping now.</p>
+    <h3>Sleep</h3>
+    <div class="block">
+      <div class="item" data-k="d2-sleep"><div class="box">✓</div><div class="txt">9.5 hours again. 10 or more is ideal.</div></div>
+    </div>
+    <h3>Screen time</h3>
+    <div class="block">
+      <div class="item" data-k="d2-screen1"><div class="box">✓</div><div class="txt">No screens in the hour before bed.</div></div>
+      <div class="item" data-k="d2-screen2"><div class="box">✓</div><div class="txt">Under 4 hours of total screen time today.</div></div>
+    </div>
+    <h3>Water</h3>
+    <div class="block">
+      <div class="item" data-k="d2-water"><div class="box">✓</div><div class="txt">Minimum 3 litres today.</div></div>
+    </div>
+    <h3>Logistics</h3>
+    <div class="block">
+      <div class="item" data-k="d2-times"><div class="box">✓</div><div class="txt">Confirm the ice times, the rink, and how long the drive takes.<small>Know when you're leaving the house. Rushing on the day burns energy you want on the ice.</small></div></div>
+      <div class="item" data-k="d2-gear"><div class="box">✓</div><div class="txt">Quick gear check: anything broken, missing, or needing a sharpen gets handled today, not tomorrow night.</div></div>
+    </div>
+  </section>
+
+  <!-- ───────── NIGHT BEFORE ───────── -->
+  <section class="day" id="d1">
+    <div class="day-head"><h2>1 night out</h2><span class="count" data-count="d1"></span></div>
+    <p class="day-intro">The most important night of the week. Tonight's job is simple: eat well, pack the bag, and get to bed on time.</p>
+    <h3>Sleep</h3>
+    <div class="block">
+      <div class="item" data-k="d1-sleep"><div class="box">✓</div><div class="txt">9.5 hours minimum. This is the one that shows up on the ice tomorrow.<small>Bedtime set. Alarm set with time to wake up properly, eat, and move before leaving.</small></div></div>
+    </div>
+    <h3>Screen time</h3>
+    <div class="block">
+      <div class="item" data-k="d1-screen1"><div class="box">✓</div><div class="txt">No screens in the hour before bed. Phone charges outside the bedroom tonight.</div></div>
+      <div class="item" data-k="d1-screen2"><div class="box">✓</div><div class="txt">Under 4 hours of total screen time today.</div></div>
+    </div>
+    <h3>Water</h3>
+    <div class="block">
+      <div class="item" data-k="d1-water"><div class="box">✓</div><div class="txt">Minimum 3 litres today.</div></div>
+    </div>
+    <h3>Nutrition</h3>
+    <div class="block">
+      <div class="item" data-k="d1-dinner"><div class="box">✓</div><div class="txt">A full, hearty, well balanced dinner.<small>A real protein (chicken, turkey, beef, fish), a starch (pasta, rice, potatoes, quinoa), vegetables, and normal fats. Familiar food, good portion. This is the fuel for tomorrow.</small></div></div>
+      <div class="item" data-k="d1-snacks"><div class="box">✓</div><div class="txt">Tomorrow's snacks packed tonight: before the ice, between skates, and after.<small>See "Between skates" below for what goes in the bag by how much time there is.</small></div></div>
+    </div>
+    <h3>Bag packed</h3>
+    <div class="block">
+      <div class="item" data-k="d1-bag-skates"><div class="box">✓</div><div class="txt">Skates, sharpened, laces checked. Spare laces in the bag.</div></div>
+      <div class="item" data-k="d1-bag-gear"><div class="box">✓</div><div class="txt">Helmet and cage, shoulder pads, elbow pads, gloves, pants, shin pads, jock, neck guard, mouthguard.</div></div>
+      <div class="item" data-k="d1-bag-jersey"><div class="box">✓</div><div class="txt">Jersey and socks (both colours if they gave you two), plus anything the tryout told you to bring.</div></div>
+      <div class="item" data-k="d1-bag-sticks"><div class="box">✓</div><div class="txt">Sticks taped, and a spare stick. Fresh tape roll in the bag.</div></div>
+      <div class="item" data-k="d1-bag-water"><div class="box">✓</div><div class="txt">Your own water bottle, filled. A second one if there's more than one ice time.</div></div>
+      <div class="item" data-k="d1-bag-office"><div class="box">✓</div><div class="txt">Off ice warm-up kit: running shoes, shorts or track pants, a t-shirt, and a layer for the rink.</div></div>
+      <div class="item" data-k="d1-bag-snacks"><div class="box">✓</div><div class="txt">Snacks and shaker bottle packed (see the gap guide below).</div></div>
+      <div class="item" data-k="d1-bag-misc"><div class="box">✓</div><div class="txt">Towel, skate guards, any registration or paperwork, and a small first aid bit (tape, a bandage).</div></div>
+      <div class="item" data-k="d1-bag-clothes"><div class="box">✓</div><div class="txt">Clothes for the morning laid out. Bag by the door.</div></div>
+    </div>
+  </section>
+
+  <!-- ───────── DAY OF ───────── -->
+  <section class="day" id="d0">
+    <div class="day-head"><h2>Day of</h2><span class="count" data-count="d0"></span></div>
+    <p class="day-intro">Wake up with time to spare. Water first, then food, then move. Walk into the rink already warm.</p>
+    <h3>Morning</h3>
+    <div class="block">
+      <div class="item" data-k="d0-wake"><div class="box">✓</div><div class="txt">Up with time to spare. Big glass of water before anything else.</div></div>
+      <div class="item" data-k="d0-breakfast"><div class="box">✓</div><div class="txt">A familiar breakfast: mostly carbs, some protein, keep fats light.<small>Oats or toast with honey or jam, fruit, eggs or yogurt. Aim for 2 to 3 hours before the ice if the schedule allows. Never skip it.</small></div></div>
+      <div class="item" data-k="d0-mobility"><div class="box">✓</div><div class="txt">Morning mobility, 10 to 15 minutes. The routine is below.</div></div>
+    </div>
+    <div class="routine">
+      <p class="r-title">Morning mobility</p>
+      <p class="r-sub">Two rounds through. Smooth and easy, this is to wake the body up and loosen stiffness, not to stretch hard.</p>
+      <ol>
+        <li>Dynamic hip flexor stretch <span>each side</span></li>
+        <li>Dynamic frog stretch</li>
+        <li>Plate tea cup (shoulder mobility) <span>6 each side, a small plate or water bottle works</span></li>
+        <li>Dynamic pigeon stretch <span>each side</span></li>
+        <li>Wide leg seated forward fold</li>
+        <li>Superband dislocates <span>6 reps, a towel works if you have no band</span></li>
+        <li>T-spine rotation with reach <span>each side</span></li>
+        <li>Side-lying IT band stretch <span>each side</span></li>
+        <li>World's greatest stretch <span>5 each side</span></li>
+        <li>Seated hip twist <span>5 each side</span></li>
+      </ol>
+    </div>
+
+    <h3>Before the ice</h3>
+    <div class="block">
+      <div class="item" data-k="d0-arrive"><div class="box">✓</div><div class="txt">At the rink early enough to warm up properly, roughly 45 minutes before the ice.</div></div>
+      <div class="item" data-k="d0-warmup"><div class="box">✓</div><div class="txt">Off ice warm-up done, in running shoes, 20 to 30 minutes before stepping on. The routine is below.</div></div>
+      <div class="item" data-k="d0-water"><div class="box">✓</div><div class="txt">Water bottle full and in the player's box. Sipping, not chugging.</div></div>
+    </div>
+    <div class="routine">
+      <p class="r-title">Off ice warm-up</p>
+      <p class="r-sub">One round through, in order. Find a hallway or a spot outside the dressing room with about 10 metres of room. Build the pace up as you go, the last three should feel fast.</p>
+      <ol>
+        <li>Shuttle run <span>10 m</span></li>
+        <li>High knee skipping <span>10 m</span></li>
+        <li>Runner stretch <span>4 each side</span></li>
+        <li>Inchworm walk <span>5</span></li>
+        <li>Downward dog toe tap to push-up <span>4 each side</span></li>
+        <li>90-90 hip switch to lift and reach <span>4 each side</span></li>
+        <li>Push-up to T-rotation <span>3 each side</span></li>
+        <li>Pogo hops <span>10</span></li>
+        <li>Single leg lateral pogo hops <span>5 each leg</span></li>
+        <li>Glute bridge <span>5, 2 second hold at the top</span></li>
+        <li>Double broad jump <span>3</span></li>
+        <li>Backpedal to sprint <span>2 reps, 5 m back then 10 m forward</span></li>
+      </ol>
+    </div>
+
+    <h3>Right after each skate</h3>
+    <div class="block">
+      <div class="item" data-k="d0-cooldown"><div class="box">✓</div><div class="txt">Post skate cool-down, about 10 minutes, before the gear even comes all the way off if you can. The routine is below.</div></div>
+      <div class="item" data-k="d0-refuel"><div class="box">✓</div><div class="txt">Water, and the right snack for how long until the next skate (next section).</div></div>
+    </div>
+    <div class="routine">
+      <p class="r-title">Post skate cool-down</p>
+      <p class="r-sub">Two rounds through. Keep every stretch gentle. The goal is to stay loose and let the tissue recover, not to push range.</p>
+      <ol>
+        <li>Cat-cow <span>4</span></li>
+        <li>Thread the needle <span>3 each side</span></li>
+        <li>Dynamic hip flexor stretch <span>each side</span></li>
+        <li>Dynamic pigeon stretch <span>each side</span></li>
+        <li>Dynamic rear foot elevated hip flexor stretch <span>each side</span></li>
+        <li>Side-lying IT band stretch <span>each side</span></li>
+        <li>Dynamic frog stretch</li>
+        <li>Straddle side stretch, alternating <span>3 each side, easy</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ───────── BETWEEN SKATES ───────── -->
+  <section class="day" id="between">
+    <div class="day-head"><h2>Between skates</h2><span class="count" data-count="between"></span></div>
+    <p class="day-intro">More than one ice time in a day? What they eat between skates is decided by one thing: how long until the next one. On high activity days, fats take a back seat until the evening.</p>
+    <div class="gap">
+      <div>
+        <h4>Under 2 hours</h4>
+        <p>A little easy digesting protein and a light carb, keep fats low. <span>Whey or your protein powder in water, Fairlife, or skim milk. A banana or a few dates alongside. Small, not a meal.</span></p>
+      </div>
+      <div>
+        <h4>2 to 4 hours</h4>
+        <p>Carbs first, plus some protein. <span>Fresh fruit (pears, bananas, oranges), dried fruit (dates, raisins, apricots), bread or toast with honey or jam, and a protein source like Fairlife, yogurt, or a shake. Then at about 2 hours out, the small protein and carb snack from above.</span></p>
+      </div>
+      <div>
+        <h4>4 hours or more</h4>
+        <p>A full meal. <span>Chicken or turkey, a starch like pasta, rice, or quinoa, and vegetables. Keep fats low for now. Then follow the 2 hour snack above as the next skate gets close.</span></p>
+      </div>
+    </div>
+    <div class="block">
+      <div class="item" data-k="bw-plan"><div class="box">✓</div><div class="txt">Know the gap between skates and pack for it, the night before.</div></div>
+      <div class="item" data-k="bw-water"><div class="box">✓</div><div class="txt">Refill the bottle after every skate. The 3 litres still applies, more on a double day.</div></div>
+      <div class="item" data-k="bw-rest"><div class="box">✓</div><div class="txt">Feet up between skates. Shade, a quiet spot, gear off. Save the energy for the ice, not the lobby.</div></div>
+    </div>
+  </section>
+
+  <!-- ───────── AFTER THE LAST SKATE ───────── -->
+  <section class="day" id="after">
+    <div class="day-head"><h2>After the last skate</h2><span class="count" data-count="after"></span></div>
+    <p class="day-intro">Skating is done for the day, so now it's all recovery and no digestion to worry about. This is where most of the day's calories live.</p>
+    <div class="block">
+      <div class="item" data-k="af-cool"><div class="box">✓</div><div class="txt">Cool-down done (routine above).</div></div>
+      <div class="item" data-k="af-meal"><div class="box">✓</div><div class="txt">The big meal: carbs, protein, and fats all together.<small>Fats come back in here. Fish, avocado, a cream based sauce on the pasta, whatever they like. Get a lot of good food in.</small></div></div>
+      <div class="item" data-k="af-water"><div class="box">✓</div><div class="txt">Keep drinking water through the evening.</div></div>
+      <div class="item" data-k="af-sleep"><div class="box">✓</div><div class="txt">If there's another skate tomorrow, tonight is a "night before" again: 9.5 hours, no screens for the last hour, bag repacked.</div></div>
+    </div>
+    <div class="rule">The pattern for the whole week, in one line: sleep 9.5 plus, 3 litres of water, screens off an hour before bed, nothing new, warm before the ice, cool down after, fuel by the gap, and eat big once the skating is done.</div>
+  </section>
+
+  <p class="foot-note">Questions during the week? <strong>Just text me.</strong> <a href="sms:+12723482161">(272) 348-2161</a></p>
+  <button class="reset" onclick="resetAll()">Reset the checklist for the next tryout</button>
+</div>
+
+<footer>
+  <p>PRODIGY ATHLETICS</p>
+  <p>Building confident leaders one athlete at a time.</p>
+  <p style="margin-top:12px;"><a href="/">Home</a><a href="/privacy/">Privacy Policy</a><a href="/terms/">Terms of Service</a></p>
+  <p style="margin-top:12px;">© 2026 Prodigy Hockey Development. All rights reserved.</p>
+</footer>
+
+<script>
+const KEY = 'prodigy_tryout_v1';
+let state = {};
+try { state = JSON.parse(localStorage.getItem(KEY) || '{}') || {}; } catch (e) { state = {}; }
+function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
+const items = [...document.querySelectorAll('.item')];
+function render() {
+  let done = 0;
+  items.forEach(el => { const d = !!state[el.dataset.k]; el.classList.toggle('done', d); if (d) done++; });
+  document.getElementById('progress').textContent = done + ' / ' + items.length + ' done';
+  document.querySelectorAll('.count').forEach(c => {
+    const sec = document.getElementById(c.dataset.count);
+    const its = [...sec.querySelectorAll('.item')];
+    const dn = its.filter(i => state[i.dataset.k]).length;
+    c.textContent = dn + ' / ' + its.length;
+  });
+}
+items.forEach(el => el.addEventListener('click', () => { state[el.dataset.k] = !state[el.dataset.k]; save(); render(); }));
+function resetAll() { if (confirm('Clear every checkbox for the next tryout?')) { state = {}; save(); render(); } }
+render();
+
+const metaPixelId = '2092599024666125';
+(function initPixel() {
+  if (!metaPixelId) return;
+  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+  n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+  document,'script','https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', metaPixelId);
+  fbq('track', 'PageView');
+  try { fbq('trackCustom', 'TryoutChecklistView'); } catch (e) {}
+})();
+</script>
+</body>
+</html>
