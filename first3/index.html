@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fast First Three Training Plan | Prodigy Athletics</title>
+  <meta name="description" content="Fix your first three strides. Professional off ice strength and conditioning built for a top level college athlete. $20 a week, less than two hours of work, cancel anytime.">
+  <meta name="robots" content="noindex">
+  <meta property="og:title" content="Fast First Three Training Plan | Prodigy Athletics">
+  <meta property="og:description" content="Everybody wants a fast first three strides. This is the plan that builds them. $20 a week, no contract.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #080808; --surface2: #161616; --border: #2e2e2e;
+      --text: #ffffff; --text-muted: #a0a0a0;
+      --accent: #cea952; --accent-light: #dfc06a;
+      --font-cinzel: 'Cinzel', serif;
+      --shadow-gold: 0 0 40px rgba(206,169,82,0.12);
+      --card-bg: linear-gradient(145deg, #141414, #0d0d0d);
+    }
+    body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+    .page { max-width: 760px; margin: 0 auto; padding: 40px 24px 40px; }
+    .logo { display: block; width: max-content; margin: 0 auto 40px; }
+    .logo img { height: 44px; width: auto; display: block; }
+
+    .label { font-size: 11px; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent); text-align: center; margin-bottom: 14px; }
+    h1 { font-size: clamp(36px, 7vw, 64px); font-weight: 800; text-align: center; line-height: 1.05; margin-bottom: 18px; letter-spacing: -0.01em; }
+    h1 span { color: var(--accent); }
+    .sub { text-align: center; font-size: 17px; color: var(--text-muted); line-height: 1.7; margin: 0 auto 28px; max-width: 620px; }
+    .sub strong { color: var(--text); }
+    .cta-wrap { text-align: center; }
+    .cta {
+      display: inline-block; background: var(--accent); color: #000; text-decoration: none;
+      font-size: 17px; font-weight: 800; letter-spacing: 0.04em; padding: 18px 36px; border-radius: 12px;
+      transition: background 0.15s, box-shadow 0.15s; box-shadow: 0 0 24px rgba(206,169,82,0.25);
+    }
+    .cta:hover { background: var(--accent-light); box-shadow: 0 0 32px rgba(206,169,82,0.45); }
+    .fine { text-align: center; font-size: 13px; color: var(--text-muted); margin-top: 12px; }
+    .gold-divider { width: 80px; height: 1px; background: linear-gradient(90deg, transparent, var(--accent), transparent); margin: 48px auto; }
+
+    h2 { font-size: clamp(20px, 3.4vw, 28px); font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); text-align: center; text-shadow: 0 0 28px rgba(206,169,82,0.5); margin: 0 0 22px; }
+
+    .quotes { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    @media (max-width: 640px) { .quotes { grid-template-columns: 1fr; } }
+    .quote { background: var(--card-bg); border: 1px solid var(--border); border-radius: 14px; padding: 22px; display: flex; flex-direction: column; gap: 14px; }
+    .quote blockquote { font-size: 15px; line-height: 1.7; color: var(--text); font-style: italic; flex: 1; }
+    .who { display: flex; align-items: center; gap: 12px; }
+    .avatar { width: 40px; height: 40px; border-radius: 50%; background: rgba(206,169,82,0.14); border: 1px solid rgba(206,169,82,0.5); color: var(--accent); font-weight: 800; font-size: 15px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .who .name { font-size: 14px; font-weight: 700; color: var(--accent); }
+    .who .meta { font-size: 12px; color: var(--text-muted); }
+
+    .cost { background: var(--card-bg); border: 1px solid rgba(206,169,82,0.35); border-radius: 16px; padding: 30px 28px; box-shadow: var(--shadow-gold); }
+    .cost h3 { font-size: clamp(20px, 3.4vw, 26px); font-weight: 800; line-height: 1.3; margin-bottom: 16px; }
+    .cost p { font-size: 16px; color: var(--text-muted); line-height: 1.75; margin-bottom: 12px; }
+    .cost p strong { color: var(--text); }
+    .cost p:last-child { margin-bottom: 0; }
+
+    .gets { list-style: none; margin: 22px auto 0; max-width: 520px; }
+    .gets li { font-size: 16px; color: var(--text); padding: 10px 0 10px 30px; position: relative; border-bottom: 1px solid #1c1c1c; }
+    .gets li:last-child { border-bottom: none; }
+    .gets li::before { content: "✓"; position: absolute; left: 0; color: var(--accent); font-weight: 800; }
+
+    .close { text-align: center; font-size: clamp(20px, 3.6vw, 28px); font-weight: 800; line-height: 1.3; margin: 0 auto 22px; max-width: 600px; }
+    .close span { color: var(--accent); }
+
+    footer { padding: 40px 24px; border-top: 1px solid var(--border); text-align: center; margin-top: 60px; }
+    footer p:first-child { font-family: var(--font-cinzel); font-size: 18px; font-weight: 700; color: var(--accent); margin-bottom: 10px; letter-spacing: 0.08em; }
+    footer p { font-size: 13px; color: var(--text-muted); margin-bottom: 6px; }
+    footer a { color: var(--text-muted); text-decoration: none; margin: 0 12px; }
+    footer a:hover { color: var(--accent); }
+  </style>
+</head>
+<body>
+
+<div class="page">
+  <a href="/" class="logo"><img src="/logo.svg" alt="Prodigy Athletics"></a>
+
+  <p class="label">The Fast First Three Training Plan</p>
+  <h1>Fix your <span>first three strides.</span></h1>
+  <p class="sub">Everybody wants a fast first three. This is the off ice work that builds them: professional strength and conditioning built for a top level college athlete. <strong>$20 a week. Less than two hours of work.</strong></p>
+  <div class="cta-wrap">
+    <a class="cta" href="https://buy.stripe.com/00wdRb0gk3eCbmj6zAcbC0C" onclick="trackCta('top')">GET THE FAST FIRST THREE</a>
+    <p class="fine">Instant access · No contract · Cancel anytime</p>
+  </div>
+
+  <div class="gold-divider"></div>
+
+  <h2>What the athletes have to say</h2>
+  <div class="quotes">
+    <div class="quote">
+      <blockquote>"I've trained with pros before. This is exactly like training with them for none of the price."</blockquote>
+      <div class="who"><div class="avatar">N</div><div><div class="name">Nathan</div><div class="meta">23 · BCIHL</div></div></div>
+    </div>
+    <div class="quote">
+      <blockquote>"This plan helped me reach my goal of playing U Sports, and after my rookie season my coach told me to do exactly what I did last summer. Here I am again."</blockquote>
+      <div class="who"><div class="avatar">N</div><div><div class="name">Nathan</div><div class="meta">25 · U Sports</div></div></div>
+    </div>
+    <div class="quote">
+      <blockquote>"I thought I knew what I was doing before joining. I learned so much and I saw results fast."</blockquote>
+      <div class="who"><div class="avatar">B</div><div><div class="name">Brody</div><div class="meta">17 · Junior</div></div></div>
+    </div>
+    <div class="quote">
+      <blockquote>"The plan was amazing. I went into my freshman season of college feeling so ready."</blockquote>
+      <div class="who"><div class="avatar">L</div><div><div class="name">Lucas</div><div class="meta">21 · ACHA D1</div></div></div>
+    </div>
+  </div>
+
+  <div class="gold-divider"></div>
+
+  <div class="cost">
+    <h3>Your training shouldn't be an expense you have to save for.</h3>
+    <p>Travel, gear, ice time, power skating, camps. You pay for all of it. You don't need a reminder of how much hockey costs.</p>
+    <p>This plan is less than a weekly lunch for what you get. <strong>$20. No contract. Cancel anytime.</strong></p>
+    <p>Built for a top level college athlete and designed to get you physically ready, fast.</p>
+  </div>
+
+  <div class="gold-divider"></div>
+
+  <h2>What you get</h2>
+  <ul class="gets">
+    <li>Fully programmed and periodized training plan</li>
+    <li>Built for a top level college athlete</li>
+    <li>App based delivery with progress tracking</li>
+    <li>Cancel anytime</li>
+    <li>$20 a week, no contract</li>
+  </ul>
+
+  <div class="gold-divider"></div>
+
+  <p class="close">Stop talking about wanting to get faster. <span>Start building your first three strides.</span></p>
+  <div class="cta-wrap">
+    <a class="cta" href="https://buy.stripe.com/00wdRb0gk3eCbmj6zAcbC0C" onclick="trackCta('bottom')">START TODAY</a>
+    <p class="fine">Instant access · No contract · Cancel anytime</p>
+  </div>
+</div>
+
+<footer>
+  <p>PRODIGY ATHLETICS</p>
+  <p>Building confident leaders one athlete at a time.</p>
+  <p style="margin-top:12px;">
+    <a href="/">Home</a>
+    <a href="/privacy/">Privacy Policy</a>
+    <a href="/terms/">Terms of Service</a>
+  </p>
+  <p style="margin-top:12px;">© 2026 Prodigy Hockey Development. All rights reserved.</p>
+</footer>
+
+<script>
+const metaPixelId = '2092599024666125';
+(function initPixel() {
+  if (!metaPixelId) return;
+  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+  n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+  document,'script','https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', metaPixelId);
+  fbq('track', 'PageView');
+})();
+function trackCta(pos) { if (window.fbq) { try { fbq('track', 'InitiateCheckout', { content_name: 'fast_first_three', value: 20, currency: 'CAD', position: pos }); } catch (e) {} } }
+</script>
+</body>
+</html>
