@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Training for 9 to 12 Year Olds | Prodigy Athletics</title>
+  <meta name="description" content="A custom strength program, a weekly schedule, a nutrition plan, and a one on one call with Kenny to make sure it all fits. Built for hockey players 9 to 12.">
+  <meta name="robots" content="noindex">
+  <meta property="og:title" content="Training for 9 to 12 Year Olds | Prodigy Athletics">
+  <meta property="og:description" content="A pro level foundation for your young player: program, schedule, nutrition, and a call with Kenny. Two ways to run it.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #080808; --surface: #0f0f0f; --surface2: #161616;
+      --border: #2e2e2e; --text: #ffffff; --text-muted: #a0a0a0;
+      --accent: #cea952; --accent-light: #dfc06a;
+      --font-cinzel: 'Cinzel', serif;
+      --shadow-gold: 0 0 40px rgba(206,169,82,0.12);
+      --card-bg: linear-gradient(145deg, #141414, #0d0d0d);
+    }
+    body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(8,8,8,0.95); backdrop-filter: blur(16px);
+      border-bottom: 1px solid #1e1e1e;
+      padding: 0 32px; height: 68px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo { display: flex; align-items: center; text-decoration: none; height: 44px; }
+    .nav-logo img { height: 44px; width: auto; display: block; }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a { color: #888; text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.15s; }
+    .nav-links a:hover { color: var(--accent); }
+
+    .page { max-width: 720px; margin: 0 auto; padding: 120px 24px 40px; }
+    .label { font-size: 11px; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent); text-align: center; margin-bottom: 16px; }
+    h1 { font-size: clamp(30px, 5vw, 48px); font-weight: 800; text-align: center; line-height: 1.15; margin-bottom: 18px; }
+    .sub { text-align: center; font-size: 17px; color: var(--text-muted); line-height: 1.7; margin: 0 auto 14px; max-width: 600px; }
+    .trust { text-align: center; font-size: 13px; color: var(--text-muted); margin-bottom: 36px; }
+    .trust .star { color: var(--accent); margin-right: 6px; }
+    .gold-divider { width: 80px; height: 1px; background: linear-gradient(90deg, transparent, var(--accent), transparent); margin: 0 auto 40px; }
+
+    .note {
+      background: var(--card-bg); border: 1px solid rgba(206,169,82,0.35); border-radius: 16px;
+      padding: 28px 26px; margin: 0 0 40px; box-shadow: var(--shadow-gold);
+    }
+    .note .note-label { font-size: 11px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
+    .note p { font-size: 16px; line-height: 1.8; color: var(--text); margin-bottom: 14px; }
+    .note p:last-child { margin-bottom: 0; }
+    .note .sig { color: var(--text-muted); font-size: 14px; }
+
+    h2 { font-size: clamp(22px, 3.5vw, 30px); font-weight: 800; color: var(--accent); margin: 48px 0 18px; line-height: 1.25; text-align: center; }
+
+    .gets { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 24px 0 8px; }
+    @media (max-width: 640px) { .gets { grid-template-columns: 1fr; } }
+    .get { background: var(--card-bg); border: 1px solid var(--border); border-radius: 14px; padding: 20px; }
+    .get h4 { font-size: 15px; font-weight: 700; color: var(--accent); margin-bottom: 6px; }
+    .get p { font-size: 14px; color: var(--text-muted); line-height: 1.6; }
+
+    .two-ways { text-align: center; font-size: 16px; color: var(--text-muted); line-height: 1.75; margin: 10px auto 28px; max-width: 600px; }
+    .two-ways strong { color: var(--text); }
+
+    .country-row { display: flex; justify-content: center; gap: 8px; margin-bottom: 18px; }
+    .country-btn { background: transparent; border: 1px solid var(--border); color: var(--text-muted); font-family: inherit; font-size: 12px; font-weight: 600; padding: 6px 14px; border-radius: 20px; cursor: pointer; }
+    .country-btn.active { border-color: var(--accent); background: rgba(206,169,82,0.08); color: var(--accent); }
+
+    .offer-card {
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: 16px; padding: 26px; margin-bottom: 16px; position: relative;
+    }
+    .offer-card.featured { border-color: var(--accent); box-shadow: 0 0 30px rgba(206,169,82,0.1); }
+    .offer-badge { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #000; background: var(--accent); padding: 3px 10px; border-radius: 20px; margin-bottom: 12px; }
+    .offer-name { font-size: 20px; font-weight: 800; color: var(--text); margin-bottom: 4px; }
+    .offer-price { font-size: 32px; font-weight: 800; color: var(--accent); margin-bottom: 2px; }
+    .offer-price small { font-size: 14px; font-weight: 600; color: var(--text-muted); }
+    .offer-renewal { font-size: 12px; color: #777; margin-bottom: 16px; }
+    .offer-who { font-size: 14px; color: var(--text); line-height: 1.6; margin-bottom: 14px; }
+    .offer-features { list-style: none; margin-bottom: 20px; }
+    .offer-features li { font-size: 14px; color: var(--text-muted); padding: 5px 0 5px 24px; position: relative; line-height: 1.5; }
+    .offer-features li::before { content: "✓"; position: absolute; left: 0; color: var(--accent); font-weight: 700; }
+    .btn-buy { display: block; width: 100%; text-align: center; background: var(--accent); color: #000; padding: 15px; border-radius: 10px; text-decoration: none; font-size: 16px; font-weight: 700; transition: background 0.15s; cursor: pointer; border: none; font-family: inherit; }
+    .btn-buy:hover { background: var(--accent-light); }
+    .btn-buy.ghost { background: transparent; color: var(--accent); border: 1.5px solid var(--accent); }
+    .btn-buy.ghost:hover { background: rgba(206,169,82,0.12); }
+
+    .proof-quote {
+      border-left: 2px solid var(--accent); background: rgba(206,169,82,0.05);
+      border-radius: 0 10px 10px 0; padding: 16px 20px; margin: 8px 0 24px;
+    }
+    .proof-quote p { font-size: 15px; color: var(--text); line-height: 1.65; font-style: italic; }
+    .proof-quote .pq-name { font-size: 12px; color: var(--text-muted); font-style: normal; margin-top: 8px; }
+
+    .proof-video { margin: 34px 0 8px; }
+    .proof-video .pv-label { font-size: 11px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); text-align: center; margin-bottom: 10px; }
+    .proof-video .pv-desc { font-size: 14px; color: var(--text-muted); line-height: 1.5; margin-bottom: 12px; text-align: center; }
+    .yt-lite { position: relative; width: 100%; padding-top: 56.25%; border-radius: 14px; overflow: hidden; border: 1px solid var(--border); cursor: pointer; background: #000; }
+    .yt-lite img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .yt-lite iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+    .yt-play { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 66px; height: 46px; border: none; border-radius: 12px; background: rgba(206,169,82,0.92); color: #000; font-size: 20px; cursor: pointer; }
+    .yt-lite:hover .yt-play { background: var(--accent-light); }
+    .bio { text-align: center; font-size: 13px; color: var(--text-muted); margin: 16px 0 0; }
+
+    .faq { margin: 40px 0 10px; }
+    .faq details { background: var(--surface2); border: 1px solid var(--border); border-radius: 12px; padding: 16px 20px; margin-bottom: 10px; }
+    .faq summary { cursor: pointer; font-size: 15px; font-weight: 600; color: var(--text); list-style: none; }
+    .faq summary::-webkit-details-marker { display: none; }
+    .faq summary::after { content: "+"; float: right; color: var(--accent); font-weight: 800; }
+    .faq details[open] summary::after { content: "–"; }
+    .faq details p { font-size: 14px; color: var(--text-muted); line-height: 1.7; margin-top: 10px; }
+
+    .reply-line { text-align: center; font-size: 15px; color: var(--text-muted); margin: 36px 0 0; line-height: 1.7; }
+    .reply-line strong { color: var(--accent); }
+
+    footer { padding: 40px 24px; border-top: 1px solid var(--border); text-align: center; margin-top: 50px; }
+    footer p:first-child { font-family: var(--font-cinzel); font-size: 18px; font-weight: 700; color: var(--accent); margin-bottom: 10px; letter-spacing: 0.08em; }
+    footer p { font-size: 13px; color: var(--text-muted); margin-bottom: 6px; }
+    footer a { color: var(--text-muted); text-decoration: none; margin: 0 12px; }
+    footer a:hover { color: var(--accent); }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo"><img src="/logo.svg" alt="Prodigy Athletics"></a>
+  <ul class="nav-links">
+    <li><a href="/">Home</a></li>
+    <li><a href="/results/">Athlete Results</a></li>
+  </ul>
+</nav>
+
+<div class="page">
+  <p class="label">For parents of 9 to 12 year olds</p>
+  <h1>A pro level foundation,<br>built for your player.</h1>
+  <p class="sub">A custom strength program, a weekly schedule that fits around hockey and school, a nutrition plan for their age, and a one on one call with me to make sure it's a plan they'll actually follow.</p>
+  <p class="trust"><span class="star">★★★★★</span>Trusted by hockey families across Canada, the US, Sweden and Switzerland</p>
+  <div class="gold-divider"></div>
+
+  <div class="note">
+    <p class="note-label">From Kenny</p>
+    <p>At this age I don't try to turn kids into pros. I try to build the foundation that lets everything else work later: how they move, how they eat, and how their week actually fits together so none of it falls apart when the season gets busy.</p>
+    <p>Most 9 to 12 year olds don't need more. They need the right things, done consistently, with someone making sure it's working. That's what this is.</p>
+    <p class="sig">Kenny, Prodigy Athletics</p>
+  </div>
+
+  <h2>What your player gets</h2>
+  <div class="gets">
+    <div class="get"><h4>Custom strength program</h4><p>Built for their age and what you've told me about them. Foundations first: how they move, how they brace, how they produce power. Nothing they'll outgrow in a month.</p></div>
+    <div class="get"><h4>Weekly schedule</h4><p>Their training laid out around practices, games, and school, so the plan survives a real week instead of a perfect one.</p></div>
+    <div class="get"><h4>Nutrition plan</h4><p>Simple, age appropriate, and built for a kid who has to eat before a 6am practice. Real food, no supplements pitch.</p></div>
+    <div class="get"><h4>One on one call with me</h4><p>Once the plan is built, we sit down together, you and your player, and I walk through it to make sure it fits and it's something they'll actually follow.</p></div>
+  </div>
+
+  <h2>Two ways to run it</h2>
+  <p class="two-ways">Either <strong>I stay in it with them</strong> in the app, reviewing their form, giving feedback, and answering questions as they go. Or <strong>you take the plan</strong>, we do the call together, I make sure it works, and you run it yourselves.</p>
+
+  <div class="country-row">
+    <button class="country-btn" id="cbtn-CA" onclick="setCountry('CA')">🇨🇦 CAD</button>
+    <button class="country-btn" id="cbtn-US" onclick="setCountry('US')">🇺🇸 USD</button>
+  </div>
+
+  <div class="proof-quote">
+    <p>"Kenny has been great for our son's development and growth on and off the ice. We have seen significant results."</p>
+    <p class="pq-name">Nick, hockey parent</p>
+  </div>
+
+  <div class="offer-card">
+    <div class="offer-name">Self-Guided</div>
+    <div class="offer-price">$<span class="px" data-tier="training_self">699</span> <small><span class="cur">CAD</span> / first 12 weeks</small></div>
+    <div class="offer-renewal">Then $<span class="rx" data-tier="training_self">175</span> <span class="cur">CAD</span> every 4 weeks</div>
+    <p class="offer-who">You run it. I build it and make sure it fits.</p>
+    <ul class="offer-features">
+      <li>Custom strength program</li>
+      <li>Weekly training schedule</li>
+      <li>Custom nutrition plan</li>
+      <li>One on one call with Kenny to walk through the plan</li>
+      <li>Full app access to run the program</li>
+    </ul>
+    <a class="btn-buy ghost" onclick="buy('training_self')">Start Self-Guided</a>
+  </div>
+
+  <div class="offer-card featured">
+    <div class="offer-badge">Most Popular</div>
+    <div class="offer-name">Coached</div>
+    <div class="offer-price">$<span class="px" data-tier="training_coached">999</span> <small><span class="cur">CAD</span> / first 12 weeks</small></div>
+    <div class="offer-renewal">Then $<span class="rx" data-tier="training_coached">249</span> <span class="cur">CAD</span> every 4 weeks</div>
+    <p class="offer-who">I stay in it with them.</p>
+    <ul class="offer-features">
+      <li>Everything in Self-Guided</li>
+      <li>Two way in app coaching with Kenny</li>
+      <li>Form reviews and feedback on their training</li>
+      <li>Plan adjustments as they develop</li>
+      <li>Questions answered as they come up</li>
+    </ul>
+    <a class="btn-buy" onclick="buy('training_coached')">Start Coached</a>
+  </div>
+
+  <div class="proof-video">
+    <p class="pv-label">From a Prodigy family</p>
+    <p class="pv-desc">Cindy on her son going from falling behind to AAA potential in just seven weeks.</p>
+    <div class="yt-lite" data-id="eZrnWuB29lg" onclick="playYT(this)">
+      <img src="https://i.ytimg.com/vi/eZrnWuB29lg/hqdefault.jpg" alt="Cindy, hockey parent" loading="lazy">
+      <button class="yt-play" aria-label="Play">▶</button>
+    </div>
+    <p class="bio">Kenny Batke: 3 years of junior hockey, 5 years of university hockey on scholarship. Now building the foundation for the next group.</p>
+  </div>
+
+  <div class="faq">
+    <details>
+      <summary>Is 9 to 12 too young for strength training?</summary>
+      <p>Not the way I do it. At this age it's movement quality, bodyweight strength, coordination, and the habits that make everything later work. No heavy loading, nothing they'll outgrow.</p>
+    </details>
+    <details>
+      <summary>What happens on the one on one call?</summary>
+      <p>Once the plan is built, you and your player join me for a call. I walk through the program, the schedule, and the nutrition plan, answer questions, and adjust anything that doesn't fit your real week. The goal is a plan they'll actually follow.</p>
+    </details>
+    <details>
+      <summary>What's the difference between the two options?</summary>
+      <p>Same build, same call. With Coached, I stay involved after: I review their form in the app, give feedback, adjust the plan as they develop, and answer questions as they come up. With Self-Guided, you take the plan and run it yourselves.</p>
+    </details>
+    <details>
+      <summary>How does the billing work?</summary>
+      <p>The first 12 weeks is one payment. After that it continues every 4 weeks at the renewal price shown, and you can stop any time.</p>
+    </details>
+  </div>
+
+  <p class="reply-line">Still have a question? <strong>Just text me back.</strong> That's the easiest way to reach me.</p>
+</div>
+
+<footer>
+  <p>PRODIGY ATHLETICS</p>
+  <p>Building confident leaders one athlete at a time.</p>
+  <p style="margin-top:12px;">
+    <a href="/">Home</a>
+    <a href="/privacy/">Privacy Policy</a>
+    <a href="/terms/">Terms of Service</a>
+  </p>
+  <p style="margin-top:12px;">© 2026 Prodigy Hockey Development. All rights reserved.</p>
+</footer>
+
+<script>
+/* Pricing + checkout mirror /apply exactly (display only; real charge is set in Stripe). */
+const CONFIG = {
+  pricing: {
+    training_self:    { CAD: { intro: 699,  renew: 175 }, USD: { intro: 499,  renew: 125 } },
+    training_coached: { CAD: { intro: 999,  renew: 249 }, USD: { intro: 749,  renew: 175 } },
+  },
+  checkout: {
+    training_self:    { CAD: 'https://buy.stripe.com/00w5kF8MQ2aybmj3nocbC0J', USD: 'https://buy.stripe.com/fZu5kF1kog1obmjf66cbC0R' },
+    training_coached: { CAD: 'https://buy.stripe.com/8x24gB0gk9D061Ze22cbC0L', USD: 'https://buy.stripe.com/fZucN7e7a3eCaif1fgcbC0Q' },
+  },
+  metaPixelId: '2092599024666125',
+};
+
+(function initPixel() {
+  if (!CONFIG.metaPixelId) return;
+  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+  n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+  document,'script','https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', CONFIG.metaPixelId);
+  fbq('track', 'PageView');
+  try { fbq('trackCustom', 'TrainPageView'); } catch (e) {}
+})();
+function trackPixel(event, params) { if (window.fbq) { try { fbq('track', event, params || {}); } catch (e) {} } }
+
+let CURRENCY = 'CAD';
+function setCountry(c) {
+  CURRENCY = (c === 'US') ? 'USD' : 'CAD';
+  document.getElementById('cbtn-CA').classList.toggle('active', CURRENCY === 'CAD');
+  document.getElementById('cbtn-US').classList.toggle('active', CURRENCY === 'USD');
+  document.querySelectorAll('.px').forEach(el => { el.textContent = CONFIG.pricing[el.dataset.tier][CURRENCY].intro; });
+  document.querySelectorAll('.rx').forEach(el => { el.textContent = CONFIG.pricing[el.dataset.tier][CURRENCY].renew; });
+  document.querySelectorAll('.cur').forEach(el => { el.textContent = CURRENCY; });
+}
+setCountry('CA');
+fetch('https://get.geojs.io/v1/ip/country.json')
+  .then(r => r.json())
+  .then(d => { setCountry(d && d.country === 'CA' ? 'CA' : 'US'); })
+  .catch(() => setCountry('CA'));
+
+function buy(tier) {
+  const link = CONFIG.checkout[tier][CURRENCY];
+  if (!link) return;
+  trackPixel('InitiateCheckout', { content_name: tier, currency: CURRENCY, source: 'train_page' });
+  window.location.href = link;
+}
+
+function playYT(el) {
+  const id = el.dataset.id;
+  el.innerHTML = '<iframe src="https://www.youtube.com/embed/' + id + '?autoplay=1&rel=0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+}
+</script>
+</body>
+</html>
