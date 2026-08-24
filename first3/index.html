@@ -4,10 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Fast First Three Training Plan | Prodigy Athletics</title>
-  <meta name="description" content="Fix your first three strides. Professional off ice strength and conditioning built for a top level college athlete. $20 a week, less than two hours of work, cancel anytime.">
+  <meta name="description" content="Fix your first three strides. Professional off ice strength and conditioning built for a top level college athlete. Simple weekly billing, less than two hours of work, cancel anytime.">
   <meta name="robots" content="noindex">
   <meta property="og:title" content="Fast First Three Training Plan | Prodigy Athletics">
-  <meta property="og:description" content="Everybody wants a fast first three strides. This is the plan that builds them. $20 a week, no contract.">
+  <meta property="og:description" content="Everybody wants a fast first three strides. This is the plan that builds them. Simple weekly billing, no contract.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -80,9 +80,9 @@
 
   <p class="label">The Fast First Three Training Plan</p>
   <h1>Fix your <span>first three strides.</span></h1>
-  <p class="sub">Everybody wants a fast first three. This is the off ice work that builds them: professional strength and conditioning built for a top level college athlete. <strong>$20 a week. Less than two hours of work.</strong></p>
+  <p class="sub">Everybody wants a fast first three. This is the off ice work that builds them: professional strength and conditioning built for a top level college athlete. <strong>Simple weekly billing. Less than two hours of work.</strong></p>
   <div class="cta-wrap">
-    <a class="cta" href="https://buy.stripe.com/00wdRb0gk3eCbmj6zAcbC0C" onclick="trackCta('top')">GET THE FAST FIRST THREE</a>
+    <a class="cta" href="https://buy.stripe.com/fZuaEZ9QUcPccqn3nocbC0W" onclick="trackCta('top')">GET THE FAST FIRST THREE</a>
     <p class="fine">Instant access · No contract · Cancel anytime</p>
   </div>
 
@@ -113,7 +113,7 @@
   <div class="cost">
     <h3>Your training shouldn't be an expense you have to save for.</h3>
     <p>Travel, gear, ice time, power skating, camps. You pay for all of it. You don't need a reminder of how much hockey costs.</p>
-    <p>This plan is less than a weekly lunch for what you get. <strong>$20. No contract. Cancel anytime.</strong></p>
+    <p>This plan is less than a weekly lunch for what you get. <strong>Weekly billing. No contract. Cancel anytime.</strong></p>
     <p>Built for a top level college athlete and designed to get you physically ready, fast.</p>
   </div>
 
@@ -125,14 +125,14 @@
     <li>Built for a top level college athlete</li>
     <li>App based delivery with progress tracking</li>
     <li>Cancel anytime</li>
-    <li>$20 a week, no contract</li>
+    <li>Simple weekly billing, no contract</li>
   </ul>
 
   <div class="gold-divider"></div>
 
   <p class="close">Stop talking about wanting to get faster. <span>Start building your first three strides.</span></p>
   <div class="cta-wrap">
-    <a class="cta" href="https://buy.stripe.com/00wdRb0gk3eCbmj6zAcbC0C" onclick="trackCta('bottom')">START TODAY</a>
+    <a class="cta" href="https://buy.stripe.com/fZuaEZ9QUcPccqn3nocbC0W" onclick="trackCta('bottom')">START TODAY</a>
     <p class="fine">Instant access · No contract · Cancel anytime</p>
   </div>
 </div>
@@ -160,7 +160,23 @@ const metaPixelId = '2092599024666125';
   fbq('init', metaPixelId);
   fbq('track', 'PageView');
 })();
-function trackCta(pos) { if (window.fbq) { try { fbq('track', 'InitiateCheckout', { content_name: 'fast_first_three', value: 20, currency: 'CAD', position: pos }); } catch (e) {} } }
+// Geo-routed checkout (same geojs pattern as /apply and /train): Canada pays
+// the CAD link, everyone else the USD link — keeps currencies and taxes clean.
+// Default CAD; geojs failure leaves CAD in place.
+const CHECKOUT = {
+  CAD: 'https://buy.stripe.com/fZuaEZ9QUcPccqn3nocbC0W',
+  USD: 'https://buy.stripe.com/28EdRb1ko8yWaifaPQcbC0S'
+};
+let CURRENCY = 'CAD';
+function applyCheckout() {
+  document.querySelectorAll('a.cta').forEach(a => { a.href = CHECKOUT[CURRENCY]; });
+}
+applyCheckout();
+fetch('https://get.geojs.io/v1/ip/country.json')
+  .then(r => r.json())
+  .then(d => { CURRENCY = (d && d.country === 'CA') ? 'CAD' : 'USD'; applyCheckout(); })
+  .catch(() => {});
+function trackCta(pos) { if (window.fbq) { try { fbq('track', 'InitiateCheckout', { content_name: 'fast_first_three', value: CURRENCY === 'CAD' ? 24.99 : 20, currency: CURRENCY, position: pos }); } catch (e) {} } }
 </script>
 </body>
 </html>
