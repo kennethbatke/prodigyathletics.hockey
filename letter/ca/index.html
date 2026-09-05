@@ -472,13 +472,13 @@
 
    SPOTS: Taki-style scarcity. SPOTS_TOTAL is the struck-out number
    shown on the pill; SPOTS_TAKEN is how many are gone. Open spots =
-   TOTAL - TAKEN (currently 5 - 4 = 1). Bump SPOTS_TAKEN by 1 each
+   TOTAL - TAKEN (currently 5 - 5 = 0: FULL). Bump SPOTS_TAKEN by 1 each
    time a 1:1 spot sells (in BOTH files). When open hits 0 the card
    and both 1:1 buttons grey out and only Group stays live.
    ════════════════════════════════════════════════════════════════ */
 const CUR = 'CAD';
 const SPOTS_TOTAL = 5;
-const SPOTS_TAKEN = 4;
+const SPOTS_TAKEN = 5;
 
 const PRICING = {
   CAD: {
