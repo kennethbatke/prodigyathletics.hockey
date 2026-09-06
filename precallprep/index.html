@@ -36,7 +36,7 @@
       background: radial-gradient(ellipse 60% 50% at 50% 0%, rgba(206,169,82,0.13) 0%, transparent 65%); }
     .warn-pill { display: inline-flex; align-items: center; gap: 8px; border: 1px solid var(--warn); color: var(--warn); background: rgba(232,181,74,0.08);
       font-size: 12px; font-weight: 800; letter-spacing: 0.18em; text-transform: uppercase; padding: 8px 18px; border-radius: 999px; margin-bottom: 20px; }
-    .hero-brand { font-family: var(--font-cinzel); font-size: clamp(26px, 5vw, 46px); font-weight: 800; letter-spacing: 0.06em; color: var(--text); margin-bottom: 14px; line-height: 1.2; }
+    .hero-brand { font-family: 'Arial Black', 'Arial Bold', Arial, 'Inter', sans-serif; font-size: clamp(26px, 5vw, 46px); font-weight: 900; letter-spacing: 0.01em; color: var(--text); margin-bottom: 14px; line-height: 1.2; }
     .hero-brand .gold { color: var(--accent); }
     .hero-sub { font-size: 16px; color: var(--text-muted); max-width: 640px; margin: 0 auto; line-height: 1.7; }
     .hero-sub strong { color: var(--text); }
@@ -66,6 +66,7 @@
     .step-link:hover { background: var(--accent-light); box-shadow: 0 0 18px rgba(206,169,82,0.35); }
     .step-link.ghost { background: transparent; color: var(--accent); border: 1px solid var(--accent); }
     .step-link.ghost:hover { background: rgba(206,169,82,0.1); box-shadow: none; }
+    .invite-shot { width: 100%; max-width: 560px; border-radius: 12px; border: 1px solid var(--border); margin-top: 4px; display: block; }
 
     .video-frame { position: relative; width: 100%; padding-top: 56.25%; background: #000; border-radius: 14px; overflow: hidden; border: 1px solid var(--border); margin-bottom: 14px; }
     .video-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
@@ -118,7 +119,7 @@
 
 <nav>
   <a href="/" class="nav-logo"><img src="/logo.svg" alt="Prodigy Athletics"></a>
-  <span class="nav-progress" id="navProgress">0 of 6 complete</span>
+  <span class="nav-progress" id="navProgress">0 of 4 complete</span>
 </nav>
 
 <section class="hero">
@@ -130,7 +131,7 @@
 <section style="padding-top:0;">
   <div class="progress-wrap">
     <div class="progress-track"><div class="progress-fill" id="bar"></div></div>
-    <p class="progress-label" id="barLabel">0 of 6 complete. Your call is not confirmed yet.</p>
+    <p class="progress-label" id="barLabel">0 of 4 complete. Your call is not confirmed yet.</p>
   </div>
 
   <div class="container">
@@ -142,7 +143,7 @@
         <p class="step-title">Watch this video to prep for your call</p>
         <p class="step-desc">How I work, how the coaching actually runs, and what separates the players who take off from the ones who stall.</p>
         <div class="video-frame">
-          <iframe src="https://www.youtube-nocookie.com/embed/7QRrZNARWHE?start=925" title="How Prodigy coaching works" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe src="https://www.youtube-nocookie.com/embed/x1mMm75Qjvw" title="How Prodigy coaching works" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
       </div>
     </div>
@@ -152,7 +153,8 @@
       <div class="step-body">
         <p class="step-kicker">Task 2 · Confirm</p>
         <p class="step-title">Accept the calendar invite</p>
-        <p class="step-desc">Check your email for the calendar invite and accept it so the call is locked on your calendar, not just mine. If you don't see it, check spam before anything else.</p>
+        <p class="step-desc">Check your email for the calendar invite and hit <strong>Yes</strong> so the call is locked on your calendar, not just mine. If you don't see it, check spam before anything else. It looks like this:</p>
+        <img class="invite-shot" src="/images/accept-invite.png" alt="The calendar invite email. Tap Yes to accept." loading="lazy" onerror="this.style.display='none'">
       </div>
     </div>
 
@@ -166,31 +168,12 @@
       </div>
     </div>
 
-    <div class="step" id="step-audit">
-      <button class="check-btn" aria-label="mark done">✓</button>
-      <div class="step-body">
-        <p class="step-kicker">Task 4 · Assess</p>
-        <p class="step-title">Run the free Player Audit (if you haven't yet)</p>
-        <p class="step-desc">25 questions that find the one thing holding your player back. I read every submission before our call, so this is how I show up already knowing your player. Already did it? Check it off.</p>
-        <a class="step-link ghost" href="/AuditMyPlayer" target="_blank" rel="noopener">Start the audit →</a>
-      </div>
-    </div>
-
-    <div class="step" id="step-notes">
-      <button class="check-btn" aria-label="mark done">✓</button>
-      <div class="step-body">
-        <p class="step-kicker">Task 5 · Think</p>
-        <p class="step-title">Jot down two things</p>
-        <p class="step-desc">One: the single biggest thing holding your player back right now, in your words. Two: what you've already tried. Thirty seconds in your phone's notes app is plenty. We'll start right there.</p>
-      </div>
-    </div>
-
     <div class="step" id="step-logistics">
       <button class="check-btn" aria-label="mark done">✓</button>
       <div class="step-body">
-        <p class="step-kicker">Task 6 · Set up</p>
-        <p class="step-title">Set up the call itself</p>
-        <p class="step-desc">A quiet spot, camera on, and everyone who's part of the decision on the call. If your player is under 18, I want them there too: it's their development, and I want to hear it from them.</p>
+        <p class="step-kicker">Task 4 · Acknowledge</p>
+        <p class="step-title">Acknowledge how we'll meet</p>
+        <p class="step-desc">I understand that this meeting will be held on Zoom. I will have Zoom set up beforehand, and I will be in a quiet place without distractions during the meeting. Tap the box to give me your word.</p>
       </div>
     </div>
 
@@ -260,7 +243,7 @@
     </div>
     <div class="faq-item">
       <button class="faq-q">What if we can't make the time anymore?<span class="chev">▼</span></button>
-      <div class="faq-a">Life happens. Use the reschedule link in your confirmation email rather than missing the call. The spot is held for your family, so if you can't make it, free it up for someone who can.</div>
+      <div class="faq-a">Life happens. Text me on the number we've been talking on, or reply to your calendar invite, and we'll find a new time rather than missing the call. The spot is held for your family, so if you can't make it, free it up for someone who can.</div>
     </div>
 
   </div>
