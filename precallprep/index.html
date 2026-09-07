@@ -37,7 +37,7 @@
     .warn-pill { display: inline-flex; align-items: center; gap: 8px; border: 1px solid var(--warn); color: var(--warn); background: rgba(232,181,74,0.08);
       font-size: 12px; font-weight: 800; letter-spacing: 0.18em; text-transform: uppercase; padding: 8px 18px; border-radius: 999px; margin-bottom: 20px; }
     .hero-brand { font-family: 'Arial Black', 'Arial Bold', Arial, 'Inter', sans-serif; font-size: clamp(26px, 5vw, 46px); font-weight: 900; letter-spacing: 0.01em; color: var(--text); margin-bottom: 14px; line-height: 1.2; }
-    .hero-brand .gold { color: var(--accent); }
+    .hero-brand .gold { color: #e33d2e; }
     .hero-sub { font-size: 16px; color: var(--text-muted); max-width: 640px; margin: 0 auto; line-height: 1.7; }
     .hero-sub strong { color: var(--text); }
 
@@ -128,7 +128,7 @@
 
 <nav>
   <a href="/" class="nav-logo"><img src="/logo.svg" alt="Prodigy Athletics"></a>
-  <span class="nav-progress" id="navProgress">0 of 4 complete</span>
+  <span class="nav-progress" id="navProgress">0 of 5 complete</span>
 </nav>
 
 <section class="hero">
@@ -140,7 +140,7 @@
 <section style="padding-top:0;">
   <div class="progress-wrap">
     <div class="progress-track"><div class="progress-fill" id="bar"></div></div>
-    <p class="progress-label" id="barLabel">0 of 4 complete. Your call is not confirmed yet.</p>
+    <p class="progress-label" id="barLabel">0 of 5 complete. Your call is not confirmed yet.</p>
   </div>
 
   <div class="container">
@@ -150,7 +150,7 @@
       <div class="step-body">
         <p class="step-kicker">Task 1 · Watch</p>
         <p class="step-title">Watch this video to prep for your call</p>
-        <p class="step-desc">How I work, how the coaching actually runs, and what separates the players who take off from the ones who stall.</p>
+        <p class="step-desc">This goes over where I see players freeze and get stuck, how I work, and what separates the players who take off from the ones who stall.</p>
         <div class="video-frame">
           <iframe src="https://www.youtube-nocookie.com/embed/x1mMm75Qjvw" title="How Prodigy coaching works" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
@@ -160,9 +160,9 @@
     <div class="step" id="step-calendar">
       <button class="check-btn" aria-label="mark done">✓</button>
       <div class="step-body">
-        <p class="step-kicker">Task 2 · Confirm</p>
+        <p class="step-kicker">Task 2 · Accept</p>
         <p class="step-title">Accept the calendar invite</p>
-        <p class="step-desc">Check your email for the calendar invite and hit <strong>Yes</strong> so the call is locked on your calendar, not just mine. If you don't see it, check spam before anything else. It looks like this:</p>
+        <p class="step-desc">Check your email for the calendar invite and click <strong>'Yes'</strong> so the call is locked on your calendar. If you don't see it, check spam before anything else. It looks like this:</p>
         <div class="invite-mock" aria-label="Example: the calendar invite email. Tap Yes.">
           <p class="im-subject">Invitation: Connect with a Coach on …</p>
           <div class="im-card">
@@ -186,7 +186,7 @@
       <div class="step-body">
         <p class="step-kicker">Task 3 · Read</p>
         <p class="step-title">Read the letter</p>
-        <p class="step-desc">The full picture of how we develop players: the system, the standards, and what a season with us looks like. Ten quiet minutes.</p>
+        <p class="step-desc">This is the full picture of who you would be trusting your athlete with, how we develop players, and will answer 90% of the questions you have.</p>
         <a class="step-link" href="/letter" target="_blank" rel="noopener">Read the letter →</a>
       </div>
     </div>
@@ -195,8 +195,17 @@
       <button class="check-btn" aria-label="mark done">✓</button>
       <div class="step-body">
         <p class="step-kicker">Task 4 · Acknowledge</p>
-        <p class="step-title">Acknowledge how we'll meet</p>
-        <p class="step-desc">I understand that this meeting will be held on Zoom. I will have Zoom set up beforehand, and I will be in a quiet place without distractions during the meeting. Tap the box to give me your word.</p>
+        <p class="step-title">Acknowledgement</p>
+        <p class="step-desc">I understand that this meeting will be held on Zoom. I will have Zoom downloaded and set up beforehand, and I will be in a quiet place without distractions during the meeting. Tap the box to give me your word.</p>
+      </div>
+    </div>
+
+    <div class="step" id="step-confirm">
+      <button class="check-btn" aria-label="mark done">✓</button>
+      <div class="step-body">
+        <p class="step-kicker">Task 5 · Confirm</p>
+        <p class="step-title">I CONFIRM</p>
+        <p class="step-desc">I confirm that everyone involved in this decision will be on the call. If there is any doubt my player will commit, they will be there. If my spouse and I decide together, we will both be there. If I am a player supported by my parents, they will be there. If that changes, I will reschedule for a time that works for everyone who needs to be present.</p>
       </div>
     </div>
 
