@@ -38,6 +38,8 @@
       font-size: 12px; font-weight: 800; letter-spacing: 0.18em; text-transform: uppercase; padding: 8px 18px; border-radius: 999px; margin-bottom: 20px; }
     .hero-brand { font-family: 'Arial Black', 'Arial Bold', Arial, 'Inter', sans-serif; font-size: clamp(26px, 5vw, 46px); font-weight: 900; letter-spacing: 0.01em; color: var(--text); margin-bottom: 14px; line-height: 1.2; }
     .hero-brand .gold { color: #e33d2e; }
+    .hero-brand .green { color: #45d06f; }
+    .warn-pill.ok { border-color: #45d06f; color: #45d06f; background: rgba(69,208,111,0.08); }
     .hero-booked { color: var(--accent); font-weight: 700; font-size: 15px; letter-spacing: 0.04em; margin: -4px 0 14px; }
     .hero-sub { font-size: 16px; color: var(--text-muted); max-width: 640px; margin: 0 auto; line-height: 1.7; }
     .hero-sub strong { color: var(--text); }
@@ -51,7 +53,7 @@
     .progress-track { height: 10px; background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; overflow: hidden; }
     .progress-fill { height: 100%; width: 0%; background: linear-gradient(90deg, var(--accent), var(--accent-light)); transition: width 0.35s ease; }
     .progress-label { text-align: center; font-size: 13px; color: var(--warn); margin-top: 8px; font-weight: 700; }
-    .progress-label.complete { color: var(--accent); }
+    .progress-label.complete { color: #45d06f; }
 
     .step { background: var(--card-bg); border: 1px solid var(--border); border-radius: 18px; padding: 26px 26px 26px 22px; margin-bottom: 18px; display: flex; gap: 18px; align-items: flex-start; transition: border-color 0.2s; cursor: pointer; }
     .step.done { border-color: rgba(206,169,82,0.55); }
@@ -135,10 +137,10 @@
 </nav>
 
 <section class="hero">
-  <span class="warn-pill">⚠ Action required</span>
-  <h1 class="hero-brand"><span id="heroName"></span>YOUR CALL IS <span class="gold">NOT CONFIRMED</span> YET</h1>
+  <span class="warn-pill" id="heroPill">⚠ Action required</span>
+  <h1 class="hero-brand"><span id="heroName"></span><span id="heroState">YOUR CALL IS <span class="gold">NOT CONFIRMED</span> YET</span></h1>
   <p class="hero-booked" id="heroBooked" hidden></p>
-  <p class="hero-sub">Your call is not confirmed until <strong>every task on this page is complete</strong>. It takes about 20 minutes, and it's how we spend our time on the call talking about <strong>your player</strong> instead of background. Tap each box as you finish it.</p>
+  <p class="hero-sub" id="heroSub">Your call is not confirmed until <strong>every task on this page is complete</strong>. It takes about 20 minutes, and it's how we spend our time on the call talking about <strong>your player</strong> instead of background. Tap each box as you finish it.</p>
 </section>
 
 <section style="padding-top:0;">
@@ -376,6 +378,15 @@
     }
     document.getElementById("navProgress").textContent = done + " of " + total + " complete";
     var unlocked = done === total;
+    var pill = document.getElementById("heroPill");
+    pill.classList.toggle("ok", unlocked);
+    pill.textContent = unlocked ? "✓ Confirmed" : "⚠ Action required";
+    document.getElementById("heroState").innerHTML = unlocked
+      ? 'YOUR CALL IS <span class="green">CONFIRMED</span>'
+      : 'YOUR CALL IS <span class="gold">NOT CONFIRMED</span> YET';
+    document.getElementById("heroSub").innerHTML = unlocked
+      ? "Every task is complete. Your <strong>$150 Commitment Credit</strong> is unlocked below. See you on the call."
+      : "Your call is not confirmed until <strong>every task on this page is complete</strong>. It takes about 20 minutes, and it's how we spend our time on the call talking about <strong>your player</strong> instead of background. Tap each box as you finish it.";
     document.getElementById("bonusCard").classList.toggle("open", unlocked);
     document.getElementById("bonusLocked").hidden = unlocked;
     document.getElementById("bonusOpen").hidden = !unlocked;
