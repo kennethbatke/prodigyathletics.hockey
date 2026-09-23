@@ -208,7 +208,7 @@
         <p class="bonus-kicker">Unlocked</p>
         <p class="bonus-title">Your $100 Commitment Credit</p>
         <p class="bonus-sub">Completing this page is the first thing I look for in a family. Players who follow instructions before we've even met are the ones who take off. That's worth rewarding: <strong>$100 USD off your first program payment</strong>.</p>
-        <button class="bonus-code" id="bonusCode" title="Tap to copy">PREPARED150</button>
+        <button class="bonus-code" id="bonusCode" title="Tap to copy">PREPARED100</button>
         <p class="bonus-terms">Mention it on our call or use it at checkout. One per family.</p>
       </div>
     </div>
@@ -396,9 +396,9 @@
   var codeBtn = document.getElementById("bonusCode");
   codeBtn.addEventListener("click", function () {
     try {
-      navigator.clipboard.writeText("PREPARED150").then(function () {
+      navigator.clipboard.writeText("PREPARED100").then(function () {
         codeBtn.textContent = "COPIED ✓";
-        setTimeout(function () { codeBtn.textContent = "PREPARED150"; }, 1600);
+        setTimeout(function () { codeBtn.textContent = "PREPARED100"; }, 1600);
       });
     } catch (e) {}
   });
