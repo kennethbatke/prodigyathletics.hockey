@@ -549,11 +549,12 @@ const CONFIG = {
   pricing: {
     training_self:    { CAD: { intro: 699,  renew: 175 }, USD: { intro: 499,  renew: 125 } },
     training_coached: { CAD: { intro: 999,  renew: 249 }, USD: { intro: 749,  renew: 175 } },
-    group:            { CAD: { intro: 1500, renew: 299 }, USD: { intro: 1200, renew: 229 } },
-    oneonone:         { CAD: { intro: 3000, renew: 799 }, USD: { intro: 2250, renew: 599 } },
+    group:            { CAD: { intro: 1300, renew: 299 }, USD: { intro: 1300, renew: 299 } },
+    oneonone:         { CAD: { intro: 2500, renew: 699 }, USD: { intro: 2500, renew: 699 } },
   },
+  // USD-only board (2026-09-23): both country keys carry the same USD numbers.
   // Difference shown on the 1:1 upsell ("$X more than Group")
-  oneOnOneUpsellDelta: { CAD: 1500, USD: 1050 },
+  oneOnOneUpsellDelta: { CAD: 1200, USD: 1200 },
 
   // ── STRIPE CHECKOUT LINKS ─────────────────────────────────────
   // Paste your Stripe Payment Link per tier per currency.
@@ -563,8 +564,8 @@ const CONFIG = {
     lowticket:        { CAD: 'https://buy.stripe.com/fZuaEZ9QUcPccqn3nocbC0W', USD: 'https://buy.stripe.com/28EdRb1ko8yWaifaPQcbC0S' },
     training_self:    { CAD: 'https://buy.stripe.com/00w5kF8MQ2aybmj3nocbC0J', USD: 'https://buy.stripe.com/fZu5kF1kog1obmjf66cbC0R' },
     training_coached: { CAD: 'https://buy.stripe.com/8x24gB0gk9D061Ze22cbC0L', USD: 'https://buy.stripe.com/fZucN7e7a3eCaif1fgcbC0Q' },
-    group:            { CAD: 'https://buy.stripe.com/14A3cx6EI3eCbmje22cbC0A', USD: 'https://buy.stripe.com/7sY8wR4wAeXkdurf66cbC0T' },
-    oneonone:         { CAD: 'https://buy.stripe.com/aFacN78MQaH43TRcXYcbC0Z', USD: 'https://buy.stripe.com/6oU4gB0gkdTg61ZbTUcbC10' },
+    group:            { CAD: 'https://buy.stripe.com/dRm8wR1koaH461ZcXYcbC11', USD: 'https://buy.stripe.com/dRm8wR1koaH461ZcXYcbC11' },
+    oneonone:         { CAD: 'https://buy.stripe.com/9B65kFbZ2g1odur1fgcbC12', USD: 'https://buy.stripe.com/9B65kFbZ2g1odur1fgcbC12' },
   },
 
   // ── NOTE FROM KENNY ───────────────────────────────────────────
@@ -885,7 +886,7 @@ function renderPrices() {
   document.querySelectorAll('.rx').forEach(el => {
     const t = el.dataset.tier; el.textContent = CONFIG.pricing[t][CURRENCY].renew;
   });
-  document.querySelectorAll('.cur').forEach(el => el.textContent = CURRENCY);
+  document.querySelectorAll('.cur').forEach(el => el.textContent = 'USD');  // USD-only board 2026-09-23
   document.querySelectorAll('.upx').forEach(el => el.textContent = CONFIG.oneOnOneUpsellDelta[CURRENCY]);
 }
 

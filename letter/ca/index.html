@@ -367,7 +367,7 @@
   <div class="offer-card featured">
     <div class="offer-badge">Most Popular</div>
     <div class="offer-name">The Group Program</div>
-    <div class="offer-price">$<span id="price-group">1,500</span> <small><span class="cur-label">CAD</span> / first 12 weeks</small></div>
+    <div class="offer-price">$<span id="price-group">1,300</span> <small><span class="cur-label">CAD</span> / first 12 weeks</small></div>
     <div class="offer-renewal">Then $<span id="renew-group">299</span> <span class="cur-label">CAD</span> every 4 weeks. Continue as long as it's working for your family.</div>
     <ul class="offer-features">
       <li>The full system: a done-for-you weekly schedule, custom nutrition plan, and personalized strength plan, so every hour of their week finally pulls in the same direction</li>
@@ -383,8 +383,8 @@
     <div class="offer-badge">Highest Touch</div>
     <div class="offer-name">Group + Full 1:1 Access</div>
     <div class="spots-pill"><span class="dot"></span><span id="spots-text"><s>5 spots</s> 1 spot remaining</span></div>
-    <div class="offer-price">$<span id="price-oneonone">3,000</span> <small><span class="cur-label">CAD</span> / first 12 weeks</small></div>
-    <div class="offer-renewal">Then $<span id="renew-oneonone">799</span> <span class="cur-label">CAD</span> every 4 weeks.</div>
+    <div class="offer-price">$<span id="price-oneonone">2,500</span> <small><span class="cur-label">CAD</span> / first 12 weeks</small></div>
+    <div class="offer-renewal">Then $<span id="renew-oneonone">699</span> <span class="cur-label">CAD</span> every 4 weeks.</div>
     <p style="font-size:14px;color:var(--text-muted);line-height:1.65;margin:4px 0 16px;">For the families who want the fastest development. The same complete system, with a private line to me on top of it.</p>
     <ul class="offer-features">
       <li>Everything in the Group Program</li>
@@ -396,7 +396,7 @@
     <a class="btn-buy" id="buy-oneonone" onclick="buy('oneonone')">Claim a 1:1 Spot</a>
   </div>
 
-  <p class="cur-note">Prices in <span id="cur-word">Canadian dollars</span>. Outside Canada? <a id="cur-switch" href="/letter/us/">See USD pricing here.</a></p>
+  <p class="cur-note">Prices in <span id="cur-word">US dollars</span>. Canadian families: GST is added at checkout. <a id="cur-switch" href="#"></a></p>
 </div>
 
 <div class="letter" style="padding-top:0;">
@@ -483,16 +483,16 @@ const SPOTS_TAKEN = 2;
 
 const PRICING = {
   CAD: {
-    word: 'Canadian dollars',
-    switchHref: '/letter/us/', switchText: 'See USD pricing here.',
-    group:    { intro: '1,500', renew: '299', link: 'https://buy.stripe.com/14A3cx6EI3eCbmje22cbC0A' },
-    oneonone: { intro: '3,000', renew: '799', link: 'https://buy.stripe.com/aFacN78MQaH43TRcXYcbC0Z' },
+    word: 'US dollars',
+    switchHref: '#', switchText: '',
+    group:    { intro: '1,300', renew: '299', link: 'https://buy.stripe.com/dRm8wR1koaH461ZcXYcbC11' },
+    oneonone: { intro: '2,500', renew: '699', link: 'https://buy.stripe.com/9B65kFbZ2g1odur1fgcbC12' },
   },
   USD: {
     word: 'US dollars',
-    switchHref: '/letter/ca/', switchText: 'In Canada? See CAD pricing here.',
-    group:    { intro: '1,200', renew: '229', link: 'https://buy.stripe.com/7sY8wR4wAeXkdurf66cbC0T' },
-    oneonone: { intro: '2,250', renew: '599', link: 'https://buy.stripe.com/6oU4gB0gkdTg61ZbTUcbC10' },
+    switchHref: '#', switchText: '',
+    group:    { intro: '1,300', renew: '299', link: 'https://buy.stripe.com/dRm8wR1koaH461ZcXYcbC11' },
+    oneonone: { intro: '2,500', renew: '699', link: 'https://buy.stripe.com/9B65kFbZ2g1odur1fgcbC12' },
   },
 };
 
@@ -507,7 +507,7 @@ document.getElementById('renew-oneonone').textContent = P.oneonone.renew;
 document.getElementById('cur-word').textContent = P.word;
 const sw = document.getElementById('cur-switch');
 sw.href = P.switchHref; sw.textContent = P.switchText;
-document.querySelectorAll('.cur-label').forEach(el => el.textContent = CUR);
+document.querySelectorAll('.cur-label').forEach(el => el.textContent = 'USD');
 
 /* ── 1:1 spot cap ── */
 const open = Math.max(0, SPOTS_TOTAL - SPOTS_TAKEN);
