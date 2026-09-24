@@ -1,6 +1,13 @@
 {
   "entries": [
     {
+      "filename": "John A Text Win.jpg",
+      "name": "John A Text Win",
+      "category": "parent",
+      "web_path": "/images/wins/parents/John A Text Win.jpg",
+      "added_at": 1790289482.034914
+    },
+    {
       "filename": "Terry Allenbeck AAA Win 2.png",
       "name": "Terry Allenbeck AAA",
       "category": "player",
