@@ -71,6 +71,15 @@
 
     .booking-frame { width: 100%; height: 720px; border: 1px solid var(--border); border-radius: 14px; display: block; background: #000; }
 
+    /* Locked state for the booking step: stays locked until steps 1-5 are checked */
+    .step.locked { cursor: default; }
+    .step.locked .check-btn { opacity: 0.35; cursor: not-allowed; }
+    .step.locked .check-btn:hover { border-color: var(--border); }
+    .lock-note { border: 1px dashed var(--border); border-radius: 14px; padding: 26px 24px; text-align: center; }
+    .lock-note .lock-icon { font-size: 26px; margin-bottom: 8px; }
+    .lock-note p { font-size: 15px; color: var(--text-muted); line-height: 1.65; max-width: 520px; margin: 0 auto; }
+    .lock-note p strong { color: var(--text); }
+
     .email-shot { width: 100%; max-width: 640px; border-radius: 12px; border: 1px solid var(--border); margin-top: 4px; display: block; }
 
     .next-list { margin: 0 0 4px 2px; padding-left: 18px; color: var(--text-muted); font-size: 15px; line-height: 1.7; }
@@ -171,28 +180,37 @@
       </div>
     </div>
 
-    <!-- STEP 5 · Book the onboarding call.
-         NOTE: this step is slated for REMOVAL once the chaptered walkthrough video (step 4)
-         replaces the live onboarding call for the lower tiers. Keep the booking embed
-         until Kenny pulls the trigger on that switch. -->
-    <div class="step" id="step-call">
-      <button class="check-btn" aria-label="mark done">✓</button>
-      <div class="step-body">
-        <p class="step-kicker">Step 5 · Book</p>
-        <p class="step-title">Book your onboarding call</p>
-        <p class="step-desc">This is where we review the plan we have built together and lock in how week one runs. Pick a time that works for your athlete too, because they should be on this call.</p>
-        <iframe class="booking-frame" src="https://meet.prodigyathletics.ca/portal-embed#/onboarding" title="Book your onboarding call"></iframe>
-      </div>
-    </div>
-
-    <!-- STEP 6 · Training app + credentials -->
+    <!-- STEP 5 · Training app + credentials -->
     <div class="step" id="step-app">
       <button class="check-btn" aria-label="mark done">✓</button>
       <div class="step-body">
-        <p class="step-kicker">Step 6 · Get the app</p>
+        <p class="step-kicker">Step 5 · Get the app</p>
         <p class="step-title">Set up the training app</p>
         <p class="step-desc">Your login comes by email from <strong>Trainerize</strong>, our training app. Look for an email with a yellow <strong>Set Up Your Account</strong> button, sent to your athlete's email address. Tap it, set a password, and download the app when it prompts you. If it has not shown up within a few minutes, check spam and promotions before anything else. Nothing within 24 hours? Email <a href="mailto:support@prodigyathletics.ca" style="color:var(--accent);">support@prodigyathletics.ca</a> and we will sort it fast.</p>
         <img class="email-shot" src="/images/trainerize-invite.png" alt="The training app invite email with a Set Up Your Account button" loading="lazy" onerror="this.style.display='none'">
+      </div>
+    </div>
+
+    <!-- STEP 6 · Book the onboarding call.
+         NOTE: this step is slated for REMOVAL once the chaptered walkthrough video (step 4)
+         replaces the live onboarding call for the lower tiers. Keep the booking embed
+         until Kenny pulls the trigger on that switch.
+         GATED: the booking embed stays locked until steps 1-5 are all checked. The iframe
+         src lives in data-src and is only attached on unlock, so the Bookings widget never
+         loads for someone who has not done the work yet. -->
+    <div class="step" id="step-call">
+      <button class="check-btn" aria-label="mark done">✓</button>
+      <div class="step-body">
+        <p class="step-kicker">Step 6 · Book</p>
+        <p class="step-title">Book your onboarding call</p>
+        <div class="lock-note" id="callLocked">
+          <p class="lock-icon">🔒</p>
+          <p><strong>Book after you've set up the app and watched the videos.</strong> That way our call is about your player, not logistics. Finish steps 1 through 5 and the calendar opens right here.</p>
+        </div>
+        <div id="callOpen" hidden>
+          <p class="step-desc">This is where we review the plan we have built together and lock in how week one runs. Pick a time that works for your athlete too, because they should be on this call.</p>
+          <iframe class="booking-frame" data-src="https://meet.prodigyathletics.ca/portal-embed#/onboarding" title="Book your onboarding call"></iframe>
+        </div>
       </div>
     </div>
 
@@ -244,7 +262,34 @@
 
   function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
 
+  // The booking step (6) stays locked until every prior step is checked.
+  // Lock state derives live from the same localStorage state the progress bar
+  // uses, so unlocking happens the moment step 5 is tapped, no reload needed.
+  var PREREQS = ["step-welcome", "step-parq", "step-intake", "step-walkthrough", "step-app"];
+  var bookingLoaded = false;
+
+  function callUnlocked() {
+    return PREREQS.every(function (id) { return !!state[id]; });
+  }
+
   function render() {
+    var unlocked = callUnlocked();
+    // if a prerequisite gets unchecked again, the booking check comes off too:
+    // completion means the work above the call is done, not just tapped once
+    if (!unlocked && state["step-call"]) { state["step-call"] = false; save(); }
+
+    var callStep = document.getElementById("step-call");
+    callStep.classList.toggle("locked", !unlocked);
+    document.getElementById("callLocked").hidden = unlocked;
+    document.getElementById("callOpen").hidden = !unlocked;
+    if (unlocked && !bookingLoaded) {
+      var frame = callStep.querySelector(".booking-frame");
+      if (frame && frame.getAttribute("data-src")) {
+        frame.src = frame.getAttribute("data-src");
+        bookingLoaded = true;
+      }
+    }
+
     var done = 0;
     steps.forEach(function (el) {
       var on = !!state[el.id];
@@ -281,6 +326,7 @@
     // whole card is the tap target; real controls inside keep their own job
     el.addEventListener("click", function (e) {
       if (e.target.closest("a, iframe, .video-frame, .booking-frame, .email-shot")) return;
+      if (el.id === "step-call" && !callUnlocked()) return; // locked until steps 1-5 are done
       state[el.id] = !state[el.id];
       save();
       render();
