@@ -7,7 +7,7 @@
   <meta name="description" content="A custom strength program, a weekly schedule, a nutrition plan, and a one on one call with Kenny to make sure it all fits. Built for hockey players 9 to 12.">
   <meta name="robots" content="noindex">
   <meta property="og:title" content="Training for 9 to 12 Year Olds | Prodigy Athletics">
-  <meta property="og:description" content="A pro level foundation for your young player: program, schedule, nutrition, and a call with Kenny. Two ways to run it.">
+  <meta property="og:description" content="A pro level foundation for your young player: program, schedule, nutrition, a call with Kenny, and coaching in the app. Starter, built for 9 to 12.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -154,49 +154,30 @@
     <div class="get"><h4>One on one call with me</h4><p>Once the plan is built, we sit down together, you and your player, and I walk through it to make sure it fits and it's something they'll actually follow.</p></div>
   </div>
 
-  <h2>Two ways to run it</h2>
-  <p class="two-ways">Either <strong>I stay in it with them</strong> in the app, reviewing their form, giving feedback, and answering questions as they go. Or <strong>you take the plan</strong>, we do the call together, I make sure it works, and you run it yourselves.</p>
-
-  <div class="country-row">
-    <button class="country-btn" id="cbtn-CA" onclick="setCountry('CA')">🇨🇦 CAD</button>
-    <button class="country-btn" id="cbtn-US" onclick="setCountry('US')">🇺🇸 USD</button>
-  </div>
+  <h2>How it runs</h2>
+  <p class="two-ways"><strong>I build it, we walk through it together on a call, and I stay in it with them</strong> in the app: reviewing their form, giving feedback, adjusting the plan as they develop, and answering questions as they come up.</p>
 
   <div class="proof-quote">
     <p>"Kenny has been great for our son's development and growth on and off the ice. We have seen significant results."</p>
     <p class="pq-name">Nick, hockey parent</p>
   </div>
 
-  <div class="offer-card">
-    <div class="offer-name">Self-Guided</div>
-    <div class="offer-price">$<span class="px" data-tier="training_self">699</span> <small><span class="cur">CAD</span> / first 12 weeks</small></div>
-    <div class="offer-renewal">Then $<span class="rx" data-tier="training_self">175</span> <span class="cur">CAD</span> every 4 weeks</div>
-    <p class="offer-who">You run it. I build it and make sure it fits.</p>
+  <div class="offer-card featured">
+    <div class="offer-badge">Ages 9 to 12</div>
+    <div class="offer-name">Starter</div>
+    <div class="offer-price">$<span class="px" data-tier="training_coached">799</span> <small><span class="cur">USD</span> / first 12 weeks</small></div>
+    <div class="offer-renewal">Then $<span class="rx" data-tier="training_coached">199</span> <span class="cur">USD</span> every 4 weeks</div>
+    <p class="offer-who">I build it, and I stay in it with them.</p>
     <ul class="offer-features">
       <li>Custom strength program</li>
       <li>Weekly training schedule</li>
       <li>Custom nutrition plan</li>
       <li>One on one call with Kenny to walk through the plan</li>
-      <li>Full app access to run the program</li>
+      <li>Two way in app coaching with Kenny: form reviews, feedback, plan adjustments, questions answered as they come up</li>
     </ul>
-    <a class="btn-buy ghost" onclick="buy('training_self')">Start Self-Guided</a>
+    <a class="btn-buy" onclick="buy('training_coached')">Start with Starter</a>
   </div>
-
-  <div class="offer-card featured">
-    <div class="offer-badge">Most Popular</div>
-    <div class="offer-name">Coached</div>
-    <div class="offer-price">$<span class="px" data-tier="training_coached">999</span> <small><span class="cur">CAD</span> / first 12 weeks</small></div>
-    <div class="offer-renewal">Then $<span class="rx" data-tier="training_coached">249</span> <span class="cur">CAD</span> every 4 weeks</div>
-    <p class="offer-who">I stay in it with them.</p>
-    <ul class="offer-features">
-      <li>Everything in Self-Guided</li>
-      <li>Two way in app coaching with Kenny</li>
-      <li>Form reviews and feedback on their training</li>
-      <li>Plan adjustments as they develop</li>
-      <li>Questions answered as they come up</li>
-    </ul>
-    <a class="btn-buy" onclick="buy('training_coached')">Start Coached</a>
-  </div>
+  <p style="text-align:center;font-size:13px;color:var(--text-muted);margin:14px 0 8px;">Prices in US dollars. Canadian families: GST/HST is added at checkout.</p>
 
   <div class="proof-video">
     <p class="pv-label">From a Prodigy family</p>
@@ -218,8 +199,8 @@
       <p>Once the plan is built, you and your player join me for a call. I walk through the program, the schedule, and the nutrition plan, answer questions, and adjust anything that doesn't fit your real week. The goal is a plan they'll actually follow.</p>
     </details>
     <details>
-      <summary>What's the difference between the two options?</summary>
-      <p>Same build, same call. With Coached, I stay involved after: I review their form in the app, give feedback, adjust the plan as they develop, and answer questions as they come up. With Self-Guided, you take the plan and run it yourselves.</p>
+      <summary>Do you stay involved after the call?</summary>
+      <p>Yes. Starter is not a PDF. I review their form in the app, give feedback, adjust the plan as they develop, and answer questions as they come up.</p>
     </details>
     <details>
       <summary>How does the billing work?</summary>
@@ -245,13 +226,13 @@
 <script>
 /* Pricing + checkout mirror /apply exactly (display only; real charge is set in Stripe). */
 const CONFIG = {
+  // Starter (Kenny 2026-10-02): US$799 first 12 weeks -> US$199 every 4 weeks, one
+  // USD board for both countries (same link + numbers as /apply's training_coached).
   pricing: {
-    training_self:    { CAD: { intro: 699,  renew: 175 }, USD: { intro: 499,  renew: 125 } },
-    training_coached: { CAD: { intro: 999,  renew: 249 }, USD: { intro: 749,  renew: 175 } },
+    training_coached: { CAD: { intro: 799,  renew: 199 }, USD: { intro: 799,  renew: 199 } },
   },
   checkout: {
-    training_self:    { CAD: 'https://buy.stripe.com/00w5kF8MQ2aybmj3nocbC0J', USD: 'https://buy.stripe.com/fZu5kF1kog1obmjf66cbC0R' },
-    training_coached: { CAD: 'https://buy.stripe.com/8x24gB0gk9D061Ze22cbC0L', USD: 'https://buy.stripe.com/fZucN7e7a3eCaif1fgcbC0Q' },
+    training_coached: { CAD: 'https://buy.stripe.com/00w9AVbZ216udur3nocbC14', USD: 'https://buy.stripe.com/00w9AVbZ216udur3nocbC14' },
   },
   metaPixelId: '2092599024666125',
 };
@@ -269,20 +250,10 @@ const CONFIG = {
 })();
 function trackPixel(event, params) { if (window.fbq) { try { fbq('track', event, params || {}); } catch (e) {} } }
 
-let CURRENCY = 'CAD';
-function setCountry(c) {
-  CURRENCY = (c === 'US') ? 'USD' : 'CAD';
-  document.getElementById('cbtn-CA').classList.toggle('active', CURRENCY === 'CAD');
-  document.getElementById('cbtn-US').classList.toggle('active', CURRENCY === 'USD');
-  document.querySelectorAll('.px').forEach(el => { el.textContent = CONFIG.pricing[el.dataset.tier][CURRENCY].intro; });
-  document.querySelectorAll('.rx').forEach(el => { el.textContent = CONFIG.pricing[el.dataset.tier][CURRENCY].renew; });
-  document.querySelectorAll('.cur').forEach(el => { el.textContent = CURRENCY; });
-}
-setCountry('CA');
-fetch('https://get.geojs.io/v1/ip/country.json')
-  .then(r => r.json())
-  .then(d => { setCountry(d && d.country === 'CA' ? 'CA' : 'US'); })
-  .catch(() => setCountry('CA'));
+const CURRENCY = 'USD';   // USD-only board
+document.querySelectorAll('.px').forEach(el => { el.textContent = CONFIG.pricing[el.dataset.tier][CURRENCY].intro; });
+document.querySelectorAll('.rx').forEach(el => { el.textContent = CONFIG.pricing[el.dataset.tier][CURRENCY].renew; });
+document.querySelectorAll('.cur').forEach(el => { el.textContent = CURRENCY; });
 
 function buy(tier) {
   const link = CONFIG.checkout[tier][CURRENCY];

@@ -366,7 +366,7 @@
 
   <div class="offer-card featured">
     <div class="offer-badge">Most Popular</div>
-    <div class="offer-name">The Group Program</div>
+    <div class="offer-name">Core</div>
     <div class="offer-price">$<span id="price-group">1,300</span> <small><span class="cur-label">USD</span> / first 12 weeks</small></div>
     <div class="offer-renewal">Then $<span id="renew-group">299</span> <span class="cur-label">USD</span> every 4 weeks. Continue as long as it's working for your family.</div>
     <ul class="offer-features">
@@ -376,31 +376,31 @@
       <li>Free access to all digital resources, including IronClad Mindset, so the mental tools are in place before the hard moments show up</li>
       <li>A one-of-a-kind onboarding welcome package shipped to your door, so day one feels like making a team, not downloading an app</li>
     </ul>
-    <a class="btn-buy" id="buy-group" onclick="buy('group')">Enroll in the Group Program</a>
+    <a class="btn-buy" id="buy-group" onclick="buy('group')">Enroll in Core</a>
   </div>
 
   <div class="offer-card" id="card-oneonone">
     <div class="offer-badge">Highest Touch</div>
-    <div class="offer-name">Group + Full 1:1 Access</div>
+    <div class="offer-name">All-Access VIP</div>
     <div class="spots-pill"><span class="dot"></span><span id="spots-text"><s>5 spots</s> 3 spots remaining</span></div>
     <div class="offer-price">$<span id="price-oneonone">2,500</span> <small><span class="cur-label">USD</span> / first 12 weeks</small></div>
     <div class="offer-renewal">Then $<span id="renew-oneonone">699</span> <span class="cur-label">USD</span> every 4 weeks.</div>
     <p style="font-size:14px;color:var(--text-muted);line-height:1.65;margin:4px 0 16px;">For the families who want the fastest development. The same complete system, with a private line to me on top of it.</p>
     <ul class="offer-features">
-      <li>Everything in the Group Program</li>
+      <li>Everything in Core</li>
       <li>A private 1:1 call with me, up to 2 each month, booked directly on my calendar, so problems get solved the week they show up, not at the end of the season</li>
       <li>Direct message access to me between calls, so they never hesitate to reach out</li>
       <li>Priority access to my calendar, including evening and weekend slots, so calls fit around school, practice and games</li>
       <li>The shortest line I offer between where your player is and where they want to be</li>
     </ul>
-    <a class="btn-buy" id="buy-oneonone" onclick="buy('oneonone')">Claim a 1:1 Spot</a>
+    <a class="btn-buy" id="buy-oneonone" onclick="buy('oneonone')">Claim a VIP Spot</a>
   </div>
 
-  <p class="cur-note">Prices in <span id="cur-word">US dollars</span>. Canadian families: GST is added at checkout. <a id="cur-switch" href="#"></a></p>
+  <p class="cur-note">Prices in <span id="cur-word">US dollars</span>. Canadian families: GST/HST is added at checkout. <a id="cur-switch" href="#"></a></p>
 </div>
 
 <div class="letter" style="padding-top:0;">
-  <p><strong>Why are 1-on-1 spots capped?</strong> Because I take every single call myself. Nothing gets passed to an assistant coach, and I won't lower that standard to sell more spots. I'm close to capacity for 1-on-1, and the number above is what I'm comfortable onboarding right now while giving every athlete what I promised them. When those spots are gone, the button greys out and the Group Program is the way in.</p>
+  <p><strong>Why are VIP spots capped?</strong> Because I take every single call myself. Nothing gets passed to an assistant coach, and I won't lower that standard to sell more spots. I'm close to capacity for 1-on-1, and the number above is what I'm comfortable onboarding right now while giving every athlete what I promised them. When those spots are gone, the button greys out and the Group Program is the way in.</p>
   <p><strong>Why 12 weeks first?</strong> Because that's how long it takes to build the foundation and prove the habits are real. After that it's every 4 weeks, and you stay because it's working, not because you're locked in.</p>
 
   <!-- ══════════ FAQ ══════════ -->
@@ -428,7 +428,7 @@
   </div>
   <div class="faq-item">
     <h3>"I have a few questions I still want answered before I get started. Where do I ask them?"</h3>
-    <p>If you're still uncertain, fire me an email at <a href="mailto:kenny.batke@prodigyathletics.ca">kenny.batke@prodigyathletics.ca</a>, or <a href="/connect/">book a free fit call</a>. I can answer any of your questions and give you a straight read on whether the program is right for you or whether you'd be wasting your time and money.</p>
+    <p>If you're still uncertain, fire me an email at <a href="mailto:support@prodigyathletics.ca">support@prodigyathletics.ca</a>, or <a href="/connect/">book a free fit call</a>. I can answer any of your questions and give you a straight read on whether the program is right for you or whether you'd be wasting your time and money.</p>
   </div>
 
   <!-- ══════════ CLOSE ══════════ -->
@@ -444,8 +444,8 @@
   <h2>Ready When You Are</h2>
   <p>Two ways in. The only difference is how much direct, private time with me your player gets.</p>
   <div style="display:flex;justify-content:center;gap:14px;flex-wrap:wrap;">
-    <a class="btn-gold" onclick="buy('group')">Enroll in Group</a>
-    <a class="btn-gold" id="cta-oneonone" onclick="buy('oneonone')">Claim a 1:1 Spot · 1 left</a>
+    <a class="btn-gold" onclick="buy('group')">Enroll in Core</a>
+    <a class="btn-gold" id="cta-oneonone" onclick="buy('oneonone')">Claim a VIP Spot · 1 left</a>
   </div>
   <p style="margin:24px auto 0;">Not sure yet? <a href="/connect/" style="color:var(--accent);">Book a free fit call</a> and get my honest read first.</p>
 </section>
@@ -520,7 +520,7 @@ if (open <= 0) {
   btn.textContent = 'Spots full. Group is open.';
   btn.removeAttribute('onclick');
   if (ctaBtn) {
-    ctaBtn.textContent = '1:1 Spots Full';
+    ctaBtn.textContent = 'VIP Spots Full';
     ctaBtn.removeAttribute('onclick');
     ctaBtn.style.background = '#3a3a3a';
     ctaBtn.style.color = '#888';
@@ -528,7 +528,7 @@ if (open <= 0) {
   }
 } else {
   spotsText.innerHTML = '<s>' + SPOTS_TOTAL + ' spots</s> ' + open + (open === 1 ? ' spot remaining' : ' spots remaining');
-  if (ctaBtn) ctaBtn.textContent = 'Claim a 1:1 Spot · ' + open + ' left';
+  if (ctaBtn) ctaBtn.textContent = 'Claim a VIP Spot · ' + open + ' left';
 }
 
 /* ── buy ── */
