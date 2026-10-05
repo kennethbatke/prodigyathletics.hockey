@@ -220,11 +220,20 @@
   </p>
 </footer>
 
-<script src="https://bookings.nimbuspop.com/assets/embed.js"></script>
+<!-- Prodigy's own booking page (cal.prodigyathletics.ca): closers' times first, Kenny last.
+     Replaced the Zoho Bookings widget 2026-10-05. The iframe grows to fit its content. -->
 <script>
-// Inline-embed the consult booking calendar (Zoho's official widget)
 window.addEventListener('load', function () {
-  if (window.Bookings) Bookings.inlineEmbed({ url: "https://meet.prodigyathletics.ca/portal-embed#/connect", parent: "#inline-container", height: "640px" });
+  var holder = document.getElementById('inline-container');
+  var f = document.createElement('iframe');
+  f.src = 'https://cal.prodigyathletics.ca/book?embed=1';
+  f.title = 'Book your fit call';
+  f.style.cssText = 'width:100%;border:0;min-height:640px;display:block;border-radius:14px;';
+  f.setAttribute('allowtransparency', 'true');
+  holder.appendChild(f);
+  window.addEventListener('message', function (e) {
+    if (e.data && e.data.prodigyBook === 'height' && e.data.height) f.style.height = (e.data.height + 24) + 'px';
+  });
 });
 
 // All "Schedule a Consult" buttons smooth-scroll to the embedded booking.
