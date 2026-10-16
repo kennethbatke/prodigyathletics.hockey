@@ -1,6 +1,20 @@
 {
   "entries": [
     {
+      "filename": "IMG_2051.jpg",
+      "name": "IMG_2051",
+      "category": "player",
+      "web_path": "/images/wins/players/IMG_2051.jpg",
+      "added_at": 1792167385.124969
+    },
+    {
+      "filename": "943031B3-16C9-4CDB-9C79-610CCDE75030.JPG",
+      "name": "943031B3-16C9-4CDB-9C79-610CCDE75030",
+      "category": "parent",
+      "web_path": "/images/wins/parents/943031B3-16C9-4CDB-9C79-610CCDE75030.JPG",
+      "added_at": 1792167385.117961
+    },
+    {
       "filename": " Micah Text Win.jpg",
       "name": "Micah Text Win",
       "category": "player",
